@@ -6,7 +6,7 @@ If it was not run, it says "not run". Numbers from the Round 1 deck (EER 0.37, "
 | Metric | Result | Command | Date | Commit | Data |
 |---|---|---|---|---|---|
 | Golden + schema tests | 45 passed (sandbox run) | `python3 -m pytest tests/golden` | 2026-10-23 | not committed yet | 3 synthetic fixtures |
-| Golden + schema tests, re-run by C after merge | 45 passed | `python -m pytest -q tests` | 2026-10-23 16:16 IST | `__AHASH__` | 3 synthetic fixtures |
+| Golden + schema tests, re-run by C after merge | 45 passed | `python -m pytest -q tests` | 2026-10-23 16:16 IST | `4a113b18fd` | 3 synthetic fixtures |
 | Fixture validator | ALL VALID (3 fixtures + 1 reference file) | `python3 -m core.validate` | 2026-10-23 | not committed yet | 3 synthetic fixtures |
 | Payee-extraction precision/recall | not run | | | | |
 | Name-matching false-discrepancy rate | not run | | | | |
@@ -25,7 +25,7 @@ If it was not run, it says "not run". Numbers from the Round 1 deck (EER 0.37, "
 | 2026-10-23 ~15:05 IST | none | Playwright browser check, phone 390×844: consent → demo A → answer → money toggle → reports | horizontal overflow 0 px; 1930 next step shown for all 3 payees; summary and filing sheet HTML downloaded |
 | 2026-10-23 ~15:05 IST | none | Playwright browser check, desktop: real `.txt` upload containing `<script>` and a Markdown link | script not executed, no clickable link (URLs defanged), result `INCONCLUSIVE · STUB-NO-ENGINE` |
 | 2026-10-23 16:15 IST | see git log | `python -m pytest -q` after Claude B integration | **55 passed** in 7.3 s |
-| 2026-10-23 16:16 IST | `__AHASH__` | `python -m pytest -q tests app registry report` after merging Claude A (Python 3.13, Streamlit 1.65, Linux) | **113 passed** (45 A golden/schema + 68 C) |
+| 2026-10-23 16:16 IST | `4a113b18fd` | `python -m pytest -q tests app registry report` after merging Claude A (Python 3.13, Streamlit 1.65, Linux) | **113 passed** (45 A golden/schema + 68 C) |
 | — | — | Windows 11: `app\run_app.ps1` on the team laptop | **not run** |
 
 The 113 are code tests, not accuracy numbers. Demo results are Claude A's *expected* fixture values, not a rules engine.

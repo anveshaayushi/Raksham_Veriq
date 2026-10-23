@@ -7,15 +7,15 @@ Everything below was written on **23 Oct 2026 (pre-build window, before the fina
 with AI assistance (Claude, Anthropic), and reviewed by the team.
 
 **Commit hashes.** Claude A's files were written in a scratch workspace and first committed when Claude C merged
-them (commit `__AHASH__`). See "Git" below.
+them (commit `4a113b18fd`). See "Git" below.
 
 | Area | Files | Written (IST) | Team-repo commit |
 |---|---|---|---|
-| Shared contract | `core/schemas.py` | 2026-10-23 (afternoon) | `__AHASH__` |
-| Fixture validator | `core/validate.py` | 2026-10-23 | `__AHASH__` |
-| Golden fixtures (synthetic) | `fixtures/scenario_*.json`, `fixtures/reference/sebi_snapshot_synthetic.json`, `fixtures/build_fixtures.py` | 2026-10-23 | `__AHASH__` |
-| Golden/schema tests | `tests/golden/test_fixtures.py` | 2026-10-23 | `__AHASH__` |
-| Shared docs | `CHANGES_REQUESTED.md`, `STATUS.md`, `PREBUILT.md`, `DISCLOSURE.md`, `RESULTS.md` | 2026-10-23 | `__AHASH__` |
+| Shared contract | `core/schemas.py` | 2026-10-23 (afternoon) | `4a113b18fd` |
+| Fixture validator | `core/validate.py` | 2026-10-23 | `4a113b18fd` |
+| Golden fixtures (synthetic) | `fixtures/scenario_*.json`, `fixtures/reference/sebi_snapshot_synthetic.json`, `fixtures/build_fixtures.py` | 2026-10-23 | `4a113b18fd` |
+| Golden/schema tests | `tests/golden/test_fixtures.py` | 2026-10-23 | `4a113b18fd` |
+| Shared docs | `CHANGES_REQUESTED.md`, `STATUS.md`, `PREBUILT.md`, `DISCLOSURE.md`, `RESULTS.md` | 2026-10-23 | `4a113b18fd` |
 
 Claude B and Claude C add their own rows.
 
@@ -55,7 +55,7 @@ Repository in this folder (`.git`). History before the finale:
 |---|---|
 | `19a52177ec` | Claude C v0 (app, registry, report) |
 | `1f52e04` | Claude C: Claude B's voice stub wired in |
-| `__AHASH__` | Claude A's contract, fixtures, golden tests merged; app moved onto A's contract |
+| `4a113b18fd` | Claude A's contract, fixtures, golden tests merged; app moved onto A's contract |
 
 Tag `v0-prebuilt` points at the latest pre-finale commit. Check with `git log --oneline` and `git show v0-prebuilt --stat`.
 Author name/email are placeholders; set `git config user.name` / `user.email` before your next commit. To push: create an
