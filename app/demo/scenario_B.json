@@ -1,0 +1,41 @@
+{
+ "id": "B",
+ "title": "Scenario B · Ankit · Navyug Broking (legitimate broker)",
+ "note": "PROVISIONAL C-side demo fixture. Chats, names and IDs are fictional. stub_voice and stub_decisions are expected values typed by hand from the brief's ladder (section 6) so the UI can be built; they are NOT detector or rules output. Replace with Claude A's golden fixtures (fixtures/) when they land.",
+ "as_of": "2026-10-08",
+ "chat": "08/10/26, 11:00 - Priyanka (Navyug Broking): Hello Ankit, this is Priyanka from Navyug Broking regarding your margin top-up.\n08/10/26, 11:02 - Priyanka (Navyug Broking): PTT-20261008-WA0003.opus (file attached)\n08/10/26, 11:03 - Priyanka (Navyug Broking): Please pay ₹15,000 to our registered UPI ID navyug.brk@validhdfc\n",
+ "transcripts": {
+  "PTT-20261008-WA0003.opus": "Hi Ankit, the margin top-up details follow in the next message."
+ },
+ "claimed_firm": "Navyug Broking Ltd",
+ "checks": {
+  "navyug.brk@validhdfc": [
+   "Navyug Broking Ltd",
+   "SEBI Check"
+  ]
+ },
+ "stub_voice": [
+  {
+   "file_id": "PTT-20261008-WA0003.opus",
+   "state": "no_signal",
+   "score": null,
+   "threshold": null,
+   "speech_seconds": 0.0,
+   "reasons": [
+    "STUB value from the demo fixture. No detector ran."
+   ]
+  }
+ ],
+ "stub_decisions": [
+  {
+   "payee": "navyug.brk@validhdfc",
+   "result": "NO_MAJOR_ISSUE",
+   "rule_id": "R6",
+   "reasons": [
+    "The user-reported SEBI Check name matches the claimed firm.",
+    "No hard red flag in the chat; voice and registry values are stubs."
+   ],
+   "next_step": "No major issue was found in the checks you ran. This is not a guarantee: the offer or the person can still be fraudulent."
+  }
+ ]
+}

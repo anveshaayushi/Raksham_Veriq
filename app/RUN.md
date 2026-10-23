@@ -1,0 +1,51 @@
+# Running the VERIQ v0 app (Claude C)
+
+## One command
+- Windows: `powershell -ExecutionPolicy Bypass -File app\run_app.ps1` (add `-Phone` for the hotspot demo)
+- macOS/Linux: `bash app/run_app.sh` (add `--phone`)
+
+Each creates `.venv` on first run, installs, runs the tests, then starts the app.
+
+## Windows 11 (PowerShell) by hand, from the `veriq` folder
+
+```powershell
+py -3.11 --version                      # if missing: winget install Python.Python.3.11, then open a new terminal
+py -3.11 -m venv .venv
+.\.venv\Scripts\Activate.ps1            # if blocked: Set-ExecutionPolicy -Scope CurrentUser RemoteSigned
+python -m pip install -r app\requirements.txt
+python -m pytest -q                     # expect: 51 passed
+python -m streamlit run app\streamlit_app.py --browser.gatherUsageStats false --client.toolbarMode minimal
+```
+Then open http://localhost:8501. Ctrl+C stops it, and stopping it clears every case from memory.
+
+## macOS / Linux
+
+```bash
+python3 -m venv .venv && source .venv/bin/activate
+pip install -r app/requirements.txt
+python -m pytest -q
+python -m streamlit run app/streamlit_app.py --browser.gatherUsageStats false --client.toolbarMode minimal
+```
+
+`--browser.gatherUsageStats false` stops Streamlit's own usage telemetry, so the app makes no outside requests.
+
+## Phone demo (laptop runs the app, phone is the screen)
+1. Connect the laptop to the **phone's hotspot** (venue Wi-Fi may block device-to-device traffic).
+2. Start the app with `--server.address 0.0.0.0`; Windows Firewall will ask: allow on **private** networks.
+3. Run `ipconfig` and find the laptop's IPv4 address on the hotspot adapter, e.g. 192.168.43.20.
+4. On the phone open `http://192.168.43.20:8501`.
+
+## Quick demo path
+Consent → Upload → tab **Try a synthetic demo** → Scenario A → **Load this demo** → Continue → Continue →
+**Get the answer** → turn on **I have already sent money** → **Make the reports** → download the four files.
+
+## What is real and what is a stub (v0)
+| Part | Status |
+|---|---|
+| Consent, upload checks (.txt/.zip/voice), SHA-256, safe ZIP reading | real, tested |
+| Android, iPhone and plain (no-time) exports; day/month order per file | stub parser, tested |
+| WhatsApp parsing and payee extraction | **stub** in `app/adapters/extract.py` until Claude A's `parsing/`, `extract/` exist |
+| Decision per payee | **stub**: Claude A's `rules/` when present; demo fixtures use hand-written expected values; uploads get `INCONCLUSIVE · STUB-NO-ENGINE` |
+| Voice check | **stub**: always `cant_assess` until Claude B's `voice/` exists; demo fixtures use labelled stub values |
+| Registry | **stub** fixture table; unknown payees are `unavailable`, never `clean` |
+| Money-already-sent toggle, filing sheet, redacted summary | real, tested |
