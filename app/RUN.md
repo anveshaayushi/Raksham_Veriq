@@ -13,7 +13,7 @@ py -3.11 --version                      # if missing: winget install Python.Pyth
 py -3.11 -m venv .venv
 .\.venv\Scripts\Activate.ps1            # if blocked: Set-ExecutionPolicy -Scope CurrentUser RemoteSigned
 python -m pip install -r app\requirements.txt
-python -m pytest -q tests app registry report   # expect: 113 passed (45 Claude A golden + 68 app/registry/report)
+python -m pytest -q tests app registry report   # expect: 114 passed (45 Claude A golden + 69 app/registry/report)
 python -m streamlit run app\streamlit_app.py --browser.gatherUsageStats false --client.toolbarMode minimal
 ```
 Then open http://localhost:8501. Ctrl+C stops it, and stopping it clears every case from memory.

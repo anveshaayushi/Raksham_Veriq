@@ -28,13 +28,22 @@ class Extraction:
     warnings: list[str] = field(default_factory=list)
 
 
+def _merge_transcripts(msgs: list, transcripts: dict[str, str] | None) -> list:
+    """Claude A's CR-8: the parser leaves voice text empty; the transcript is merged in before extraction."""
+    import dataclasses
+
+    t = transcripts or {}
+    return [dataclasses.replace(m, text=t[m.media_ref]) if getattr(m, "kind", "") == "voice"
+            and getattr(m, "media_ref", None) in t and not getattr(m, "text", "") else m for m in msgs]
+
+
 def run(text: str, case_id: str, transcripts: dict[str, str] | None = None) -> Extraction:
     try:
         import extract as a_extract  # type: ignore  # Claude A
         import parsing as a_parsing  # type: ignore  # Claude A
 
         if hasattr(a_parsing, "parse_chat") and hasattr(a_extract, "extract"):
-            msgs = a_parsing.parse_chat(text)
+            msgs = _merge_transcripts(a_parsing.parse_chat(text), transcripts)
             inds, cues = a_extract.extract(msgs, case_id)
             return Extraction(msgs, inds, cues, "parsing/ + extract/ (Claude A)", False)
     except ImportError:
