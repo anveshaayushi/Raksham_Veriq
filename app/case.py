@@ -89,7 +89,11 @@ def build_case(*, case_id: str, chat_text: str, claimed_firm: str, checks: dict[
         if get(m, "kind") != "voice":
             continue
         ref = get(m, "media_ref") or f"msg{get(m, 'msg_id')}"
-        if ref in fixture_voice:
+        b_stub = voice_adapter.demo_stub(fixture["id"], ref) if (fixture and ref in fixture_voice) else None
+        if b_stub is not None:
+            voice.append(b_stub)  # Claude B's voice/stub.py
+            voice_stub = True
+        elif ref in fixture_voice:
             fv = fixture_voice[ref]
             voice.append(VoiceResult(file_id=ref, state=fv["state"], score=fv["score"], threshold=fv["threshold"],
                                      speech_seconds=fv["speech_seconds"], reasons=tuple(fv["reasons"]),
@@ -111,7 +115,9 @@ def build_case(*, case_id: str, chat_text: str, claimed_firm: str, checks: dict[
     if fixture:
         fx_checks = {k: (v[0], v[1]) for k, v in fixture.get("checks", {}).items()}
         given = {k: (c.observed_name.strip(), c.source) for k, c in checks.items() if c.observed_name.strip()}
-        match = chat_text == fixture["chat"] and claimed_firm.strip() == fixture["claimed_firm"] and given == fx_checks
+        want_voice = [v["state"] for v in fixture.get("stub_voice", [])]
+        match = (chat_text == fixture["chat"] and claimed_firm.strip() == fixture["claimed_firm"] and given == fx_checks
+                 and [get(v, "state") for v in voice] == want_voice)  # B's stub must agree with the fixture's assumption
     bundle = decide_adapter.decide(claimed_firm=claimed_firm, payees=payees, indicators=ex.indicators, cues=ex.cues,
                                    evidence=evidence, voice=voice, registry=registry, fixture=fixture,
                                    fixture_inputs_match=match)

@@ -8,7 +8,8 @@
 | 2026-10-23 ~15:05 IST | none | `python -m streamlit run app/streamlit_app.py --server.headless true` | started; `/_stcore/health` returned `ok` |
 | 2026-10-23 ~15:05 IST | none | Playwright browser check, phone 390×844: consent → demo A → answer → money toggle → reports | horizontal overflow 0 px; 1930 next step shown for all 3 payees; summary and filing sheet HTML downloaded |
 | 2026-10-23 ~15:05 IST | none | Playwright browser check, desktop: real `.txt` upload containing `<script>` and a Markdown link | script not executed, no clickable link (URLs defanged), result `INCONCLUSIVE · STUB-NO-ENGINE` |
+| 2026-10-23 16:15 IST | see git log | `python -m pytest -q` after Claude B integration | **55 passed** in 7.3 s |
 | — | — | `pytest tests/golden` | **not run** (no golden fixtures from Claude A yet) |
 | — | — | Windows 11: `app\run_app.ps1` on the team laptop | **not run** |
 
-No detector, extraction or decision metrics exist yet: those modules are stubs in this v0.
+No detector, extraction or decision metrics exist yet. Claude B reports no voice accuracy numbers; do not quote any voice number in the deck.

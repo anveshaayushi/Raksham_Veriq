@@ -9,18 +9,39 @@ from __future__ import annotations
 from dataclasses import asdict, is_dataclass
 from typing import Any
 
-try:  # Claude A's contract (preferred)
-    from core.schemas import Cue, Decision, Evidence, Indicator, Message, VoiceResult  # type: ignore
+from . import _provisional_schemas as _prov
 
-    SCHEMA_SOURCE = "core.schemas (Claude A)"
-    PROVISIONAL = False
-except ImportError:  # pragma: no cover - exercised whenever core/ is absent
-    from ._provisional_schemas import Cue, Decision, Evidence, Indicator, Message, VoiceResult
+_NAMES = ("Message", "Indicator", "Cue", "VoiceResult", "Evidence", "Decision")
 
+
+def _load() -> tuple[dict, dict]:
+    """Take each contract type from core/schemas.py if it defines it (A owns it; B may have drafted part of it),
+    otherwise from the provisional copy. Returns (types, origin per name)."""
+    try:
+        import core.schemas as real  # type: ignore
+    except ImportError:
+        real = None
+    types, origin = {}, {}
+    for n in _NAMES:
+        if real is not None and hasattr(real, n):
+            types[n], origin[n] = getattr(real, n), "core.schemas"
+        else:
+            types[n], origin[n] = getattr(_prov, n), "provisional"
+    return types, origin
+
+
+_TYPES, ORIGIN = _load()
+Message, Indicator, Cue, VoiceResult, Evidence, Decision = (_TYPES[n] for n in _NAMES)
+PROVISIONAL = any(v == "provisional" for v in ORIGIN.values())
+if all(v == "core.schemas" for v in ORIGIN.values()):
+    SCHEMA_SOURCE = "core.schemas (shared contract)"
+elif all(v == "provisional" for v in ORIGIN.values()):
     SCHEMA_SOURCE = "PROVISIONAL copy of brief section 3.3 (core/schemas.py not found)"
-    PROVISIONAL = True
+else:
+    SCHEMA_SOURCE = ("core.schemas for " + ", ".join(n for n in _NAMES if ORIGIN[n] == "core.schemas")
+                     + "; PROVISIONAL for " + ", ".join(n for n in _NAMES if ORIGIN[n] == "provisional"))
 
-__all__ = ["Cue", "Decision", "Evidence", "Indicator", "Message", "VoiceResult", "SCHEMA_SOURCE", "PROVISIONAL",
+__all__ = ["Cue", "Decision", "Evidence", "Indicator", "Message", "VoiceResult", "SCHEMA_SOURCE", "PROVISIONAL", "ORIGIN",
            "get", "evidence_class", "to_dict", "RESULT_RANK", "case_result"]
 
 # Brief section 6: R1 highest. The case result is the highest-ranked payee result.

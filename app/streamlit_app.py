@@ -19,6 +19,7 @@ import streamlit as st  # noqa: E402
 
 from app.case import UserCheck, build_case, extract, load_demo, report_data  # noqa: E402
 from app.adapters.extract import amount_in, payees as payee_list  # noqa: E402
+from app.adapters.voice import score_display as voice_score_display  # noqa: E402
 from app.contracts import SCHEMA_SOURCE, evidence_class, get  # noqa: E402
 from app.evidence_input import SOURCES  # noqa: E402
 from app.intake import Intake, IntakeError, add_audio, add_chat, decode_text, sha256  # noqa: E402
@@ -244,8 +245,9 @@ elif S.step == 5:
             if m is not None and m.kind == "voice":
                 v = next((v for v in case.voice if get(v, "file_id") == m.media_ref), None)
                 if v is not None:
-                    st.caption(f"Found in a voice note. Voice check: {get(v, 'state')} · {'; '.join(get(v, 'reasons') or [])} "
-                               f"· model: {get(v, 'model_version')}. A voice result can raise concern but never clears a payee.")
+                    st.caption(f"Found in a voice note. Voice check: {get(v, 'state')} · {md_escape('; '.join(get(v, 'reasons') or []))} "
+                               f"· {voice_score_display(v)} · model: {md_escape(get(v, 'model_version'))}. "
+                               "Only 'flagged' can raise concern; a voice result never clears a payee.")
             st.info(f"**Next step:** {display_next_step(d)}")
     with st.expander("Timeline: what was said (not whether it is true)"):
         for m in case.extraction.messages:
