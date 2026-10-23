@@ -1,0 +1,424 @@
+{
+  "fixture_id": "A_meera",
+  "schema_version": "0.1.0-c0",
+  "synthetic": true,
+  "description": "Suspicious: one claimed firm, three different payees, payee rotation, fee to withdraw. Multiline message in msg 5; voice-derived payee in msg 4; unrecognised SEBI number.",
+  "case": {
+    "case_id": "A_meera",
+    "claimed_firm": "Navyug Wealth Research Pvt Ltd",
+    "money_already_sent": false,
+    "as_of": "2026-10-23"
+  },
+  "input": {
+    "platform": "whatsapp_android",
+    "chat_txt": "13/10/2026, 5:58 pm - Messages and calls are end-to-end encrypted. No one outside of this chat, not even WhatsApp, can read or listen to them.\n13/10/2026, 6:02 pm - Rahul Navyug: Namaste Meera ji. I am Rahul, head of research at Navyug Wealth. We are SEBI registered, reg no INH000DEMO45.\n13/10/2026, 6:05 pm - Meera: Okay, what do I need to do?\n14/10/2026, 10:11 am - Rahul Navyug: Onboarding fee ₹10,000. UPI: ramesh.k@upi\n17/10/2026, 9:40 am - Rahul Navyug: PTT-20261017-WA0004.opus (file attached)\n19/10/2026, 4:20 pm - Rahul Navyug: Profit is ready. Pay 18% tax to withdraw.\n₹60,000 to A/c 30112233445021 IFSC SBIN0001234, today only.\n19/10/2026, 4:31 pm - Meera: Ok, sending now\n",
+    "parser_skips_system_lines": true,
+    "transcripts": {
+      "PTT-20261017-WA0004.opus": "Ma'am, the payment department has a new ID, sunita.t@upi. Please send ₹25,000 today only."
+    }
+  },
+  "media": [
+    {
+      "media_ref": "PTT-20261017-WA0004.opus",
+      "kind": "audio",
+      "file_present": false,
+      "note": "synthetic audio not yet supplied; use the stub VoiceResult"
+    }
+  ],
+  "user_checks": [
+    {
+      "payee_id": "A_meera-I3",
+      "observed_name": "SHREE GANESH TRADERS",
+      "source": "user-reported: UPI/bank app payee-name display (typed by the user)",
+      "as_of": "2026-10-23"
+    },
+    {
+      "payee_id": "A_meera-I4",
+      "observed_name": "OM SAI ENTERPRISES",
+      "source": "user-reported: UPI/bank app payee-name display (typed by the user)",
+      "as_of": "2026-10-23"
+    },
+    {
+      "payee_id": "A_meera-I5",
+      "observed_name": "KALPANA TRADING CO",
+      "source": "user-reported: UPI/bank app payee-name display (typed by the user)",
+      "as_of": "2026-10-23"
+    }
+  ],
+  "reference": {
+    "sebi_snapshot": "fixtures/reference/sebi_snapshot_synthetic.json"
+  },
+  "registry_stub": {
+    "A_meera-I3": "clean",
+    "A_meera-I4": "clean",
+    "A_meera-I5": "clean"
+  },
+  "expected": {
+    "messages": [
+      {
+        "msg_id": 1,
+        "ts": "2026-10-13T18:02:00+05:30",
+        "sender": "Rahul Navyug",
+        "kind": "text",
+        "text": "Namaste Meera ji. I am Rahul, head of research at Navyug Wealth. We are SEBI registered, reg no INH000DEMO45.",
+        "media_ref": null
+      },
+      {
+        "msg_id": 2,
+        "ts": "2026-10-13T18:05:00+05:30",
+        "sender": "Meera",
+        "kind": "text",
+        "text": "Okay, what do I need to do?",
+        "media_ref": null
+      },
+      {
+        "msg_id": 3,
+        "ts": "2026-10-14T10:11:00+05:30",
+        "sender": "Rahul Navyug",
+        "kind": "text",
+        "text": "Onboarding fee ₹10,000. UPI: ramesh.k@upi",
+        "media_ref": null
+      },
+      {
+        "msg_id": 4,
+        "ts": "2026-10-17T09:40:00+05:30",
+        "sender": "Rahul Navyug",
+        "kind": "voice",
+        "text": "Ma'am, the payment department has a new ID, sunita.t@upi. Please send ₹25,000 today only.",
+        "media_ref": "PTT-20261017-WA0004.opus"
+      },
+      {
+        "msg_id": 5,
+        "ts": "2026-10-19T16:20:00+05:30",
+        "sender": "Rahul Navyug",
+        "kind": "text",
+        "text": "Profit is ready. Pay 18% tax to withdraw.\n₹60,000 to A/c 30112233445021 IFSC SBIN0001234, today only.",
+        "media_ref": null
+      },
+      {
+        "msg_id": 6,
+        "ts": "2026-10-19T16:31:00+05:30",
+        "sender": "Meera",
+        "kind": "text",
+        "text": "Ok, sending now",
+        "media_ref": null
+      }
+    ],
+    "indicators": [
+      {
+        "id": "A_meera-I1",
+        "case_id": "A_meera",
+        "msg_id": 1,
+        "type": "firm_name",
+        "value_norm": "navyug wealth",
+        "value_raw": "Navyug Wealth",
+        "source": "text",
+        "confidence": "high",
+        "span": [
+          50,
+          63
+        ]
+      },
+      {
+        "id": "A_meera-I2",
+        "case_id": "A_meera",
+        "msg_id": 1,
+        "type": "sebi_reg",
+        "value_norm": "INH000DEMO45",
+        "value_raw": "INH000DEMO45",
+        "source": "text",
+        "confidence": "high",
+        "span": [
+          96,
+          108
+        ]
+      },
+      {
+        "id": "A_meera-I3",
+        "case_id": "A_meera",
+        "msg_id": 3,
+        "type": "upi_vpa",
+        "value_norm": "ramesh.k@upi",
+        "value_raw": "ramesh.k@upi",
+        "source": "text",
+        "confidence": "high",
+        "span": [
+          29,
+          41
+        ]
+      },
+      {
+        "id": "A_meera-I4",
+        "case_id": "A_meera",
+        "msg_id": 4,
+        "type": "upi_vpa",
+        "value_norm": "sunita.t@upi",
+        "value_raw": "sunita.t@upi",
+        "source": "voice",
+        "confidence": "medium",
+        "span": [
+          44,
+          56
+        ]
+      },
+      {
+        "id": "A_meera-I5",
+        "case_id": "A_meera",
+        "msg_id": 5,
+        "type": "bank_account",
+        "value_norm": "30112233445021",
+        "value_raw": "30112233445021",
+        "source": "text",
+        "confidence": "high",
+        "span": [
+          57,
+          71
+        ]
+      },
+      {
+        "id": "A_meera-I6",
+        "case_id": "A_meera",
+        "msg_id": 5,
+        "type": "ifsc",
+        "value_norm": "SBIN0001234",
+        "value_raw": "SBIN0001234",
+        "source": "text",
+        "confidence": "high",
+        "span": [
+          77,
+          88
+        ]
+      }
+    ],
+    "amounts": [
+      {
+        "msg_id": 3,
+        "payee_id": "A_meera-I3",
+        "value_inr": 10000,
+        "raw": "₹10,000",
+        "span": [
+          15,
+          22
+        ]
+      },
+      {
+        "msg_id": 4,
+        "payee_id": "A_meera-I4",
+        "value_inr": 25000,
+        "raw": "₹25,000",
+        "span": [
+          70,
+          77
+        ]
+      },
+      {
+        "msg_id": 5,
+        "payee_id": "A_meera-I5",
+        "value_inr": 60000,
+        "raw": "₹60,000",
+        "span": [
+          42,
+          49
+        ]
+      }
+    ],
+    "cues": [
+      {
+        "msg_id": 1,
+        "type": "authority_claim",
+        "severity": "soft",
+        "excerpt": "We are SEBI registered"
+      },
+      {
+        "msg_id": 4,
+        "type": "payee_change",
+        "severity": "soft",
+        "excerpt": "has a new ID, sunita.t@upi"
+      },
+      {
+        "msg_id": 4,
+        "type": "urgency",
+        "severity": "soft",
+        "excerpt": "today only"
+      },
+      {
+        "msg_id": 5,
+        "type": "fee_to_withdraw",
+        "severity": "hard",
+        "excerpt": "Pay 18% tax to withdraw"
+      },
+      {
+        "msg_id": 5,
+        "type": "payee_change",
+        "severity": "soft",
+        "excerpt": "₹60,000 to A/c 30112233445021"
+      },
+      {
+        "msg_id": 5,
+        "type": "urgency",
+        "severity": "soft",
+        "excerpt": "today only"
+      }
+    ],
+    "voice_results": [
+      {
+        "file_id": "PTT-20261017-WA0004.opus",
+        "state": "no_signal",
+        "score": 0.12,
+        "threshold": 0.5,
+        "speech_seconds": 5.0,
+        "reasons": [],
+        "model_version": "stub-fixture-v0"
+      }
+    ],
+    "evidence": [
+      {
+        "evidence_id": "A_meera-E1",
+        "payee_id": "A_meera-I3",
+        "lane": "payee_name",
+        "class": "A",
+        "claimed": "payee belongs to Navyug Wealth Research Pvt Ltd",
+        "observed": "SHREE GANESH TRADERS",
+        "source": "user-reported: UPI/bank app payee-name display (typed by the user)",
+        "as_of": "2026-10-23",
+        "limitation": "Shows the displayed name differs from the claim. Does not prove fraud or who controls the account."
+      },
+      {
+        "evidence_id": "A_meera-E2",
+        "payee_id": "A_meera-I4",
+        "lane": "payee_name",
+        "class": "A",
+        "claimed": "payee belongs to Navyug Wealth Research Pvt Ltd",
+        "observed": "OM SAI ENTERPRISES",
+        "source": "user-reported: UPI/bank app payee-name display (typed by the user)",
+        "as_of": "2026-10-23",
+        "limitation": "Shows the displayed name differs from the claim. Does not prove fraud or who controls the account."
+      },
+      {
+        "evidence_id": "A_meera-E3",
+        "payee_id": "A_meera-I5",
+        "lane": "payee_name",
+        "class": "A",
+        "claimed": "payee belongs to Navyug Wealth Research Pvt Ltd",
+        "observed": "KALPANA TRADING CO",
+        "source": "user-reported: UPI/bank app payee-name display (typed by the user)",
+        "as_of": "2026-10-23",
+        "limitation": "Shows the displayed name differs from the claim. Does not prove fraud or who controls the account."
+      },
+      {
+        "evidence_id": "A_meera-E4",
+        "payee_id": "CASE",
+        "lane": "registration",
+        "class": "B",
+        "claimed": "SEBI reg INH000DEMO45 quoted for Navyug Wealth Research Pvt Ltd (msg 1)",
+        "observed": "INH000DEMO45 not present in the snapshot",
+        "source": "dated public-list snapshot (SYNTHETIC fixture: fixtures/reference/sebi_snapshot_synthetic.json)",
+        "as_of": "2026-10-23",
+        "limitation": "Absence from a local, dated snapshot can mean the snapshot is incomplete or out of date. Not verification of any payee."
+      },
+      {
+        "evidence_id": "A_meera-E5",
+        "payee_id": "A_meera-I4",
+        "lane": "voice",
+        "class": "E",
+        "claimed": "voice note msg 4 (PTT-20261017-WA0004.opus)",
+        "observed": "no_signal (stub score 0.12 vs stub threshold 0.50)",
+        "source": "voice detector STUB (fixture value, not a measurement)",
+        "as_of": "2026-10-23",
+        "limitation": "A no_signal result does not mean the voice is genuine and never clears a payee."
+      },
+      {
+        "evidence_id": "A_meera-E6",
+        "payee_id": "A_meera-I3",
+        "lane": "registry",
+        "class": "C",
+        "claimed": "payee ramesh.k@upi",
+        "observed": "no matching report (stub)",
+        "source": "cross-victim registry STUB (fixture lookup table)",
+        "as_of": "2026-10-23",
+        "limitation": "Absence from the registry means nobody has reported it here, not that it is safe."
+      },
+      {
+        "evidence_id": "A_meera-E7",
+        "payee_id": "A_meera-I4",
+        "lane": "registry",
+        "class": "C",
+        "claimed": "payee sunita.t@upi",
+        "observed": "no matching report (stub)",
+        "source": "cross-victim registry STUB (fixture lookup table)",
+        "as_of": "2026-10-23",
+        "limitation": "Absence from the registry means nobody has reported it here, not that it is safe."
+      },
+      {
+        "evidence_id": "A_meera-E8",
+        "payee_id": "A_meera-I5",
+        "lane": "registry",
+        "class": "C",
+        "claimed": "payee A/c 30112233445021",
+        "observed": "no matching report (stub)",
+        "source": "cross-victim registry STUB (fixture lookup table)",
+        "as_of": "2026-10-23",
+        "limitation": "Absence from the registry means nobody has reported it here, not that it is safe."
+      }
+    ],
+    "decisions": [
+      {
+        "payee_id": "A_meera-I3",
+        "result": "NAME_DISCREPANCY",
+        "rule_id": "NAME_DISC",
+        "reasons": [
+          "Class A (user-reported): app shows 'SHREE GANESH TRADERS'; no shared distinctive word with claimed 'Navyug Wealth Research Pvt Ltd'.",
+          "Also present but outranked: SEBI number INH000DEMO45 not in the dated snapshot (REG_CONFLICT)."
+        ],
+        "evidence_ids": [
+          "A_meera-E1"
+        ],
+        "next_step": "Pause: don't pay until you verify. Contact the organisation through a number or website you find yourself, not one from this chat. If money was sent, call 1930."
+      },
+      {
+        "payee_id": "A_meera-I4",
+        "result": "NAME_DISCREPANCY",
+        "rule_id": "NAME_DISC",
+        "reasons": [
+          "Class A (user-reported): app shows 'OM SAI ENTERPRISES'; no shared distinctive word with claimed 'Navyug Wealth Research Pvt Ltd'.",
+          "Also present but outranked: SEBI number INH000DEMO45 not in the dated snapshot (REG_CONFLICT).",
+          "Voice note: no_signal. Does not clear or accuse."
+        ],
+        "evidence_ids": [
+          "A_meera-E2"
+        ],
+        "next_step": "Pause: don't pay until you verify. Contact the organisation through a number or website you find yourself, not one from this chat. If money was sent, call 1930."
+      },
+      {
+        "payee_id": "A_meera-I5",
+        "result": "NAME_DISCREPANCY",
+        "rule_id": "NAME_DISC",
+        "reasons": [
+          "Class A (user-reported): app shows 'KALPANA TRADING CO'; no shared distinctive word with claimed 'Navyug Wealth Research Pvt Ltd'.",
+          "Also present but outranked: SEBI number INH000DEMO45 not in the dated snapshot (REG_CONFLICT)."
+        ],
+        "evidence_ids": [
+          "A_meera-E3"
+        ],
+        "next_step": "Pause: don't pay until you verify. Contact the organisation through a number or website you find yourself, not one from this chat. If money was sent, call 1930."
+      }
+    ],
+    "case_result": {
+      "case_id": "A_meera",
+      "result": "NAME_DISCREPANCY",
+      "rule_id": "NAME_DISC",
+      "next_step": "Pause: don't pay until you verify. Contact the organisation through a number or website you find yourself, not one from this chat. If money was sent, call 1930.",
+      "deciding_payee_id": "A_meera-I3",
+      "money_already_sent": false
+    },
+    "variants": {
+      "money_already_sent_true": {
+        "result_unchanged": true,
+        "next_step_must_contain": [
+          "1930"
+        ],
+        "note": "Invariant 6: the toggle changes next_step only, never the result."
+      }
+    }
+  }
+}

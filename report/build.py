@@ -76,6 +76,7 @@ class ReportData:
     debited_bank: str = ""
     debited_account: str = ""
     screenshots: str = ""
+    case_findings: list[dict] = field(default_factory=list)  # evidence with payee_id "CASE" (registration, voice)
     notes: list[str] = field(default_factory=list)
 
 
@@ -150,11 +151,17 @@ def _findings_md(d: ReportData, redacted: bool) -> list[str]:
         if p.findings:
             out += ["| Claimed | Observed | Source | Date | Rule | Limitation |", "|---|---|---|---|---|---|"]
             out += [f"| {md(f(x['claimed']))} | {md(f(x['observed']))} | {md(x['source'])} (class {md(x['class'])}) | {md(x['as_of'])} | "
-                    f"{md(p.rule_id)} | {md(x['limitation'])} |" for x in p.findings]
+                    f"{md(x.get('rule', p.rule_id))} | {md(x['limitation'])} |" for x in p.findings]
         else:
             out.append("- Evidence: none entered for this payee (missing, not a match).")
         if p.voice_note:
             out.append(f"- Voice: {md(p.voice_note)}")
+        out.append("")
+    if d.case_findings:
+        out += ["## Evidence about the whole case (not about one payee)", "",
+                "| Lane | Claimed | Observed | Source | Date | Limitation |", "|---|---|---|---|---|---|"]
+        out += [f"| {md(x['lane'])} (class {md(x['class'])}) | {md(f(x['claimed']))} | {md(f(x['observed']))} | {md(x['source'])} | "
+                f"{md(x['as_of'])} | {md(x['limitation'])} |" for x in d.case_findings]
         out.append("")
     return out
 
@@ -208,12 +215,18 @@ def _findings_html(d: ReportData, redacted: bool) -> list[str]:
         if p.findings:
             out.append("<table><tr><th>Claimed</th><th>Observed</th><th>Source</th><th>Date</th><th>Rule</th><th>Limitation</th></tr>")
             out += [f"<tr><td>{_h(f(x['claimed']))}</td><td>{_h(f(x['observed']))}</td><td>{_h(x['source'])} (class {_h(x['class'])})</td>"
-                    f"<td>{_h(x['as_of'])}</td><td>{_h(p.rule_id)}</td><td>{_h(x['limitation'])}</td></tr>" for x in p.findings]
+                    f"<td>{_h(x['as_of'])}</td><td>{_h(x.get('rule', p.rule_id))}</td><td>{_h(x['limitation'])}</td></tr>" for x in p.findings]
             out.append("</table>")
         else:
             out.append("<p>Evidence: none entered for this payee (missing, not a match).</p>")
         if p.voice_note:
             out.append(f"<p>Voice: {_h(p.voice_note)}</p>")
+    if d.case_findings:
+        out.append("<h3>Evidence about the whole case (not about one payee)</h3><table><tr><th>Lane</th><th>Claimed</th>"
+                   "<th>Observed</th><th>Source</th><th>Date</th><th>Limitation</th></tr>")
+        out += [f"<tr><td>{_h(x['lane'])} (class {_h(x['class'])})</td><td>{_h(f(x['claimed']))}</td><td>{_h(f(x['observed']))}</td>"
+                f"<td>{_h(x['source'])}</td><td>{_h(x['as_of'])}</td><td>{_h(x['limitation'])}</td></tr>" for x in d.case_findings]
+        out.append("</table>")
     return out
 
 

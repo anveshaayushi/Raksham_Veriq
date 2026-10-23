@@ -2,49 +2,35 @@ from datetime import date
 
 from app.adapters import decide as decide_adapter
 from app.adapters import voice as voice_adapter
-from app.case import UserCheck, build_case, load_demo, report_data
-from app.contracts import get
+from app.case import UserCheck, build_case, demo_inputs, load_demo, report_data
+from app.contracts import evidence_class
+
+UPLOAD = ("20/10/2026, 8:59 pm - Agent: I am Vikram from Sahyadri Securities. Pay ₹5,000 to vikram99@ybl\n"
+          "21/10/2026, 9:05 am - Agent: Now pay ₹9,000 to A/c 123456789012 IFSC HDFC0004321 today only\n")
 
 
-def demo(sid, edit=None):
-    fx = load_demo(sid)
-    checks = {k: UserCheck(v[0], v[1], date.fromisoformat(fx["as_of"])) for k, v in fx["checks"].items()}
-    if edit:
-        edit(checks)
-    return build_case(case_id=f"demo-{sid}", chat_text=fx["chat"], claimed_firm=fx["claimed_firm"], checks=checks,
-                      transcripts=fx["transcripts"], fixture=fx)
+def upload_case(checks=None):
+    return build_case(case_id="u1", chat_text=UPLOAD, claimed_firm="Sahyadri Securities Pvt Ltd", checks=checks or {})
 
 
-def test_three_demo_fixtures_flow_and_are_labelled_stub():
-    exp = {"A": "NAME_DISCREPANCY", "B": "NO_MAJOR_ISSUE", "C": "INCONCLUSIVE"}
-    for sid, res in exp.items():
-        c = demo(sid)
-        assert c.case_result() == res and c.bundle.is_stub and "STUB" in c.bundle.source
+def test_upload_without_engine_is_inconclusive_with_contract_ids():
+    c = upload_case()
+    assert c.case_result() == "INCONCLUSIVE" and [d.rule_id for d in c.decisions] == ["INCONCL", "INCONCL"]
+    assert all(decide_adapter.STUB_REASON in d.reasons and any("missing evidence" in r for r in d.reasons) for d in c.decisions)
+    assert "STUB" in c.bundle.source and c.bundle.is_stub
 
 
-def test_scenario_a_payees_stay_separate_with_own_results():
-    c = demo("A")
-    assert [get(c.result_for(p.id), "result") for p in c.payees] == ["HUMAN_REVIEW", "NAME_DISCREPANCY", "NAME_DISCREPANCY"]
-    assert len({p.id for p in c.payees}) == 3
-
-
-def test_changed_inputs_never_reuse_fixture_and_never_clear():
-    def edit(ch):
-        ch["navyug.brk@validhdfc"] = UserCheck("SOMEONE ELSE", "SEBI Check", date(2026, 10, 8))
-    c = demo("B", edit)
-    assert c.case_result() == "INCONCLUSIVE" and all(get(d, "rule_id") == decide_adapter.STUB_RULE for d in c.decisions)
-
-
-def test_upload_without_engine_is_inconclusive_with_missing_evidence():
-    fx = load_demo("B")
-    c = build_case(case_id="u1", chat_text=fx["chat"], claimed_firm="Navyug Broking Ltd", checks={})
-    d = c.decisions[0]
-    assert get(d, "result") == "INCONCLUSIVE" and get(d, "evidence_ids") == () and any("missing evidence" in r for r in get(d, "reasons"))
+def test_payees_stay_separate_with_own_amounts():
+    c = upload_case()
+    assert [p.value_norm for p in c.payees] == ["vikram99@ybl", "123456789012"]
+    assert [c.amounts[p.id] for p in c.payees] == ["₹5,000", "₹9,000"]
 
 
 def test_user_reported_evidence_is_class_a_and_labelled():
-    c = demo("A")
-    assert c.evidence and all(e.evidence_class == "A" and e.source.startswith("User-reported") for e in c.evidence)
+    c = upload_case({"vikram99@ybl": UserCheck("VIKRAM TRADERS", "UPI app (payee name before paying)", date(2026, 10, 21))})
+    e = c.evidence[0]
+    assert evidence_class(e) == "A" and e.lane == "payee_name" and "user-reported" in e.source
+    assert c.decisions[0].evidence_ids == [e.evidence_id] and len(c.decisions[1].reasons) == 2
 
 
 def test_voice_stub_never_returns_no_signal():
@@ -53,13 +39,25 @@ def test_voice_stub_never_returns_no_signal():
 
 
 def test_voice_referenced_but_not_uploaded_is_cant_assess():
-    fx = load_demo("A")
-    c = build_case(case_id="u2", chat_text=fx["chat"], claimed_firm="X", checks={})
+    c = build_case(case_id="u2", chat_text="20/10/2026, 8:59 pm - A: PTT-1.opus (file attached)\n", claimed_firm="X", checks={})
     assert [v.state for v in c.voice] == ["cant_assess"]
 
 
+def test_scores_and_stub_numbers_are_hidden():
+    from app.contracts import VoiceResult
+    real = VoiceResult(file_id="f", state="no_signal", score=1.2, threshold=0.5, speech_seconds=3.0, reasons=[], model_version="aasist-cal-v1")
+    stub = VoiceResult(file_id="f", state="no_signal", score=0.12, threshold=0.5, speech_seconds=3.0, reasons=[], model_version="stub-fixture-v0")
+    assert "1.2" in voice_adapter.score_display(real) and "0.12" not in voice_adapter.score_display(stub)
+    assert "0.12" not in voice_adapter.observed_for_display("voice", "no_signal (stub score 0.12 vs stub threshold 0.50)")
+    assert voice_adapter.observed_for_display("payee_name", "X (2)") == "X (2)"
+
+
 def test_report_data_keeps_blanks_blank():
-    data = report_data(demo("A"), money_sent=True)
+    fx = load_demo("A")
+    di = demo_inputs(fx)
+    c = build_case(case_id=di["case_id"], chat_text=di["chat_text"], claimed_firm=di["claimed_firm"],
+                   checks={k: UserCheck(v["name"], v["source"], v["date"]) for k, v in di["checks"].items()},
+                   transcripts=di["transcripts"], fixture=fx)
+    data = report_data(c, money_sent=True)
     assert data.complainant_mobile == "" and all(p.utr == "" and p.paid_on == "" for p in data.payees)
     assert all("1930" in p.next_step for p in data.payees)
-    assert [p.result for p in data.payees] == ["HUMAN_REVIEW", "NAME_DISCREPANCY", "NAME_DISCREPANCY"]

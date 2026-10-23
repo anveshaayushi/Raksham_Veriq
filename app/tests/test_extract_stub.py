@@ -23,7 +23,7 @@ def test_payees_separate_and_cues():
     ex = run(ANDROID, "c1", {"PTT-1.opus": "new ID sunita.t@upi"})
     ps = payees(ex.indicators)
     assert [p.value_norm for p in ps] == ["ramesh.k@upi", "sunita.t@upi", "50210012345021"]
-    assert ps[1].source == "voice" and ps[1].confidence == "medium"
+    assert ps[1].source == "voice" and ps[1].confidence == "medium" and ps[0].id == "c1-I2" and isinstance(ps[0].span, list) and len(ps[0].span) == 2
     types = {(c.type, c.severity) for c in ex.cues}
     assert ("fee_to_withdraw", "hard") in types and ("payee_change", "soft") in types and ("urgency", "soft") in types
     assert ex.is_stub and "STUB" in ex.source
@@ -38,10 +38,9 @@ def test_amount_display():
     assert amount_in("Pay ₹10,000 now") == "₹10,000" and amount_in("no money") is None
 
 
-def test_plain_export_without_times_is_accepted_and_times_stay_empty():
+def test_plain_export_without_times_is_refused_honestly_under_the_shared_contract():
     ex = run("Rahul: Pay ₹500 to a.b@upi\nstill Rahul\nMeera: ok", "c2")
-    assert [m.ts for m in ex.messages] == ["", ""] and "still Rahul" in ex.messages[0].text
-    assert payees(ex.indicators)[0].value_norm == "a.b@upi" and any("no dates or times" in w for w in ex.warnings)
+    assert ex.messages == [] and len(ex.warnings) == 1 and "CR-C6" in ex.warnings[0]  # no invented timestamps
 
 
 def test_month_first_file_is_detected():

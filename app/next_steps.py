@@ -20,16 +20,22 @@ MONEY_SENT_STEP = (
 )
 
 
+def money_sent_step(result: str | None) -> str:
+    """The 1930 next step; keeps "This is not a guarantee." for NO_MAJOR_ISSUE (golden variant, invariant 5)."""
+    return f"{MONEY_SENT_STEP} {NOT_A_GUARANTEE}" if result == "NO_MAJOR_ISSUE" else MONEY_SENT_STEP
+
+
 def with_money_sent(decision: Any, money_sent: bool) -> Any:
     """Return the decision with next_step replaced by the 1930 flow when money was already sent."""
     if not money_sent:
         return decision
+    step = money_sent_step(get(decision, "result"))
     if isinstance(decision, dict):
-        return {**decision, "next_step": MONEY_SENT_STEP}
+        return {**decision, "next_step": step}
     if is_dataclass(decision):
-        return replace(decision, next_step=MONEY_SENT_STEP)
+        return replace(decision, next_step=step)
     if hasattr(decision, "model_copy"):
-        return decision.model_copy(update={"next_step": MONEY_SENT_STEP})
+        return decision.model_copy(update={"next_step": step})
     raise TypeError(f"unsupported decision type {type(decision).__name__}")
 
 

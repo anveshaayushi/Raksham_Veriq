@@ -13,7 +13,7 @@ py -3.11 --version                      # if missing: winget install Python.Pyth
 py -3.11 -m venv .venv
 .\.venv\Scripts\Activate.ps1            # if blocked: Set-ExecutionPolicy -Scope CurrentUser RemoteSigned
 python -m pip install -r app\requirements.txt
-python -m pytest -q                     # expect: 55 passed
+python -m pytest -q tests app registry report   # expect: 113 passed (45 Claude A golden + 68 app/registry/report)
 python -m streamlit run app\streamlit_app.py --browser.gatherUsageStats false --client.toolbarMode minimal
 ```
 Then open http://localhost:8501. Ctrl+C stops it, and stopping it clears every case from memory.
@@ -23,7 +23,7 @@ Then open http://localhost:8501. Ctrl+C stops it, and stopping it clears every c
 ```bash
 python3 -m venv .venv && source .venv/bin/activate
 pip install -r app/requirements.txt
-python -m pytest -q
+python -m pytest -q tests app registry report
 python -m streamlit run app/streamlit_app.py --browser.gatherUsageStats false --client.toolbarMode minimal
 ```
 
@@ -45,7 +45,7 @@ Consent → Upload → tab **Try a synthetic demo** → Scenario A → **Load th
 | Consent, upload checks (.txt/.zip/voice), SHA-256, safe ZIP reading | real, tested |
 | Android, iPhone and plain (no-time) exports; day/month order per file | stub parser, tested |
 | WhatsApp parsing and payee extraction | **stub** in `app/adapters/extract.py` until Claude A's `parsing/`, `extract/` exist |
-| Decision per payee | **stub**: Claude A's `rules/` when present; demo fixtures use hand-written expected values; uploads get `INCONCLUSIVE · STUB-NO-ENGINE` |
+| Decision per payee | **stub**: Claude A's `rules/` when present; demos show Claude A's golden-fixture expected values (dropped if you edit the demo); uploads get `INCONCLUSIVE · INCONCL` |
 | Voice check | **stub**: demos use Claude B's `voice.stub.stub_result` when `voice/` is present (else the fixture's stub values); uploads are `cant_assess` until B confirms an entry point. No voice score is ever shown while there is no calibrated threshold |
 | Registry | **stub** fixture table; unknown payees are `unavailable`, never `clean` |
 | Money-already-sent toggle, filing sheet, redacted summary | real, tested |

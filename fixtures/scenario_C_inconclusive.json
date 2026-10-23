@@ -1,0 +1,197 @@
+{
+  "fixture_id": "C_priya",
+  "schema_version": "0.1.0-c0",
+  "synthetic": true,
+  "description": "Inconclusive: no official name check, guaranteed-return claim, voice note too short to assess.",
+  "case": {
+    "case_id": "C_priya",
+    "claimed_firm": "TradeMax Pro",
+    "money_already_sent": false,
+    "as_of": "2026-10-23"
+  },
+  "input": {
+    "platform": "whatsapp_android",
+    "chat_txt": "13/10/2026, 5:58 pm - Messages and calls are end-to-end encrypted. No one outside of this chat, not even WhatsApp, can read or listen to them.\n16/10/2026, 9:15 pm - Max Admin: Priya, join TradeMax Pro today. Guaranteed 3x returns in 30 days, today only!\n16/10/2026, 9:17 pm - Priya: Where do I pay?\n16/10/2026, 9:20 pm - Max Admin: Send ₹5,000 to trademaxpro@upi to start.\n16/10/2026, 9:25 pm - Max Admin: PTT-20261016-WA0004.opus (file attached)\n",
+    "parser_skips_system_lines": true,
+    "transcripts": {
+      "PTT-20261016-WA0004.opus": ""
+    }
+  },
+  "media": [
+    {
+      "media_ref": "PTT-20261016-WA0004.opus",
+      "kind": "audio",
+      "file_present": false,
+      "note": "synthetic audio not yet supplied; use the stub VoiceResult"
+    }
+  ],
+  "user_checks": [],
+  "reference": {
+    "sebi_snapshot": "fixtures/reference/sebi_snapshot_synthetic.json"
+  },
+  "registry_stub": {
+    "C_priya-I2": "clean"
+  },
+  "expected": {
+    "messages": [
+      {
+        "msg_id": 1,
+        "ts": "2026-10-16T21:15:00+05:30",
+        "sender": "Max Admin",
+        "kind": "text",
+        "text": "Priya, join TradeMax Pro today. Guaranteed 3x returns in 30 days, today only!",
+        "media_ref": null
+      },
+      {
+        "msg_id": 2,
+        "ts": "2026-10-16T21:17:00+05:30",
+        "sender": "Priya",
+        "kind": "text",
+        "text": "Where do I pay?",
+        "media_ref": null
+      },
+      {
+        "msg_id": 3,
+        "ts": "2026-10-16T21:20:00+05:30",
+        "sender": "Max Admin",
+        "kind": "text",
+        "text": "Send ₹5,000 to trademaxpro@upi to start.",
+        "media_ref": null
+      },
+      {
+        "msg_id": 4,
+        "ts": "2026-10-16T21:25:00+05:30",
+        "sender": "Max Admin",
+        "kind": "voice",
+        "text": "",
+        "media_ref": "PTT-20261016-WA0004.opus"
+      }
+    ],
+    "indicators": [
+      {
+        "id": "C_priya-I1",
+        "case_id": "C_priya",
+        "msg_id": 1,
+        "type": "firm_name",
+        "value_norm": "trademax pro",
+        "value_raw": "TradeMax Pro",
+        "source": "text",
+        "confidence": "high",
+        "span": [
+          12,
+          24
+        ]
+      },
+      {
+        "id": "C_priya-I2",
+        "case_id": "C_priya",
+        "msg_id": 3,
+        "type": "upi_vpa",
+        "value_norm": "trademaxpro@upi",
+        "value_raw": "trademaxpro@upi",
+        "source": "text",
+        "confidence": "high",
+        "span": [
+          15,
+          30
+        ]
+      }
+    ],
+    "amounts": [
+      {
+        "msg_id": 3,
+        "payee_id": "C_priya-I2",
+        "value_inr": 5000,
+        "raw": "₹5,000",
+        "span": [
+          5,
+          11
+        ]
+      }
+    ],
+    "cues": [
+      {
+        "msg_id": 1,
+        "type": "guaranteed_return",
+        "severity": "hard",
+        "excerpt": "Guaranteed 3x returns"
+      },
+      {
+        "msg_id": 1,
+        "type": "urgency",
+        "severity": "soft",
+        "excerpt": "today only"
+      }
+    ],
+    "voice_results": [
+      {
+        "file_id": "PTT-20261016-WA0004.opus",
+        "state": "cant_assess",
+        "score": null,
+        "threshold": null,
+        "speech_seconds": 0.4,
+        "reasons": [
+          "too_little_speech"
+        ],
+        "model_version": "stub-fixture-v0"
+      }
+    ],
+    "evidence": [
+      {
+        "evidence_id": "C_priya-E1",
+        "payee_id": "CASE",
+        "lane": "voice",
+        "class": "E",
+        "claimed": "voice note msg 4 (PTT-20261016-WA0004.opus)",
+        "observed": "cant_assess: too little speech (0.4 s, stub)",
+        "source": "voice detector STUB (fixture value, not a measurement)",
+        "as_of": "2026-10-23",
+        "limitation": "Can't assess means no opinion either way. It is not a clearance."
+      },
+      {
+        "evidence_id": "C_priya-E2",
+        "payee_id": "C_priya-I2",
+        "lane": "registry",
+        "class": "C",
+        "claimed": "payee trademaxpro@upi",
+        "observed": "no matching report (stub)",
+        "source": "cross-victim registry STUB (fixture lookup table)",
+        "as_of": "2026-10-23",
+        "limitation": "Absence from the registry means nobody has reported it here, not that it is safe."
+      }
+    ],
+    "decisions": [
+      {
+        "payee_id": "C_priya-I2",
+        "result": "INCONCLUSIVE",
+        "rule_id": "INCONCL",
+        "reasons": [
+          "No class A evidence for trademaxpro@upi: the user has not run a bank/UPI-app name check.",
+          "Voice note: can't assess (too little speech).",
+          "Hard cue: guaranteed_return in msg 1."
+        ],
+        "evidence_ids": [
+          "C_priya-E1"
+        ],
+        "next_step": "Don't pay yet. Find the firm's contact yourself, not from the chat. If money was sent, call 1930."
+      }
+    ],
+    "case_result": {
+      "case_id": "C_priya",
+      "result": "INCONCLUSIVE",
+      "rule_id": "INCONCL",
+      "next_step": "Don't pay yet. Find the firm's contact yourself, not from the chat. If money was sent, call 1930.",
+      "deciding_payee_id": "C_priya-I2",
+      "money_already_sent": false
+    },
+    "variants": {
+      "money_already_sent_true": {
+        "result_unchanged": true,
+        "next_step_must_contain": [
+          "1930"
+        ],
+        "note": "Invariant 6."
+      }
+    }
+  }
+}

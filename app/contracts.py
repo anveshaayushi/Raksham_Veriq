@@ -42,7 +42,7 @@ else:
                      + "; PROVISIONAL for " + ", ".join(n for n in _NAMES if ORIGIN[n] == "provisional"))
 
 __all__ = ["Cue", "Decision", "Evidence", "Indicator", "Message", "VoiceResult", "SCHEMA_SOURCE", "PROVISIONAL", "ORIGIN",
-           "get", "evidence_class", "to_dict", "RESULT_RANK", "case_result"]
+           "get", "evidence_class", "to_dict", "make_evidence", "from_json", "class_kw", "RESULT_RANK", "case_result"]
 
 # Brief section 6: R1 highest. The case result is the highest-ranked payee result.
 RESULT_RANK = ["LINKED", "NAME_DISCREPANCY", "REGISTRATION_CONFLICT", "HUMAN_REVIEW", "INCONCLUSIVE", "NO_MAJOR_ISSUE"]
@@ -61,6 +61,36 @@ def evidence_class(ev: Any) -> str | None:
         if v is not None:
             return v
     return None
+
+
+def _field_names(cls: Any) -> set[str]:
+    from dataclasses import fields as dc_fields
+    try:
+        return {f.name for f in dc_fields(cls)}
+    except TypeError:
+        return set(getattr(cls, "model_fields", {}) or {})
+
+
+def class_kw(cls: Any) -> str:
+    """Python attribute that holds Evidence's JSON "class" ("class_" in Claude A's schema)."""
+    names = _field_names(cls)
+    return next((n for n in ("class_", "evidence_class", "klass") if n in names), "evidence_class")
+
+
+def make_evidence(**kw: Any) -> Any:
+    """Build an Evidence whatever the attribute name for "class" is. Pass it as evidence_class=..."""
+    cls_value = kw.pop("evidence_class")
+    return Evidence(**{**kw, class_kw(Evidence): cls_value})
+
+
+def from_json(cls: Any, data: dict) -> Any:
+    """Contract object from its JSON form (Claude A's from_dict when available)."""
+    if hasattr(cls, "from_dict"):
+        return cls.from_dict(data)
+    d = dict(data)
+    if "class" in d:
+        d[class_kw(cls)] = d.pop("class")
+    return cls(**d)
 
 
 def to_dict(obj: Any) -> dict:

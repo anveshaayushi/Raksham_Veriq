@@ -1,14 +1,27 @@
-# STATUS (updated by the human after each handoff)
+# STATUS (updated by the human after each handoff; Claude A's lines below)
 
-| Deliverable | Owner | State |
-|---|---|---|
-| core/schemas.py + golden fixtures | A | not started (C uses a provisional copy of brief 3.3) |
-| Parser, regex extractor | A | not started (C has a labelled stub) |
-| v0 ladder / rules.decide | A | not started (C has a labelled stub) |
-| Voice baseline | B | AASIST runs on B's laptop; no calibrated threshold, so real results are cant_assess; voice.stub.stub_result wired into C's demos |
-| voice entry point for uploads | B | open (CR-C4) |
-| Streamlit app: consent, upload, confirm firm, payee names, per-payee answer, money toggle | C | tested (55 tests, browser check) |
-| Filing sheet + redacted summary (HTML, Markdown) | C | tested |
-| Registry interface + stub, keyed HMAC helper | C | tested |
-| SQLite registry, graph, reviewer console | C | not started (P2) |
-| Run scripts (Windows/mac), demo script, backup-video plan | C | written; Windows script not run |
+Legend: not started / in progress / merged / tested
+
+## Claude A
+- core/schemas.py (contract + provisional types): **tested** (45 golden/schema tests pass in the sandbox)
+- fixtures/ scenarios A, B, C + synthetic SEBI snapshot: **tested** (validator + mutation tests)
+- core/validate.py (fixture validator): **tested**
+- WhatsApp parser + validation (Android, iPhone, zip safety, hashes): not started
+- Regex extractor + pressure cues: not started
+- Name matcher + exclusion classes: not started
+- v0 decision ladder + truth table + property tests: not started
+- Image OCR / QR extraction: not started (after the core flow)
+- Video: **out of scope** (rejected at validation)
+
+## Claude B (as reported to C on 23 Oct)
+- AASIST runs on CPU; no calibrated threshold, so real results are `cant_assess`: **in progress**
+- `voice/stub.py` `stub_result("A"|"B"|"C"|"FLAGGED")`: reported; C's app calls it for demos
+- Entry point for uploaded voice notes (CR-C4): **open**
+
+## Claude C
+- Streamlit app (consent, upload, confirm firm, user-reported payee names, per-payee answer, money toggle): **tested** against A's contract and golden fixtures
+- Filing sheet + redacted summary (HTML, Markdown): **tested**
+- Registry interface + stub + keyed HMAC helper: **tested**
+- Adapters to A's parser/extractor/rules and B's voice: **merged** (labelled stubs until those exist)
+- SQLite registry, campaign graph, reviewer console: not started (P2)
+- Windows run script (`app/run_app.ps1`): written, **not run**

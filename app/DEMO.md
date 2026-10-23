@@ -7,10 +7,10 @@ Label everything shown from this build as **v0 (pre-built)**. Synthetic data onl
 2. **Upload (20 s).** Show the upload tab and its limits, then switch to *Try a synthetic demo* → Scenario A.
 3. **Confirm the firm (20 s).** "Meera believes she's dealing with Navyug Wealth Research. Each place she was asked to pay is listed separately: two UPI IDs and an account. The second came from a voice note."
 4. **Payee names (30 s).** "She checks each one in her own UPI app without paying, and types the name she sees. VERIQ labels it user-reported; it never contacts a bank."
-5. **Answer (60 s).** Overall: payee name doesn't match. Walk payee by payee:
-   - `ramesh.k@upi` → Human review: a personal name is an exclusion class, so no accusation.
-   - `sunita.t@upi` and the account → name discrepancy, with claimed vs observed, source, date, rule and limitation.
-   - Point at the yellow stub banner: "In v0 these results are the brief's expected values; the rules engine is connected at the finale."
+5. **Answer (60 s).** Overall: payee name doesn't match. Walk payee by payee: `ramesh.k@upi`, `sunita.t@upi` (from the
+   voice note) and the account each show their own name discrepancy (claimed firm vs the trading-company name her app showed),
+   with source, date, rule and limitation. Open "Evidence about the whole case" for the registration and voice lines.
+   Point at the yellow banner: "In v0 these are Claude A's golden-fixture expected values; the rules engine is connected at the finale."
 6. **Money already sent (30 s).** Turn on the toggle: the results stay the same, and the next step changes to calling 1930.
 7. **Reports (45 s).** Download the filing sheet: 1930 fields, BLANKs for what only Meera knows, and the "what to say on the call" box. Then the shareable summary: account cut to the last four digits.
 8. **Close (20 s).** Scenario B shows "No major issue … This is not a guarantee." Scenario C shows Inconclusive. "VERIQ files no complaints, blocks nothing and contacts no one."

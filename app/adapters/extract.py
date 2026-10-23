@@ -33,9 +33,10 @@ def run(text: str, case_id: str, transcripts: dict[str, str] | None = None) -> E
         import extract as a_extract  # type: ignore  # Claude A
         import parsing as a_parsing  # type: ignore  # Claude A
 
-        msgs = a_parsing.parse_chat(text)
-        inds, cues = a_extract.extract(msgs, case_id)
-        return Extraction(msgs, inds, cues, "parsing/ + extract/ (Claude A)", False)
+        if hasattr(a_parsing, "parse_chat") and hasattr(a_extract, "extract"):
+            msgs = a_parsing.parse_chat(text)
+            inds, cues = a_extract.extract(msgs, case_id)
+            return Extraction(msgs, inds, cues, "parsing/ + extract/ (Claude A)", False)
     except ImportError:
         pass
     except Exception as e:  # real module present but contract mismatch: show it, fall back
@@ -51,7 +52,7 @@ _ANDROID = re.compile(r"^(\d{1,2})/(\d{1,2})/(\d{2,4}),? (\d{1,2}):(\d{2})(?:\s?
 _IOS = re.compile(r"^\[(\d{1,2})/(\d{1,2})/(\d{2,4}),? (\d{1,2}):(\d{2})(?::\d{2})?(?:\s?([AP])M)?\] ([^:]{1,80}?): (.*)$", re.I)
 _SYSTEM = re.compile(r"^(\d{1,2})/(\d{1,2})/(\d{2,4}),? \d{1,2}:\d{2}.* - [^:]*$")
 _ATTACH = re.compile(r"(\S+\.(?:opus|ogg|m4a|mp3|wav|aac)) \(file attached\)|<attached: (\S+\.(?:opus|ogg|m4a|mp3|wav|aac))>", re.I)
-_MEDIA = re.compile(r"<(?:media|image|video|audio) omitted>|\S+\.(?:jpg|jpeg|png|webp) \(file attached\)", re.I)
+_MEDIA = re.compile(r"(\S+\.(?:jpg|jpeg|png|webp)) \(file attached\)|<attached: (\S+\.(?:jpg|jpeg|png|webp))>", re.I)
 RX = {
     "upi_vpa": re.compile(r"(?<![\w.@-])([a-z0-9][a-z0-9._-]{1,63}@[a-z][a-z0-9]{1,31})(?![\w@-])(?!\.[a-z])", re.I),
     "bank_account": re.compile(r"\b(?:a/c|acct|account)(?:\s*(?:no\.?|number))?\s*[:#.-]?\s*(\d{9,18})\b", re.I),
@@ -140,8 +141,16 @@ def parse_stub(text: str, transcripts: dict[str, str] | None = None) -> tuple[li
             kind, media_ref = "voice", a.group(1) or a.group(2)
             body = (transcripts or {}).get(media_ref, "")
         elif _MEDIA.search(r["text"]):
-            kind = "image"
-        msgs.append(Message(msg_id=i, ts=r["ts"], sender=r["sender"], kind=kind, text=body, media_ref=media_ref))
+            mm = _MEDIA.search(r["text"])
+            kind, media_ref = "image", mm.group(1) or mm.group(2)
+        try:
+            msgs.append(Message(msg_id=len(msgs) + 1, ts=r["ts"], sender=r["sender"], kind=kind, text=body, media_ref=media_ref))
+        except ValueError as e:  # e.g. the shared contract requires a timestamp (CR-C6)
+            if not r["ts"]:
+                return [], [w for w in warnings if "no dates or times" not in w] + [
+                    "This export has no dates or times. The shared contract needs a time for every message, so it can't "
+                    "be read yet (CR-C6). Export the chat again from WhatsApp."]
+            warnings.append(f"Skipped a message the contract rejected: {e}")
     if not msgs:
         warnings.append("No messages found. Expected lines like '20/10/2026, 8:59 pm - Name: text' (Android) or "
                         "'[20/10/26, 8:59:12 PM] Name: text' (iPhone).")
@@ -161,8 +170,8 @@ def _stub(text: str, case_id: str, transcripts: dict[str, str] | None) -> Extrac
             for mt in rx.finditer(body):
                 raw = mt.group(1)
                 norm = raw.lower() if typ in ("upi_vpa", "url") else re.sub(r"\D", "", raw)[-10:] if typ == "phone" else raw
-                inds.append(Indicator(id=f"{case_id}-i{len(inds) + 1}", case_id=case_id, msg_id=m.msg_id, type=typ,
-                                      value_norm=norm, value_raw=raw, source=src, confidence=conf, span=(mt.start(1), mt.end(1))))
+                inds.append(Indicator(id=f"{case_id}-I{len(inds) + 1}", case_id=case_id, msg_id=m.msg_id, type=typ,
+                                      value_norm=norm, value_raw=raw, source=src, confidence=conf, span=[mt.start(1), mt.end(1)]))
                 if typ in PAYEE_TYPES and norm not in seen_payees:
                     if seen_payees:
                         cues.append(Cue(msg_id=m.msg_id, type="payee_change", severity="soft", excerpt=raw))

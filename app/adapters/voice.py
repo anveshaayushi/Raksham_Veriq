@@ -11,6 +11,8 @@ otherwise `cant_assess`. This adapter never returns `no_signal` or `flagged` on 
 
 from __future__ import annotations
 
+import re
+
 from ..contracts import VoiceResult, get
 
 STUB_VERSION = "stub (no detector connected)"
@@ -18,7 +20,7 @@ STUB_VERSION = "stub (no detector connected)"
 
 def _cant(file_id: str, reason: str) -> object:
     return VoiceResult(file_id=file_id, state="cant_assess", score=None, threshold=None, speech_seconds=0.0,
-                       reasons=(reason,), model_version=STUB_VERSION)
+                       reasons=[reason], model_version=STUB_VERSION)
 
 
 def analyse(file_id: str, data: bytes, filename: str) -> tuple[object, bool]:
@@ -54,7 +56,18 @@ def demo_stub(scenario: str, file_id: str) -> object | None:
 
 
 def score_display(v: object) -> str:
-    """No calibrated threshold => no score is shown (Claude B: do not quote voice numbers)."""
-    if get(v, "threshold") is None:
-        return "no score shown: the detector has no calibrated threshold yet"
+    """Scores are shown only from a real, calibrated detector. Stub values and uncalibrated scores are withheld
+    (Claude B: no calibrated threshold yet, do not quote voice numbers; Claude A: fixture voice values are stubs)."""
+    if get(v, "threshold") is None or "stub" in str(get(v, "model_version", "")).lower():
+        return "no score shown (stub or uncalibrated detector)"
     return f"score {get(v, 'score')} vs threshold {get(v, 'threshold')}"
+
+
+_NUM_PAREN = re.compile(r"\s*\([^)]*\d[^)]*\)")
+
+
+def observed_for_display(lane: str, observed: str) -> str:
+    """Voice evidence text may embed stub numbers; strip any bracketed part containing digits for voice/speaker lanes."""
+    if lane in ("voice", "speaker"):
+        return _NUM_PAREN.sub(" (numbers withheld: stub value)", str(observed))
+    return str(observed)

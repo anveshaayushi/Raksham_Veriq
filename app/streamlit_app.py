@@ -17,9 +17,9 @@ if str(ROOT) not in sys.path:
 
 import streamlit as st  # noqa: E402
 
-from app.case import UserCheck, build_case, extract, load_demo, report_data  # noqa: E402
+from app.case import FIXTURES, UserCheck, build_case, demo_inputs, demo_title, extract, load_demo, report_data  # noqa: E402
 from app.adapters.extract import amount_in, payees as payee_list  # noqa: E402
-from app.adapters.voice import score_display as voice_score_display  # noqa: E402
+from app.adapters.voice import observed_for_display, score_display as voice_score_display  # noqa: E402
 from app.contracts import SCHEMA_SOURCE, evidence_class, get  # noqa: E402
 from app.evidence_input import SOURCES  # noqa: E402
 from app.intake import Intake, IntakeError, add_audio, add_chat, decode_text, sha256  # noqa: E402
@@ -48,6 +48,18 @@ S.setdefault("case_id", "case-" + uuid.uuid4().hex[:8])
 
 def go(n: int) -> None:
     S.step = n
+
+
+def show_evidence(e, rule_id, cited: bool) -> None:
+    """One finding: claimed, observed, source, date, rule, limitation (brief 3.3). Chat-derived text is escaped."""
+    lane = get(e, "lane")
+    st.markdown(
+        f"**Evidence {code(get(e, 'evidence_id'))}** (class {md_escape(evidence_class(e))}, {md_escape(lane)})"
+        f"{' · used for this result' if cited else ' · shown for context, not used for this result'}  \n"
+        f"Claimed: {md_escape(get(e, 'claimed'))}  \nObserved: **{md_escape(observed_for_display(lane, get(e, 'observed')))}**  \n"
+        f"Source: {md_escape(get(e, 'source'))} · Date: {md_escape(get(e, 'as_of'))}"
+        f"{' · Rule: ' + md_escape(rule_id) if (rule_id and cited) else ''}  \n"
+        f"Limitation: _{md_escape(get(e, 'limitation'))}_")
 
 
 def reset() -> None:
@@ -110,20 +122,23 @@ elif S.step == 2:
                 S.intake_warnings = intake.warnings
                 S.transcripts = {}
     with tab_demo:
-        st.write("Fictional chats for trying VERIQ. Their results are **hand-written stub values** until the rules engine is connected.")
-        sid = st.radio("Scenario", ["A", "B", "C"], format_func=lambda x: load_demo(x)["title"], key="demo_pick")
+        st.write("Claude A's golden scenarios: fictional chats with the results the finished system should give. "
+                 "Until the rules engine is built, the answers shown are those **expected values**, not engine output.")
+        sid = st.radio("Scenario", list(FIXTURES), format_func=lambda x: demo_title(load_demo(x)), key="demo_pick")
         if st.button("Load this demo", key="load_demo"):
             fx = load_demo(sid)
+            di = demo_inputs(fx)
             S.demo = sid
-            S.chat_text = fx["chat"]
+            S.case_id = di["case_id"]
+            S.chat_text = di["chat_text"]
             S.audio = {}
-            S.transcripts = fx["transcripts"]
-            S.files = [{"name": f"demo_scenario_{sid}.txt", "kind": "chat", "sha256": sha256(fx["chat"].encode())}]
+            S.transcripts = di["transcripts"]
+            S.files = [{"name": f"{fx['fixture_id']}.txt (golden fixture)", "kind": "chat", "sha256": sha256(di["chat_text"].encode())}]
             S.intake_warnings = []
-            S.claimed_firm = fx["claimed_firm"]
-            S.checks = {k: {"name": v[0], "source": v[1], "date": date.fromisoformat(fx["as_of"])} for k, v in fx["checks"].items()}
+            S.claimed_firm = di["claimed_firm"]
+            S.checks = di["checks"]
     if S.get("chat_text"):
-        ex = extract(S.case_id, S.chat_text, S.get("transcripts"))
+        ex = extract(S.case_id, S.chat_text, S.get("transcripts"), load_demo(S.demo) if S.get("demo") else None)
         S.payee_values = [p.value_norm for p in payee_list(ex.indicators)]
         st.success(f"Read {len(ex.messages)} messages · found {len(S.payee_values)} payment destination(s).")
         for f in S.files:
@@ -141,7 +156,7 @@ elif S.step == 2:
 # ---------------------------------------------------------------- 3 confirm ----
 elif S.step == 3:
     st.header("3 · Who do you believe you are dealing with?")
-    ex = extract(S.case_id, S.chat_text, S.get("transcripts"))
+    ex = extract(S.case_id, S.chat_text, S.get("transcripts"), load_demo(S.demo) if S.get("demo") else None)
     firms = [i.value_raw for i in ex.indicators if i.type == "firm_name"]
     if firms:
         st.caption("Firm names mentioned in the chat: " + ", ".join(md_escape(f) for f in dict.fromkeys(firms)))
@@ -177,7 +192,7 @@ elif S.step == 4:
             "read it, then **cancel**. Never enter your PIN. What you type here is recorded as **user-reported**: VERIQ "
             "cannot see your app and does not contact any bank, UPI provider or SEBI.")
     S.setdefault("checks", {})
-    ex = extract(S.case_id, S.chat_text, S.get("transcripts"))
+    ex = extract(S.case_id, S.chat_text, S.get("transcripts"), load_demo(S.demo) if S.get("demo") else None)
     for n, p in enumerate(payee_list(ex.indicators), 1):
         prev = S.checks.get(p.value_norm, {"name": "", "source": SOURCES[1 if p.type == "upi_vpa" else 0], "date": date.today()})
         with st.container(border=True):
@@ -216,9 +231,8 @@ elif S.step == 5:
         st.subheader("No payment destination found, so nothing could be checked.")
     S.money_sent = st.toggle("I have already sent money", value=S.get("money_sent", False), key="money_toggle",
                              help="Changes only the next step (to the 1930 reporting path). It does not change any result.")
-    if case.voice_is_stub or any(get(v, "model_version", "").startswith("stub") for v in case.voice):
-        st.caption("Voice results shown here are stub values: no voice detector is connected in this v0 build.")
-    ev_by_id = {get(e, "evidence_id"): e for e in case.evidence}
+    if case.voice_is_stub or any("stub" in str(get(v, "model_version", "")).lower() for v in case.voice):
+        st.caption("Voice results shown here are stub values: no calibrated voice detector is connected in this v0 build.")
     msgs = {m.msg_id: m for m in case.extraction.messages}
     for n, p in enumerate(case.payees, 1):
         d = with_money_sent(case.result_for(p.id), S.money_sent)
@@ -228,17 +242,10 @@ elif S.step == 5:
             st.markdown(f"**{PLAIN_LABEL.get(res, res)}** · {code(res)} · rule {code(get(d, 'rule_id'))}")
             for r in get(d, "reasons") or []:
                 st.markdown(f"- {md_escape(r)}")
-            ids = list(get(d, "evidence_ids") or [])
-            if ids:
-                for eid in ids:
-                    e = ev_by_id.get(eid)
-                    if e is None:
-                        continue
-                    st.markdown(
-                        f"**Evidence {code(eid)}** (class {md_escape(evidence_class(e))}, {md_escape(get(e, 'lane'))})  \n"
-                        f"Claimed: {md_escape(get(e, 'claimed'))}  \nObserved: **{md_escape(get(e, 'observed'))}**  \n"
-                        f"Source: {md_escape(get(e, 'source'))} · Date: {md_escape(get(e, 'as_of'))} · Rule: {md_escape(get(d, 'rule_id'))}  \n"
-                        f"Limitation: _{md_escape(get(e, 'limitation'))}_")
+            evs = case.evidence_for(p.id)
+            if evs:
+                for e in evs:
+                    show_evidence(e, get(d, "rule_id"), cited=get(e, "evidence_id") in (get(d, "evidence_ids") or []))
             else:
                 st.caption("Evidence: none entered for this payee. Missing evidence is not a match.")
             m = msgs.get(p.msg_id)
@@ -249,6 +256,10 @@ elif S.step == 5:
                                f"· {voice_score_display(v)} · model: {md_escape(get(v, 'model_version'))}. "
                                "Only 'flagged' can raise concern; a voice result never clears a payee.")
             st.info(f"**Next step:** {display_next_step(d)}")
+    if case.case_level_evidence():
+        with st.expander("Evidence about the whole case (registration, voice)"):
+            for e in case.case_level_evidence():
+                show_evidence(e, None, cited=any(get(e, "evidence_id") in (get(d, "evidence_ids") or []) for d in case.decisions))
     with st.expander("Timeline: what was said (not whether it is true)"):
         for m in case.extraction.messages:
             st.markdown(f"`#{m.msg_id}` {md_escape(m.ts or '')} · **{md_escape(m.sender)}** ({m.kind}): {md_escape(m.text or '(no text)')}")

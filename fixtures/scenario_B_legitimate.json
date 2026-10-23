@@ -1,0 +1,225 @@
+{
+  "fixture_id": "B_ankit",
+  "schema_version": "0.1.0-c0",
+  "synthetic": true,
+  "description": "Legitimate broker: payee name matches, registration consistent, no pressure cues.",
+  "case": {
+    "case_id": "B_ankit",
+    "claimed_firm": "Navyug Broking Pvt Ltd",
+    "money_already_sent": false,
+    "as_of": "2026-10-23"
+  },
+  "input": {
+    "platform": "whatsapp_android",
+    "chat_txt": "13/10/2026, 5:58 pm - Messages and calls are end-to-end encrypted. No one outside of this chat, not even WhatsApp, can read or listen to them.\n15/10/2026, 11:00 am - Sneha Navyug: Hello Ankit, this is Sneha from Navyug Broking Pvt Ltd. Your account opening is complete. SEBI reg no INZ000DEMO01.\n15/10/2026, 11:03 am - Ankit: Thanks. How do I add funds?\n15/10/2026, 11:06 am - Sneha Navyug: You can add funds to our collection account on UPI: navyug.brk@validhdfc. Please confirm the payee name on your app before paying.\n15/10/2026, 11:20 am - Ankit: Okay, I will check my app first.\n16/10/2026, 10:30 am - Sneha Navyug: PTT-20261016-WA0005.opus (file attached)\n",
+    "parser_skips_system_lines": true,
+    "transcripts": {
+      "PTT-20261016-WA0005.opus": "Hi Ankit, your funds have been received. Thank you for choosing us."
+    }
+  },
+  "media": [
+    {
+      "media_ref": "PTT-20261016-WA0005.opus",
+      "kind": "audio",
+      "file_present": false,
+      "note": "synthetic audio not yet supplied; use the stub VoiceResult"
+    }
+  ],
+  "user_checks": [
+    {
+      "payee_id": "B_ankit-I3",
+      "observed_name": "NAVYUG BROKING PRIVATE LIMITED",
+      "source": "user-reported: UPI/bank app payee-name display (typed by the user)",
+      "as_of": "2026-10-23"
+    }
+  ],
+  "reference": {
+    "sebi_snapshot": "fixtures/reference/sebi_snapshot_synthetic.json"
+  },
+  "registry_stub": {
+    "B_ankit-I3": "clean"
+  },
+  "expected": {
+    "messages": [
+      {
+        "msg_id": 1,
+        "ts": "2026-10-15T11:00:00+05:30",
+        "sender": "Sneha Navyug",
+        "kind": "text",
+        "text": "Hello Ankit, this is Sneha from Navyug Broking Pvt Ltd. Your account opening is complete. SEBI reg no INZ000DEMO01.",
+        "media_ref": null
+      },
+      {
+        "msg_id": 2,
+        "ts": "2026-10-15T11:03:00+05:30",
+        "sender": "Ankit",
+        "kind": "text",
+        "text": "Thanks. How do I add funds?",
+        "media_ref": null
+      },
+      {
+        "msg_id": 3,
+        "ts": "2026-10-15T11:06:00+05:30",
+        "sender": "Sneha Navyug",
+        "kind": "text",
+        "text": "You can add funds to our collection account on UPI: navyug.brk@validhdfc. Please confirm the payee name on your app before paying.",
+        "media_ref": null
+      },
+      {
+        "msg_id": 4,
+        "ts": "2026-10-15T11:20:00+05:30",
+        "sender": "Ankit",
+        "kind": "text",
+        "text": "Okay, I will check my app first.",
+        "media_ref": null
+      },
+      {
+        "msg_id": 5,
+        "ts": "2026-10-16T10:30:00+05:30",
+        "sender": "Sneha Navyug",
+        "kind": "voice",
+        "text": "Hi Ankit, your funds have been received. Thank you for choosing us.",
+        "media_ref": "PTT-20261016-WA0005.opus"
+      }
+    ],
+    "indicators": [
+      {
+        "id": "B_ankit-I1",
+        "case_id": "B_ankit",
+        "msg_id": 1,
+        "type": "firm_name",
+        "value_norm": "navyug broking pvt ltd",
+        "value_raw": "Navyug Broking Pvt Ltd",
+        "source": "text",
+        "confidence": "high",
+        "span": [
+          32,
+          54
+        ]
+      },
+      {
+        "id": "B_ankit-I2",
+        "case_id": "B_ankit",
+        "msg_id": 1,
+        "type": "sebi_reg",
+        "value_norm": "INZ000DEMO01",
+        "value_raw": "INZ000DEMO01",
+        "source": "text",
+        "confidence": "high",
+        "span": [
+          102,
+          114
+        ]
+      },
+      {
+        "id": "B_ankit-I3",
+        "case_id": "B_ankit",
+        "msg_id": 3,
+        "type": "upi_vpa",
+        "value_norm": "navyug.brk@validhdfc",
+        "value_raw": "navyug.brk@validhdfc",
+        "source": "text",
+        "confidence": "high",
+        "span": [
+          52,
+          72
+        ]
+      }
+    ],
+    "amounts": [],
+    "cues": [],
+    "voice_results": [
+      {
+        "file_id": "PTT-20261016-WA0005.opus",
+        "state": "no_signal",
+        "score": 0.08,
+        "threshold": 0.5,
+        "speech_seconds": 4.0,
+        "reasons": [],
+        "model_version": "stub-fixture-v0"
+      }
+    ],
+    "evidence": [
+      {
+        "evidence_id": "B_ankit-E1",
+        "payee_id": "B_ankit-I3",
+        "lane": "payee_name",
+        "class": "A",
+        "claimed": "payee belongs to Navyug Broking Pvt Ltd",
+        "observed": "NAVYUG BROKING PRIVATE LIMITED",
+        "source": "user-reported: UPI/bank app payee-name display (typed by the user)",
+        "as_of": "2026-10-23",
+        "limitation": "A matching name does not prove the firm is legitimate (shell or mule accounts can copy a name)."
+      },
+      {
+        "evidence_id": "B_ankit-E2",
+        "payee_id": "CASE",
+        "lane": "registration",
+        "class": "B",
+        "claimed": "SEBI reg INZ000DEMO01 quoted for Navyug Broking Pvt Ltd (msg 1)",
+        "observed": "Listed as 'Navyug Broking Private Limited' in the snapshot",
+        "source": "dated public-list snapshot (SYNTHETIC fixture: fixtures/reference/sebi_snapshot_synthetic.json)",
+        "as_of": "2026-10-23",
+        "limitation": "A listing does not show who owns a UPI ID or account. Not verification of the payee."
+      },
+      {
+        "evidence_id": "B_ankit-E3",
+        "payee_id": "B_ankit-I3",
+        "lane": "registry",
+        "class": "C",
+        "claimed": "payee navyug.brk@validhdfc",
+        "observed": "no matching report (stub)",
+        "source": "cross-victim registry STUB (fixture lookup table)",
+        "as_of": "2026-10-23",
+        "limitation": "Absence from the registry means nobody has reported it here, not that it is safe."
+      },
+      {
+        "evidence_id": "B_ankit-E4",
+        "payee_id": "CASE",
+        "lane": "voice",
+        "class": "E",
+        "claimed": "voice note msg 5 (PTT-20261016-WA0005.opus)",
+        "observed": "no_signal (stub score 0.08 vs stub threshold 0.50)",
+        "source": "voice detector STUB (fixture value, not a measurement)",
+        "as_of": "2026-10-23",
+        "limitation": "A no_signal result does not mean the voice is genuine and never clears a payee."
+      }
+    ],
+    "decisions": [
+      {
+        "payee_id": "B_ankit-I3",
+        "result": "NO_MAJOR_ISSUE",
+        "rule_id": "CLEAR",
+        "reasons": [
+          "Class A (user-reported): app shows 'NAVYUG BROKING PRIVATE LIMITED', which shares distinctive words with the claimed firm.",
+          "SEBI number INZ000DEMO01 is in the dated snapshot under a matching entity (class B; not verification of the payee).",
+          "Registry: no reports (stub). No hard pressure cues. No voice flag."
+        ],
+        "evidence_ids": [
+          "B_ankit-E1",
+          "B_ankit-E2",
+          "B_ankit-E3"
+        ],
+        "next_step": "Checks run found no major issue. This is not a guarantee. Before paying, confirm the firm's contact details through a number or website you find yourself."
+      }
+    ],
+    "case_result": {
+      "case_id": "B_ankit",
+      "result": "NO_MAJOR_ISSUE",
+      "rule_id": "CLEAR",
+      "next_step": "Checks run found no major issue. This is not a guarantee. Before paying, confirm the firm's contact details through a number or website you find yourself.",
+      "deciding_payee_id": "B_ankit-I3",
+      "money_already_sent": false
+    },
+    "variants": {
+      "money_already_sent_true": {
+        "result_unchanged": true,
+        "next_step_must_contain": [
+          "1930",
+          "This is not a guarantee."
+        ],
+        "note": "Invariant 6; the disclaimer must survive the toggle."
+      }
+    }
+  }
+}
