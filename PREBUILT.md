@@ -1,7 +1,7 @@
 # PREBUILT: what existed before the finale (24 Oct 2026, 11:00)
 
-Commit hash: **none yet**. These files were produced outside a Git repository; fill in the hash after the first commit
-(commands at the bottom) and tag it `v0-prebuilt`.
+Code commit: **`19a52177ecc14e228afcd3fd3ffed6321e5fbb2c`** (2026-10-23T09:53:47+00:00). Tag `v0-prebuilt` points at the commit that records this hash.
+Check with `git log --oneline` and `git show v0-prebuilt --stat`.
 
 ## Claude C (app, registry, report) · written 23 Oct 2026, about 14:55–15:40 IST, with AI assistance (Claude)
 
@@ -32,11 +32,7 @@ extractor, rules and voice detector (owned by A and B), speech-to-text, QR, vide
 - 23 Oct 2026 (morning): a React + FastAPI version (`VERIQ_full_app.zip`).
 Neither is used in this v0.
 
-## Git (run once the files are assembled)
-```bash
-git init
-git add .
-git commit -m "v0 pre-build: Claude C app skeleton, filing sheet, registry stub"
-git tag v0-prebuilt
-git log -1 --format="%H %cI"     # paste into this file and RESULTS.md
-```
+## Git
+The repository is already initialised in this folder (`.git`). Author name/email are placeholders; change them with
+`git config user.name` / `user.email` before your next commit. To push: create an empty GitHub repo, then
+`git remote add origin <url>` and `git push -u origin main --tags`.
