@@ -1,0 +1,130 @@
+{
+ "pairs": 97,
+ "file": "name_pairs.csv",
+ "false_discrepancy_on_same_entity": {
+  "count": 3,
+  "of": 42,
+  "rate": 0.071,
+  "wilson95": [
+   0.025,
+   0.19
+  ]
+ },
+ "same_entity_sent_to_review_as_lookalike": {
+  "count": 3,
+  "of": 42
+ },
+ "discrepancy_found_on_unrelated_business": {
+  "count": 36,
+  "of": 36,
+  "rate": 1.0,
+  "wilson95": [
+   0.904,
+   1.0
+  ]
+ },
+ "dangerous_match_on_not_same": 0,
+ "verdicts_by_relation": {
+  "different": {
+   "discrepancy": 36
+  },
+  "lookalike": {
+   "lookalike": 6
+  },
+  "same": {
+   "match": 22,
+   "discrepancy": 3,
+   "unverified": 14,
+   "lookalike": 3
+  },
+  "unknown": {
+   "unverified": 13
+  }
+ },
+ "by_kind": {
+  "different: another finance firm": {
+   "ok": 6
+  },
+  "different: unrelated business": {
+   "ok": 30
+  },
+  "lookalike: shell reusing the brand word": {
+   "ok": 6
+  },
+  "same: Devanagari script": {
+   "ok": 2
+  },
+  "same: legal form / spacing variant": {
+   "ok": 17,
+   "wrong": 1
+  },
+  "same: spelling / transliteration variant": {
+   "ok": 8,
+   "wrong": 2
+  },
+  "same: truncation / abbreviation / initials": {
+   "ok": 9,
+   "wrong": 3
+  },
+  "unknown: payment gateway (merchant hidden)": {
+   "ok": 5
+  },
+  "unknown: personal name (mule or proprietor: unknowable from the name)": {
+   "ok": 5
+  },
+  "unknown: proprietor's personal name (could be the firm or a mule)": {
+   "ok": 3
+  }
+ },
+ "errors": [
+  {
+   "claimed_firm": "BlueRiver Finserv Pvt Ltd",
+   "shown_name": "BLUE RIVER FINSERV PVT LTD",
+   "relation": "same",
+   "kind": "legal form / spacing variant",
+   "verdict": "discrepancy",
+   "reason": "no distinctive word in common with 'BlueRiver Finserv Pvt Ltd'"
+  },
+  {
+   "claimed_firm": "Sahyadri Securities Ltd",
+   "shown_name": "SSL",
+   "relation": "same",
+   "kind": "truncation / abbreviation / initials",
+   "verdict": "discrepancy",
+   "reason": "no distinctive word in common with 'Sahyadri Securities Ltd'"
+  },
+  {
+   "claimed_firm": "BlueRiver Finserv Pvt Ltd",
+   "shown_name": "BRF PVT LTD",
+   "relation": "same",
+   "kind": "truncation / abbreviation / initials",
+   "verdict": "discrepancy",
+   "reason": "no distinctive word in common with 'BlueRiver Finserv Pvt Ltd'"
+  },
+  {
+   "claimed_firm": "Ganga Stock Brokers Pvt Ltd",
+   "shown_name": "GANGA STK BROKERS",
+   "relation": "same",
+   "kind": "truncation / abbreviation / initials",
+   "verdict": "lookalike",
+   "reason": "shares 'ganga' but adds 'stk': could be a look-alike account rather than the firm itself"
+  },
+  {
+   "claimed_firm": "Shree Laxmi Broking Pvt Ltd",
+   "shown_name": "SHREE LAKSHMI BROKING PVT LTD",
+   "relation": "same",
+   "kind": "spelling / transliteration variant",
+   "verdict": "lookalike",
+   "reason": "shares 'shree' but adds 'lakshmi': could be a look-alike account rather than the firm itself"
+  },
+  {
+   "claimed_firm": "Shree Laxmi Broking Pvt Ltd",
+   "shown_name": "SHREE LAXMEE BROKING",
+   "relation": "same",
+   "kind": "spelling / transliteration variant",
+   "verdict": "lookalike",
+   "reason": "shares 'shree' but adds 'laxmee': could be a look-alike account rather than the firm itself"
+  }
+ ],
+ "limit": "pairs written by the team after the matcher (specification check, not blind); fictional firms"
+}

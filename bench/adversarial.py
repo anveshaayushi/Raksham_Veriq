@@ -65,8 +65,8 @@ def run() -> list[dict]:
     # unrelated names on the payee (classic mule)
     for typed in ["SHREE GANESH TRADERS", "BALAJI GARMENTS", "RK MOBILE POINT"]:
         add("unrelated payee name", typed, "NAME_DISCREPANCY", _case(B_CHAT, typed).case_result())
-    add("unrelated payee name", "KRISHNA DAIRY FARM (contains a given name)", "NAME_DISCREPANCY",
-        _case(B_CHAT, "KRISHNA DAIRY FARM").case_result(), gap=True)
+    add("unrelated payee name", "KRISHNA DAIRY FARM (contains a given name; known gap until the Q2 shop-word fix)",
+        "NAME_DISCREPANCY", _case(B_CHAT, "KRISHNA DAIRY FARM").case_result())
 
     # 2. Obfuscated / reworded pressure phrases
     for text, cue in [("gu@r@nteed 3x returns", "guaranteed_return"), ("100% guaranteed profit", "guaranteed_return"),
@@ -102,14 +102,25 @@ def run() -> list[dict]:
     return rows
 
 
-def main(argv: list[str]) -> int:
-    rows = run()
+def summarize(rows: list[dict]) -> dict:
     expected_pass = [r for r in rows if not r["known_gap"]]
     gaps = [r for r in rows if r["known_gap"]]
-    summary = {"cases": len(rows), "defended_attacks_passed": sum(r["pass"] for r in expected_pass),
-               "defended_attacks": len(expected_pass), "known_gaps": len(gaps),
-               "known_gaps_still_failing": sum(not r["pass"] for r in gaps), "rows": rows}
-    (HERE / "results_adversarial.json").write_text(json.dumps(summary, indent=1, ensure_ascii=False), encoding="utf-8")
+    return {"cases": len(rows), "defended_attacks_passed": sum(r["pass"] for r in expected_pass),
+            "defended_attacks": len(expected_pass), "known_gaps": len(gaps),
+            "known_gaps_still_failing": sum(not r["pass"] for r in gaps), "rows": rows}
+
+
+def write(summary: dict, out_dir: Path | None = None) -> Path:
+    p = (out_dir or HERE) / "results_adversarial.json"
+    with open(p, "w", encoding="utf-8", newline="\n") as f:
+        f.write(json.dumps(summary, indent=1, ensure_ascii=False))
+    return p
+
+
+def main(argv: list[str]) -> int:
+    rows = run()
+    summary = summarize(rows)
+    write(summary)
     print(f"defended attacks passed: {summary['defended_attacks_passed']}/{summary['defended_attacks']}; "
           f"known gaps still failing: {summary['known_gaps_still_failing']}/{summary['known_gaps']}")
     print("| Group | Attack | Expected | Got | Result |\n|---|---|---|---|---|")

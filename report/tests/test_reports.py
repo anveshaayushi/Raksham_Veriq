@@ -61,3 +61,20 @@ def test_computed_results_have_no_stub_notice_but_stub_bundles_do(monkeypatch):
     import rules
     monkeypatch.delattr(rules, "decide")  # engine code missing -> labelled stub decisions
     assert "not a real rules-engine decision" in summary_md(data())
+
+
+def test_links_are_defanged_in_markdown_reports():
+    """Added in Q1 after the mutation check (M10) showed the test above never put a link into the report: the evil
+    line there has no payee or cue, so it is not quoted. This one quotes a payee message that carries a link."""
+    from report.build import md
+
+    def plain(t):  # remove Markdown escape backslashes to see what a reader would see
+        return t.replace("\\", "")
+
+    assert plain(md("pay at https://evil.example/kyc or www.evil.in")) == "pay at hxxps://evil.example/kyc or www[.]evil.in"
+    assert "http" not in plain(md("HTTP://evil.example")).lower().replace("hxxp", "")
+    fx = load_demo("C")
+    chat = demo_inputs(fx)["chat_text"] + ("09/10/26, 20:21 - TradeMax Support: Pay ₹5,000 to linkpay@upi "
+                                           "or at https://evil.example/pay today\n")
+    m = plain(summary_md(data("C", chat=chat)) + filing_sheet_md(data("C", chat=chat)))
+    assert "linkpay@upi" in m and "https://evil" not in m and "hxxps://evil" in m

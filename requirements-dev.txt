@@ -1,0 +1,7 @@
+# Test-quality tools for REPRODUCE.md (coverage, random test order). Runtime pins come from requirements.txt.
+# These three versions were installed in the Linux sandbox on 24 Oct 2026 (pip, Python 3.13) and used for the
+# committed results/; the laptop's own versions are pending its `pip freeze` (user-reported) in Q2.
+-r requirements.txt
+coverage==7.17.0
+pytest-cov==7.1.0
+pytest-randomly==5.0.0

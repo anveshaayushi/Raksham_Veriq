@@ -52,7 +52,11 @@ Consent → Upload → tab **Try a synthetic demo** → Scenario A → **Load th
 
 ## Voice model and measured results (FINALE)
 - The trained voice head is used automatically when torch and the AASIST weights load
-  (`$env:VERIQ_AASIST_REPO = "<path>\external\aasist"`). Turn it off with `$env:VERIQ_VOICE_HEAD = "0"`.
+  (`$env:VERIQ_AASIST_REPO = "<path>\external\aasist"`). It is OFF by default (it failed a cross-dataset test, see RESULTS.md); turn it on for the in-domain demo with `$env:VERIQ_VOICE_HEAD = "1"`.
 - Reproduce the numbers: `python -m bench.run test`, `python -m bench.adversarial`, and (needs the data tools in
   `bench/voice/requirements.txt`) `python -m bench.voice.make_set ...` then `python -m bench.voice.train_eval ...`.
 - In the app: left menu, "How accurate is VERIQ?".
+
+## Reproduce every reported number (Q1)
+
+`powershell -ExecutionPolicy Bypass -File reproduce.ps1` (Windows) or `make reproduce`. See REPRODUCE.md.

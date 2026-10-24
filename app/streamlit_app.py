@@ -48,6 +48,9 @@ st.markdown(
     unsafe_allow_html=True,  # constant CSS only; never user content
 )
 
+from app.config import apply as apply_config  # noqa: E402
+
+CFG = apply_config()  # environment settings (Q4): data dir, registry, upload limit, language, offline mode
 S = st.session_state
 S.setdefault("step", 1)
 S.setdefault("case_id", "case-" + uuid.uuid4().hex[:8])
@@ -90,7 +93,16 @@ with st.sidebar:
                                key="results_toggle")
     S.reviewer_mode = st.toggle("Reviewer view (fraud desk / second person)", value=S.get("reviewer_mode", False),
                                 key="rev_toggle", help="Shows review requests and lets a reviewer uphold or overturn them.")
+    PAGES = ["Check a chat", "Scenario player", "Kit runner (judges)", "Plan vs delivered", "Privacy proof"]
+    S.page = st.radio("Pages", PAGES, index=PAGES.index(S.get("page", PAGES[0])), key="page_radio")
     st.caption(STANDING_LINE)
+
+# ---------------------------------------------------------------- other pages (Q3) ----
+if S.get("page", "Check a chat") != "Check a chat" and not S.get("show_results"):
+    from app.views import kit as _kit, plan as _plan, player as _player, privacy as _privacy
+    {"Scenario player": _player, "Kit runner (judges)": _kit, "Plan vs delivered": _plan,
+     "Privacy proof": _privacy}[S.page].render(st)
+    st.stop()
 
 # ---------------------------------------------------------------- results page ----
 if S.get("show_results"):
@@ -294,8 +306,33 @@ elif S.step == 5:
     overall = case.case_result()
     if overall:
         st.subheader(f"{ICON.get(overall, '')} Overall: {PLAIN_LABEL[overall]} ({overall})")
+        if CFG.lang == "hi":
+            from rules.templates import LABEL as _LABEL
+            st.markdown(f"**{_LABEL[overall]['hi']}**")
         if overall == "NO_MAJOR_ISSUE":
             st.markdown(f"**{NOT_A_GUARANTEE}**")
+        deciding = next(p for p in case.payees if case.result_for(p.id).result == overall)
+        why = [str(r) for r in (case.result_for(deciding.id).reasons or [])][:2]
+        st.markdown("**Why this alert fired:** " + md_escape(f"payee {deciding.value_raw}: " + " ".join(why)))
+        with st.container(border=True):
+            st.markdown("**What you can do now** (VERIQ blocks nothing and contacts no one; you decide)")
+            a1, a2 = st.columns(2)
+            if a1.button("🛑 I will not pay for now", key="act_nopay"):
+                S.user_action = "decided not to pay for now"
+            if a2.button("🔎 Check the payee name in my bank app", key="act_verify"):
+                go(4)
+                st.rerun()
+            a3, a4 = st.columns(2)
+            if a3.button("✅ This is genuine: ask a person to review", key="act_genuine"):
+                S.user_action = ("asked for a review: open 'This looks wrong?' under the payee below, choose a reason "
+                                 "and submit; the original answer is kept until a reviewer decides")
+            from app.case import report_data as _rd
+            from report.build import filing_sheet_md as _fs, summary_md as _sm
+            _d = _rd(case, money_sent=S.get("money_sent", False))
+            a4.download_button("📄 Report pack (text) to file yourself", _sm(_d) + "\n\n" + _fs(_d),
+                               "veriq_report_pack.txt", "text/plain", key="act_pack")
+            if S.get("user_action"):
+                st.success(f"You {S.user_action}.")
     else:
         st.subheader("No payment destination found, so nothing could be checked.")
     S.money_sent = st.toggle("I have already sent money", value=S.get("money_sent", False), key="money_toggle",
@@ -327,12 +364,26 @@ elif S.step == 5:
                 if v is not None:
                     st.caption(f"Found in a voice note. Voice check: {get(v, 'state')} · {md_escape('; '.join(get(v, 'reasons') or []))} "
                                f"· {voice_score_display(v)} · model: {md_escape(get(v, 'model_version'))}. "
-                               "Only 'flagged' can raise concern; a voice result never clears a payee.")
+                               "Weak review cue (pretrained AASIST, threshold from ASVspoof 2019 LA dev; on LA eval it "
+                               "flagged 16% of genuine clips and missed 56% of synthetic ones). Only 'flagged' can raise "
+                               "concern; a voice result never clears a payee.")
             rr = next((r for r in case.registry if get(r, "payee_id") == p.id), None)
             if rr is not None:
                 note = f" · {md_escape(get(rr, 'note'))}" if get(rr, "note") else ""
                 st.caption(f"Cross-victim registry: {md_escape(get(rr, 'status'))}{note} · "
                            f"source: {md_escape(get(rr, 'source'))}. {REGISTRY_WORDING}")
+                from registry.sqlite_registry import from_env as _reg_env, new_reporter_token
+                _r = _reg_env()
+                if _r is not None and p.type in ("upi_vpa", "bank_account"):
+                    if st.button("I lost money to this payee: add my report to the registry (stored as a keyed hash)",
+                                 key=f"rep_{p.id}"):
+                        tok = S.setdefault("reporter_token", new_reporter_token())  # one token per browser session
+                        out = _r.report(p.type, p.value_norm, tok)
+                        S[f"rep_out_{p.id}"] = out.status + (': ' + out.note if out.note else '')
+                        st.rerun()
+                    if S.get(f"rep_out_{p.id}"):
+                        st.caption(f"Your report: {md_escape(S[f'rep_out_{p.id}'])}. A payee is linked only after "
+                                   "2 independent reporters or a reviewer.")
             if req is not None and req.status == "overturned":
                 st.success(f"Reviewed: explained. Overturned by {md_escape(req.reviewer)}: {md_escape(req.reviewer_reason)} "
                            f"({req.elapsed()}). Original result {res} stays on record. {NOT_A_GUARANTEE}")

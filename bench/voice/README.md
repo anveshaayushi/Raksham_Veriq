@@ -42,4 +42,4 @@ genuine flagged, 31/40 Hindi flagged).
   in-domain results, not a benchmark.
 
 **In the app:** `app/adapters/voice_head.py` loads `head.json` + `head_calibration.json` (model version
-`aasist-pretrained@51d2d9cf0738+head@2713ba5a2159`) into Claude B's voice service. Turn it off with `VERIQ_VOICE_HEAD=0`.
+`aasist-pretrained@51d2d9cf0738+head@2713ba5a2159`) into Claude B's voice service. Off by default since 25 Oct (cross-dataset test: AUC 0.457 on ASVspoof LA eval); turn it on with `VERIQ_VOICE_HEAD=1`.

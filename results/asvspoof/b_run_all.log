@@ -1,0 +1,104 @@
+=== b_run_all 2026-10-25 00:01:45 local, commit 844fdd0, python 3.13.1 ===
+[1 selfcheck] $ C:\Python313\python.exe -m voice.detector --selfcheck
+    loaded. model_version=aasist-pretrained@51d2d9cf0738. score on random noise=-1.6516 (plumbing check only; says nothing about accuracy)
+[1 selfcheck] PASS
+[subset dev] $ C:\Python313\python.exe scripts/make_asvspoof_subset.py --zip C:\Users\anves\Downloads\LA.zip --split dev --n-real 60 --n-fake 60 --seed 1234 --codecs opus,mp3 --out C:\veriq_work\veriq\data\subsets\dev
+    protocol LA/ASVspoof2019_LA_cm_protocols/ASVspoof2019.LA.cm.dev.trl.txt: reading from zip
+    2548 real, 22296 fake in the dev protocol; audio from zip
+    wrote 360 labelled files to C:\veriq_work\veriq\data\subsets\dev (skipped 0); seed=1234
+[subset dev] PASS
+[subset eval] $ C:\Python313\python.exe scripts/make_asvspoof_subset.py --zip C:\Users\anves\Downloads\LA.zip --split eval --n-real 100 --n-fake 100 --seed 4321 --codecs opus,mp3 --out C:\veriq_work\veriq\data\subsets\eval
+    protocol LA/ASVspoof2019_LA_cm_protocols/ASVspoof2019.LA.cm.eval.trl.txt: reading from zip
+    7355 real, 63882 fake in the eval protocol; audio from zip
+    wrote 600 labelled files to C:\veriq_work\veriq\data\subsets\eval (skipped 0); seed=4321
+[subset eval] PASS
+[score asv_dev] $ C:\Python313\python.exe -m eval --input C:\veriq_work\veriq\data\subsets\dev --out C:\veriq_work\veriq\out\asv_dev.csv --labels C:\veriq_work\veriq\data\subsets\dev\labels.csv
+      },
+      "metrics_by_language": {
+        "en": {
+          "n": 360,
+          "auc": 0.947962962962963,
+          "eer": 0.15,
+          "false_alarm_at_threshold": null,
+          "miss_at_threshold": null,
+          "abstained": 360
+        }
+      }
+    }
+[score asv_dev] PASS
+[5 fit threshold (dev only)] $ C:\Python313\python.exe -m eval.fit_threshold --preds C:\veriq_work\veriq\out\asv_dev.csv --far 0.05 --out C:\veriq_work\veriq\out\calibration_asvspoof_dev.json --calibrated-on ASVspoof2019 LA dev subset (60 real + 60 fake, clean+opus+mp3, seed 1234), 2026-10-25
+    threshold=-4.241993 model=aasist-pretrained@51d2d9cf0738 genuine_flagged_on_dev=0.044 (n=180)
+[5 fit threshold (dev only)] PASS
+[score asv_eval] $ C:\Python313\python.exe -m eval --input C:\veriq_work\veriq\data\subsets\eval --out C:\veriq_work\veriq\out\asv_eval.csv --labels C:\veriq_work\veriq\data\subsets\eval\labels.csv --calibration C:\veriq_work\veriq\out\calibration_asvspoof_dev.json
+      },
+      "metrics_by_language": {
+        "en": {
+          "n": 600,
+          "auc": 0.7658,
+          "eer": 0.31666666666666665,
+          "false_alarm_at_threshold": 0.15666666666666668,
+          "miss_at_threshold": 0.5633333333333334,
+          "abstained": 57
+        }
+      }
+    }
+[score asv_eval] PASS
+[length 1s] wrote 120 trimmed clips
+[score asv_len_1s] $ C:\Python313\python.exe -m eval --input C:\veriq_work\veriq\data\subsets\dev_len\1s --out C:\veriq_work\veriq\out\asv_len_1s.csv --labels C:\veriq_work\veriq\data\subsets\dev_len\1s\labels.csv --calibration C:\veriq_work\veriq\out\calibration_asvspoof_dev.json
+      },
+      "metrics_by_language": {
+        "en": {
+          "n": 120,
+          "auc": 0.7516666666666667,
+          "eer": 0.38333333333333336,
+          "false_alarm_at_threshold": 0.15,
+          "miss_at_threshold": 0.5333333333333333,
+          "abstained": 120
+        }
+      }
+    }
+[score asv_len_1s] PASS
+[length 2s] wrote 120 trimmed clips
+[score asv_len_2s] $ C:\Python313\python.exe -m eval --input C:\veriq_work\veriq\data\subsets\dev_len\2s --out C:\veriq_work\veriq\out\asv_len_2s.csv --labels C:\veriq_work\veriq\data\subsets\dev_len\2s\labels.csv --calibration C:\veriq_work\veriq\out\calibration_asvspoof_dev.json
+      },
+      "metrics_by_language": {
+        "en": {
+          "n": 120,
+          "auc": 0.7038888888888889,
+          "eer": 0.3,
+          "false_alarm_at_threshold": 0.48333333333333334,
+          "miss_at_threshold": 0.2,
+          "abstained": 70
+        }
+      }
+    }
+[score asv_len_2s] PASS
+[length 4s] wrote 120 trimmed clips
+[score asv_len_4s] $ C:\Python313\python.exe -m eval --input C:\veriq_work\veriq\data\subsets\dev_len\4s --out C:\veriq_work\veriq\out\asv_len_4s.csv --labels C:\veriq_work\veriq\data\subsets\dev_len\4s\labels.csv --calibration C:\veriq_work\veriq\out\calibration_asvspoof_dev.json
+      },
+      "metrics_by_language": {
+        "en": {
+          "n": 120,
+          "auc": 0.9452777777777778,
+          "eer": 0.15,
+          "false_alarm_at_threshold": 0.06666666666666667,
+          "miss_at_threshold": 0.23333333333333334,
+          "abstained": 13
+        }
+      }
+    }
+[score asv_len_4s] PASS
+[7 results rows] $ C:\Python313\python.exe scripts/make_results_rows.py --command python scripts/b_run_all.py --zip LA.zip --n-dev 60 --n-eval 100 --far 0.05 --commit 844fdd0 --out C:\veriq_work\veriq\out\B_RESULTS_ROWS_ASVSPOOF.md --run dev:C:\veriq_work\veriq\out\asv_dev.csv --run eval:C:\veriq_work\veriq\out\asv_eval.csv --run dev_first_1s:C:\veriq_work\veriq\out\asv_len_1s.csv --run dev_first_2s:C:\veriq_work\veriq\out\asv_len_2s.csv --run dev_first_4s:C:\veriq_work\veriq\out\asv_len_4s.csv
+    | dev / codec=clean | n=120 (real 60, fake 60) | AUC 0.966 | EER 0.117 | genuine flagged n/a [n/a, n/a] | synthetic missed n/a [n/a, n/a] | abstained 120 |  |
+    | dev / codec=mp3 | n=120 (real 60, fake 60) | AUC 0.949 | EER 0.150 | genuine flagged n/a [n/a, n/a] | synthetic missed n/a [n/a, n/a] | abstained 120 |  |
+    | dev / codec=opus | n=120 (real 60, fake 60) | AUC 0.931 | EER 0.183 | genuine flagged n/a [n/a, n/a] | synthetic missed n/a [n/a, n/a] | abstained 120 |  |
+    | eval / codec=clean | n=200 (real 100, fake 100) | AUC 0.817 | EER 0.270 | genuine flagged 0.110 [0.063, 0.186] | synthetic missed 0.570 [0.472, 0.663] | abstained 19 |  |
+    | eval / codec=mp3 | n=200 (real 100, fake 100) | AUC 0.782 | EER 0.300 | genuine flagged 0.090 [0.048, 0.162] | synthetic missed 0.580 [0.482, 0.672] | abstained 19 |  |
+    | eval / codec=opus | n=200 (real 100, fake 100) | AUC 0.701 | EER 0.370 | genuine flagged 0.270 [0.193, 0.364] | synthetic missed 0.540 [0.443, 0.634] | abstained 19 |  |
+    
+    Read this honestly:
+    - The `dev` run is scored WITHOUT a threshold on purpose (the threshold is fitted from it), so it shows every clip as abstained and has no forced-label rates. Use its AUC/EER only.
+    - ASVspoof 2019 LA is the data the pretrained AASIST was TRAINED on (its authors used the LA train split). Numbers here are in-distribution and flatter the model. They are not evidence for other fake generators, languages or real-world chats.
+    - `genuine flagged` and `synthetic missed` use the forced label from the dev-fitted threshold (out/calibration_asvspoof_dev.json). Threshold was fitted on the dev split only; the eval split was never used to fit.
+    - Audio is ASVspoof-derived: if any clip is shown publicly add the ODC-By notice from DISCLOSURE.md.
+[7 results rows] PASS

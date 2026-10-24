@@ -33,7 +33,21 @@ GENERIC = {
     "traders", "trader", "enterprises", "enterprise", "agency", "agencies", "store", "stores", "industries", "group",
     "associates", "ventures", "mart", "the", "and", "of", "pro",
 }
-BUSINESS_MARKERS = GENERIC - {"the", "and", "of", "india", "indian", "global", "international", "pro"}
+# Shop and trade words: a shown name with one of these is a business even if it also has a given name
+# ("KRISHNA DAIRY FARM"). Added in Q2 for the documented miss; a general list, not taken from benchmark chats.
+SHOP_WORDS = set("""
+dairy farm farms foods food sweets bakery bakers restaurant hotel dhaba cafe canteen caterers kirana general provision
+provisions medical medicals pharmacy pharma chemist chemists clinic hospital diagnostics labs lab garments garment
+textiles textile fabrics cloth boutique fashion fashions collection collections footwear shoes jewellers jewellery
+jewelers gems mobile mobiles electronics electricals electrical hardware sanitary paints steel iron cement builders
+construction constructions realty developers properties estate motors motor auto autos automobiles garage tyres
+travels travel tours transport transports logistics cargo couriers courier packers movers exports export imports
+impex overseas distributors distributor suppliers supplier wholesale retail bazaar bhandar emporium centre center
+point house works mills mill plastics chemicals fertilizers seeds agro studio salon parlour academy
+institute classes coaching tutorials school college computers infotech systems software digital media printers
+printing press books stationers stationery opticals optical furniture interiors decor
+""".split())
+BUSINESS_MARKERS = (GENERIC - {"the", "and", "of", "india", "indian", "global", "international", "pro"}) | SHOP_WORDS
 GATEWAYS = ("razorpay", "cashfree", "payu", "billdesk", "ccavenue", "juspay", "easebuzz", "instamojo", "phonepe",
             "paytm payments", "bharatpe", "pine labs", "mswipe", "setu")
 HONORIFICS = {"mr", "mrs", "ms", "shri", "smt", "sri", "dr"}

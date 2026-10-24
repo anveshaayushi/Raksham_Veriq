@@ -12,3 +12,10 @@ data/subsets/
 dev/
 out/
 *.pth
+results/coverage.json
+results/junit.xml
+results/regenerated/
+results/pytest_output.txt
+.coverage
+secrets/
+wheelhouse/

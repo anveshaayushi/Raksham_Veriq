@@ -1,0 +1,97 @@
+{
+ "run_at_ist": "2026-10-25 02:53 IST",
+ "firm_claimed": "Aarohan Securities Ltd",
+ "cases": [
+  {
+   "id": "J1 baseline (English, UPI ID, user checked name)",
+   "expected": "NAME_DISCREPANCY",
+   "answer": "NAME_DISCREPANCY",
+   "payees": {
+    "aarohan.ipo@okaxis": "NAME_DISCREPANCY"
+   },
+   "why_shown": [
+    "Class A (user-reported): app shows 'MAA KALI GARMENTS'; no shared distinctive word with claimed 'Aarohan Securities Ltd'."
+   ],
+   "user_actions": [
+    "do not pay",
+    "check the name in the bank app",
+    "ask for review",
+    "report pack"
+   ],
+   "report_pack_chars": 1983,
+   "verdict": "as expected"
+  },
+  {
+   "id": "J2 payee wording changed (UPI ID split with spaces, amount in words)",
+   "expected": "a payee is found, or the miss is reported",
+   "answer": null,
+   "payees": {},
+   "why_shown": [],
+   "user_actions": [],
+   "report_pack_chars": 0,
+   "verdict": "MISS: no payee found"
+  },
+  {
+   "id": "J3 Hinglish, bank account + IFSC, no name check",
+   "expected": "INCONCLUSIVE (hard cue: fee to withdraw)",
+   "answer": "INCONCLUSIVE",
+   "payees": {
+    "50100234567891": "INCONCLUSIVE"
+   },
+   "why_shown": [
+    "No class A evidence for 50100234567891: the user has not run a bank/UPI-app name check.",
+    "Hard cue: fee_to_withdraw in msg 1."
+   ],
+   "user_actions": [
+    "do not pay",
+    "check the name in the bank app",
+    "ask for review",
+    "report pack"
+   ],
+   "report_pack_chars": 1573,
+   "verdict": "as expected"
+  },
+  {
+   "id": "J4 Devanagari, small amount, name matches the firm",
+   "expected": "NO_MAJOR_ISSUE (+ not a guarantee)",
+   "answer": "NO_MAJOR_ISSUE",
+   "payees": {
+    "aarohan.sec@icici": "NO_MAJOR_ISSUE"
+   },
+   "why_shown": [
+    "Class A (user-reported): app shows 'AAROHAN SECURITIES LIMITED', which shares distinctive words with the claimed firm.",
+    "Registry: not checked. No hard pressure cues. No voice flag."
+   ],
+   "user_actions": [
+    "do not pay",
+    "check the name in the bank app",
+    "ask for review",
+    "report pack"
+   ],
+   "report_pack_chars": 2001,
+   "verdict": "as expected"
+  },
+  {
+   "id": "J5 large amount, payee changes mid-chat, gateway handle",
+   "expected": "NAME_DISCREPANCY on the first; gateway unverified",
+   "answer": "NAME_DISCREPANCY",
+   "payees": {
+    "aarohan.ipo@okaxis": "NAME_DISCREPANCY",
+    "pay.aarohan@razorpay": "INCONCLUSIVE"
+   },
+   "why_shown": [
+    "Class A (user-reported): app shows 'MAA KALI GARMENTS'; no shared distinctive word with claimed 'Aarohan Securities Ltd'.",
+    "Name check unverified: app shows 'RAZORPAY SOFTWARE PVT LTD': payment gateway or aggregator (razorpay): the app does not show the merchant behind it."
+   ],
+   "user_actions": [
+    "do not pay",
+    "check the name in the bank app",
+    "ask for review",
+    "report pack"
+   ],
+   "report_pack_chars": 3337,
+   "verdict": "as expected"
+  }
+ ],
+ "note": "5 inputs written by Claude C for this run, never used for tuning; fictional names and IDs"
+}

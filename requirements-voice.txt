@@ -1,0 +1,13 @@
+# Voice model extras: needed to run the AASIST detector + VERIQ's trained head in the app, and to rebuild/retrain the
+# voice benchmark (bench/voice). Without them the app still runs and every voice note is "can't assess".
+# NOT PINNED YET, on purpose: the laptop has not installed these, and pinning from memory would be inventing.
+# After `pip install -r requirements-voice.txt` on the laptop, run `pip freeze > freeze_voice.txt` and send it;
+# the exact versions go here. Versions used for the committed voice results (Linux sandbox, 24 Oct 2026,
+# from `pip list`): torch 2.14.1, torchaudio 2.11.0, soundfile 0.14.0, scikit-learn 1.9.1.
+-r requirements.txt
+torch            # CPU build. On Windows the PyPI wheel is CPU-only; on Linux add: --index-url https://download.pytorch.org/whl/cpu
+torchaudio       # only for rebuilding the voice set (bench/voice/make_set.py)
+soundfile        # only for bench/voice
+scikit-learn     # only for retraining the head (bench/voice/train_eval.py)
+# kokoro-onnx    # only for rebuilding the synthetic voices; plus kokoro-v1.0.onnx + voices-v1.0.bin (Apache-2.0)
+# AASIST code + weights (MIT, NAVER Corp.): git clone https://github.com/clovaai/aasist external/aasist

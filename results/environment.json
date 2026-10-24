@@ -1,0 +1,186 @@
+{
+ "run_at_ist": "2026-10-25 02:58 IST",
+ "commit": "57c5817 + uncommitted changes",
+ "python": "3.13.16",
+ "platform": "Linux-6.18.44-fc-v153-x86_64-with-glibc2.39",
+ "machine": "x86_64",
+ "processor": "x86_64",
+ "cpu_count": 2,
+ "ffmpeg": "ffmpeg version 6.1.1-3ubuntu5 Copyright (c) 2000-2023 the FFmpeg developers",
+ "aasist_repo_present": false,
+ "pinned_packages": {
+  "altair": {
+   "pinned": "6.3.0",
+   "installed": "6.3.0"
+  },
+  "anyio": {
+   "pinned": "4.15.1",
+   "installed": "4.15.1"
+  },
+  "attrs": {
+   "pinned": "26.1.0",
+   "installed": "26.1.0"
+  },
+  "certifi": {
+   "pinned": "2026.10.23",
+   "installed": "2026.10.23"
+  },
+  "charset_normalizer": {
+   "pinned": "3.5.2",
+   "installed": "3.5.2"
+  },
+  "click": {
+   "pinned": "8.5.0",
+   "installed": "8.5.0"
+  },
+  "colorama": {
+   "pinned": "0.4.6",
+   "installed": "0.4.6"
+  },
+  "h11": {
+   "pinned": "0.16.0",
+   "installed": "0.16.0"
+  },
+  "idna": {
+   "pinned": "3.20",
+   "installed": "3.20"
+  },
+  "iniconfig": {
+   "pinned": "2.3.1",
+   "installed": "2.3.1"
+  },
+  "itsdangerous": {
+   "pinned": "2.2.0",
+   "installed": "2.2.0"
+  },
+  "jinja2": {
+   "pinned": "3.1.6",
+   "installed": "3.1.6"
+  },
+  "jsonschema-specifications": {
+   "pinned": "2025.9.1",
+   "installed": "2025.9.1"
+  },
+  "jsonschema": {
+   "pinned": "4.26.0",
+   "installed": "4.26.0"
+  },
+  "MarkupSafe": {
+   "pinned": "3.0.4",
+   "installed": "3.0.4"
+  },
+  "narwhals": {
+   "pinned": "2.27.1",
+   "installed": "2.27.1"
+  },
+  "numpy": {
+   "pinned": "2.4.6",
+   "installed": "2.4.6"
+  },
+  "opencv-python-headless": {
+   "pinned": "5.0.0.93",
+   "installed": "5.0.0.93"
+  },
+  "packaging": {
+   "pinned": "26.3",
+   "installed": "26.3"
+  },
+  "pandas": {
+   "pinned": "3.1.0",
+   "installed": "3.1.0"
+  },
+  "pillow": {
+   "pinned": "13.0.0",
+   "installed": "13.0.0"
+  },
+  "pluggy": {
+   "pinned": "1.7.0",
+   "installed": "1.7.0"
+  },
+  "protobuf": {
+   "pinned": "7.36.2",
+   "installed": "7.36.2"
+  },
+  "pyarrow": {
+   "pinned": "26.0.0",
+   "installed": "26.0.0"
+  },
+  "pydeck": {
+   "pinned": "0.9.3",
+   "installed": "0.9.3"
+  },
+  "pygments": {
+   "pinned": "2.21.0",
+   "installed": "2.21.0"
+  },
+  "pytest": {
+   "pinned": "9.1.1",
+   "installed": "9.1.1"
+  },
+  "python-dateutil": {
+   "pinned": "3.0.0",
+   "installed": "3.0.0"
+  },
+  "python-multipart": {
+   "pinned": "0.0.32",
+   "installed": "0.0.32"
+  },
+  "referencing": {
+   "pinned": "0.37.0",
+   "installed": "0.37.0"
+  },
+  "requests": {
+   "pinned": "2.34.2",
+   "installed": "2.34.2"
+  },
+  "rpds-py": {
+   "pinned": "2026.9.1",
+   "installed": "2026.9.1"
+  },
+  "six": {
+   "pinned": "1.17.0",
+   "installed": "1.17.0"
+  },
+  "starlette": {
+   "pinned": "1.10.0",
+   "installed": "1.10.0"
+  },
+  "streamlit": {
+   "pinned": "1.66.1",
+   "installed": "1.66.1"
+  },
+  "typing-extensions": {
+   "pinned": "4.16.0",
+   "installed": "4.16.0"
+  },
+  "tzdata": {
+   "pinned": "2026.5",
+   "installed": "2026.5"
+  },
+  "urllib3": {
+   "pinned": "2.8.0",
+   "installed": "2.8.0"
+  },
+  "uvicorn": {
+   "pinned": "0.54.0",
+   "installed": "0.54.0"
+  },
+  "watchdog": {
+   "pinned": "6.0.0",
+   "installed": "6.0.0"
+  },
+  "websockets": {
+   "pinned": "17.3",
+   "installed": "17.3"
+  }
+ },
+ "extras": {
+  "torch": null,
+  "torchaudio": null,
+  "soundfile": null,
+  "scikit-learn": null,
+  "coverage": "7.17.0",
+  "pytest-cov": "7.1.0",
+  "pytest-randomly": "5.0.0"
+ }
+}

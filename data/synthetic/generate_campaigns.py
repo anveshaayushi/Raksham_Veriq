@@ -1,4 +1,11 @@
-"""veriq/data/synthetic/generate_campaigns.py"""
+"""veriq/data/synthetic/generate_campaigns.py
+
+SYNTHETIC campaign data (Claude A, 24 Oct): fictional firms and UPI IDs grouped into two "campaigns", plus the registry
+records those campaigns would create. No randomness: the output is fully determined by CAMPAIGNS below, so running it
+twice gives byte-identical files (tests/completeness/test_bench_smoke.py checks this against the committed files).
+
+    python data/synthetic/generate_campaigns.py      -> data/synthetic/campaign_cases.json, registry_seed.json
+"""
 import json
 from pathlib import Path
 
@@ -44,9 +51,9 @@ def generate_campaign_data(out_dir: str = "data/synthetic") -> None:
                     "note": f"Reported across {camp['campaign_id']}"
                 })
 
-    with open(p / "campaign_cases.json", "w", encoding="utf-8") as f:
+    with open(p / "campaign_cases.json", "w", encoding="utf-8", newline="\n") as f:
         json.dump(cases, f, indent=2)
-    with open(p / "registry_seed.json", "w", encoding="utf-8") as f:
+    with open(p / "registry_seed.json", "w", encoding="utf-8", newline="\n") as f:
         json.dump(registry_records, f, indent=2)
 
 if __name__ == "__main__":

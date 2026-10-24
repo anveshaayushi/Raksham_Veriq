@@ -67,7 +67,10 @@ def main():
         os.makedirs(os.path.join(a.out, s), exist_ok=True)
     rows = []
     by = {}
-    for f in glob.glob(os.path.join(a.fsdd, "*.wav")):
+    # sorted(): the file order (and so the seeded picks) is the same on every OS. Added in Q1, AFTER the committed set
+    # was built with the Linux sandbox's directory order, so a rebuild picks other FSDD recordings of the same
+    # speakers; bench/voice/voiceset_manifest.csv lists the exact committed clips with their SHA-256.
+    for f in sorted(glob.glob(os.path.join(a.fsdd, "*.wav"))):
         d, s, _ = os.path.basename(f)[:-4].split("_")
         by.setdefault((s, int(d)), []).append(f)
     gap = np.zeros(int(0.12 * 8000), dtype=np.float32)

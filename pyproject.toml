@@ -3,3 +3,11 @@ pythonpath = ["."]
 # One command runs everything: `python -m pytest` (Q0). -rs prints the reason for every skipped test.
 testpaths = ["tests", "app", "registry", "report", "voice"]
 addopts = "-q -rs"
+
+[tool.coverage.run]
+# Product code only; test files are never counted as covered code (Q1).
+source = ["app", "core", "extract", "match", "parsing", "registry", "report", "rules", "voice", "eval", "bench", "scripts", "data"]
+omit = ["*/tests/*", "tests/*"]
+
+[tool.coverage.report]
+skip_empty = true

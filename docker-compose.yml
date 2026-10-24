@@ -1,0 +1,34 @@
+# VERIQ on a server (pilot reviewer desk or demo). NOT run by Claude (no Docker in its sandbox): see DEPLOY.md.
+# 1) Put the registry key in ./secrets/registry_secret.txt (16+ random characters). Never commit it.
+# 2) Optional voice model: put the AASIST repo (code + weights, MIT) in ./external/aasist and build with VOICE=1.
+# 3) docker compose up -d   then open http://<server>:8501
+services:
+  veriq:
+    build:
+      context: .
+      args:
+        VOICE: "0"
+    image: veriq:finale
+    ports:
+      - "8501:8501"
+    environment:
+      VERIQ_DATA_DIR: /data
+      VERIQ_REGISTRY_DB: /data/registry.db
+      VERIQ_REGISTRY_SECRET_FILE: /run/secrets/registry_secret
+      VERIQ_MAX_UPLOAD_MB: "20"
+      VERIQ_LANG: "en"
+      VERIQ_OFFLINE: "1"
+    secrets:
+      - registry_secret
+    volumes:
+      - veriq_data:/data                     # registry database persists across restarts
+      - ./external/aasist:/app/external/aasist:ro   # AASIST weights (MIT, NAVER Corp.), optional
+    read_only: true
+    tmpfs:
+      - /tmp                                 # voice notes are written here for a moment, then deleted
+    restart: unless-stopped
+volumes:
+  veriq_data:
+secrets:
+  registry_secret:
+    file: ./secrets/registry_secret.txt

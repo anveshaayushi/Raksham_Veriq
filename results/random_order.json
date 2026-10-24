@@ -1,0 +1,23 @@
+{
+ "runs": [
+  {
+   "seed": 20261024,
+   "tests": 1127,
+   "failures": 0,
+   "errors": 0,
+   "skipped": 7,
+   "passed": 1120,
+   "failing": []
+  },
+  {
+   "seed": 424242,
+   "tests": 1127,
+   "failures": 0,
+   "errors": 0,
+   "skipped": 7,
+   "passed": 1120,
+   "failing": []
+  }
+ ],
+ "plugin": "pytest-randomly (shuffles test order; reseeds random)"
+}

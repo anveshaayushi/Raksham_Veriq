@@ -23,7 +23,9 @@ _LOOKALIKE = str.maketrans({"＠": "@", "﹫": "@", "．": ".", "₹": "₹"})
 
 RX = {
     "upi_vpa": re.compile(r"(?<![\w.@-])([a-z0-9][a-z0-9._-]{1,63}@[a-z][a-z0-9]{1,31})(?![\w@-])(?!\.[a-z])", re.I),
-    "bank_account": re.compile(r"\b(?:a/c|acct|account|khata)(?:\s*(?:no\.?|number))?\s*[:#.-]?\s*(\d{9,18})\b", re.I),
+    # Hindi account words added in Q1 after the mixed-language edge test missed "खाता संख्या <digits>"
+    "bank_account": re.compile(r"(?:\b(?:a/c|acct|account|khata)|खाता|खाते|अकाउंट)"
+                               r"(?:\s*(?:no\.?|number|संख्या|नंबर|नं\.?))?\s*[:#.-]?\s*(\d{9,18})\b", re.I),
     "ifsc": re.compile(r"\b([A-Z]{4}0[A-Z0-9]{6})\b"),
     "sebi_reg": re.compile(r"\b(IN[AHZ][0-9A-Z]{9})\b"),
     "phone": re.compile(r"(?<![\d/])((?:\+91[- ]?)?[6-9]\d{9})(?!\d)"),

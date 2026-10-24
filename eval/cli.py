@@ -36,8 +36,8 @@ VIDEO_EXT = {".mp4", ".mov", ".webm", ".mkv", ".avi"}
 IMAGE_EXT = {".jpg", ".jpeg", ".png", ".webp", ".bmp"}
 CHAT_EXT = {".txt", ".csv", ".json"}
 ARCHIVE_EXT = {".zip"}
-REAL_WORDS = {"real", "bonafide", "bona-fide", "genuine", "authentic"}
-FAKE_WORDS = {"fake", "spoof", "deepfake", "synthetic", "tts", "clone", "cloned"}
+REAL_WORDS = {"real", "bonafide", "bona-fide", "genuine", "authentic", "legit", "legitimate", "ham"}
+FAKE_WORDS = {"fake", "spoof", "deepfake", "synthetic", "tts", "clone", "cloned", "scam", "fraud", "spam"}
 GROUP_COLS = ("dataset", "codec", "language")
 FIELDS = ["file_id", "path", "sha256", "modality", "state", "pred_label", "score", "threshold",
           "score_kind", "speech_seconds", "reasons", "model_version", "elapsed_s", "label",
@@ -50,7 +50,14 @@ def build_detector(args) -> Tuple[Optional[object], Optional[str]]:
     try:
         from voice.detector import AasistDetector
 
-        return AasistDetector(repo_dir=args.aasist_repo, weights=args.aasist_weights), None
+        base = AasistDetector(repo_dir=args.aasist_repo, weights=args.aasist_weights)
+        if args.detector == "head":  # VERIQ's trained head on AASIST embeddings (app/adapters/voice_head.py)
+            from app.adapters.voice_head import load_head
+            det, cal = load_head(base)
+            if not args.calibration:
+                args.head_calibration = cal  # the head's own threshold, fixed on its FSDD/Kokoro dev split
+            return det, None
+        return base, None
     except Exception as e:
         return None, f"{type(e).__name__}: {e}"[:200]
 
@@ -117,12 +124,17 @@ def evaluate_folder(root: Path, detector, det_err, calibration: Optional[Calibra
                              speech_seconds=r.speech_seconds, reasons=" | ".join(reasons),
                              model_version=r.model_version, elapsed_s=f"{a.elapsed_s:.3f}", **extra))
             continue
-        if ext in IMAGE_EXT:
-            why, mod = "image_visual_detector_not_implemented", "image"
-        elif ext in ARCHIVE_EXT:
-            why, mod = "archive_not_unpacked: zip handling belongs to the parsing pipeline (Claude A)", "chat"
-        elif ext in CHAT_EXT:
-            why, mod = "not_audio: chat/text evaluation belongs to the parsing and rules pipeline (Claude A)", "chat"
+        if ext in IMAGE_EXT or ext in ARCHIVE_EXT or ext == ".txt":  # Q3 kit runner: eval/kit.py
+            from eval import kit
+            mod = "image" if ext in IMAGE_EXT else "chat"
+            fn = kit.image_assessment if mod == "image" else (lambda p, lr=lab_row: kit.chat_assessment(p, lr))
+            k = kit.with_timeout(fn, max(timeout_s, 10.0) * 2, f)
+            rows.append(_row(file_id=rel, path=str(f), sha256=sha, modality=mod, state=k["state"],
+                             pred_label=k.get("pred_label", ""), reasons=" | ".join(k["reasons"]),
+                             model_version="veriq-rules" if mod == "chat" else "qr-only", **extra))
+            continue
+        if ext in CHAT_EXT:
+            why, mod = "not_a_whatsapp_export: only .txt and WhatsApp .zip chats are read", "chat"
         else:
             why, mod = f"unsupported_extension({ext or 'none'})", "unknown"
         rows.append(_row(file_id=rel, path=str(f), sha256=sha, modality=mod, state="cant_assess",
@@ -163,14 +175,16 @@ def main(argv=None) -> int:
     ap.add_argument("--input", required=True)
     ap.add_argument("--out", required=True)
     ap.add_argument("--json", action="store_true", help="also write <out>.json with the same records")
-    ap.add_argument("--detector", choices=["aasist", "none"], default="aasist")
+    ap.add_argument("--detector", choices=["aasist", "head", "none"], default="aasist",
+                    help="aasist = pretrained AASIST; head = AASIST + VERIQ's trained head (uses its own calibration)")
     ap.add_argument("--aasist-repo", default=os.environ.get("VERIQ_AASIST_REPO"))
     ap.add_argument("--aasist-weights", default=None)
     ap.add_argument("--calibration", default=None, help="calibration JSON (see voice/calibration.py)")
     ap.add_argument("--labels", default=None, help="CSV with columns file,label[,dataset,codec,language]")
     ap.add_argument("--infer-labels-from-dirs", action="store_true",
                     help="HEURISTIC: treat a parent folder named real/fake/bonafide/spoof/... as the label")
-    ap.add_argument("--timeout", type=float, default=30.0, help="per-file ffmpeg decode timeout (s)")
+    ap.add_argument("--timeout", type=float, default=30.0, help="per-file time limit in seconds (decode / chat)")
+    ap.add_argument("--report", default=None, help="also write a Markdown judge report (eval/kit.py)")
     args = ap.parse_args(argv)
 
     root = Path(args.input)
@@ -181,7 +195,12 @@ def main(argv=None) -> int:
     detector, det_err = build_detector(args)
     if det_err:
         print(f"warning: no detector ({det_err}); media rows will be cant_assess", file=sys.stderr)
-    calibration = None
+    calibration = getattr(args, "head_calibration", None)
+    if not args.calibration and calibration is None and args.detector == "aasist":
+        from app.config import voice_calibration_path
+        args.calibration = voice_calibration_path()  # weak-cue threshold (ASVspoof LA dev); VERIQ_VOICE_CALIBRATION=none disables
+        if args.calibration:
+            print(f"note: using voice threshold {args.calibration} (weak review cue)", file=sys.stderr)
     if args.calibration:
         try:
             calibration = load_calibration(args.calibration)
@@ -218,6 +237,12 @@ def main(argv=None) -> int:
     summary = summarize(rows, polarity)
     out.with_suffix(".summary.json").write_text(json.dumps(summary, indent=2), encoding="utf-8")
     print(json.dumps(summary, indent=2), file=sys.stderr)
+    if args.report:
+        from eval.kit import build_report
+        cmd = "veriq-eval " + " ".join(argv if argv is not None else sys.argv[1:])
+        Path(args.report).parent.mkdir(parents=True, exist_ok=True)
+        Path(args.report).write_text(build_report(rows, cmd, polarity), encoding="utf-8")
+        print(f"report: {args.report}", file=sys.stderr)
     return 0
 
 

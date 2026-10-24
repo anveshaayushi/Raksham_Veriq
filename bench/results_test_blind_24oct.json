@@ -1,0 +1,169 @@
+{
+ "split": "test",
+ "chats": 300,
+ "payees": 399,
+ "extraction": {
+  "tp": 399,
+  "fp": 0,
+  "fn": 0,
+  "precision": 1.0,
+  "recall": 1.0
+ },
+ "decision_accuracy": 0.9624,
+ "false_alarms_on_legit_payees": {
+  "count": 0,
+  "of": 178
+ },
+ "scam_payees_marked_no_major_issue": {
+  "count": 0,
+  "of": 221
+ },
+ "confusion": {
+  "INCONCLUSIVE -> INCONCLUSIVE": 178,
+  "NAME_DISCREPANCY -> INCONCLUSIVE": 15,
+  "NAME_DISCREPANCY -> NAME_DISCREPANCY": 156,
+  "NO_MAJOR_ISSUE -> NO_MAJOR_ISSUE": 50
+ },
+ "ms_per_chat": {
+  "median": 0.4,
+  "max": 3.46
+ },
+ "failures": [
+  {
+   "case": "test-007",
+   "kind": "scam_single",
+   "payee": "desk634.c@okaxis",
+   "expected": "NAME_DISCREPANCY",
+   "got": "INCONCLUSIVE",
+   "typed_name": "KRISHNA DAIRY FARM",
+   "firm": "Nilgiri Share Services Ltd"
+  },
+  {
+   "case": "test-048",
+   "kind": "scam_rotation",
+   "payee": "desk675.c@upi",
+   "expected": "NAME_DISCREPANCY",
+   "got": "INCONCLUSIVE",
+   "typed_name": "KRISHNA DAIRY FARM",
+   "firm": "Tapti Wealth Managers Pvt Ltd"
+  },
+  {
+   "case": "test-066",
+   "kind": "scam_rotation",
+   "payee": "fund854.g@okaxis",
+   "expected": "NAME_DISCREPANCY",
+   "got": "INCONCLUSIVE",
+   "typed_name": "KRISHNA DAIRY FARM",
+   "firm": "Nilgiri Share Services Ltd"
+  },
+  {
+   "case": "test-084",
+   "kind": "scam_rotation",
+   "payee": "svc609.g@axl",
+   "expected": "NAME_DISCREPANCY",
+   "got": "INCONCLUSIVE",
+   "typed_name": "KRISHNA DAIRY FARM",
+   "firm": "Sabarmati Capital Ltd"
+  },
+  {
+   "case": "test-114",
+   "kind": "scam_rotation",
+   "payee": "acct505.e@ybl",
+   "expected": "NAME_DISCREPANCY",
+   "got": "INCONCLUSIVE",
+   "typed_name": "KRISHNA DAIRY FARM",
+   "firm": "Chambal Equity Research LLP"
+  },
+  {
+   "case": "test-150",
+   "kind": "scam_rotation",
+   "payee": "fund390.f@okaxis",
+   "expected": "NAME_DISCREPANCY",
+   "got": "INCONCLUSIVE",
+   "typed_name": "KRISHNA DAIRY FARM",
+   "firm": "Chambal Equity Research LLP"
+  },
+  {
+   "case": "test-175",
+   "kind": "scam_single",
+   "payee": "kyc424.j@paytm",
+   "expected": "NAME_DISCREPANCY",
+   "got": "INCONCLUSIVE",
+   "typed_name": "KRISHNA DAIRY FARM",
+   "firm": "Godavari Broking Ltd"
+  },
+  {
+   "case": "test-180",
+   "kind": "scam_rotation",
+   "payee": "26576218263000",
+   "expected": "NAME_DISCREPANCY",
+   "got": "INCONCLUSIVE",
+   "typed_name": "KRISHNA DAIRY FARM",
+   "firm": "Nilgiri Share Services Ltd"
+  },
+  {
+   "case": "test-187",
+   "kind": "scam_single",
+   "payee": "51092225322079",
+   "expected": "NAME_DISCREPANCY",
+   "got": "INCONCLUSIVE",
+   "typed_name": "KRISHNA DAIRY FARM",
+   "firm": "Vindhya Securities Pvt Ltd"
+  },
+  {
+   "case": "test-193",
+   "kind": "scam_single",
+   "payee": "50405291130465",
+   "expected": "NAME_DISCREPANCY",
+   "got": "INCONCLUSIVE",
+   "typed_name": "KRISHNA DAIRY FARM",
+   "firm": "Tapti Wealth Managers Pvt Ltd"
+  },
+  {
+   "case": "test-204",
+   "kind": "scam_rotation",
+   "payee": "desk161.h@ybl",
+   "expected": "NAME_DISCREPANCY",
+   "got": "INCONCLUSIVE",
+   "typed_name": "KRISHNA DAIRY FARM",
+   "firm": "Chambal Equity Research LLP"
+  },
+  {
+   "case": "test-235",
+   "kind": "scam_single",
+   "payee": "67584115572801",
+   "expected": "NAME_DISCREPANCY",
+   "got": "INCONCLUSIVE",
+   "typed_name": "KRISHNA DAIRY FARM",
+   "firm": "Godavari Broking Ltd"
+  },
+  {
+   "case": "test-270",
+   "kind": "scam_rotation",
+   "payee": "acct644.e@ibl",
+   "expected": "NAME_DISCREPANCY",
+   "got": "INCONCLUSIVE",
+   "typed_name": "KRISHNA DAIRY FARM",
+   "firm": "Sabarmati Capital Ltd"
+  },
+  {
+   "case": "test-270",
+   "kind": "scam_rotation",
+   "payee": "svc556.e@upi",
+   "expected": "NAME_DISCREPANCY",
+   "got": "INCONCLUSIVE",
+   "typed_name": "KRISHNA DAIRY FARM",
+   "firm": "Sabarmati Capital Ltd"
+  },
+  {
+   "case": "test-288",
+   "kind": "scam_rotation",
+   "payee": "kyc303.a@upi",
+   "expected": "NAME_DISCREPANCY",
+   "got": "INCONCLUSIVE",
+   "typed_name": "KRISHNA DAIRY FARM",
+   "firm": "Tapti Wealth Managers Pvt Ltd"
+  }
+ ],
+ "failure_count": 15
+}

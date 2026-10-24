@@ -166,8 +166,9 @@ def generate(split: str, n: int, seed: int) -> list[dict]:
 def main() -> None:
     OUT.mkdir(parents=True, exist_ok=True)
     for split, n, seed in (("dev", 120, 101), ("test", 300, 20261024)):
-        (OUT / f"{split}.json").write_text(json.dumps(generate(split, n, seed), ensure_ascii=False, indent=1),
-                                           encoding="utf-8")
+        # newline="\n": byte-identical output on Windows and Linux (checked by tests/completeness/test_bench_smoke.py)
+        with open(OUT / f"{split}.json", "w", encoding="utf-8", newline="\n") as f:
+            f.write(json.dumps(generate(split, n, seed), ensure_ascii=False, indent=1))
         print(f"wrote {split}: {n} chats")
 
 

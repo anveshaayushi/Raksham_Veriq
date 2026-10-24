@@ -1,0 +1,98 @@
+claimed_firm,shown_name,relation,kind
+Navyug Wealth Research Pvt Ltd,NAVYUG WEALTH RESEARCH PRIVATE LIMITED,same,legal form / spacing variant
+Navyug Wealth Research Pvt Ltd,NAVYUG WEALTH RESEARCH PVT. LTD.,same,legal form / spacing variant
+Navyug Wealth Research Pvt Ltd,M/S NAVYUG WEALTH RESEARCH PVT LTD,same,legal form / spacing variant
+Navyug Wealth Research Pvt Ltd,Navyug Wealth Research,same,legal form / spacing variant
+Sahyadri Securities Ltd,SAHYADRI SECURITIES LIMITED,same,legal form / spacing variant
+Sahyadri Securities Ltd,SAHYADRI SECURITIES LTD.,same,legal form / spacing variant
+TradeMax Capital Services,TRADEMAX CAPITAL SERVICES,same,legal form / spacing variant
+TradeMax Capital Services,TRADEMAX CAPITAL SERVICES PRIVATE LIMITED,same,legal form / spacing variant
+Shree Laxmi Broking Pvt Ltd,SHREE LAXMI BROKING PRIVATE LIMITED,same,legal form / spacing variant
+Shree Laxmi Broking Pvt Ltd,SHRI LAXMI BROKING PVT LTD,same,legal form / spacing variant
+Aarohan Investment Advisers LLP,AAROHAN INVESTMENT ADVISERS LLP,same,legal form / spacing variant
+Aarohan Investment Advisers LLP,AAROHAN INVESTMENT ADVISORS,same,legal form / spacing variant
+BlueRiver Finserv Pvt Ltd,BLUERIVER FINSERV PRIVATE LIMITED,same,legal form / spacing variant
+BlueRiver Finserv Pvt Ltd,BLUE RIVER FINSERV PVT LTD,same,legal form / spacing variant
+Meridian Equity Research,MERIDIAN EQUITY RESEARCH,same,legal form / spacing variant
+Meridian Equity Research,MERIDIAN EQUITY RESEARCH LLP,same,legal form / spacing variant
+Ganga Stock Brokers Pvt Ltd,GANGA STOCK BROKERS PRIVATE LIMITED,same,legal form / spacing variant
+Ganga Stock Brokers Pvt Ltd,GANGA STOCK BROKERS,same,legal form / spacing variant
+Navyug Wealth Research Pvt Ltd,NAVYUG WEALTH RES,same,truncation / abbreviation / initials
+Navyug Wealth Research Pvt Ltd,NAVYUG WEALTH,same,truncation / abbreviation / initials
+Navyug Wealth Research Pvt Ltd,NWR PVT LTD,same,truncation / abbreviation / initials
+Sahyadri Securities Ltd,SSL,same,truncation / abbreviation / initials
+Sahyadri Securities Ltd,SAHYADRI SEC LTD,same,truncation / abbreviation / initials
+TradeMax Capital Services,TRADEMAX CAP SERV,same,truncation / abbreviation / initials
+Shree Laxmi Broking Pvt Ltd,SL BROKING PVT LTD,same,truncation / abbreviation / initials
+Aarohan Investment Advisers LLP,AAROHAN INV ADVISERS,same,truncation / abbreviation / initials
+BlueRiver Finserv Pvt Ltd,BRF PVT LTD,same,truncation / abbreviation / initials
+Meridian Equity Research,MER EQUITY RESEARCH,same,truncation / abbreviation / initials
+Ganga Stock Brokers Pvt Ltd,GSB PVT LTD,same,truncation / abbreviation / initials
+Ganga Stock Brokers Pvt Ltd,GANGA STK BROKERS,same,truncation / abbreviation / initials
+Navyug Wealth Research Pvt Ltd,NAVYOG WEALTH RESEARCH,same,spelling / transliteration variant
+Navyug Wealth Research Pvt Ltd,NAWYUG WEALTH RESEARCH PVT LTD,same,spelling / transliteration variant
+Sahyadri Securities Ltd,SAHYADRY SECURITIES LTD,same,spelling / transliteration variant
+Sahyadri Securities Ltd,SAHAYADRI SECURITIES,same,spelling / transliteration variant
+Shree Laxmi Broking Pvt Ltd,SHREE LAKSHMI BROKING PVT LTD,same,spelling / transliteration variant
+Shree Laxmi Broking Pvt Ltd,SHREE LAXMEE BROKING,same,spelling / transliteration variant
+Aarohan Investment Advisers LLP,AAROHANA INVESTMENT ADVISERS,same,spelling / transliteration variant
+Ganga Stock Brokers Pvt Ltd,GANGAA STOCK BROKERS,same,spelling / transliteration variant
+Meridian Equity Research,MERIDIEN EQUITY RESEARCH,same,spelling / transliteration variant
+TradeMax Capital Services,TRADMAX CAPITAL SERVICES,same,spelling / transliteration variant
+Navyug Wealth Research Pvt Ltd,नवयुग वेल्थ रिसर्च प्राइवेट लिमिटेड,same,Devanagari script
+Shree Laxmi Broking Pvt Ltd,श्री लक्ष्मी ब्रोकिंग,same,Devanagari script
+Meridian Equity Research,RAJESH MEHTA,unknown,proprietor's personal name (could be the firm or a mule)
+Aarohan Investment Advisers LLP,ANITA DESAI,unknown,proprietor's personal name (could be the firm or a mule)
+TradeMax Capital Services,MOHD IRFAN SHAIKH,unknown,proprietor's personal name (could be the firm or a mule)
+Navyug Wealth Research Pvt Ltd,RAZORPAY SOFTWARE PVT LTD,unknown,payment gateway (merchant hidden)
+Sahyadri Securities Ltd,CASHFREE PAYMENTS INDIA PVT LTD,unknown,payment gateway (merchant hidden)
+TradeMax Capital Services,PAYU PAYMENTS PVT LTD,unknown,payment gateway (merchant hidden)
+BlueRiver Finserv Pvt Ltd,BILLDESK,unknown,payment gateway (merchant hidden)
+Ganga Stock Brokers Pvt Ltd,PHONEPE PVT LTD,unknown,payment gateway (merchant hidden)
+Navyug Wealth Research Pvt Ltd,SHREE GANESH TRADERS,different,unrelated business
+Navyug Wealth Research Pvt Ltd,OM SAI ENTERPRISES,different,unrelated business
+Navyug Wealth Research Pvt Ltd,KALPANA TRADING CO,different,unrelated business
+Sahyadri Securities Ltd,BALAJI GARMENTS,different,unrelated business
+Sahyadri Securities Ltd,KRISHNA DAIRY FARM,different,unrelated business
+Sahyadri Securities Ltd,RK MOBILE POINT,different,unrelated business
+TradeMax Capital Services,MAA DURGA KIRANA STORE,different,unrelated business
+TradeMax Capital Services,NEW INDIA TOURS AND TRAVELS,different,unrelated business
+Shree Laxmi Broking Pvt Ltd,JAI HIND HARDWARE,different,unrelated business
+Shree Laxmi Broking Pvt Ltd,SAI KRUPA MEDICALS,different,unrelated business
+Aarohan Investment Advisers LLP,GURU NANAK AUTO PARTS,different,unrelated business
+Aarohan Investment Advisers LLP,ROYAL FASHION COLLECTION,different,unrelated business
+BlueRiver Finserv Pvt Ltd,STAR ELECTRONICS,different,unrelated business
+BlueRiver Finserv Pvt Ltd,SHIV SHAKTI CONSTRUCTIONS,different,unrelated business
+Meridian Equity Research,GOLDEN BAKERY AND SWEETS,different,unrelated business
+Meridian Equity Research,VINAYAK PACKERS AND MOVERS,different,unrelated business
+Ganga Stock Brokers Pvt Ltd,NEW SAGAR HOTEL,different,unrelated business
+Ganga Stock Brokers Pvt Ltd,SHREE RAM STEEL CENTRE,different,unrelated business
+Navyug Wealth Research Pvt Ltd,ANNAPURNA FOODS,different,unrelated business
+Sahyadri Securities Ltd,MAHALAXMI JEWELLERS,different,unrelated business
+TradeMax Capital Services,PATEL BROTHERS EXPORTS,different,unrelated business
+Shree Laxmi Broking Pvt Ltd,RAMESH KUMAR GENERAL STORE,different,unrelated business
+Aarohan Investment Advisers LLP,SUNRISE COMPUTERS,different,unrelated business
+BlueRiver Finserv Pvt Ltd,GREENLEAF AGRO SEEDS,different,unrelated business
+Meridian Equity Research,CITY OPTICALS,different,unrelated business
+Ganga Stock Brokers Pvt Ltd,DIAMOND FURNITURE HOUSE,different,unrelated business
+Navyug Wealth Research Pvt Ltd,ALPHA LOGISTICS,different,unrelated business
+Sahyadri Securities Ltd,HARIOM TEXTILES,different,unrelated business
+TradeMax Capital Services,NANDINI BOUTIQUE,different,unrelated business
+Shree Laxmi Broking Pvt Ltd,SKYLINE REALTY,different,unrelated business
+Navyug Wealth Research Pvt Ltd,ZENITH STOCK BROKING PVT LTD,different,another finance firm
+Sahyadri Securities Ltd,APEX SECURITIES LTD,different,another finance firm
+TradeMax Capital Services,PINNACLE CAPITAL SERVICES,different,another finance firm
+Shree Laxmi Broking Pvt Ltd,VERTEX WEALTH RESEARCH,different,another finance firm
+Meridian Equity Research,ORBIT EQUITY RESEARCH,different,another finance firm
+Ganga Stock Brokers Pvt Ltd,SUMMIT STOCK BROKERS PVT LTD,different,another finance firm
+Navyug Wealth Research Pvt Ltd,NAVYUG ONLINE TRADERS,lookalike,shell reusing the brand word
+Navyug Wealth Research Pvt Ltd,NAVYUG PAYMENTS,lookalike,shell reusing the brand word
+Sahyadri Securities Ltd,SAHYADRI MOBILE POINT,lookalike,shell reusing the brand word
+TradeMax Capital Services,TRADEMAX DIGITAL SERVICES,lookalike,shell reusing the brand word
+Shree Laxmi Broking Pvt Ltd,SHREE LAXMI GARMENTS,lookalike,shell reusing the brand word
+Ganga Stock Brokers Pvt Ltd,GANGA TOURS AND TRAVELS,lookalike,shell reusing the brand word
+Navyug Wealth Research Pvt Ltd,SUNITA DEVI,unknown,personal name (mule or proprietor: unknowable from the name)
+Sahyadri Securities Ltd,MOHD AASLAM,unknown,personal name (mule or proprietor: unknowable from the name)
+TradeMax Capital Services,PRIYA SHARMA,unknown,personal name (mule or proprietor: unknowable from the name)
+Shree Laxmi Broking Pvt Ltd,RAVI VERMA,unknown,personal name (mule or proprietor: unknowable from the name)
+BlueRiver Finserv Pvt Ltd,SALIM QURESHI,unknown,personal name (mule or proprietor: unknowable from the name)

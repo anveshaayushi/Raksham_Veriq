@@ -1,0 +1,15 @@
+{
+ "seconds": 2.94,
+ "messages": 9,
+ "voice_notes": 3,
+ "model_ran": true,
+ "model_version": "aasist-pretrained@51d2d9cf0738",
+ "voice_states": [
+  "cant_assess",
+  "cant_assess",
+  "cant_assess",
+  "cant_assess"
+ ],
+ "where": "Linux x86_64, 2 CPUs, Python 3.13.16",
+ "run_at_ist": "2026-10-25 01:12 IST"
+}

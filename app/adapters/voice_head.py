@@ -9,7 +9,10 @@ It plugs into Claude B's pipeline through B's own Detector interface (voice.dete
 format (voice.calibration), via voice.service.set_backend(). B's quality gate, chunking and three-state logic are
 unchanged. A voice flag is still only a review cue in the rules: it never clears and never accuses a payee.
 
-Turn it off with the environment variable VERIQ_VOICE_HEAD=0 (then B's default backend is used).
+OFF BY DEFAULT since 25 Oct (Q2): on ASVspoof 2019 LA eval clips it never saw, this head scored AUC 0.457 and flagged
+54% of genuine clips (results/asvspoof/HEAD_V1_CROSS_DATASET_ROWS.md): it learned our FSDD-vs-Kokoro set, not
+"synthetic speech" in general. Turn it on only to demo the in-domain result: VERIQ_VOICE_HEAD=1. With it off, B's
+default backend is used and uncalibrated AASIST abstains ("can't assess").
 """
 
 from __future__ import annotations
@@ -76,8 +79,8 @@ def ensure_installed() -> dict:
     if _state["tried"]:
         return _state
     _state["tried"] = True
-    if os.environ.get("VERIQ_VOICE_HEAD", "1") == "0":
-        _state["reason"] = "turned off (VERIQ_VOICE_HEAD=0)"
+    if os.environ.get("VERIQ_VOICE_HEAD", "0") != "1":
+        _state["reason"] = "off (default; set VERIQ_VOICE_HEAD=1 to use the in-domain head)"
         return _state
     if not (HEAD.is_file() and CAL.is_file()):
         _state["reason"] = "head files missing"

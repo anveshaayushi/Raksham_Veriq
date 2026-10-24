@@ -57,8 +57,9 @@ def run_case(c: dict) -> dict:
             "ms": (time.perf_counter() - t0) * 1000}
 
 
-def evaluate(split: str) -> dict:
-    cases = json.loads((HERE / "data" / f"{split}.json").read_text(encoding="utf-8"))
+def evaluate(split: str, out_dir: Path | None = None, data_dir: Path | None = None) -> dict:
+    """out_dir/data_dir default to bench/ and bench/data/ (scripts/reproduce.py writes to results/ instead)."""
+    cases = json.loads(((data_dir or HERE / "data") / f"{split}.json").read_text(encoding="utf-8"))
     tp = fp = fn = 0
     confusion: Counter = Counter()
     false_alarm = legit_n = missed = scam_n = 0
@@ -100,7 +101,8 @@ def evaluate(split: str) -> dict:
         "ms_per_chat": {"median": round(times[len(times) // 2], 2), "max": round(times[-1], 2)},
         "failures": failures[:40], "failure_count": len(failures),
     }
-    (HERE / f"results_{split}.json").write_text(json.dumps(res, indent=1, ensure_ascii=False), encoding="utf-8")
+    with open((out_dir or HERE) / f"results_{split}.json", "w", encoding="utf-8", newline="\n") as f:
+        f.write(json.dumps(res, indent=1, ensure_ascii=False))
     return res
 
 

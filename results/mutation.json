@@ -1,0 +1,146 @@
+{
+ "mutants": 17,
+ "applied": 17,
+ "killed": 17,
+ "survived": 0,
+ "stale": 0,
+ "kill_rate": 1.0,
+ "rows": [
+  {
+   "id": "M01",
+   "file": "rules/__init__.py",
+   "meaning": "LINKED never fires: a payee reported by 2+ victims is not called out",
+   "status": "killed",
+   "first_failing_test": "tests/completeness/test_reproduce_tools.py::test_every_mutant_still_applies_to_exactly_one_place",
+   "seconds": 1.8
+  },
+  {
+   "id": "M02",
+   "file": "core/schemas.py",
+   "meaning": "rule rank flipped: the case shows a milder payee's result instead of the worst one",
+   "status": "killed",
+   "first_failing_test": "tests/completeness/test_reproduce_tools.py::test_every_mutant_still_applies_to_exactly_one_place",
+   "seconds": 1.7
+  },
+  {
+   "id": "M03",
+   "file": "rules/__init__.py",
+   "meaning": "hard-cue block removed: 'pay 18% tax to withdraw' with a matching name says 'no major issue'",
+   "status": "killed",
+   "first_failing_test": "tests/completeness/test_reproduce_tools.py::test_every_mutant_still_applies_to_exactly_one_place",
+   "seconds": 1.8
+  },
+  {
+   "id": "M04",
+   "file": "rules/__init__.py",
+   "meaning": "a voice result clears a payee (no_signal treated like a name match)",
+   "status": "killed",
+   "first_failing_test": "tests/completeness/test_reproduce_tools.py::test_mutation_check_kills_a_mutant_on_a_small_suite",
+   "seconds": 2.1
+  },
+  {
+   "id": "M05",
+   "file": "rules/__init__.py",
+   "meaning": "a flagged voice note is ignored",
+   "status": "killed",
+   "first_failing_test": "tests/completeness/test_reproduce_tools.py::test_every_mutant_still_applies_to_exactly_one_place",
+   "seconds": 1.7
+  },
+  {
+   "id": "M06",
+   "file": "registry/interface.py",
+   "meaning": "payment-gateway handles are stored and can be linked (innocent merchants accused)",
+   "status": "killed",
+   "first_failing_test": "tests/completeness/test_core_paths.py::test_every_registry_call_says_unavailable_when_the_file_is_not_a_database",
+   "seconds": 1.4
+  },
+  {
+   "id": "M07",
+   "file": "registry/interface.py",
+   "meaning": "registry link threshold weakened: one reporter is enough to brand a payee",
+   "status": "killed",
+   "first_failing_test": "tests/completeness/test_core_paths.py::test_seed_command",
+   "seconds": 1.3
+  },
+  {
+   "id": "M08",
+   "file": "registry/sqlite_registry.py",
+   "meaning": "burst protection off: a scripted flood of new 'reporters' counts as independent",
+   "status": "killed",
+   "first_failing_test": "tests/completeness/test_reproduce_tools.py::test_every_mutant_still_applies_to_exactly_one_place",
+   "seconds": 1.7
+  },
+  {
+   "id": "M09",
+   "file": "app/text_safety.py",
+   "meaning": "defanging broken in the app: links from the scammer's chat become clickable",
+   "status": "killed",
+   "first_failing_test": "tests/completeness/test_reproduce_tools.py::test_every_mutant_still_applies_to_exactly_one_place",
+   "seconds": 1.7
+  },
+  {
+   "id": "M10",
+   "file": "report/build.py",
+   "meaning": "defanging broken in the reports",
+   "status": "killed",
+   "first_failing_test": "tests/completeness/test_reproduce_tools.py::test_every_mutant_still_applies_to_exactly_one_place",
+   "seconds": 1.6
+  },
+  {
+   "id": "M11",
+   "file": "rules/templates.py",
+   "meaning": "'This is not a guarantee.' dropped from the mildest answer",
+   "status": "killed",
+   "first_failing_test": "tests/completeness/test_bench_smoke.py::test_benchmark_runner_end_to_end_on_a_small_split",
+   "seconds": 1.1
+  },
+  {
+   "id": "M12",
+   "file": "app/next_steps.py",
+   "meaning": "the 'money already sent' toggle changes the result, not just the next step",
+   "status": "killed",
+   "first_failing_test": "app/tests/test_next_steps_and_safety.py::test_money_sent_changes_only_next_step",
+   "seconds": 18.5
+  },
+  {
+   "id": "M13",
+   "file": "app/intake.py",
+   "meaning": "zip-bomb ratio check disabled",
+   "status": "killed",
+   "first_failing_test": "tests/completeness/test_reproduce_tools.py::test_every_mutant_still_applies_to_exactly_one_place",
+   "seconds": 1.6
+  },
+  {
+   "id": "M14",
+   "file": "registry/sqlite_registry.py",
+   "meaning": "a broken registry reports 'clean' instead of 'unavailable'",
+   "status": "killed",
+   "first_failing_test": "tests/completeness/test_core_paths.py::test_every_registry_call_says_unavailable_when_the_file_is_not_a_database",
+   "seconds": 1.3
+  },
+  {
+   "id": "M15",
+   "file": "rules/__init__.py",
+   "meaning": "the sender-typed QR name (class D) is trusted like the user's own app check (class A)",
+   "status": "killed",
+   "first_failing_test": "tests/completeness/test_bench_smoke.py::test_red_team_defences_hold_and_known_gaps_are_reported",
+   "seconds": 1.2
+  },
+  {
+   "id": "M16",
+   "file": "rules/__init__.py",
+   "meaning": "a SEBI number missing from the dated list is ignored",
+   "status": "killed",
+   "first_failing_test": "tests/completeness/test_reproduce_tools.py::test_every_mutant_still_applies_to_exactly_one_place",
+   "seconds": 1.5
+  },
+  {
+   "id": "M17",
+   "file": "registry/sqlite_registry.py",
+   "meaning": "raw UPI IDs / account numbers stored in the registry file",
+   "status": "killed",
+   "first_failing_test": "tests/completeness/test_reproduce_tools.py::test_every_mutant_still_applies_to_exactly_one_place",
+   "seconds": 1.7
+  }
+ ]
+}

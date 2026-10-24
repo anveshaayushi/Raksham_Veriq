@@ -1,0 +1,26 @@
+[
+ {
+  "file": "bench/data/dev.json",
+  "sha256": "9ed8fcfdd6b54b29f10c8fdb68cffeb21e7b4eb69ca7a414b73be152ffcacd34",
+  "committed_sha256": "9ed8fcfdd6b54b29f10c8fdb68cffeb21e7b4eb69ca7a414b73be152ffcacd34",
+  "identical": true
+ },
+ {
+  "file": "bench/data/test.json",
+  "sha256": "1544db596df8ec13a47947eb79e8c414be207aa2c06a8b9c7a6d93bd59b17779",
+  "committed_sha256": "1544db596df8ec13a47947eb79e8c414be207aa2c06a8b9c7a6d93bd59b17779",
+  "identical": true
+ },
+ {
+  "file": "data/synthetic/campaign_cases.json",
+  "sha256": "a17992a51704e2ef06cd0f8d5f077983709768bc55c73cc00278fb7239806a4c",
+  "committed_sha256": "a17992a51704e2ef06cd0f8d5f077983709768bc55c73cc00278fb7239806a4c",
+  "identical": true
+ },
+ {
+  "file": "data/synthetic/registry_seed.json",
+  "sha256": "708c3ca4433a0b753928b6039ffa88358fde7163cb2e46cf68cc078deebd3d63",
+  "committed_sha256": "708c3ca4433a0b753928b6039ffa88358fde7163cb2e46cf68cc078deebd3d63",
+  "identical": true
+ }
+]

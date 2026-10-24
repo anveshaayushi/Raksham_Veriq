@@ -1,0 +1,655 @@
+{
+ "made": "2026-10-25",
+ "seed_note": "LogisticRegression is deterministic; GroupKFold is deterministic",
+ "model_version_base": "aasist-pretrained@51d2d9cf0738",
+ "far_target": 0.05,
+ "head_v2_cv": {
+  "cv_auc": 0.912,
+  "cv_eer": 0.179,
+  "folds": 5,
+  "grouped_by": "speaker/voice/base clip"
+ },
+ "n": {
+  "AE (ASVspoof eval, unseen attacks + speakers)": 600,
+  "V test (FSDD/Kokoro held-out speakers/voices, English)": 160,
+  "V test Hindi synthetic only": 40
+ },
+ "train_n": {
+  "head_v2": 642,
+  "v_only": 320,
+  "ad_only": 322
+ },
+ "results": {
+  "AE (ASVspoof eval, unseen attacks + speakers)": {
+   "pretrained AASIST (threshold: B's ASVspoof dev)": {
+    "all": {
+     "n": 543,
+     "n_real": 276,
+     "n_fake": 267,
+     "abstained_by_gate": 57,
+     "auc": 0.777,
+     "eer": 0.308,
+     "genuine_flagged": 0.13,
+     "genuine_flagged_wilson95": [
+      0.096,
+      0.175
+     ],
+     "synthetic_caught": 0.412,
+     "synthetic_caught_wilson95": [
+      0.355,
+      0.472
+     ]
+    },
+    "clean": {
+     "n": 181,
+     "n_real": 92,
+     "n_fake": 89,
+     "abstained_by_gate": 19,
+     "auc": 0.826,
+     "eer": 0.237,
+     "genuine_flagged": 0.087,
+     "genuine_flagged_wilson95": [
+      0.045,
+      0.162
+     ],
+     "synthetic_caught": 0.404,
+     "synthetic_caught_wilson95": [
+      0.309,
+      0.508
+     ]
+    },
+    "mp3": {
+     "n": 181,
+     "n_real": 92,
+     "n_fake": 89,
+     "abstained_by_gate": 19,
+     "auc": 0.798,
+     "eer": 0.282,
+     "genuine_flagged": 0.065,
+     "genuine_flagged_wilson95": [
+      0.03,
+      0.135
+     ],
+     "synthetic_caught": 0.393,
+     "synthetic_caught_wilson95": [
+      0.298,
+      0.497
+     ]
+    },
+    "opus": {
+     "n": 181,
+     "n_real": 92,
+     "n_fake": 89,
+     "abstained_by_gate": 19,
+     "auc": 0.709,
+     "eer": 0.365,
+     "genuine_flagged": 0.239,
+     "genuine_flagged_wilson95": [
+      0.164,
+      0.336
+     ],
+     "synthetic_caught": 0.438,
+     "synthetic_caught_wilson95": [
+      0.34,
+      0.542
+     ]
+    }
+   },
+   "head_v1 as shipped (threshold: FSDD/Kokoro dev)": {
+    "all": {
+     "n": 543,
+     "n_real": 276,
+     "n_fake": 267,
+     "abstained_by_gate": 57,
+     "auc": 0.474,
+     "eer": 0.519,
+     "genuine_flagged": 0.533,
+     "genuine_flagged_wilson95": [
+      0.474,
+      0.591
+     ],
+     "synthetic_caught": 0.509,
+     "synthetic_caught_wilson95": [
+      0.45,
+      0.569
+     ]
+    },
+    "clean": {
+     "n": 181,
+     "n_real": 92,
+     "n_fake": 89,
+     "abstained_by_gate": 19,
+     "auc": 0.53,
+     "eer": 0.481,
+     "genuine_flagged": 0.489,
+     "genuine_flagged_wilson95": [
+      0.389,
+      0.59
+     ],
+     "synthetic_caught": 0.517,
+     "synthetic_caught_wilson95": [
+      0.415,
+      0.618
+     ]
+    },
+    "mp3": {
+     "n": 181,
+     "n_real": 92,
+     "n_fake": 89,
+     "abstained_by_gate": 19,
+     "auc": 0.492,
+     "eer": 0.481,
+     "genuine_flagged": 0.489,
+     "genuine_flagged_wilson95": [
+      0.389,
+      0.59
+     ],
+     "synthetic_caught": 0.551,
+     "synthetic_caught_wilson95": [
+      0.447,
+      0.65
+     ]
+    },
+    "opus": {
+     "n": 181,
+     "n_real": 92,
+     "n_fake": 89,
+     "abstained_by_gate": 19,
+     "auc": 0.402,
+     "eer": 0.586,
+     "genuine_flagged": 0.62,
+     "genuine_flagged_wilson95": [
+      0.517,
+      0.712
+     ],
+     "synthetic_caught": 0.461,
+     "synthetic_caught_wilson95": [
+      0.361,
+      0.564
+     ]
+    }
+   },
+   "head trained on V only (threshold: grouped CV on V)": {
+    "all": {
+     "n": 543,
+     "n_real": 276,
+     "n_fake": 267,
+     "abstained_by_gate": 57,
+     "auc": 0.583,
+     "eer": 0.438,
+     "genuine_flagged": 0.25,
+     "genuine_flagged_wilson95": [
+      0.203,
+      0.304
+     ],
+     "synthetic_caught": 0.371,
+     "synthetic_caught_wilson95": [
+      0.315,
+      0.43
+     ]
+    },
+    "clean": {
+     "n": 181,
+     "n_real": 92,
+     "n_fake": 89,
+     "abstained_by_gate": 19,
+     "auc": 0.665,
+     "eer": 0.392,
+     "genuine_flagged": 0.152,
+     "genuine_flagged_wilson95": [
+      0.093,
+      0.239
+     ],
+     "synthetic_caught": 0.36,
+     "synthetic_caught_wilson95": [
+      0.268,
+      0.463
+     ]
+    },
+    "mp3": {
+     "n": 181,
+     "n_real": 92,
+     "n_fake": 89,
+     "abstained_by_gate": 19,
+     "auc": 0.594,
+     "eer": 0.431,
+     "genuine_flagged": 0.25,
+     "genuine_flagged_wilson95": [
+      0.173,
+      0.347
+     ],
+     "synthetic_caught": 0.393,
+     "synthetic_caught_wilson95": [
+      0.298,
+      0.497
+     ]
+    },
+    "opus": {
+     "n": 181,
+     "n_real": 92,
+     "n_fake": 89,
+     "abstained_by_gate": 19,
+     "auc": 0.483,
+     "eer": 0.519,
+     "genuine_flagged": 0.348,
+     "genuine_flagged_wilson95": [
+      0.258,
+      0.449
+     ],
+     "synthetic_caught": 0.36,
+     "synthetic_caught_wilson95": [
+      0.268,
+      0.463
+     ]
+    }
+   },
+   "head trained on ASVspoof dev only (threshold: grouped CV on AD)": {
+    "all": {
+     "n": 543,
+     "n_real": 276,
+     "n_fake": 267,
+     "abstained_by_gate": 57,
+     "auc": 0.865,
+     "eer": 0.203,
+     "genuine_flagged": 0.094,
+     "genuine_flagged_wilson95": [
+      0.065,
+      0.134
+     ],
+     "synthetic_caught": 0.678,
+     "synthetic_caught_wilson95": [
+      0.62,
+      0.731
+     ]
+    },
+    "clean": {
+     "n": 181,
+     "n_real": 92,
+     "n_fake": 89,
+     "abstained_by_gate": 19,
+     "auc": 0.889,
+     "eer": 0.182,
+     "genuine_flagged": 0.065,
+     "genuine_flagged_wilson95": [
+      0.03,
+      0.135
+     ],
+     "synthetic_caught": 0.629,
+     "synthetic_caught_wilson95": [
+      0.525,
+      0.722
+     ]
+    },
+    "mp3": {
+     "n": 181,
+     "n_real": 92,
+     "n_fake": 89,
+     "abstained_by_gate": 19,
+     "auc": 0.881,
+     "eer": 0.188,
+     "genuine_flagged": 0.054,
+     "genuine_flagged_wilson95": [
+      0.023,
+      0.121
+     ],
+     "synthetic_caught": 0.663,
+     "synthetic_caught_wilson95": [
+      0.56,
+      0.753
+     ]
+    },
+    "opus": {
+     "n": 181,
+     "n_real": 92,
+     "n_fake": 89,
+     "abstained_by_gate": 19,
+     "auc": 0.832,
+     "eer": 0.232,
+     "genuine_flagged": 0.163,
+     "genuine_flagged_wilson95": [
+      0.101,
+      0.252
+     ],
+     "synthetic_caught": 0.742,
+     "synthetic_caught_wilson95": [
+      0.642,
+      0.821
+     ]
+    }
+   },
+   "head_v2 trained on V + ASVspoof dev (threshold: grouped CV)": {
+    "all": {
+     "n": 543,
+     "n_real": 276,
+     "n_fake": 267,
+     "abstained_by_gate": 57,
+     "auc": 0.832,
+     "eer": 0.239,
+     "genuine_flagged": 0.051,
+     "genuine_flagged_wilson95": [
+      0.03,
+      0.083
+     ],
+     "synthetic_caught": 0.438,
+     "synthetic_caught_wilson95": [
+      0.38,
+      0.498
+     ]
+    },
+    "clean": {
+     "n": 181,
+     "n_real": 92,
+     "n_fake": 89,
+     "abstained_by_gate": 19,
+     "auc": 0.864,
+     "eer": 0.204,
+     "genuine_flagged": 0.043,
+     "genuine_flagged_wilson95": [
+      0.017,
+      0.107
+     ],
+     "synthetic_caught": 0.438,
+     "synthetic_caught_wilson95": [
+      0.34,
+      0.542
+     ]
+    },
+    "mp3": {
+     "n": 181,
+     "n_real": 92,
+     "n_fake": 89,
+     "abstained_by_gate": 19,
+     "auc": 0.844,
+     "eer": 0.215,
+     "genuine_flagged": 0.033,
+     "genuine_flagged_wilson95": [
+      0.011,
+      0.092
+     ],
+     "synthetic_caught": 0.427,
+     "synthetic_caught_wilson95": [
+      0.329,
+      0.531
+     ]
+    },
+    "opus": {
+     "n": 181,
+     "n_real": 92,
+     "n_fake": 89,
+     "abstained_by_gate": 19,
+     "auc": 0.797,
+     "eer": 0.276,
+     "genuine_flagged": 0.076,
+     "genuine_flagged_wilson95": [
+      0.037,
+      0.149
+     ],
+     "synthetic_caught": 0.449,
+     "synthetic_caught_wilson95": [
+      0.35,
+      0.553
+     ]
+    }
+   }
+  },
+  "V test (FSDD/Kokoro held-out speakers/voices, English)": {
+   "pretrained AASIST (threshold: B's ASVspoof dev)": {
+    "all": {
+     "n": 160,
+     "n_real": 80,
+     "n_fake": 80,
+     "abstained_by_gate": 0,
+     "auc": 0.669,
+     "eer": 0.35,
+     "genuine_flagged": 0.188,
+     "genuine_flagged_wilson95": [
+      0.117,
+      0.287
+     ],
+     "synthetic_caught": 0.312,
+     "synthetic_caught_wilson95": [
+      0.222,
+      0.421
+     ]
+    }
+   },
+   "head_v1 as shipped (threshold: FSDD/Kokoro dev)": {
+    "all": {
+     "n": 160,
+     "n_real": 80,
+     "n_fake": 80,
+     "abstained_by_gate": 0,
+     "auc": 0.82,
+     "eer": 0.2,
+     "genuine_flagged": 0.188,
+     "genuine_flagged_wilson95": [
+      0.117,
+      0.287
+     ],
+     "synthetic_caught": 0.688,
+     "synthetic_caught_wilson95": [
+      0.579,
+      0.778
+     ]
+    }
+   },
+   "head trained on V only (threshold: grouped CV on V)": {
+    "all": {
+     "n": 160,
+     "n_real": 80,
+     "n_fake": 80,
+     "abstained_by_gate": 0,
+     "auc": 0.85,
+     "eer": 0.212,
+     "genuine_flagged": 0.037,
+     "genuine_flagged_wilson95": [
+      0.013,
+      0.105
+     ],
+     "synthetic_caught": 0.388,
+     "synthetic_caught_wilson95": [
+      0.288,
+      0.497
+     ]
+    }
+   },
+   "head trained on ASVspoof dev only (threshold: grouped CV on AD)": {
+    "all": {
+     "n": 160,
+     "n_real": 80,
+     "n_fake": 80,
+     "abstained_by_gate": 0,
+     "auc": 0.631,
+     "eer": 0.413,
+     "genuine_flagged": 0.125,
+     "genuine_flagged_wilson95": [
+      0.069,
+      0.215
+     ],
+     "synthetic_caught": 0.15,
+     "synthetic_caught_wilson95": [
+      0.088,
+      0.244
+     ]
+    }
+   },
+   "head_v2 trained on V + ASVspoof dev (threshold: grouped CV)": {
+    "all": {
+     "n": 160,
+     "n_real": 80,
+     "n_fake": 80,
+     "abstained_by_gate": 0,
+     "auc": 0.836,
+     "eer": 0.275,
+     "genuine_flagged": 0.075,
+     "genuine_flagged_wilson95": [
+      0.035,
+      0.154
+     ],
+     "synthetic_caught": 0.4,
+     "synthetic_caught_wilson95": [
+      0.3,
+      0.51
+     ]
+    }
+   }
+  },
+  "V test Hindi synthetic only": {
+   "pretrained AASIST (threshold: B's ASVspoof dev)": {
+    "all": {
+     "n": 40,
+     "n_real": 0,
+     "n_fake": 40,
+     "abstained_by_gate": 0,
+     "auc": null,
+     "eer": null,
+     "genuine_flagged": null,
+     "genuine_flagged_wilson95": null,
+     "synthetic_caught": 0.15,
+     "synthetic_caught_wilson95": [
+      0.071,
+      0.291
+     ]
+    }
+   },
+   "head_v1 as shipped (threshold: FSDD/Kokoro dev)": {
+    "all": {
+     "n": 40,
+     "n_real": 0,
+     "n_fake": 40,
+     "abstained_by_gate": 0,
+     "auc": null,
+     "eer": null,
+     "genuine_flagged": null,
+     "genuine_flagged_wilson95": null,
+     "synthetic_caught": 0.775,
+     "synthetic_caught_wilson95": [
+      0.625,
+      0.877
+     ]
+    }
+   },
+   "head trained on V only (threshold: grouped CV on V)": {
+    "all": {
+     "n": 40,
+     "n_real": 0,
+     "n_fake": 40,
+     "abstained_by_gate": 0,
+     "auc": null,
+     "eer": null,
+     "genuine_flagged": null,
+     "genuine_flagged_wilson95": null,
+     "synthetic_caught": 0.625,
+     "synthetic_caught_wilson95": [
+      0.47,
+      0.758
+     ]
+    }
+   },
+   "head trained on ASVspoof dev only (threshold: grouped CV on AD)": {
+    "all": {
+     "n": 40,
+     "n_real": 0,
+     "n_fake": 40,
+     "abstained_by_gate": 0,
+     "auc": null,
+     "eer": null,
+     "genuine_flagged": null,
+     "genuine_flagged_wilson95": null,
+     "synthetic_caught": 0.125,
+     "synthetic_caught_wilson95": [
+      0.055,
+      0.261
+     ]
+    }
+   },
+   "head_v2 trained on V + ASVspoof dev (threshold: grouped CV)": {
+    "all": {
+     "n": 40,
+     "n_real": 0,
+     "n_fake": 40,
+     "abstained_by_gate": 0,
+     "auc": null,
+     "eer": null,
+     "genuine_flagged": null,
+     "genuine_flagged_wilson95": null,
+     "synthetic_caught": 0.8,
+     "synthetic_caught_wilson95": [
+      0.652,
+      0.895
+     ]
+    }
+   }
+  }
+ },
+ "head_v2_AE_failures": {
+  "genuine_flagged_top": [
+   {
+    "file": "real/LA_E_7503758__opus.wav",
+    "score": 0.993
+   },
+   {
+    "file": "real/LA_E_7342614__opus.wav",
+    "score": 0.992
+   },
+   {
+    "file": "real/LA_E_5296804__opus.wav",
+    "score": 0.983
+   },
+   {
+    "file": "real/LA_E_6434568__opus.wav",
+    "score": 0.981
+   },
+   {
+    "file": "real/LA_E_9205385__opus.wav",
+    "score": 0.972
+   },
+   {
+    "file": "real/LA_E_4083301__mp3.wav",
+    "score": 0.955
+   },
+   {
+    "file": "real/LA_E_9205385.wav",
+    "score": 0.948
+   },
+   {
+    "file": "real/LA_E_7342614.wav",
+    "score": 0.937
+   }
+  ],
+  "synthetic_missed_lowest": [
+   {
+    "file": "fake/LA_E_6148474.wav",
+    "score": 0.0
+   },
+   {
+    "file": "fake/LA_E_1604543__mp3.wav",
+    "score": 0.0
+   },
+   {
+    "file": "fake/LA_E_6148474__mp3.wav",
+    "score": 0.0
+   },
+   {
+    "file": "fake/LA_E_2988817__opus.wav",
+    "score": 0.0
+   },
+   {
+    "file": "fake/LA_E_1604543.wav",
+    "score": 0.0
+   },
+   {
+    "file": "fake/LA_E_4005148.wav",
+    "score": 0.001
+   },
+   {
+    "file": "fake/LA_E_2988817.wav",
+    "score": 0.001
+   },
+   {
+    "file": "fake/LA_E_7938878.wav",
+    "score": 0.001
+   }
+  ]
+ }
+}

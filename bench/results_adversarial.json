@@ -1,9 +1,9 @@
 {
  "cases": 35,
- "defended_attacks_passed": 31,
- "defended_attacks": 31,
- "known_gaps": 4,
- "known_gaps_still_failing": 4,
+ "defended_attacks_passed": 32,
+ "defended_attacks": 32,
+ "known_gaps": 3,
+ "known_gaps_still_failing": 3,
  "rows": [
   {
    "group": "look-alike payee name",
@@ -119,11 +119,11 @@
   },
   {
    "group": "unrelated payee name",
-   "attack": "KRISHNA DAIRY FARM (contains a given name)",
+   "attack": "KRISHNA DAIRY FARM (contains a given name; known gap until the Q2 shop-word fix)",
    "expected": "NAME_DISCREPANCY",
-   "got": "INCONCLUSIVE",
-   "pass": false,
-   "known_gap": true
+   "got": "NAME_DISCREPANCY",
+   "pass": true,
+   "known_gap": false
   },
   {
    "group": "obfuscated pressure phrase",

@@ -1,0 +1,8 @@
+{
+ "threshold": 0.8892803116484023,
+ "polarity": "higher_is_fake",
+ "score_kind": "calibrated",
+ "model_version": "aasist-pretrained@51d2d9cf0738+head@32a3191b7522",
+ "target_false_alarm": 0.05,
+ "calibrated_on": "5-fold grouped cross-validation on the head_v2 training data (out-of-fold scores)"
+}
