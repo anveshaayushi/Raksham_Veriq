@@ -1,0 +1,201 @@
+id,claimed_firm,bank_app_name,relation,note
+n001,Mistral Hill Advisory Services,ZOYA FASHION HOUSE,different_entity,unrelated shop
+n002,Nimbus Edge Technologies Pvt Ltd,N E TECH,cannot_tell,initials only
+n003,Zephyra Fintech Pvt Ltd (trading as ZephPay),ZEPHPAY,same_entity,claim states the trading brand
+n004,Highgate Mutual Services,HIGHGATE MUTUAL SERVICES LTD UK,lookalike_of_different_entity,different jurisdiction tag
+n005,Cobalt Meadow Capital Pvt Ltd,LANTERN HILL CAPITAL PVT LTD,different_entity,shares only 'Capital'
+n006,Marigold Court Wealth Pvt Ltd,SILVERBROOK WEALTH PVT LTD,different_entity,shares only 'Wealth'
+n007,Marigold Court Research,MARIGOLD COURT RESEARCH ALERTS,lookalike_of_different_entity,"extra word, different outfit"
+n008,Vaishnavi Silk House,VAISHNAWI SILK HOUSE,same_entity,v/w variant
+n009,Stonebridge Fintech Pvt Ltd,MANISH GENERAL STORE,different_entity,unrelated shop
+n010,Alderwood Asset Management,ALDERWOOD ASSET MGMT PARTNERS,lookalike_of_different_entity,partners vs company
+n011,Willowmere Advisors,WILLOWMERE ADVISER,lookalike_of_different_entity,"near-copy, singular adviser"
+n012,Willowmere Advisors Pvt Ltd,WILLOWMERE ADVISORS (JAIPUR),same_entity,city in brackets
+n013,Quillon Harbour Investments Ltd,OM SAI ELECTRONICS,different_entity,unrelated shop
+n014,Brightwater Holdings Pvt Ltd,DAULAT RAM AND SONS,different_entity,unrelated business
+n015,Brightwater Holdings Pvt Ltd (operates the Bluefin Invest app),BLUEFIN INVEST,same_entity,claim states the brand it operates
+n016,Meridian Oaks Research Pvt Ltd,TIRUPATI AGENCIES,different_entity,unrelated business
+n017,Cobalt Meadow Capital,COBOLT MEADOW CAPITAL,lookalike_of_different_entity,letter swap in brand word
+n018,Meridian Oaks Research Pvt Ltd,RAMKISHORE PRASAD,different_entity,"personal name, no link"
+n019,Glenrock Investments Ltd,FATIMA BOUTIQUE,different_entity,unrelated shop
+n020,Hazelwood Finance Pvt Ltd,IQBAL FURNITURE MART,different_entity,unrelated shop
+n021,Orchid Bay Securities Ltd,RIVERSTONE SECURITIES LTD,different_entity,shares only 'Securities'
+n022,Saffron Quay Finserv Pvt Ltd,BIRCHWOOD FINSERV PVT LTD,different_entity,shares only 'Finserv'
+n023,Pinewick Brokers Pvt Ltd,KWIKCOLLECT PRIVATE LIMITED,cannot_tell,fictional aggregator
+n024,Oakridge Group Pvt Ltd,OAKPAY WALLET,cannot_tell,claim names the group only; brand not stated
+n025,Lumen Arc Analytics LLP,DEEPAK VERMA,different_entity,"personal name, no link"
+n026,Tidewater Wealth Pvt Ltd,TIDEWATER WEALTH PVT LTD PUNE,same_entity,city suffix
+n027,Lumen Arc Analytics LLP,SETTLEHUB PAYMENT SOLUTIONS,cannot_tell,fictional settlement account
+n028,Shri Ganesh Provision Stores,SREE GANESH PROVISION STORES,same_entity,Shri/Sree variant
+n029,M/s Rosewater Advisory,ROSEWATER ADVISORY,same_entity,M/s prefix
+n030,Wren & Falcon Capital LLP,PAVAN KUMAR REDDY,different_entity,"personal name, no link"
+n031,Quillon Harbour Investments Ltd,STARLING PEAK INVESTMENTS LTD,different_entity,shares only 'Investments'
+n032,Alderwood Asset Management Ltd,VIKRAM SINGH RATHORE,different_entity,"personal name, no link"
+n033,Evergreen Valley Brokers Ltd,EVERGREEN VALLEY BROKER LTD,same_entity,singular/plural
+n034,Tamarind Row Research LLP,Tamarind Row Research L.L.P.,same_entity,LLP punctuation
+n035,Quillon Harbour Investments,QUILLON HARBOR INVEST HUB,lookalike_of_different_entity,spelling plus different tail
+n036,Tamarind Row Research LLP,GOLDCREST RESEARCH LLP,different_entity,shares only 'Research'
+n037,Lumen Arc Analytics,LUMEN ARK ANALYTICS,lookalike_of_different_entity,Arc vs Ark
+n038,Cinderfield Capital Pvt Ltd,VINAY KUMAR GUPTA,different_entity,"personal name, no link"
+n039,Marrowdale Research LLP,MAROWDALE RESEARCH LLP,same_entity,dropped letter
+n040,Orchid Bay Securities Limited,ORCHID BAY SECURITIES LTD,same_entity,Limited vs Ltd
+n041,Marigold Court Research LLP,MCR LLP,cannot_tell,initials only
+n042,Saffron Quay Finserv Pvt Ltd,UPIWAVE COLLECT,cannot_tell,fictional collection account
+n043,Lindenholt Research Desk LLP,NARESH PLUMBING WORKS,different_entity,unrelated business
+n044,Jyoti Sweet Corner,JYOTHI SWEET CORNER,same_entity,Jyoti/Jyothi
+n045,Glenrock Investments Ltd,SAI KRIPA TRADERS,different_entity,generic shop name
+n046,Moti Mart,MOTI MART,same_entity,"very short, exact"
+n047,Tamarind Row Research LLP,SURESH KUMAR,different_entity,"personal name, no link"
+n048,Nimbus Edge Technologies,NIMBUS EDGE TECHNOLOGIES SOLUTIONS,lookalike_of_different_entity,different entity name
+n049,Saffron Quay Finserv Private Limited,SAFFRON QUAY FINSERV P LTD,same_entity,P Ltd abbreviation
+n050,Choudhary Hardware Mart,CHAUDHARY HARDWARE MART,same_entity,Choudhary/Chaudhary
+n051,Marrowdale Research LLP,NEW INDIA ENTERPRISES,different_entity,generic shop name
+n052,AK Sons,A K SONS,same_entity,"very short, spacing"
+n053,Pennywhistle Advisors,PENNYWHISTLE ADVISORS FZE,lookalike_of_different_entity,foreign entity tag
+n054,Nimbus Edge Technologies Pvt Ltd,LUCKY GIFT CENTRE,different_entity,unrelated shop
+n055,Aurelian Grove Capital Pvt Ltd,GUPTA MEDICAL HALL,different_entity,unrelated shop
+n056,Driftwood Lane Wealth Pvt Ltd,ANITA SHARMA,different_entity,"personal name, no link"
+n057,Ambika Devi Enterprises,AMBIKA DEVI ENTERPRISE,same_entity,singular/plural
+n058,Evergreen Valley Brokers Ltd,PARVATI STORES,different_entity,unrelated shop
+n059,Tarkash Wealth Circle,TARKESH WEALTH CIRCLE,lookalike_of_different_entity,one vowel differs: different distinctive word
+n060,Pennywhistle Advisors Pvt Ltd,PENNY ADVISORS,cannot_tell,"plausible brand shortening, unconfirmed"
+n061,Amberfall Capital Markets Pvt Ltd,KAMLA FRUIT CENTRE,different_entity,unrelated shop
+n062,Alderwood Asset Management Co. Ltd.,ALDERWOOD ASSET MANAGEMENT COMPANY LIMITED,same_entity,Co. Ltd. expansion
+n063,R S Electricals,RS ELECTRICALS,same_entity,"short, initials joined"
+n064,Cinderfield Capital Pvt Ltd,CINDER CAP,cannot_tell,"informal short brand, unconfirmed"
+n065,Siddhi Vinayak Agencies,SIDDHIVINAYAK AGENCIES,same_entity,word joined
+n066,Krishna Kiran Medicals,KRUSHNA KIRAN MEDICALS,same_entity,Krishna/Krushna
+n067,Rosewater Advisory,BABU LAL MISHRA,different_entity,"personal name, no link"
+n068,Nimbus Edge Technologies Pvt Ltd,SHANKAR FLOUR MILL,different_entity,unrelated business
+n069,Ironbark Securities Ltd,RAJ KISHORE,cannot_tell,owner name not given in the claim
+n070,Capital Markets Amberfall Pvt Ltd,AMBERFALL CAPITAL MARKETS PVT LTD,same_entity,reordered words
+n071,Saffron Quay Finserv Pvt Ltd,BALAJI HARDWARE,different_entity,unrelated shop
+n072,Prakash Joshi Stationers (proprietor: Prakash Joshi),PRAKASH JOSHI,same_entity,claim states the proprietor
+n073,Saffron Quay Finserv,SAFFRON KEY FINSERV,lookalike_of_different_entity,Quay vs Key
+n074,Hari Om Tent House,HARIOM TENT HOUSE,same_entity,word joined
+n075,Wren & Falcon Capital LLP,KISHORE TRADING CO,different_entity,unrelated business
+n076,Cobalt Meadow Capital Pvt Ltd,COINBRIDGE MERCHANT SERVICES,cannot_tell,fictional aggregator name
+n077,Marrowdale Research LLP,SANJAY AUTO WORKS,different_entity,unrelated business
+n078,Aurelian Grove Capital Pvt Ltd,AGC,cannot_tell,initials only
+n079,The Copperleaf Trust Company Ltd,COPPERLEAF TRUST COMPANY LTD,same_entity,leading The
+n080,Marrowdale Research,MARROWDALE RESEARCH 1,lookalike_of_different_entity,digit appended
+n081,Oakridge Group Pvt Ltd (brand: OakPay Wallet),OAKPAY WALLET,same_entity,claim states the brand
+n082,Tidewater Wealth Pvt Ltd,SWAMI TENT HOUSE,different_entity,unrelated business
+n083,Stonebridge Fin-Tech Private Limited,STONEBRIDGE FINTECH PRIVATE LIMITED,same_entity,hyphen removed
+n084,Kestrel Ledger Advisors Pvt Ltd,PAYNEST SOLUTIONS PVT LTD,cannot_tell,fictional payment gateway name
+n085,Highgate Mutual Services,LAKEVIEW SERVICES PVT LTD,different_entity,shares only 'Services'
+n086,Driftwood Lane Wealth,DRIFTWOOD LANE WEALTH CLUB,lookalike_of_different_entity,Club suggests a different group
+n087,Gopal Krishna Tea Stall (owner Gopal Krishna Nair),GOPAL KRISHNA NAIR,same_entity,claim states the owner
+n088,Meridian Oaks Research Pvt Ltd,MOR TRUST ACCOUNT,cannot_tell,"trust/escrow account, unclear owner"
+n089,Copperleaf Trust Company,COPPERLEAF TRUST CORPORATION,lookalike_of_different_entity,different legal form
+n090,Orchid Bay Securities Ltd,ZIPCOLLECT TECHNOLOGIES,cannot_tell,fictional aggregator name
+n091,Sapphire Coast Analytics,TIMBERLINE ANALYTICS LLP,different_entity,shares only 'Analytics'
+n092,Highgate Mutual Services,H M S,cannot_tell,initials only
+n093,Sapphire Coast Financial Services Pvt Ltd,SAPPHIRE COAST FIN SERVICES PVT LTD,same_entity,Fin for Financial
+n094,Venkatesh Auto Spares,VENKATESHA AUTO SPARES,same_entity,Venkatesh/Venkatesha
+n095,Highgate Mutual Services Pvt Ltd,HIGHGATE MUTUAL SERVS PVT LTD,same_entity,abbreviated Services
+n096,Cinderfield Capital,CINDERFIELD CAPITAL TRADE,lookalike_of_different_entity,"extra word, new activity"
+n097,Hazelwood Finance Pvt Ltd,DUNMORE FINANCE PVT LTD,different_entity,shares only 'Finance'
+n098,Wren & Falcon Capital LLP,WF CAPITAL SERVICES,cannot_tell,"initial-based name, unconfirmed"
+n099,Tamarind Row Research LLP,RAPIDREMIT PAYMENTS PVT LTD,cannot_tell,fictional gateway name
+n100,Zephyra Fintech Pvt Ltd,CRIMSON TIDE FINTECH PVT LTD,different_entity,shares only 'Fintech'
+n101,Nightingale Row Wealth Pvt Ltd,GAYATRI CATERERS,different_entity,unrelated business
+n102,Marigold Court Research LLP,RAJU PAN SHOP,different_entity,unrelated shop
+n103,Nightingale Row Wealth Pvt. Ltd.,NIGHTINGALE ROW WEALTH PVT LTD.,same_entity,trailing dot
+n104,Sundaram Bros Hardware,NEELAM BOUTIQUE,different_entity,unrelated shop
+n105,Rosewater Advisory,NAZIA KHATOON,different_entity,"personal name, no link"
+n106,Ironbark Securities Ltd,LALITA DEVI,different_entity,"personal name, no link"
+n107,K. R. Anand Associates,KR ANAND ASSOCIATES,same_entity,initial dots
+n108,Ironbark Securities,IRONBARK SECURITYS,lookalike_of_different_entity,misspelling used by copycats
+n109,Kestrel Ledger Advisors Pvt Ltd,MOHAN LAL GENERAL STORE,different_entity,unrelated shop
+n110,Lumen Arc Analytics LLP,LUMEN ARC ANALYTICS,same_entity,suffix dropped
+n111,Gurunanak Cloth Emporium,GURU NANAK CLOTH EMPORIUM,same_entity,word split
+n112,Greenfield Orchard Trading Co,BRIGHT STAR MOBILES,different_entity,unrelated shop
+n113,Laxmi Narayan Dairy,LAKSHMI NARAYAN DAIRY,same_entity,Laxmi/Lakshmi
+n114,Ironbark Securities Ltd,IRONBARK SECURITIES LTD - INDORE BRANCH,same_entity,branch suffix
+n115,Kestrel Ledger Advisors,KESTRAL LEDGER ADVISORY,lookalike_of_different_entity,"near-copy, different registered name"
+n116,Rosewater Advisory,ROSE,cannot_tell,single short word
+n117,Marigold Court Research Services LLP (known as MC Research),MC RESEARCH,same_entity,claim states the short name
+n118,Orchid Bay Securities Limited,KAVITA BEAUTY PARLOUR,different_entity,unrelated shop
+n119,Zed Traders,ZED TRADERS,same_entity,"very short, exact"
+n120,Thistledown Markets Pvt Ltd,TMPL,cannot_tell,initials of legal name
+n121,Dewan Anil Kumar & Sons,ANIL KUMAR DEWAN AND SONS,same_entity,reordered personal name
+n122,Thistledown Markets,THISTLEDOWN MARKETZ,lookalike_of_different_entity,z for s
+n123,Hazelwood Finance,HAZELWOOD FINANSE,lookalike_of_different_entity,phonetic misspelling used by copycats
+n124,Kalyani Sweets and Namkeen,KALYANI SWEETS & NAMKEEN,same_entity,and vs &
+n125,Pennywhistle Advisors Pvt Ltd,POOJA CLOTH HOUSE,different_entity,unrelated shop
+n126,Meridian Oaks Research (India) Pvt Ltd,MERIDIAN OAKS RESEARCH INDIA PVT LTD,same_entity,(India) brackets
+n127,Quillon Harbour Investments Ltd,QUILLON HARBOUR INVESTMENTS,same_entity,suffix dropped
+n128,Pennywhistle Advisors Pvt Ltd,PENNYWISTLE ADVISORS PVT LTD,same_entity,dropped letter
+n129,Quillon Harbour Investments Ltd,PAYLOOP MERCHANT ACCOUNT,cannot_tell,fictional gateway
+n130,Evergreen Valley Brokers,EVERGREEN VALLY BROKERS,lookalike_of_different_entity,dropped letter used by copycats
+n131,Willowmere Advisors Pvt Ltd,ANJALI PANDEY,cannot_tell,"possible proprietor, not stated"
+n132,Copperleaf Trust Company Ltd,ASHOK CYCLE STORE,different_entity,unrelated shop
+n133,Kestrel Ledger Advisors Pvt Ltd,KESTREL LEDGER ADVISORS PRIVATE LIMITED,same_entity,Pvt Ltd vs Private Limited
+n134,Greenfield Orchard Trading,GREENFIELD ORCHARDS TRADERS,lookalike_of_different_entity,"plural Orchards, Traders"
+n135,Banyan & Birch Wealth Pvt Ltd,BANYAN AND BIRCH WEALTH PRIVATE LIMITED,same_entity,& vs and plus suffix
+n136,Larkspur Investments Pvt Ltd,LARKSPUR INVESTMENT PVT LTD,same_entity,singular/plural
+n137,Cinderfield Capital Pvt Ltd,MAYA STATIONERS,different_entity,unrelated shop
+n138,"Savita Verma Boutique, proprietor Smt. Savita Verma",SAVITA VERMA,same_entity,claim states the proprietor
+n139,Aurelian Grove Capital Pvt Ltd,RAVI KUMAR STORES,different_entity,personal-looking store
+n140,"Thistledown Markets Private Limited, trading as Thistle Trade",THISTLE TRADE,same_entity,claim states the trading name
+n141,Stonebridge Fintech Pvt Ltd,ISHAAN TRADERS,different_entity,unrelated business
+n142,Mohan Lal Sharma Stationers,MOHANLAL SHARMA STATIONERS,same_entity,word joined
+n143,Willowmere Capital Markets,FERNHILL CAPITAL MARKETS,different_entity,shares only generic words
+n144,Thistledown Markets Pvt Ltd,SHREE TRADERS,different_entity,generic shop name
+n145,A. B. Kulkarni & Sons,AB KULKARNI AND SONS,same_entity,initials and &
+n146,Glenrock Investments Ltd,GLEN,cannot_tell,single short word
+n147,Evergreen Valley Brokers Ltd,GEETA DEVI,different_entity,"personal name, no link"
+n148,Pinewick Brokers Private Limited,PINEWICK BROKERS PVT. LTD.,same_entity,suffix style
+n149,Driftwood Lane Wealth Pvt Ltd operating as DriftWealth,DRIFTWEALTH,same_entity,claim states operating name
+n150,Pinewick Brokers Pvt Ltd,ASHGROVE BROKERS PVT LTD,different_entity,shares only 'Brokers'
+n151,Thistledown Markets Pvt Ltd,PRIYA TAILORS,different_entity,unrelated shop
+n152,Glenrock Investments,GLENROCK INVESTMENTS 2,lookalike_of_different_entity,digit appended
+n153,Orchid Bay Securities,ORCHID BAY SECURITIES INDIA,lookalike_of_different_entity,extra word suggests a different entity
+n154,Mistral Hill Advisory Services Pvt Ltd,MISTRAL HILL ADVISORY SERVICES,same_entity,suffix dropped
+n155,Pinewick Brokers,PINEWICK BROKING SERVICES,lookalike_of_different_entity,"brand reused, different business"
+n156,Wren & Falcon Capital LLP,WREN AND FALCON CAPITAL LLP,same_entity,& vs and
+n157,Hillcrest Research Services,SUMAN VERMA,cannot_tell,personal name with no stated link to the firm
+n158,Sapphire Coast Financial Services,SCFS,cannot_tell,initials only
+n159,Purohit and Sons Jewellers,PUROHIT & SONS JEWELLERS,same_entity,and vs &
+n160,Patel Rajesh Bhai Traders,RAJESH BHAI PATEL TRADERS,same_entity,reordered personal name
+n161,Cinderfield Capital Pvt Ltd,CINDERFEILD CAPITAL PVT LTD,same_entity,typo in vowel order
+n162,Zephyra Fintech Pvt Ltd,ZF,cannot_tell,two letters only
+n163,Zephyra Fintech Pvt Ltd,KIRAN DAIRY FARM,different_entity,unrelated business
+n164,Research Desk Lindenholt LLP,LINDENHOLT RESEARCH DESK LLP,same_entity,reordered words
+n165,Hazelwood Finance Pvt Ltd,HFPL COLLECTIONS,cannot_tell,unclear collections account
+n166,Oakridge Group Pvt Ltd,TASLEEM AHMED,different_entity,"personal name, no link"
+n167,Aurelian Grove Capital Pvt Ltd (brand: GroveInvest),GROVEINVEST,same_entity,claim states the brand
+n168,Larkspur Investments Pvt Ltd,LARK INVEST,cannot_tell,"short brand, unconfirmed"
+n169,Cobalt Meadow Capital Pvt Ltd,HINDUSTAN TRANSPORT CO,different_entity,unrelated firm
+n170,Highgate Mutual Services,HARPREET SINGH,different_entity,"personal name, no link"
+n171,Fairhaven Brokers Pvt Ltd,ROYAL TAILORS,different_entity,unrelated shop
+n172,Raghav Computers & Peripherals,RAGHAV COMPUTERS AND PERIPHERALS,same_entity,& vs and
+n173,Sundaram Brothers Hardware,SUNDARAM BROS HARDWARE,same_entity,Brothers/Bros
+n174,Zephyra Fintech,ZEPHYRA FINTECH 24X7,lookalike_of_different_entity,suffix suggests copycat
+n175,Ironbark Wealth Advisors LLP,COPPERTON WEALTH ADVISORS LLP,different_entity,shares only generic words
+n176,Kestrel Ledger Advisors Pvt Ltd,SUMMIT PEAK ADVISORS PVT LTD,different_entity,shares only 'Advisors'
+n177,Greenfield Orchard Traders,SUNNYDALE TRADERS,different_entity,shares only 'Traders'
+n178,Glenrock Investments Ltd,GLENROK INVESTMENTS LTD,same_entity,dropped letter
+n179,Hazelwood Finance Pvt Ltd,HAZELWOOD FINANCE PVT LTD HQ,same_entity,HQ suffix
+n180,Brightwater Holdings Pvt Ltd,BLUEFIN INVEST,cannot_tell,claim names the holding company only; brand not stated
+n181,Larkspur Investments Pvt Ltd,SHIVAM PAINT HOUSE,different_entity,unrelated shop
+n182,Willowmere Advisors Pvt Ltd,CHAUDHARY TRANSPORT,different_entity,unrelated business
+n183,Sapphire Coast Financial,SAPPHIRE COST FINANCIAL,lookalike_of_different_entity,Coast vs Cost
+n184,Driftwood Lane Wealth Pvt Ltd,SUNRISE ENTERPRISES,different_entity,generic shop name
+n185,Stonebridge Fintech Pvt Ltd,STONEBRIDGE CLIENT FUNDS,cannot_tell,"client-money account, unclear owner"
+n186,Fairhaven Brokers Pvt Ltd,ANNAPURNA CATERERS,different_entity,unrelated business
+n187,Sapphire Coast Financial Services,YADAV DAIRY PRODUCTS,different_entity,unrelated business
+n188,Shree Lakshmi Jewellers,SRI LAXMI JEWELLERS,same_entity,Shree/Sri and Lakshmi/Laxmi
+n189,Tamarind Row Research LLP,TAMARIND ROW RESEARCH GLOBAL,lookalike_of_different_entity,'Global' added: different entity
+n190,Larkspur Investments,LARKSPUR INVEST SCHEMES,lookalike_of_different_entity,invest schemes: different outfit
+n191,Greenfield Orchard Trading Company,GREENFIELD ORCHARD TRDG CO,same_entity,abbreviation Trdg Co
+n192,Larkspur Investments Pvt Ltd,DIVYA ENTERPRISES,different_entity,unrelated business
+n193,"Anand Photo Studio, prop. Anand Kulkarni",ANAND KULKARNI,same_entity,claim states the proprietor
+n194,Cobalt Meadow Capital Pvt. Ltd.,COBALT MEADOW CAPITAL PVT LTD,same_entity,dots in Pvt. Ltd.
+n195,Fairhaven Brokers,FAIRHAVEN BROKERS ONLINE,lookalike_of_different_entity,different business unit
+n196,Pinewick Brokers Pvt Ltd,JOSEPH FERNANDES,different_entity,"personal name, no link"
+n197,S.V. Textile Traders,SV TEXTILE TRADERS,same_entity,initial dots
+n198,Greenfield Orchard Trading Company,G O TRADING,cannot_tell,"plausible short form, unconfirmed"
+n199,Fairhaven Brokers Pvt Ltd,FAIRHAVAN BROKERS PVT LTD,same_entity,a/e swap typo
+n200,Aurelian Grove Capital,AURELIAN GROVE CAPITOL,lookalike_of_different_entity,Capital vs Capitol
