@@ -1,4 +1,4 @@
-# Raksham_Veriq
+
 ## Project Overview
 
 Raksham_Veriq is a project focused on building a reliable and user-friendly solution to its intended problem.
