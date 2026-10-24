@@ -122,4 +122,5 @@ installed, ffmpeg version, commit), `data_checksums.json`, `tests.json` (counts,
 | Safeguards running | `python -m pytest tests/completeness/test_safeguards_running.py` | test result |
 | Blind datasets, load-only check (no scoring) | `python -m bench.datasets` | counts and malformed rows |
 | Repository tidy (no history rewrite) | `python scripts/tidy_repo.py` | `git mv` / `git rm` of internal notes into docs/history/ |
+| AI-generated datasets: re-create from their code | D1: `python generation/render_d1.py`; D2-D4: in `generation/`, `python build_d3.py`, `python build_d4.py`, `python assemble.py` (edit its D1 path first); outputs under `out/data/` | byte-identical to `data/` (checked 25 Oct in a copy) |
 

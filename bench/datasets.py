@@ -6,8 +6,8 @@ can be regenerated in the dataset chat. Expected sizes come from the dataset bri
   data/blind_ai/        AI-generated blind chats (chat files in chats/): labels.csv (file,label,claimed_firm,bank_app_names) joined with
                         labels_extended.json by file; expected 80 chats, 40 scam / 40 genuine
   data/names_blind/pairs.csv      name pairs; expected 200 rows, relation classes 70/70/30/30
-  data/extract_blind/cases.jsonl  extraction cases; expected 100, 60 with something to extract / 40 without
-  data/voice_scripts/             voice scripts (text only); expected 60, 30 real / 30 fake
+  data/extract_blind/cases.jsonl  extraction cases; expected 100 (designed 60 positive / 40 negative or tricky)
+  data/voice_scripts/scripts.csv  voice scripts (text only); expected 60, type scam_like / genuine 30 / 30
 """
 from __future__ import annotations
 
@@ -120,9 +120,18 @@ def load_extract_blind(path: Path = ROOT / "data" / "extract_blind" / "cases.jso
         if not isinstance(d, dict) or not any(k in d for k in ("text", "chat", "message")):
             problems.append(f"line {i}: no text/chat/message field")
         items.append(d)
-    neg = sum(1 for d in items if d.get("should_not_extract") or d.get("expected") in ([], {}, None) and "should_not_extract" in d)
-    if len(items) != 100 or neg != 40:
-        problems.append(f"expected 100 cases (60 to extract / 40 should_not_extract), found {len(items)} ({neg} negative)")
+    def payees_of(d):
+        e = d.get("expected") if isinstance(d.get("expected"), dict) else {}
+        return e.get("payees") or []
+    with_payee = sum(1 for d in items if payees_of(d))
+    for d in items:
+        e = d.get("expected")
+        if not isinstance(e, dict) or not isinstance(e.get("payees", []), list):
+            problems.append(f"{d.get('id')}: 'expected' must hold a 'payees' list")
+    # D3's own GENERATION.md: designed 60 positive / 40 negative-or-tricky; 4 tricky cases also contain a real payee,
+    # so by "has an expected payee" the split is 64 / 36. Both are accepted; anything else is reported.
+    if len(items) != 100 or with_payee not in (60, 64):
+        problems.append(f"expected 100 cases (60 or 64 with a payee), found {len(items)} ({with_payee} with a payee)")
     return items, problems
 
 
@@ -134,9 +143,11 @@ def load_voice_scripts(root: Path = ROOT / "data" / "voice_scripts") -> tuple[li
         files = sorted(p.name for p in root.iterdir() if p.is_file())
         return [{"file": f} for f in files], [f"no labels.csv/scripts.csv in {root}; {len(files)} files"]
     rows = _csv(lab)
-    c = Counter((r.get("label") or "").lower() for r in rows)
-    problems = [] if (len(rows) == 60 and c.get("real") == 30 and c.get("fake") == 30) else \
-        [f"expected 60 scripts (30 real / 30 fake), found {len(rows)} {dict(c)}"]
+    col = "type" if rows and "type" in rows[0] else "label"  # D4 uses type = scam_like | genuine (script content)
+    c = Counter((r.get(col) or "").lower() for r in rows)
+    ok = len(rows) == 60 and sorted(c.values()) == [30, 30]
+    problems = [] if ok else [f"expected 60 scripts split 30/30 by {col}, found {len(rows)} {dict(c)}"]
+    problems += [f"{r.get('id')}: empty text" for r in rows if not (r.get("text") or "").strip()]
     return rows, problems
 
 

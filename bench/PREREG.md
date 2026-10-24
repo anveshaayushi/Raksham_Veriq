@@ -36,3 +36,11 @@ Intervals: 95% Wilson. Labels: "AI-generated blind set, n=.., written by <model>
 
 ## 5. Teammate set (`data/blind/`, if provided)
 - Same metrics as 1, once, reported separately, never averaged with the AI set.
+
+## Addendum (25 Oct ~04:10 IST, still before any run): how D2-D4 are labelled
+`data/GENERATION.md` (written by the dataset author) states that D2, D3 and D4 were written by Claude Sonnet 5.5 in
+the same conversation that wrote VERIQ's parser, extractor, name matcher and rules, with sight of that code. They are
+therefore reported as **"AI-generated, NOT blind (the writer had seen the engine; results are optimistic)"**, never as
+blind. D1's author model is not recorded in the files; until the team confirms it, D1 is "AI-generated blind set,
+n=80, author model not recorded". The metrics above do not change.
+

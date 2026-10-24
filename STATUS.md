@@ -44,6 +44,6 @@ not run / not built = exactly that. Claude (Anthropic) was used to write the cod
 | Live journey, 5 varied inputs | measured: 4 as expected, 1 miss (C-42) |
 | RUBRIC_MAP, ENGINEERING_WALKTHROUGH, PROBLEM_USER (sourced), EVASION_LAB, QA_SHEET, DEMO_12MIN, README | written |
 | Blind AI-generated chats (D1, 80) | loaded and checked (0 malformed), **not scored yet** (message 2, run once) |
-| AI-generated name pairs, extraction cases, voice scripts (D2-D4) | **not provided** |
+| AI-generated name pairs (200), extraction cases (100), voice scripts (60) (D2-D4) | loaded, 0 malformed, **not scored yet**; NOT blind (author saw the engine) |
 | Repository tidy (internal notes → docs/history/, no history rewrite) | done by `scripts/tidy_repo.py` |
 

@@ -42,8 +42,8 @@ def test_other_loaders_and_missing_sets(tmp_path):
             w.writerows([["F", "S", rel]] * n)
     assert D.load_names_blind(p)[1] == []
     e = tmp_path / "cases.jsonl"
-    e.write_text("\n".join([json.dumps({"text": "pay x@upi", "expected": {"upi": ["x@upi"]}})] * 60
-                           + [json.dumps({"text": "hello", "should_not_extract": True})] * 40 + ["{bad"]))
+    e.write_text("\n".join([json.dumps({"id": "x", "text": "pay x@upi", "expected": {"payees": [{"kind": "upi", "value": "x@upi"}]}})] * 60
+                           + [json.dumps({"id": "y", "text": "hello", "expected": {"payees": [], "should_not_extract": ["123"]}})] * 40 + ["{bad"]))
     items, problems = D.load_extract_blind(e)
     assert len(items) == 100 and any("not JSON" in x for x in problems)
     assert D.load_voice_scripts(tmp_path / "none")[1][0].startswith("missing")
