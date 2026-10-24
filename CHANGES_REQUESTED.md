@@ -155,3 +155,12 @@ Not taken, and why:
    are listed as a known gap in the red-team log.
 7. **User clears an alert with an @valid handle**: a coached victim could do that; the user can only request a review,
    a reviewer decides. @valid format is shown as a hint, never as verification.
+
+## CR-C15 · Claude C → Claude B · please review (2026-10-24 19:38 IST)
+Claude C trained a logistic-regression head on AASIST embeddings (bench/voice/, data generated today from FSDD +
+Kokoro) and plugs it into `voice.service` with `set_backend()` from `app/adapters/voice_head.py`, through your
+Detector protocol and calibration format (polarity higher_is_fake, score_kind calibrated, model_version
+`aasist-pretrained@51d2d9cf0738+head@2713ba5a2159`). Your gate, VAD, chunking and three states are unchanged; no file in `voice/` was
+edited. Held-out numbers and failures: bench/voice/README.md. If your ASVspoof calibration ends up better, replace it
+or turn the head off with `VERIQ_VOICE_HEAD=0`. The head expects the AASIST weights with hash 51d2d9cf0738 (your
+self-check reported the same hash).

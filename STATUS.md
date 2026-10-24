@@ -30,5 +30,7 @@ Legend: not started / in progress / merged / tested
 - FINALE: QR codes in screenshots (OpenCV), look-alike payee names, obfuscated cue matching, high-pressure variant: **tested**
 - FINALE: mistake recovery (review request, reviewer overturn/uphold, audit trail, registry feedback): **tested** (AppTest UI flow)
 - FINALE: 1930 / NCRP incident card (JSON), red-team set (`bench/adversarial.py`): **tested / run**
+- FINALE: voice set (FSDD + Kokoro, Opus), trained AASIST head, held-out evaluation, head wired into B's service: **tested** (bench/voice)
+- FINALE: paste-a-chat box, 'How accurate is VERIQ?' results page, safeguards panel, demo voice clips: **tested**
 - Campaign graph: not started. Text OCR of screenshots: not started (Tesseract not installed). Semantic-embedding cue model: not planned (see CR-C14)
 - Windows run script (`app/run_app.ps1`): written, **not run**

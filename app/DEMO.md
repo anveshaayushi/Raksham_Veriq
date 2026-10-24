@@ -18,6 +18,9 @@ the app says stub (demo voice results until B's threshold is calibrated).
    review. Open "This looks wrong?", choose "different legal or trading name", add the @valid reference, ask for review.
    Turn on *Reviewer view* (left menu), overturn with a reason: "Reviewed: explained", time taken shown, original result
    kept on record; download the audit trail and the 1930 incident card (JSON).
+7c. **Voice (30 s).** Demo C with 'Attach real audio': the synthetic clip is flagged → Needs review; open the case
+   evidence (score vs calibrated threshold). Then open *How accurate is VERIQ?* (left menu) for the measured numbers
+   and failure cases.
 8. **Close (20 s).** Scenario B shows "No major issue … This is not a guarantee." Scenario C shows Inconclusive. "VERIQ files no complaints, blocks nothing and contacts no one."
 
 ## Phone demo

@@ -1,0 +1,169 @@
+{
+ "model_version": "aasist-pretrained@51d2d9cf0738",
+ "data": "voiceset",
+ "far_target_on_dev": 0.05,
+ "n": {
+  "train": 160,
+  "dev": 160,
+  "test_en": 160,
+  "test_hindi_fake_only": 40
+ },
+ "seconds_per_clip_cpu": 0.551,
+ "preprocessing": "same as product: ffmpeg decode, quality gate, speech-only (VAD), 4 s chunks",
+ "gate_abstained": {
+  "count": 0,
+  "by_split_label": {
+   "train/real": 0,
+   "train/fake": 0,
+   "dev/real": 0,
+   "dev/fake": 0,
+   "test/real": 0,
+   "test/fake": 0
+  }
+ },
+ "detectors": {
+  "pretrained": {
+   "dev_auc": 0.701,
+   "dev_eer": 0.325,
+   "test_auc": 0.669,
+   "test_eer": 0.35,
+   "test_genuine_flagged": 0.05,
+   "test_genuine_flagged_95ci": [
+    0.012,
+    0.104
+   ],
+   "test_synthetic_caught": 0.15,
+   "test_synthetic_caught_95ci": [
+    0.075,
+    0.23
+   ],
+   "hindi_synthetic_caught": 0.075,
+   "per_source_on_test": [
+    {
+     "source": "af_bella",
+     "label": "fake",
+     "flagged_rate": 0.0
+    },
+    {
+     "source": "af_kore",
+     "label": "fake",
+     "flagged_rate": 0.0
+    },
+    {
+     "source": "am_onyx",
+     "label": "fake",
+     "flagged_rate": 0.0
+    },
+    {
+     "source": "bm_george",
+     "label": "fake",
+     "flagged_rate": 0.0
+    },
+    {
+     "source": "theo",
+     "label": "real",
+     "flagged_rate": 0.05
+    },
+    {
+     "source": "yweweler",
+     "label": "real",
+     "flagged_rate": 0.05
+    },
+    {
+     "source": "af_river",
+     "label": "fake",
+     "flagged_rate": 0.1
+    },
+    {
+     "source": "am_adam",
+     "label": "fake",
+     "flagged_rate": 0.2
+    },
+    {
+     "source": "bf_emma",
+     "label": "fake",
+     "flagged_rate": 0.4
+    },
+    {
+     "source": "am_fenrir",
+     "label": "fake",
+     "flagged_rate": 0.5
+    }
+   ]
+  },
+  "trained_head": {
+   "dev_auc": 0.877,
+   "dev_eer": 0.2,
+   "test_auc": 0.82,
+   "test_eer": 0.2,
+   "test_genuine_flagged": 0.188,
+   "test_genuine_flagged_95ci": [
+    0.106,
+    0.276
+   ],
+   "test_synthetic_caught": 0.688,
+   "test_synthetic_caught_95ci": [
+    0.583,
+    0.789
+   ],
+   "hindi_synthetic_caught": 0.775,
+   "per_source_on_test": [
+    {
+     "source": "yweweler",
+     "label": "real",
+     "flagged_rate": 0.07
+    },
+    {
+     "source": "theo",
+     "label": "real",
+     "flagged_rate": 0.3
+    },
+    {
+     "source": "af_bella",
+     "label": "fake",
+     "flagged_rate": 0.5
+    },
+    {
+     "source": "af_river",
+     "label": "fake",
+     "flagged_rate": 0.5
+    },
+    {
+     "source": "am_onyx",
+     "label": "fake",
+     "flagged_rate": 0.5
+    },
+    {
+     "source": "af_kore",
+     "label": "fake",
+     "flagged_rate": 0.6
+    },
+    {
+     "source": "am_adam",
+     "label": "fake",
+     "flagged_rate": 0.7
+    },
+    {
+     "source": "am_fenrir",
+     "label": "fake",
+     "flagged_rate": 0.9
+    },
+    {
+     "source": "bf_emma",
+     "label": "fake",
+     "flagged_rate": 0.9
+    },
+    {
+     "source": "bm_george",
+     "label": "fake",
+     "flagged_rate": 0.9
+    }
+   ]
+  }
+ },
+ "exported": {
+  "head": "head.json",
+  "calibration": "head_calibration.json",
+  "model_version": "aasist-pretrained@51d2d9cf0738+head@2713ba5a2159"
+ }
+}

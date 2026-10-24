@@ -44,3 +44,12 @@ All AI-generated content, datasets, models, libraries and third-party assets. Ev
 | ffmpeg (Gyan.FFmpeg 9.0.2 full build) | decode / codec copies | GPL build; fine for local use, check before redistributing | UNVERIFIED |
 
 Required notice if any ASVspoof-derived output is shown publicly: "Contains information from ASVspoof 2019 (https://doi.org/10.7488/ds/2555), made available under the ODC Attribution License (https://opendatacommons.org/licenses/by/1.0/)."
+
+## Claude C voice training (finale, 2026-10-24)
+| Asset | Use | Licence | Status |
+|---|---|---|---|
+| Free Spoken Digit Dataset (FSDD), Z. Jackson et al., github.com/Jakobovski/free-spoken-digit-dataset | real-speech clips for train/dev/test; demo clip `app/demo_media/demo_voice_real_human.wav` (derived) | CC BY-SA 4.0 (attribution + share-alike for derived clips) | downloaded 12 Oct 2026 (public), clips generated 24 Oct |
+| Kokoro-82M TTS model (hexgrad) + voices file | synthetic-speech clips; demo clip `demo_voice_synthetic_tts.wav` | Apache-2.0 | downloaded 12 Oct 2026 (public), clips generated 24 Oct |
+| kokoro-onnx (Python package) | runs Kokoro on CPU | MIT (as recalled; verify) | UNVERIFIED |
+| scikit-learn | logistic-regression head | BSD-3-Clause | |
+| VERIQ voice head (`bench/voice/head.json`) | trained on-site on AASIST embeddings | team's own | trained 24 Oct (custom, on top of off-the-shelf AASIST) |

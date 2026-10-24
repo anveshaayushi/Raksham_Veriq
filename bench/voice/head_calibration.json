@@ -1,0 +1,8 @@
+{
+ "threshold": 0.9067648649215698,
+ "polarity": "higher_is_fake",
+ "score_kind": "calibrated",
+ "model_version": "aasist-pretrained@51d2d9cf0738+head@2713ba5a2159",
+ "target_false_alarm": 0.05,
+ "calibrated_on": "bench/voice/make_set.py dev split (2 FSDD speakers, 8 Kokoro voices, Opus 16k), 24 Oct 2026"
+}

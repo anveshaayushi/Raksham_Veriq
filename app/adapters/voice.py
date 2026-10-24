@@ -30,6 +30,9 @@ def analyse(file_id: str, data: bytes, filename: str) -> tuple[object, bool]:
     except ImportError:
         return _cant(file_id, "Voice detector not connected in this build (stub). No analysis was run."), True
     fn = getattr(b_voice, "analyse", None)
+    if fn is not None:
+        from .voice_head import ensure_installed
+        ensure_installed()  # VERIQ's trained head on AASIST, if its files and AASIST load; else B's default
     if fn is None:
         return _cant(file_id, "Claude B's voice module is present but has no analyse() entry point yet (CR-C4)."), True
     try:
@@ -68,6 +71,6 @@ _NUM_PAREN = re.compile(r"\s*\([^)]*\d[^)]*\)")
 
 def observed_for_display(lane: str, observed: str) -> str:
     """Voice evidence text may embed stub numbers; strip any bracketed part containing digits for voice/speaker lanes."""
-    if lane in ("voice", "speaker"):
+    if lane in ("voice", "speaker") and "stub" in str(observed).lower():
         return _NUM_PAREN.sub(" (numbers withheld: stub value)", str(observed))
     return str(observed)

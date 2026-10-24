@@ -49,3 +49,10 @@ Consent → Upload → tab **Try a synthetic demo** → Scenario A → **Load th
 | Voice check | **stub**: demos use Claude B's `voice.stub.stub_result` when `voice/` is present (else the fixture's stub values); uploads are `cant_assess` until B confirms an entry point. No voice score is ever shown while there is no calibrated threshold |
 | Registry | **stub** fixture table; unknown payees are `unavailable`, never `clean` |
 | Money-already-sent toggle, filing sheet, redacted summary | real, tested |
+
+## Voice model and measured results (FINALE)
+- The trained voice head is used automatically when torch and the AASIST weights load
+  (`$env:VERIQ_AASIST_REPO = "<path>\external\aasist"`). Turn it off with `$env:VERIQ_VOICE_HEAD = "0"`.
+- Reproduce the numbers: `python -m bench.run test`, `python -m bench.adversarial`, and (needs the data tools in
+  `bench/voice/requirements.txt`) `python -m bench.voice.make_set ...` then `python -m bench.voice.train_eval ...`.
+- In the app: left menu, "How accurate is VERIQ?".

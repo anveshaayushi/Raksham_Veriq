@@ -34,10 +34,13 @@ If it was not run, it says "not run". Numbers from the Round 1 deck (EER 0.37, "
 | 2026-10-24 17:09 IST | see git log | FINALE: `python -m bench.run test` run 2, after the look-alike and cue changes (made for the red-team brief, not from test failures) | unchanged: 399/399 payees, 96.2% decisions, 0/178 false alarms, 0/221 scams cleared; same 15 misses ("KRISHNA DAIRY FARM") |
 | 2026-10-24 17:09 IST | see git log | FINALE: `python -m bench.adversarial` (red-team set, written by us knowing our defences) | defended attacks 31/31 passed; known gaps still failing 4/4 (listed below) |
 | 2026-10-24 17:09 IST | see git log | FINALE: `python -m pytest -q tests app registry report voice` | **983 passed** |
+| 2026-10-24 19:38 IST | see git log | FINALE: `python -m bench.voice.make_set` + `python -m bench.voice.train_eval` (520 clips, speaker/voice-disjoint, Opus, app preprocessing) | test AUC: pretrained 0.669, trained head 0.82; EER 0.35 vs 0.2; synthetic caught 15.0% vs 68.8%; genuine flagged 5.0% vs 18.8%; Hindi synthetic caught 77.5%; 0.551 s/clip. See bench/voice/README.md |
+| 2026-10-24 19:38 IST | see git log | FINALE: first voice run on whole clips (not app preprocessing) | **discarded**: through the app path it flagged 71/80 genuine clips (silence artefact); retrained as above |
+| 2026-10-24 19:38 IST | see git log | FINALE: `python -m pytest -q tests app registry report voice` | **988 passed** |
 | — | — | Windows 11: `app\run_app.ps1` on the team laptop | **not run** |
 
 The 113/114 are code tests, not accuracy numbers. Demo results are Claude A's *expected* fixture values, not a rules engine.
-Chat-side numbers above are on SYNTHETIC chats written by the team (bench/README.md); say so whenever they are shown. No voice detector numbers exist yet. Do not quote any voice number in the deck.
+Chat-side and voice numbers above are on SYNTHETIC or public data (bench/README.md); say so whenever they are shown. No voice detector numbers exist yet. Do not quote any voice number in the deck.
 
 ## Claude B: voice runs (pasted from voice/B_RESULTS_ROWS.md; nothing here is an accuracy number)
 
@@ -104,9 +107,11 @@ linked), `<script>` and Markdown links in a chat (escaped, defanged), zip bomb /
 ```
 VERIQ SYSTEM RESULTS · 2026-10-24 17:09 IST · synthetic data written by the team unless stated
 LANE 1 VOICE (Claude B: ffmpeg -> quality gate -> pretrained AASIST)
-  - EER / AUC / false alarms / misses on any dataset ......... NOT RUN (no calibrated threshold yet)
-  - Short / unclear audio ..................................... returns cant_assess by design (code tests only)
-  - Seconds per clip ........................................... NOT RUN (controlled timing not done)
+  - Held-out synthetic-voice test (FSDD real vs Kokoro TTS, Opus) . AUC 0.82 (pretrained 0.669), EER 0.2
+  - Synthetic caught / genuine flagged ......................... 68.8% / 18.8% (review cue only)
+  - Hindi synthetic (unseen language) caught .................... 77.5%
+  - Seconds per clip (2-core CPU) ............................... 0.551
+  - ASVspoof 2019 LA (Claude B) ................................. NOT RUN yet
 LANE 2 RECIPIENT, QR & NAME MATCHING (rules, no trained model)
   - Payee extraction, 300 held-out synthetic chats ............ 399/399 found, 0 false pickups
   - Decisions as expected ...................................... 96.2% (384/399); named failure: given-name shop names

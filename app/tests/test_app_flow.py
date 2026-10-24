@@ -96,3 +96,27 @@ def test_mistake_recovery_flow_request_then_reviewer_overturns():
     assert "Reviewed: explained" in t and "Original result HUMAN_REVIEW stays on record" in t
     btn(at, "c5").click().run()
     assert at.session_state.step == 6 and not at.exception
+
+
+def test_judge_can_paste_a_chat_and_get_an_answer():
+    at = start()
+    at.checkbox(key="consent").check().run()
+    btn(at, "c1").click().run()
+    at.text_area(key="pasted").input("20/10/2026, 8:59 pm - Agent: I am Vikram from Sahyadri Securities. "
+                                     "Pay ₹5,000 to vikram99@ybl today only\n").run()
+    btn(at, "check_files").click().run()
+    assert at.session_state.chat_text and at.session_state.payee_values == ["vikram99@ybl"]
+    btn(at, "c2").click().run()
+    at.text_input(key="firm_input").input("Sahyadri Securities Ltd").run()
+    btn(at, "c3").click().run()
+    at.text_input(key="nm_vikram99@ybl").input("VIKRAM MOBILE POINT").run()
+    btn(at, "c4").click().run()
+    assert at.session_state.case.case_result() == "NAME_DISCREPANCY" and not at.exception
+
+
+def test_results_page_shows_measured_numbers():
+    at = start()
+    at.toggle(key="results_toggle").set_value(True).run()
+    t = " ".join(h.value for h in at.header) + " ".join(m.value for m in at.markdown)
+    assert "How accurate is VERIQ?" in t and "held-out synthetic chats" in t and "False alarms on genuine payees" in t
+    assert not at.exception

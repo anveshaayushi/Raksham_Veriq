@@ -1,0 +1,7 @@
+# Only needed to REBUILD the voice set and RETRAIN the head (bench/voice). The app itself needs torch (Claude B's
+# voice/requirements.txt) and the AASIST repo/weights to use the trained head.
+torch            # CPU wheel: pip install torch torchaudio --index-url https://download.pytorch.org/whl/cpu
+torchaudio
+soundfile
+scikit-learn
+kokoro-onnx      # plus kokoro-v1.0.onnx and voices-v1.0.bin model files (Apache-2.0), downloaded separately

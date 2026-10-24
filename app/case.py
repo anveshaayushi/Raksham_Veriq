@@ -126,7 +126,11 @@ def _voice_results(ex, audio: dict[str, bytes], fixture: dict | None) -> tuple[l
         if get(m, "kind") != "voice":
             continue
         ref = get(m, "media_ref") or f"msg{get(m, 'msg_id')}"
-        if fixture is not None and ref in fx_voice:
+        if safe_name(ref) in audio:  # a real audio file always goes to the detector, demo or not
+            vr, is_stub = voice_adapter.analyse(ref, audio[safe_name(ref)], ref)
+            voice.append(vr)
+            stub = stub or is_stub
+        elif fixture is not None and ref in fx_voice:
             b = None
             try:
                 b = voice_adapter.demo_stub(fixture["fixture_id"][0], ref)  # Claude B's voice/stub.py, if present
@@ -134,10 +138,6 @@ def _voice_results(ex, audio: dict[str, bytes], fixture: dict | None) -> tuple[l
                 b = None
             voice.append(b if b is not None else from_json(VoiceResult, fx_voice[ref]))
             stub = True
-        elif safe_name(ref) in audio:
-            vr, is_stub = voice_adapter.analyse(ref, audio[safe_name(ref)], ref)
-            voice.append(vr)
-            stub = stub or is_stub
         else:
             voice.append(VoiceResult(file_id=ref, state="cant_assess", score=None, threshold=None, speech_seconds=0.0,
                                      reasons=["The voice note is mentioned in the chat but the file was not uploaded."],

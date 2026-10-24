@@ -31,6 +31,8 @@ from app.text_safety import code, md_escape  # noqa: E402
 from report.build import filing_sheet_html, filing_sheet_md, incident_json, summary_html, summary_md  # noqa: E402
 
 DEMO_QR = ROOT / "app" / "demo_media" / "demo_qr_synthetic.png"
+DEMO_VOICE = {"fake": ROOT / "app" / "demo_media" / "demo_voice_synthetic_tts.wav",
+              "real": ROOT / "app" / "demo_media" / "demo_voice_real_human.wav"}
 
 STEPS = ["Consent", "Upload", "Confirm the firm", "Payee names", "Answer", "Reports"]
 ICON = {"LINKED": "🔗", "NAME_DISCREPANCY": "⛔", "REGISTRATION_CONFLICT": "⛔", "HUMAN_REVIEW": "⚠️", "INCONCLUSIVE": "❔",
@@ -84,9 +86,17 @@ with st.sidebar:
         reset()
         st.rerun()
     st.caption(f"Contract: {SCHEMA_SOURCE}")
+    S.show_results = st.toggle("How accurate is VERIQ? (measured results)", value=S.get("show_results", False),
+                               key="results_toggle")
     S.reviewer_mode = st.toggle("Reviewer view (fraud desk / second person)", value=S.get("reviewer_mode", False),
                                 key="rev_toggle", help="Shows review requests and lets a reviewer uphold or overturn them.")
     st.caption(STANDING_LINE)
+
+# ---------------------------------------------------------------- results page ----
+if S.get("show_results"):
+    from app.results_page import render as render_results
+    render_results(st, md_escape)
+    st.stop()
 
 # ---------------------------------------------------------------- 1 consent ----
 if S.step == 1:
@@ -110,14 +120,19 @@ elif S.step == 2:
     tab_up, tab_demo = st.tabs(["Upload my chat", "Try a synthetic demo"])
     with tab_up:
         chat = st.file_uploader("WhatsApp chat export (.txt or .zip, up to 2 MB of text)", type=["txt", "zip"], key="chatfile")
+        pasted = st.text_area("…or paste the chat here (lines like '20/10/2026, 8:59 pm - Name: message')", key="pasted",
+                              height=140, max_chars=200_000)
         voices = st.file_uploader("Voice notes (optional): .opus .ogg .m4a .mp3 .wav", type=["opus", "ogg", "m4a", "mp3", "wav", "aac"],
                                   accept_multiple_files=True, key="voicefiles")
         imgs = st.file_uploader("Screenshots or QR images (optional): .jpg .png .webp. UPI QR codes in them are read.",
                                 type=["jpg", "jpeg", "png", "webp"], accept_multiple_files=True, key="imagefiles")
-        if st.button("Check files", key="check_files", disabled=chat is None):
+        if st.button("Check files", key="check_files", disabled=chat is None and not pasted.strip()):
             intake = Intake()
             try:
-                add_chat(intake, chat.name, chat.getvalue())
+                if chat is not None:
+                    add_chat(intake, chat.name, chat.getvalue())
+                else:
+                    add_chat(intake, "pasted_chat.txt", pasted.encode("utf-8"))
                 for v in voices or []:
                     add_audio(intake, v.name, v.getvalue())
                 for im in imgs or []:
@@ -140,6 +155,8 @@ elif S.step == 2:
                  "computed by the same engine as an upload, so you can change anything along the way.")
         sid = st.radio("Scenario", list(FIXTURES), format_func=lambda x: demo_title(load_demo(x)), key="demo_pick")
         add_qr = st.checkbox("Also attach a QR screenshot the sender 'sent' (synthetic)", key="demo_qr")
+        add_voice = st.checkbox("Attach real audio for the voice note (a held-out test clip: synthetic TTS for A and C, "
+                                "a real human recording for B)", key="demo_voice")
         if st.button("Load this demo", key="load_demo"):
             fx = load_demo(sid)
             di = demo_inputs(fx)
@@ -147,10 +164,15 @@ elif S.step == 2:
             S.case_id = di["case_id"]
             S.chat_text = di["chat_text"]
             S.audio = {}
+            if add_voice:
+                refs = [v["file_id"] for v in fx["expected"]["voice_results"]]
+                clip = DEMO_VOICE["real" if sid == "B" else "fake"]
+                S.audio = {r: clip.read_bytes() for r in refs}
             S.images = {DEMO_QR.name: DEMO_QR.read_bytes()} if add_qr else {}
             S.transcripts = di["transcripts"]
+            demo_audio_files = [{"name": f"{r} (held-out test clip)", "kind": "audio", "sha256": sha256(b)} for r, b in S.audio.items()]
             S.files = [{"name": f"{fx['fixture_id']}.txt (synthetic demo chat)", "kind": "chat", "sha256": sha256(di["chat_text"].encode())}] + (
-                [{"name": DEMO_QR.name, "kind": "image", "sha256": sha256(S.images[DEMO_QR.name])}] if add_qr else [])
+                [{"name": DEMO_QR.name, "kind": "image", "sha256": sha256(S.images[DEMO_QR.name])}] if add_qr else []) + demo_audio_files
             S.intake_warnings = []
             S.claimed_firm = di["claimed_firm"]
             S.checks = di["checks"]
@@ -349,6 +371,19 @@ elif S.step == 5:
         with st.expander("Evidence about the whole case (registration, voice)"):
             for e in case.case_level_evidence():
                 show_evidence(e, None, cited=any(get(e, "evidence_id") in (get(d, "evidence_ids") or []) for d in case.decisions))
+    with st.expander("Safeguards running in this session"):
+        nbytes = len(S.get("chat_text", "").encode()) + sum(len(b) for b in (S.get("audio") or {}).values()) + sum(
+            len(b) for b in (S.get("images") or {}).values())
+        st.markdown(
+            f"- **Your files stay in memory**: {len(S.get('files', []))} file(s), {nbytes:,} bytes, this browser session "
+            "only. Voice notes are written to a private temp folder for decoding and deleted at once. *Delete my data* "
+            "(left menu) clears everything.\n"
+            "- **Runs on this laptop**: no bank, UPI, SEBI or police system is contacted; nothing is filed or blocked.\n"
+            "- **Every alert says why**: each result shows its rule, evidence, source, date and limitation.\n"
+            "- **Weak signals can't decide**: a voice flag or a QR name only asks for review; the payee name from your "
+            "own app decides.\n"
+            "- **Mistakes can be fixed**: *This looks wrong?* sends a result to a reviewer; the original stays on record.\n"
+            f"- **Cross-victim registry**: {REGISTRY_WORDING}")
     with st.expander("Timeline: what was said (not whether it is true)"):
         for m in case.extraction.messages:
             st.markdown(f"`#{m.msg_id}` {md_escape(m.ts or '')} · **{md_escape(m.sender)}** ({m.kind}): {md_escape(m.text or '(no text)')}")
