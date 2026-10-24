@@ -1,17 +1,17 @@
 # Acceptance list
 
-Run 2026-10-25 03:00 IST, commit 57c5817 (fast mode). Command: `python scripts/acceptance.py`.
+Run 2026-10-25 03:26 IST, commit 40c5e19. Command: `python scripts/acceptance.py`.
 
 | Part | Item | Command | Result | Detail |
 |---|---|---|---|---|
-| A | Reproduction: data, tests, coverage, random order, benchmarks | `python scripts/reproduce.py` | **NOT RUN** | skipped (--fast) |
-| A | Smoke test (fresh install, offline, app health) | `python scripts/smoke.py` | **PASS** | SMOKE: PASS (6/6 steps) |
+| A | Reproduction: data, tests, coverage, random order, benchmarks | `python scripts/reproduce.py` | **PASS** | 1120 passed, 0 failed, 0 errors, 7 skipped in 293.6 s; all reproduction checks pass |
+| A | Smoke test (fresh install, offline, app health) | `python scripts/smoke.py` | **PASS** | SMOKE: PASS (7/7 steps) |
 | A | Mutation check result on file: every planted bug caught | `python scripts/mutation_check.py` | **PASS** | killed 17/17 |
 | A | Plan versus delivered: every promise points at an existing claim | `python scripts/plan_vs_delivered.py` | **PASS** | PLAN_VS_DELIVERED.md regenerated |
 | A | CLAIMS.md: every proof file it names exists; every 'runs' row has a command or file | `(this script)` | **PASS** | 42 claims checked |
 | A | Finale slide matches CLAIMS.md line for line | `python scripts/make_slide.py` | **PASS** | FINALE_SLIDE.md is up to date |
 | A | Required documents present | `(this script)` | **PASS** | 27/27 present |
-| A | Open-data and blind results recorded (or honestly 'not run') | `python -m bench.sms.run; python -m bench.blind.run` | **NOT RUN** | not run yet (allowed: RESULTS.md says 'not run') |
+| A | Open-data and blind results recorded (or honestly 'not run') | `python -m bench.sms.run; python -m bench.blind.run` | **NOT RUN** | run: SMS Spam (allowed: RESULTS.md says 'not run') |
 | B | 1. Three changing payees are found and checked separately (scenario A) | `demo: scenario A` | **PASS** | ['ramesh.k@upi', 'sunita.t@upi', '30112233445021'] -> NAME_DISCREPANCY |
 | B | 2. Name matches but 'pay 18% tax to withdraw' -> Inconclusive | `demo: paste chat` | **PASS** | answer INCONCLUSIVE |
 | B | 3. A voice cue never clears: flagged voice + matching name -> review, never 'no major issue' | `demo: voice` | **PASS** | voice ['flagged'] -> HUMAN_REVIEW |

@@ -42,7 +42,7 @@ def parse_names(s: str) -> dict[str, str]:
     out = {}
     for part in (s or "").split(";"):
         if "=" in part:
-            k, v = part.split("=", 1)
+            k, v = part.rsplit("=", 1)  # payment links may contain "="
             k = k.strip().lower().replace(" ", "")
             if k and v.strip():
                 out[k] = v.strip()
@@ -54,8 +54,9 @@ def run(folder: Path) -> dict:
     from app.intake import decode_text
     rows = list(csv.DictReader(open(folder / "labels.csv", encoding="utf-8-sig")))
     per, outcome = [], Counter()
+    chats = folder / "chats" if (folder / "chats").is_dir() else folder  # data/blind_ai keeps chats in chats/
     for r in rows:
-        f = folder / r["file"].strip()
+        f = chats / r["file"].strip()
         if not f.is_file():
             per.append({"file": r["file"], "label": r["label"], "error": "file not found"})
             outcome[(r["label"], "missing file")] += 1

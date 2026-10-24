@@ -1,0 +1,107 @@
+{
+ "dataset": "UCI SMS Spam Collection",
+ "file_sha256": "7d039a24a6083ed9ef0f806ebad56bbb976e3aeb8de05669173bfdc4996c239d",
+ "messages": 5574,
+ "n": {
+  "ham": 4827,
+  "spam": 747
+ },
+ "ham_any_cue": {
+  "count": 24,
+  "of": 4827,
+  "rate": 0.005,
+  "wilson95": [
+   0.0033,
+   0.0074
+  ]
+ },
+ "ham_hard_cue": {
+  "count": 8,
+  "of": 4827,
+  "rate": 0.0017,
+  "wilson95": [
+   0.0008,
+   0.0033
+  ]
+ },
+ "spam_any_cue": {
+  "count": 65,
+  "of": 747,
+  "rate": 0.087,
+  "wilson95": [
+   0.0689,
+   0.1094
+  ]
+ },
+ "spam_hard_cue": {
+  "count": 0,
+  "of": 747,
+  "rate": 0.0,
+  "wilson95": [
+   0.0,
+   0.0051
+  ]
+ },
+ "per_cue": {
+  "ham": {
+   "urgency": 16,
+   "secrecy": 4,
+   "otp_pin_request": 3,
+   "fee_to_withdraw": 1
+  },
+  "spam": {
+   "urgency": 65
+  }
+ },
+ "ham_hard_cue_examples": [
+  {
+   "text": "There are no other charges after transfer charges and you can withdraw anyhow you like",
+   "cues": [
+    "fee_to_withdraw"
+   ]
+  },
+  {
+   "text": "Send me your id and password",
+   "cues": [
+    "otp_pin_request"
+   ]
+  },
+  {
+   "text": "Please protect yourself from e-threats. SIB never asks for sensitive information like Passwords,ATM/SMS PIN thru email. Never share your password with anybody.",
+   "cues": [
+    "otp_pin_request"
+   ]
+  },
+  {
+   "text": "I wud never mind if u dont miss me or if u dont need me.. But u wil really hurt me wen u need me &amp; u dont tell me......... Take care:-)",
+   "cues": [
+    "secrecy"
+   ]
+  },
+  {
+   "text": "Please protect yourself from e-threats. SIB never asks for sensitive information like Passwords,ATM/SMS PIN thru email. Never share your password with anybody.",
+   "cues": [
+    "otp_pin_request"
+   ]
+  },
+  {
+   "text": "Miserable. They don't tell u that the side effects of birth control are massive gut wrenching cramps for the first 2 months. I didn't sleep at all last night.",
+   "cues": [
+    "secrecy"
+   ]
+  },
+  {
+   "text": "Yes its possible but dint try. Pls dont tell to any one k",
+   "cues": [
+    "secrecy"
+   ]
+  },
+  {
+   "text": "No. It's not pride. I'm almost  &lt;#&gt;  years old and shouldn't be takin money from my kid. You're not supposed to have to deal with this stuff. This is grow",
+   "cues": [
+    "secrecy"
+   ]
+  }
+ ],
+ "limit": "not Indian UPI fraud; spam here is mostly prize/marketing SMS; a cue alone never decides an answer"
+}

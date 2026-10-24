@@ -3,7 +3,7 @@
 Rule: fix the loaders, never the data. Each loader returns (items, problems): problems lists malformed rows so they
 can be regenerated in the dataset chat. Expected sizes come from the dataset brief and are checked, not assumed.
 
-  data/blind_ai/        AI-generated blind chats: labels.csv (file,label,claimed_firm,bank_app_names,...) joined with
+  data/blind_ai/        AI-generated blind chats (chat files in chats/): labels.csv (file,label,claimed_firm,bank_app_names) joined with
                         labels_extended.json by file; expected 80 chats, 40 scam / 40 genuine
   data/names_blind/pairs.csv      name pairs; expected 200 rows, relation classes 70/70/30/30
   data/extract_blind/cases.jsonl  extraction cases; expected 100, 60 with something to extract / 40 without
@@ -28,7 +28,7 @@ def parse_bank_app_names(s: str) -> tuple[dict, list[str]]:
         if "=" not in part:
             bad.append(part.strip())
             continue
-        k, v = part.split("=", 1)
+        k, v = part.rsplit("=", 1)  # identifiers (payment links) may contain "="; display names never do
         k = k.strip().lower().replace(" ", "")
         if not k or not v.strip():
             bad.append(part.strip())
@@ -63,12 +63,13 @@ def load_blind_ai(root: Path = ROOT / "data" / "blind_ai") -> tuple[list[dict], 
                 ext[r["file"]] = r
     else:
         problems.append("labels_extended.json missing (join skipped)")
+    chats_dir = root / "chats" if (root / "chats").is_dir() else root  # the set keeps its chats in chats/
     items = []
     for i, r in enumerate(rows, 2):
         f = (r.get("file") or "").strip()
         lab = (r.get("label") or "").strip().lower()
         names, bad = parse_bank_app_names(r.get("bank_app_names", ""))
-        if not f or not (root / f).is_file():
+        if not f or not (chats_dir / f).is_file():
             problems.append(f"labels.csv line {i}: file {f!r} not found")
         if lab not in ("scam", "genuine"):
             problems.append(f"labels.csv line {i}: label {lab!r} is not scam/genuine")
@@ -76,7 +77,8 @@ def load_blind_ai(root: Path = ROOT / "data" / "blind_ai") -> tuple[list[dict], 
             problems.append(f"labels.csv line {i}: bank_app_names parts without 'identifier=NAME': {bad}")
         if f and ext and f not in ext:
             problems.append(f"labels.csv line {i}: {f} has no entry in labels_extended.json")
-        items.append({**r, "file": f, "label": lab, "bank_app_names_parsed": names, "extended": ext.get(f, {})})
+        items.append({**r, "file": f, "path": str(chats_dir / f), "label": lab, "bank_app_names_parsed": names,
+                      "extended": ext.get(f, {})})
     c = Counter(it["label"] for it in items)
     if len(items) != 80 or c.get("scam") != 40 or c.get("genuine") != 40:
         problems.append(f"expected 80 chats (40 scam / 40 genuine), found {len(items)} {dict(c)}")

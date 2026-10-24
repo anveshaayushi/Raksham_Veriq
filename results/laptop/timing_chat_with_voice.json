@@ -1,0 +1,15 @@
+{
+ "seconds": 7.55,
+ "messages": 9,
+ "voice_notes": 3,
+ "model_ran": false,
+ "model_version": "none (ModuleNotFoundError: No module named 'torch')",
+ "voice_states": [
+  "cant_assess",
+  "cant_assess",
+  "cant_assess",
+  "cant_assess"
+ ],
+ "where": "Windows AMD64, 22 CPUs, Python 3.11.9",
+ "run_at_ist": "2026-10-25 03:12 IST"
+}

@@ -1,13 +1,13 @@
 {
- "run_at_ist": "2026-10-25 02:58 IST",
- "commit": "57c5817 + uncommitted changes",
- "python": "3.13.16",
- "platform": "Linux-6.18.44-fc-v153-x86_64-with-glibc2.39",
- "machine": "x86_64",
- "processor": "x86_64",
- "cpu_count": 2,
- "ffmpeg": "ffmpeg version 6.1.1-3ubuntu5 Copyright (c) 2000-2023 the FFmpeg developers",
- "aasist_repo_present": false,
+ "run_at_ist": "2026-10-25 03:12 IST",
+ "commit": "40c5e19 + uncommitted changes",
+ "python": "3.11.9",
+ "platform": "Windows-10-10.0.26300-SP0",
+ "machine": "AMD64",
+ "processor": "Intel64 Family 6 Model 170 Stepping 4, GenuineIntel",
+ "cpu_count": 22,
+ "ffmpeg": "ffmpeg version 9.0.2-full_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers",
+ "aasist_repo_present": true,
  "pinned_packages": {
   "altair": {
    "pinned": "6.3.0",

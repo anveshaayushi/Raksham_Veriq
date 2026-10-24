@@ -1,0 +1,8 @@
+﻿
+
+Algorithm : SHA256
+Hash      : 1587EA43E58E82B14FF1F5425C88E17F8496BFCDB67A583DBFF9EEFAF9963CE3
+Path      : C:\Users\hansi\raksham\VERIQ_Q0\veriq\data\raw\sms_spam\sms.zip
+
+
+

@@ -43,6 +43,7 @@ not run / not built = exactly that. Claude (Anthropic) was used to write the cod
 | Mistake path measured (scenario D) | measured: 1 user + 1 reviewer click (C-41) |
 | Live journey, 5 varied inputs | measured: 4 as expected, 1 miss (C-42) |
 | RUBRIC_MAP, ENGINEERING_WALKTHROUGH, PROBLEM_USER (sourced), EVASION_LAB, QA_SHEET, DEMO_12MIN, README | written |
-| Blind AI-generated datasets (80 chats, name pairs, extraction cases, voice scripts) | loaders tested; data **not provided** in this delivery |
+| Blind AI-generated chats (D1, 80) | loaded and checked (0 malformed), **not scored yet** (message 2, run once) |
+| AI-generated name pairs, extraction cases, voice scripts (D2-D4) | **not provided** |
 | Repository tidy (internal notes → docs/history/, no history rewrite) | done by `scripts/tidy_repo.py` |
 

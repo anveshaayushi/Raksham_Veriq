@@ -1,0 +1,51 @@
+{
+ "command": "-m pytest -p no:randomly -p no:cacheprovider -q -rs --junitxml=results\\junit.xml --cov --cov-report=term --cov-report=json:results\\coverage.json",
+ "seconds": 293.6,
+ "tests": 1127,
+ "failures": 0,
+ "errors": 0,
+ "skipped": 7,
+ "passed": 1120,
+ "skip_reasons": [
+  "could not import 'soundfile': No module named 'soundfile'",
+  "voice extras (torch) not installed",
+  "voice extras (torch) not installed: pip install -r requirements-voice.txt",
+  "voice extras not installed"
+ ],
+ "coverage": {
+  "product_percent": 92.9,
+  "support_scripts_percent": 59.2,
+  "product_packages": [
+   "app",
+   "core",
+   "extract",
+   "match",
+   "parsing",
+   "registry",
+   "report",
+   "rules",
+   "voice",
+   "eval"
+  ],
+  "support_packages": [
+   "bench",
+   "scripts",
+   "data"
+  ],
+  "target": 85.0,
+  "product_files_below_85": [
+   [
+    "voice\\detector.py",
+    40.3
+   ],
+   [
+    "app\\views\\kit.py",
+    83.0
+   ],
+   [
+    "eval\\kit.py",
+    83.5
+   ]
+  ]
+ }
+}

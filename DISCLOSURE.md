@@ -163,5 +163,8 @@ Markdown documents. Claude B's `scripts/b_run_all.py`, `scripts/make_results_row
   from that clone; it does not contain AASIST code.
 - AI-generated blind datasets (Prompt 2): to be generated in a SEPARATE Claude chat that never saw this repository,
   committed with their generation code (`generation/`) BEFORE any scoring run, and labelled "AI-generated blind set,
-  n=.., written by <model>, <date>". Not in this delivery (not attached): status "not provided".
+  n=.., written by <model>, <date>". D1 received 25 Oct 03:10 IST: `data/blind_ai/` (80 chats) with its generation code
+  `generation/` (authored chat sources `d1_batch*.py`, renderer `render_d1.py`, the dataset prompt). Licence: our own
+  test data; all names, firms, numbers fictional by the prompt's rules. Model that wrote it: needs confirmation from the
+  team. D2-D4 (names, extraction, voice scripts): not provided.
 

@@ -1,9 +1,9 @@
 {
  "environment": {
-  "run_at_ist": "2026-10-25 02:58 IST",
-  "commit": "57c5817 + uncommitted changes",
-  "python": "3.13.16",
-  "platform": "Linux-6.18.44-fc-v153-x86_64-with-glibc2.39"
+  "run_at_ist": "2026-10-25 03:12 IST",
+  "commit": "40c5e19 + uncommitted changes",
+  "python": "3.11.9",
+  "platform": "Windows-10-10.0.26300-SP0"
  },
  "checks": [
   {
@@ -19,12 +19,12 @@
   {
    "check": "full test suite",
    "status": "pass",
-   "detail": "1120 passed, 0 failed, 0 errors, 7 skipped in 54.5 s"
+   "detail": "1120 passed, 0 failed, 0 errors, 7 skipped in 293.6 s"
   },
   {
    "check": "statement coverage of product code",
    "status": "pass",
-   "detail": "product 92.8% (target 85.0%), bench/scripts 59.2%"
+   "detail": "product 92.9% (target 85.0%), bench/scripts 59.2%"
   },
   {
    "check": "random test order (2 runs, seeds 20261024, 424242)",
@@ -34,12 +34,12 @@
   {
    "check": "chat benchmark (dev, synthetic)",
    "status": "pass",
-   "detail": "120 chats, 162 payees, accuracy 1.0, payees found 162/162, false alarms 0/69, median 0.4 ms/chat"
+   "detail": "120 chats, 162 payees, accuracy 1.0, payees found 162/162, false alarms 0/69, median 0.41 ms/chat"
   },
   {
    "check": "chat benchmark (test, synthetic)",
    "status": "pass",
-   "detail": "300 chats, 399 payees, accuracy 1.0, payees found 399/399, false alarms 0/178, median 0.42 ms/chat"
+   "detail": "300 chats, 399 payees, accuracy 1.0, payees found 399/399, false alarms 0/178, median 0.59 ms/chat"
   },
   {
    "check": "red-team set (synthetic, written by us)",
@@ -55,11 +55,6 @@
    "check": "voice benchmark retrain (FSDD + Kokoro, synthetic/public)",
    "status": "not run",
    "detail": "not re-run (needs --voice-data and --aasist, see REPRODUCE.md); committed: AUC 0.82, genuine flagged 0.188, synthetic caught 0.688"
-  },
-  {
-   "check": "mutation check (planted bugs caught by the tests)",
-   "status": "pass",
-   "detail": "killed 17/17 (kill rate 1.0); survived none; stale 0"
   }
  ]
 }

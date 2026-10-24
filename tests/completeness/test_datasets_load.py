@@ -49,3 +49,17 @@ def test_other_loaders_and_missing_sets(tmp_path):
     assert D.load_voice_scripts(tmp_path / "none")[1][0].startswith("missing")
     r = D.check_all()
     assert set(r) == {"blind_ai", "names_blind", "extract_blind", "voice_scripts"}
+
+
+def test_payment_link_identifiers_with_equals_sign_are_parsed():
+    names, bad = D.parse_bank_app_names("https://fees.x.test/pay?inv=2291=PAYSPHERE SCHOOL COLLECT;a@upi=SHOP")
+    assert bad == [] and names == {"https://fees.x.test/pay?inv=2291": "PAYSPHERE SCHOOL COLLECT", "a@upi": "SHOP"}
+
+
+def test_the_committed_ai_generated_set_loads_cleanly():
+    import pytest
+    items, problems = D.load_blind_ai()
+    if not items:
+        pytest.skip("data/blind_ai not present")
+    assert len(items) == 80 and problems == []
+
