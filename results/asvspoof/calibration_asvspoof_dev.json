@@ -1,0 +1,8 @@
+{
+  "threshold": -4.241993,
+  "polarity": "higher_is_real",
+  "score_kind": "raw",
+  "model_version": "aasist-pretrained@51d2d9cf0738",
+  "calibrated_on": "ASVspoof2019 LA dev subset (60 real + 60 fake, clean+opus+mp3, seed 1234), 2026-10-25",
+  "target_false_alarm": 0.05
+}

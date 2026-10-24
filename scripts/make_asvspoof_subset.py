@@ -64,6 +64,48 @@ def read_protocol(path: Path):
     return rows
 
 
+class ZipSource:
+    """Read the protocol and single flac files straight out of LA.zip: no need to extract 7 GB."""
+
+    def __init__(self, zip_path: Path):
+        import zipfile
+        self.z = zipfile.ZipFile(zip_path)
+        self.names = {n for n in self.z.namelist()}
+
+    def protocol_lines(self, split: str) -> list:
+        want = f"ASVspoof2019.LA.cm.{split}."
+        hits = sorted(n for n in self.names if n.rsplit("/", 1)[-1].startswith(want) and n.endswith(".txt"))
+        if not hits:
+            raise SystemExit(f"no protocol like {want}*.txt inside the zip")
+        return self.z.read(hits[0]).decode("utf-8", errors="replace").splitlines(), hits[0]
+
+    def flac_member(self, split: str, name: str):
+        for pat in (f"LA/ASVspoof2019_LA_{split}/flac/{name}.flac",):
+            if pat in self.names:
+                return pat
+        hits = [n for n in self.names if n.endswith(f"/ASVspoof2019_LA_{split}/flac/{name}.flac")]
+        return hits[0] if hits else None
+
+    def extract_flac(self, member: str, dst: Path) -> None:
+        dst.parent.mkdir(parents=True, exist_ok=True)
+        with self.z.open(member) as f, open(dst, "wb") as o:
+            o.write(f.read())
+
+
+def parse_protocol_lines(lines) -> list:
+    rows = []
+    for line in lines:
+        parts = line.split()
+        if len(parts) < 3:
+            continue
+        label = parts[-1].lower()
+        if label in REAL:
+            rows.append((parts[1], "real"))
+        elif label in FAKE:
+            rows.append((parts[1], "fake"))
+    return rows
+
+
 def to_wav(src: Path, dst: Path) -> None:
     dst.parent.mkdir(parents=True, exist_ok=True)
     subprocess.run(["ffmpeg", "-nostdin", "-y", "-loglevel", "error", "-i", str(src),
@@ -72,7 +114,8 @@ def to_wav(src: Path, dst: Path) -> None:
 
 def main(argv=None) -> int:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--root", required=True)
+    ap.add_argument("--root", default=None, help="folder with the extracted LA dataset")
+    ap.add_argument("--zip", default=None, help="OR path to LA.zip: read clips directly, nothing is extracted")
     ap.add_argument("--split", choices=["train", "dev", "eval"], required=True)
     ap.add_argument("--n-real", type=int, default=100)
     ap.add_argument("--n-fake", type=int, default=100)
@@ -81,13 +124,25 @@ def main(argv=None) -> int:
     ap.add_argument("--out", required=True)
     a = ap.parse_args(argv)
 
-    root, out = Path(a.root), Path(a.out)
-    proto = find_protocol(root, a.split)
-    audio = find_audio_dir(root, a.split)
-    rows = read_protocol(proto)
+    out = Path(a.out)
+    zsrc = None
+    if bool(a.root) == bool(a.zip):
+        print("give exactly one of --root (extracted folder) or --zip (LA.zip)", file=sys.stderr)
+        return 2
+    if a.zip:
+        zsrc = ZipSource(Path(a.zip))
+        lines, proto_name = zsrc.protocol_lines(a.split)
+        rows = parse_protocol_lines(lines)
+        audio = None
+        print(f"protocol {proto_name}: reading from zip")
+    else:
+        root = Path(a.root)
+        proto = find_protocol(root, a.split)
+        audio = find_audio_dir(root, a.split)
+        rows = read_protocol(proto)
     reals = sorted(f for f, l in rows if l == "real")
     fakes = sorted(f for f, l in rows if l == "fake")
-    print(f"protocol {proto.name}: {len(reals)} real, {len(fakes)} fake; audio dir {audio}")
+    print(f"{len(reals)} real, {len(fakes)} fake in the {a.split} protocol; audio from {'zip' if zsrc else audio}")
     rng = random.Random(a.seed)
     pick = {"real": rng.sample(reals, min(a.n_real, len(reals))),
             "fake": rng.sample(fakes, min(a.n_fake, len(fakes)))}
@@ -105,13 +160,24 @@ def main(argv=None) -> int:
     skipped = 0
     for lab, names in pick.items():
         for n in names:
-            src = audio / f"{n}.flac"
-            if not src.is_file():
-                skipped += 1
-                continue
             rel = f"{lab}/{n}.wav"
             try:
+                if zsrc:
+                    member = zsrc.flac_member(a.split, n)
+                    if member is None:
+                        skipped += 1
+                        continue
+                    tmp = out / ".tmp" / f"{n}.flac"
+                    zsrc.extract_flac(member, tmp)
+                    src = tmp
+                else:
+                    src = audio / f"{n}.flac"
+                    if not src.is_file():
+                        skipped += 1
+                        continue
                 to_wav(src, out / rel)
+                if zsrc:
+                    src.unlink(missing_ok=True)
                 labels.append((rel, lab, "asvspoof2019_la_" + a.split, "clean", "en"))
                 for c in codecs:
                     relc = f"{lab}/{n}__{c}.wav"
@@ -121,6 +187,10 @@ def main(argv=None) -> int:
                 skipped += 1
                 print(f"skip {n}: {type(e).__name__}")
     out.mkdir(parents=True, exist_ok=True)
+    try:
+        (out / ".tmp").rmdir()
+    except OSError:
+        pass
     with open(out / "labels.csv", "w", newline="", encoding="utf-8") as f:
         w = csv.writer(f)
         w.writerow(["file", "label", "dataset", "codec", "language"])

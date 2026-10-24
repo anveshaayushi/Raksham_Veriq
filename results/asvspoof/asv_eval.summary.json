@@ -1,0 +1,66 @@
+{
+  "n_files": 600,
+  "by_modality": {
+    "audio": 600
+  },
+  "by_state_media": {
+    "no_signal": 397,
+    "cant_assess": 57,
+    "flagged": 146
+  },
+  "abstention_rate_media": 0.095,
+  "metrics_all_labelled": {
+    "n": 600,
+    "auc": 0.7658,
+    "eer": 0.31666666666666665,
+    "false_alarm_at_threshold": 0.15666666666666668,
+    "miss_at_threshold": 0.5633333333333334,
+    "abstained": 57
+  },
+  "metrics_by_dataset": {
+    "asvspoof2019_la_eval": {
+      "n": 600,
+      "auc": 0.7658,
+      "eer": 0.31666666666666665,
+      "false_alarm_at_threshold": 0.15666666666666668,
+      "miss_at_threshold": 0.5633333333333334,
+      "abstained": 57
+    }
+  },
+  "metrics_by_codec": {
+    "clean": {
+      "n": 200,
+      "auc": 0.8174,
+      "eer": 0.27,
+      "false_alarm_at_threshold": 0.11,
+      "miss_at_threshold": 0.57,
+      "abstained": 19
+    },
+    "mp3": {
+      "n": 200,
+      "auc": 0.782,
+      "eer": 0.3,
+      "false_alarm_at_threshold": 0.09,
+      "miss_at_threshold": 0.58,
+      "abstained": 19
+    },
+    "opus": {
+      "n": 200,
+      "auc": 0.701,
+      "eer": 0.37,
+      "false_alarm_at_threshold": 0.27,
+      "miss_at_threshold": 0.54,
+      "abstained": 19
+    }
+  },
+  "metrics_by_language": {
+    "en": {
+      "n": 600,
+      "auc": 0.7658,
+      "eer": 0.31666666666666665,
+      "false_alarm_at_threshold": 0.15666666666666668,
+      "miss_at_threshold": 0.5633333333333334,
+      "abstained": 57
+    }
+  }
+}
