@@ -45,7 +45,7 @@ def test_demo_a_shows_three_separate_payees_and_stub_notice():
     at = to_answer(start(), "A")
     t = text(at)
     assert at.session_state.step == 5 and "NAME_DISCREPANCY" in t and "HUMAN_REVIEW" not in t
-    assert t.count("Next step:") == 3 and "golden fixture" in t
+    assert t.count("Next step:") == 3 and "golden fixture" not in t
 
 
 def test_money_sent_toggle_changes_only_next_step():

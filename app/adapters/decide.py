@@ -35,7 +35,7 @@ def decide(*, claimed_firm: str, payees: list, indicators: list, cues: list, evi
         if hasattr(rules, "decide"):
             out = rules.decide(claimed_firm=claimed_firm, payees=payees, indicators=indicators, cues=cues, evidence=evidence,
                                voice=voice, registry=registry)
-            return DecisionBundle(list(out), "rules/ (Claude A)", False)
+            return DecisionBundle(list(out), "rules/ decision engine (FINALE)", False)
     except ImportError:
         pass
     except Exception as e:

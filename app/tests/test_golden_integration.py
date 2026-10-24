@@ -1,8 +1,9 @@
-"""The app against Claude A's golden fixtures (fixtures/scenario_*.json), compared the way CHANGES_REQUESTED.md asks:
-result, rule_id and the SET of evidence_ids strictly; reasons/next_step as text with required phrases."""
+"""The app's COMPUTED answers (parser -> extractor -> evidence -> rules.decide) against the golden fixtures.
+Result and rule_id must match exactly; cited evidence must match by (lane, class) because the app numbers its own
+evidence. tests/engine/ checks decide() on the fixtures' own evidence with exact evidence ids."""
 import pytest
 
-from app.adapters.extract import payees, run
+from app.adapters.extract import _stub, payees
 from app.case import FIXTURES, UserCheck, build_case, demo_inputs, load_demo, report_data
 from app.next_steps import NOT_A_GUARANTEE, with_money_sent
 from report.build import filing_sheet_html, filing_sheet_md, summary_html, summary_md
@@ -27,8 +28,10 @@ def test_app_shows_the_golden_decisions(sid):
     for p in c.payees:
         d = c.result_for(p.id)
         assert d.result == exp[p.id]["result"] and d.rule_id == exp[p.id]["rule_id"]
-        assert set(d.evidence_ids) == set(exp[p.id]["evidence_ids"])
-    assert c.bundle.is_stub and "golden fixture" in c.bundle.source
+        got = sorted((e.lane, e.class_) for e in c.evidence if e.evidence_id in d.evidence_ids)
+        want = sorted((e["lane"], e["class"]) for e in fx["expected"]["evidence"] if e["evidence_id"] in exp[p.id]["evidence_ids"])
+        assert got == want
+    assert not c.bundle.is_stub and "rules/" in c.bundle.source
 
 
 @pytest.mark.parametrize("sid", SIDS)
@@ -43,25 +46,33 @@ def test_money_sent_variant(sid):
 
 
 @pytest.mark.parametrize("sid", SIDS)
-def test_stub_extractor_agrees_with_golden_except_firm_names(sid):
+def test_engine_extraction_equals_golden_and_stub_agrees_except_firm_names(sid):
     fx, c = demo_case(sid)
+    e = fx["expected"]
+    assert [m.to_dict() for m in c.extraction.messages] == e["messages"]
+    assert [i.to_dict() for i in c.extraction.indicators] == e["indicators"]
+    assert sorted((x.msg_id, x.type, x.severity) for x in c.extraction.cues) == \
+        sorted((x["msg_id"], x["type"], x["severity"]) for x in e["cues"])
     di = demo_inputs(fx)
-    st = run(di["chat_text"], di["case_id"], di["transcripts"])
+    st = _stub(di["chat_text"], di["case_id"], di["transcripts"])
     want = {(i.type, i.value_norm) for i in c.extraction.indicators if i.type != "firm_name"}
-    got = {(i.type, i.value_norm) for i in st.indicators}
-    assert want <= got and got - want == set()
-    assert {x.type for x in st.cues} == {x.type for x in c.extraction.cues}
+    assert want == {(i.type, i.value_norm) for i in st.indicators}
     assert [p.value_norm for p in payees(st.indicators)] == [p.value_norm for p in c.payees]
 
 
-def test_editing_a_demo_drops_the_golden_answer_and_never_clears():
+@pytest.mark.parametrize("typed,result", [
+    ("SOMEONE ELSE", "INCONCLUSIVE"),            # personal-looking name: unverified, never an accusation
+    ("GLOBAL TECH TRADERS", "NAME_DISCREPANCY"),  # an unrelated business name
+    ("NAVYUG BROKING LTD", "NO_MAJOR_ISSUE"),     # same firm, different legal suffix
+    ("Razorpay Software Pvt Ltd", "INCONCLUSIVE"),  # payment gateway: merchant not visible
+])
+def test_judge_can_vary_the_demo_and_the_engine_recomputes(typed, result):
     fx = load_demo("B")
     di = demo_inputs(fx)
-    checks = {k: UserCheck("SOMEONE ELSE", v["source"], v["date"]) for k, v in di["checks"].items()}
+    checks = {k: UserCheck(typed, v["source"], v["date"]) for k, v in di["checks"].items()}
     c = build_case(case_id=di["case_id"], chat_text=di["chat_text"], claimed_firm=di["claimed_firm"], checks=checks,
                    transcripts=di["transcripts"], fixture=fx)
-    assert c.case_result() == "INCONCLUSIVE" and all(d.rule_id == "INCONCL" for d in c.decisions)
-    assert any("changed the demo" in n for n in c.bundle.notes)
+    assert c.case_result() == result
 
 
 @pytest.mark.parametrize("sid", SIDS)
@@ -84,6 +95,6 @@ def test_reports_for_golden_cases(sid):
 
 def test_case_level_evidence_is_reported():
     fx, c = demo_case("B")
-    assert [e.evidence_id for e in c.case_level_evidence()] == ["B_ankit-E2", "B_ankit-E4"]
+    assert [e.lane for e in c.case_level_evidence()] == ["registration", "voice"]
     d = report_data(c, money_sent=False)
     assert "whole case" in summary_md(d) and "B_ankit" in d.case_id

@@ -45,7 +45,7 @@ def test_demos_use_claude_b_stub_when_valid_and_never_show_a_score():
     assert out["B"]["voice"][0][1] != "voice-stub-b"            # B's stub broke A's contract: fixture voice used instead
     assert all("no score shown" in d for sid in "ABC" for d in out[sid]["display"])
     assert (out["A"]["result"], out["B"]["result"], out["C"]["result"]) == ("NAME_DISCREPANCY", "NO_MAJOR_ISSUE", "INCONCLUSIVE")
-    assert all(out[s]["golden"] for s in "ABC")
+    assert not any(out[s]["golden"] for s in "ABC")  # computed by the engine, not replayed
 
 
 def test_upload_without_analyse_entry_point_is_cant_assess():
@@ -53,7 +53,7 @@ def test_upload_without_analyse_entry_point_is_cant_assess():
     assert state == "cant_assess" and is_stub and "no analyse() entry point" in reasons[0]
 
 
-def test_fixture_answer_dropped_when_voice_state_disagrees(monkeypatch):
+def test_flagged_voice_turns_a_clean_demo_into_human_review(monkeypatch):
     from app.adapters import voice as va
     from app.case import UserCheck, build_case, demo_inputs, load_demo
     from app.contracts import VoiceResult
@@ -65,4 +65,4 @@ def test_fixture_answer_dropped_when_voice_state_disagrees(monkeypatch):
     checks = {k: UserCheck(v["name"], v["source"], v["date"]) for k, v in di["checks"].items()}
     c = build_case(case_id=di["case_id"], chat_text=di["chat_text"], claimed_firm=di["claimed_firm"], checks=checks,
                    transcripts=di["transcripts"], fixture=fx)
-    assert c.case_result() == "INCONCLUSIVE" and c.decisions[0].rule_id == "INCONCL"  # never a golden NO_MAJOR_ISSUE
+    assert c.case_result() == "HUMAN_REVIEW" and c.decisions[0].rule_id == "REVIEW"  # a flag can only add caution

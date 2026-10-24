@@ -15,7 +15,10 @@ Rule: a line goes on a slide only if its Status is **runs** and its Proof can be
 | C-8 | Cross-victim registry stores only keyed hashes: pseudonymisation, not anonymity | C | FINALE | runs | `registry/tests/test_sqlite_registry.py::test_no_raw_identifiers_or_tokens_in_the_file` |
 | C-9 | A payee links only after 2 independent reporters or a reviewer; one reporter or a burst of new reporters cannot link it | C | FINALE | runs | `registry/tests/test_sqlite_registry.py` (poisoning tests) |
 | C-10 | Payment-gateway handles are never stored or linked; a broken registry says "unavailable", never "clean" | C | FINALE | runs | `registry/tests/test_sqlite_registry.py` |
-| C-11 | Per-payee decision from Claude A's rules | A/C | FINALE | **not yet** (demo replays fixture answers) | — |
+| C-11 | Every payee gets its own answer from fixed rules (first rule that applies wins), computed live from the chat | A/C | FINALE | runs | `tests/golden/test_decide_golden.py` (exact golden match, raw chat end to end) |
+| C-13 | More risk never gives a milder answer; a voice result never clears a payee; "unavailable" is never "clean" | A/C | FINALE | runs | `tests/golden/test_engine_properties.py` (all 384 input combinations) |
+| C-14 | Gateway names, personal-looking names, initials and near spellings are "unverified", never an accusation | A/C | FINALE | runs | `tests/golden/test_engine_properties.py::test_name_matcher_classes` |
+| C-15 | A judge can change the typed payee name and the answer is recomputed on the spot | C | FINALE | runs | `app/tests/test_golden_integration.py::test_judge_can_vary_the_demo_and_the_engine_recomputes` |
 | C-12 | Voice-note check from Claude B's detector | B/C | FINALE | **not yet** (stub) | — |
 
 No accuracy, false-positive or voice numbers are claimed. Test counts are code tests, not accuracy.

@@ -6,10 +6,10 @@ Legend: not started / in progress / merged / tested
 - core/schemas.py (contract + provisional types): **tested** (45 golden/schema tests pass in the sandbox)
 - fixtures/ scenarios A, B, C + synthetic SEBI snapshot: **tested** (validator + mutation tests)
 - core/validate.py (fixture validator): **tested**
-- WhatsApp parser + validation (Android, iPhone, zip safety, hashes): not started
-- Regex extractor + pressure cues: not started
-- Name matcher + exclusion classes: not started
-- v0 decision ladder + truth table + property tests: not started
+- FINALE: WhatsApp parser (Android, iPhone, multi-line, system lines, day/month order): **tested** (ported to the contract by C, CR-C13)
+- FINALE: extractor (payees, IFSC, SEBI no., phone, URL, firm name, amounts, hard/soft cues): **tested** (CR-C13)
+- FINALE: name matcher with exclusion classes (gateway, personal name, initials, near spelling): **tested** (CR-C13)
+- FINALE: decision ladder + evidence builder + SEBI snapshot check + truth table/property tests: **tested** (CR-C13)
 - Image OCR / QR extraction: not started (after the core flow)
 - Video: **out of scope** (rejected at validation)
 

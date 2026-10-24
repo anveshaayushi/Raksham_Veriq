@@ -20,4 +20,4 @@ def test_calls_claude_a_and_merges_transcripts(monkeypatch):
     monkeypatch.setitem(sys.modules, "parsing", parsing)
     monkeypatch.setitem(sys.modules, "extract", extract)
     out = ex_adapter.run("x", "c1", {"PTT-1.opus": "pay sunita.t@upi"})
-    assert seen["text"] == "pay sunita.t@upi" and not out.is_stub and "Claude A" in out.source
+    assert seen["text"] == "pay sunita.t@upi" and not out.is_stub and "extract/" in out.source

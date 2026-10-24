@@ -54,5 +54,8 @@ def test_untrusted_chat_text_is_escaped():
     assert "<script>" not in m and "[win](" not in m and "http://evil" not in m
 
 
-def test_stub_notice_present():
-    assert "not a real rules-engine decision" in summary_md(data()) and "golden fixture" in summary_md(data())
+def test_computed_results_have_no_stub_notice_but_stub_bundles_do(monkeypatch):
+    assert "not a real rules-engine decision" not in summary_md(data())
+    import app.case as case_mod
+    monkeypatch.setattr(case_mod, "engine_available", lambda: False)
+    assert "not a real rules-engine decision" in summary_md(data())

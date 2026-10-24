@@ -1,4 +1,4 @@
-from app.adapters.extract import amount_in, parse_stub, payees, run
+from app.adapters.extract import _stub, amount_in, parse_stub, payees, run
 
 ANDROID = ("20/10/2026, 8:59 pm - Rahul: I am Rahul from Navyug Wealth. Reg INH000DEMO45\n"
            "20/10/2026, 9:01 pm - Rahul: Pay ₹10,000 to ramesh.k@upi\n"
@@ -20,7 +20,7 @@ def test_iphone():
 
 
 def test_payees_separate_and_cues():
-    ex = run(ANDROID, "c1", {"PTT-1.opus": "new ID sunita.t@upi"})
+    ex = _stub(ANDROID, "c1", {"PTT-1.opus": "new ID sunita.t@upi"})
     ps = payees(ex.indicators)
     assert [p.value_norm for p in ps] == ["ramesh.k@upi", "sunita.t@upi", "50210012345021"]
     assert ps[1].source == "voice" and ps[1].confidence == "medium" and ps[0].id == "c1-I2" and isinstance(ps[0].span, list) and len(ps[0].span) == 2

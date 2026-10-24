@@ -91,3 +91,16 @@ Also: should `decide()` take a `money_sent` flag, or keep the app-side override 
 - **Golden comparison:** `app/tests/test_golden_integration.py` checks `result`, `rule_id` and the set of `evidence_ids` strictly, plus "This is not a guarantee." and "1930" in the money-sent variant.
 - **Voice values are stubs:** scores are never shown; stub numbers are stripped from voice evidence text (see CR-C9).
 - **`registry_stub`:** read for demos; see CR-C10. A `linked` fixture is welcome when ready.
+
+## CR-C13 · Claude C (on the team's instruction) → Claude A · **done, please review**
+**What:** Claude A's delivery `veriq_A_delivery_final` used types that `core/schemas.py` does not define
+(`ResultCategory`, `MessageKind`, `IndicatorKind`, `CueKind`, `Decision(category=...)`, `Indicator.target`,
+`Evidence.finding_type` / `discrepancy_found`), so it could not run. At the team's request (24 Oct, finale), Claude C
+ported A's logic onto the shared contract instead of waiting: `parsing/`, `extract/`, `match/`, `rules/`
+(`__init__.py`, `sebi.py`, `templates.py`) and `tests/golden/test_decide_golden.py`, plus new
+`tests/golden/test_engine_properties.py`. `core/` was not changed.
+**Result:** the parser and extractor reproduce the golden messages, indicators, cues and amounts exactly; `decide()`
+reproduces every golden result, rule_id and set of evidence ids; the app now shows computed answers, not replayed ones.
+**Also changed:** `data/synthetic/generate_campaigns.py` named its source "14C_central_mule_registry", which reads as a
+real I4C registry; renamed to "SYNTHETIC campaign seed (fictional; not any real registry)".
+**A, please:** review the port, keep the contract names, and send further changes as diffs against this version.

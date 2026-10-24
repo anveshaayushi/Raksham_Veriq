@@ -109,8 +109,19 @@ def golden_extraction(fx: dict) -> extract_adapter.Extraction:
         is_stub=True)
 
 
+def engine_available() -> bool:
+    """True when the real parser, extractor and rules (FINALE) are importable with the contract's entry points."""
+    try:
+        import extract as _e  # type: ignore
+        import parsing as _p  # type: ignore
+        import rules as _r  # type: ignore
+    except ImportError:
+        return False
+    return all(hasattr(m, f) for m, f in ((_p, "parse_chat"), (_e, "extract"), (_r, "decide"), (_r, "case_evidence")))
+
+
 def extract(case_id: str, chat_text: str, transcripts: dict | None = None, fixture: dict | None = None) -> extract_adapter.Extraction:
-    if fixture is not None and chat_text == fixture["input"]["chat_txt"]:
+    if fixture is not None and chat_text == fixture["input"]["chat_txt"] and not engine_available():
         return golden_extraction(fixture)
     return extract_adapter.run(chat_text, case_id, transcripts)
 
@@ -160,6 +171,10 @@ def build_case(*, case_id: str, chat_text: str, claimed_firm: str, checks: dict[
     payees = extract_adapter.payees(ex.indicators)
     voice, voice_stub = _voice_results(ex, audio or {}, fixture)
 
+    if engine_available():
+        return _computed_case(case_id=case_id, chat_text=chat_text, claimed_firm=claimed_firm, checks=checks, ex=ex,
+                              payees=payees, voice=voice, voice_stub=voice_stub, files=files, fixture=fixture)
+
     if fixture is not None and _fixture_inputs_match(fixture, chat_text, claimed_firm, checks, voice):
         e = fixture["expected"]
         evidence = [from_json(Evidence, x) for x in e["evidence"]]
@@ -192,6 +207,47 @@ def build_case(*, case_id: str, chat_text: str, claimed_firm: str, checks: dict[
         amt = extract_adapter.amount_in(get(msgs.get(p.msg_id), "text", "") if p.msg_id in msgs else "")
         if amt:
             amounts[p.id] = amt
+    return Case(case_id, claimed_firm, ex, payees, evidence, voice, voice_stub, registry, bundle, files or [], amounts,
+                fixture["fixture_id"] if fixture else None)
+
+
+def _computed_case(*, case_id, chat_text, claimed_firm, checks, ex, payees, voice, voice_stub, files, fixture) -> Case:
+    """FINALE path: every answer is computed by rules.decide from the parsed chat, the user's name checks, the
+    registration snapshot, the voice results and the registry. Demos run through the same code."""
+    import extract as a_extract  # type: ignore
+    import rules  # type: ignore
+
+    if fixture is not None:
+        case_id = fixture["case"]["case_id"]
+        ex = extract_adapter.run(chat_text, case_id, fixture["input"].get("transcripts"))
+        payees = extract_adapter.payees(ex.indicators)
+    as_of = date.today().isoformat()
+    name_ev = []
+    for p in payees:
+        c = checks.get(p.value_norm)
+        if c is not None:
+            e = payee_name_evidence(f"{case_id}-E{len(name_ev) + 1}", p.id, claimed_firm, c.observed_name, c.source,
+                                    c.as_of)
+            if e is not None:
+                name_ev.append(e)
+    reg = sqlite_registry_from_env()
+    if reg is not None:
+        registry = [reg.lookup(p.id, p.type, p.value_norm) for p in payees]
+    elif fixture is not None:
+        registry = [RegistryResult(p.id, fixture["registry_stub"].get(p.id, "unavailable"), 0, False,
+                                   "registry STUB (demo fixture table)") for p in payees]
+    else:
+        registry = [StubRegistry().lookup(p.id, p.type, p.value_norm) for p in payees]
+    evidence = rules.case_evidence(case_id=case_id, claimed_firm=claimed_firm, messages=ex.messages,
+                                   indicators=ex.indicators, payees=payees, payee_name_evidence=name_ev, voice=voice,
+                                   registry=registry, as_of=as_of)
+    bundle = decide_adapter.decide(claimed_firm=claimed_firm, payees=payees, indicators=ex.indicators, cues=ex.cues,
+                                   evidence=evidence, voice=voice, registry=registry)
+    if voice_stub:
+        bundle.notes.append("Voice results are stub values (no calibrated detector connected); they can only raise caution.")
+    amounts = {}
+    if hasattr(a_extract, "amounts"):
+        amounts = {a.payee_id: a.raw for a in a_extract.amounts(ex.messages, ex.indicators)}
     return Case(case_id, claimed_firm, ex, payees, evidence, voice, voice_stub, registry, bundle, files or [], amounts,
                 fixture["fixture_id"] if fixture else None)
 

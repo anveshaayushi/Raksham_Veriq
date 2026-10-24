@@ -43,9 +43,13 @@ def run(text: str, case_id: str, transcripts: dict[str, str] | None = None) -> E
         import parsing as a_parsing  # type: ignore  # Claude A
 
         if hasattr(a_parsing, "parse_chat") and hasattr(a_extract, "extract"):
-            msgs = _merge_transcripts(a_parsing.parse_chat(text), transcripts)
+            if hasattr(a_parsing, "parse_chat_with_warnings"):
+                raw, warns = a_parsing.parse_chat_with_warnings(text)
+            else:
+                raw, warns = a_parsing.parse_chat(text), []
+            msgs = _merge_transcripts(raw, transcripts)
             inds, cues = a_extract.extract(msgs, case_id)
-            return Extraction(msgs, inds, cues, "parsing/ + extract/ (Claude A)", False)
+            return Extraction(msgs, inds, cues, "parsing/ + extract/ (FINALE engine)", False, list(warns))
     except ImportError:
         pass
     except Exception as e:  # real module present but contract mismatch: show it, fall back

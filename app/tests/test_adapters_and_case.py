@@ -13,10 +13,20 @@ def upload_case(checks=None):
     return build_case(case_id="u1", chat_text=UPLOAD, claimed_firm="Sahyadri Securities Pvt Ltd", checks=checks or {})
 
 
-def test_upload_without_engine_is_inconclusive_with_contract_ids():
+def test_upload_is_computed_by_the_engine_and_inconclusive_without_name_checks():
     c = upload_case()
     assert c.case_result() == "INCONCLUSIVE" and [d.rule_id for d in c.decisions] == ["INCONCL", "INCONCL"]
-    assert all(decide_adapter.STUB_REASON in d.reasons and any("missing evidence" in r for r in d.reasons) for d in c.decisions)
+    assert all(any("No class A evidence" in r for r in d.reasons) for d in c.decisions)
+    assert not c.bundle.is_stub and "rules/" in c.bundle.source
+
+
+def test_upload_without_engine_falls_back_to_the_labelled_stub(monkeypatch):
+    import app.case as case_mod
+    monkeypatch.setattr(case_mod, "engine_available", lambda: False)
+    import rules
+    monkeypatch.delattr(rules, "decide")
+    c = upload_case()
+    assert c.case_result() == "INCONCLUSIVE" and all(decide_adapter.STUB_REASON in d.reasons for d in c.decisions)
     assert "STUB" in c.bundle.source and c.bundle.is_stub
 
 
@@ -30,7 +40,8 @@ def test_user_reported_evidence_is_class_a_and_labelled():
     c = upload_case({"vikram99@ybl": UserCheck("VIKRAM TRADERS", "UPI app (payee name before paying)", date(2026, 10, 21))})
     e = c.evidence[0]
     assert evidence_class(e) == "A" and e.lane == "payee_name" and "user-reported" in e.source
-    assert c.decisions[0].evidence_ids == [e.evidence_id] and len(c.decisions[1].reasons) == 2
+    assert c.decisions[0].result == "NAME_DISCREPANCY" and c.decisions[0].evidence_ids == [e.evidence_id]
+    assert c.decisions[1].result == "INCONCLUSIVE"
 
 
 def test_voice_stub_never_returns_no_signal():
