@@ -37,7 +37,11 @@ If it was not run, it says "not run". Numbers from the Round 1 deck (EER 0.37, "
 | 2026-10-24 19:38 IST | see git log | FINALE: `python -m bench.voice.make_set` + `python -m bench.voice.train_eval` (520 clips, speaker/voice-disjoint, Opus, app preprocessing) | test AUC: pretrained 0.669, trained head 0.82; EER 0.35 vs 0.2; synthetic caught 15.0% vs 68.8%; genuine flagged 5.0% vs 18.8%; Hindi synthetic caught 77.5%; 0.551 s/clip. See bench/voice/README.md |
 | 2026-10-24 19:38 IST | see git log | FINALE: first voice run on whole clips (not app preprocessing) | **discarded**: through the app path it flagged 71/80 genuine clips (silence artefact); retrained as above |
 | 2026-10-24 19:38 IST | see git log | FINALE: `python -m pytest -q tests app registry report voice` | **988 passed** |
-| — | — | Windows 11: `app\run_app.ps1` on the team laptop | **not run** |
+| 2026-10-24 21:29 IST | Q0 (uncommitted) | fresh venv (Python 3.13.16, Linux sandbox): `pip install -r requirements.txt` then `python -m pytest` | **988 passed**, 0 failed, 0 skipped |
+| 2026-10-24 21:29 IST | Q0 (uncommitted) | same venv with ffmpeg removed from PATH: `python -m pytest` | **967 passed, 21 skipped** (all: "ffmpeg not installed"), 0 failed |
+| 2026-10-24 21:47 IST | Q0 (uncommitted) | **user-reported**, team laptop, Windows 11, Python 3.14.5 (global interpreter, no venv): `python -m pip install -r requirements.txt` then `python -m pytest` | **967 passed, 21 skipped** (all: "ffmpeg not installed"), 0 failed, 47.5 s |
+| 2026-10-24 22:03 IST | Q0 (uncommitted) | **user-reported**, team laptop, Windows 11, Python 3.11.9 **venv**, ffmpeg 9.0.2, no torch | **987 passed, 1 failed**, 177 s. Failure: `test_results_page_shows_measured_numbers`, Streamlit AppTest timed out after 30 s (a test-harness limit on a slow first run, not a wrong answer). Fixed in patch 1: timeout 180 s; results-table cells made plain text (removes an Arrow conversion fallback seen in the log). Re-run pending. |
+| — | — | Windows 11 with ffmpeg + torch (voice model active) | **not run** |
 
 The 113/114 are code tests, not accuracy numbers. Demo results are Claude A's *expected* fixture values, not a rules engine.
 Chat-side and voice numbers above are on SYNTHETIC or public data (bench/README.md); say so whenever they are shown. No voice detector numbers exist yet. Do not quote any voice number in the deck.

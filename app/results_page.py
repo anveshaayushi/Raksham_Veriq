@@ -73,11 +73,11 @@ def render(st, md_escape) -> None:
         st.table({
             "": ["AUC", "Equal error rate", "Genuine clips flagged (95% CI)", "Synthetic clips caught (95% CI)",
                  "Hindi synthetic caught"],
-            "Pretrained AASIST": [pre["test_auc"], pre["test_eer"],
+            "Pretrained AASIST": [str(pre["test_auc"]), str(pre["test_eer"]),
                                   f"{pre['test_genuine_flagged']:.1%} {pre['test_genuine_flagged_95ci']}",
                                   f"{pre['test_synthetic_caught']:.1%} {pre['test_synthetic_caught_95ci']}",
                                   f"{pre['hindi_synthetic_caught']:.1%}"],
-            "AASIST + our trained head": [head["test_auc"], head["test_eer"],
+            "AASIST + our trained head": [str(head["test_auc"]), str(head["test_eer"]),
                                           f"{head['test_genuine_flagged']:.1%} {head['test_genuine_flagged_95ci']}",
                                           f"{head['test_synthetic_caught']:.1%} {head['test_synthetic_caught_95ci']}",
                                           f"{head['hindi_synthetic_caught']:.1%}"]})

@@ -7,7 +7,7 @@ APP = str(Path(__file__).resolve().parents[1] / "streamlit_app.py")
 
 
 def start():
-    at = AppTest.from_file(APP, default_timeout=30)
+    at = AppTest.from_file(APP, default_timeout=180)  # slow Windows laptops: first runs measured >30 s
     at.run()
     return at
 

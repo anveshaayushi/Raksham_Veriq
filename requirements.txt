@@ -1,0 +1,6 @@
+# Everything the app and the full test suite need (Q0: declared so a clean install passes).
+# Exact pinned versions come from the team laptop's `pip freeze` in Q1; these are minimums, not pins.
+-r app/requirements.txt
+-r voice/requirements.txt
+# System tool (not pip): ffmpeg on PATH for voice notes; voice tests skip with a visible reason without it.
+# Optional, for the real voice model: torch (CPU) + the AASIST weights, see voice/README.md.

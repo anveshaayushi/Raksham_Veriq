@@ -39,9 +39,13 @@ def test_flag_is_only_a_review_cue_through_b_pipeline(tmp_path):
         t = np.arange(sr * 4) / sr
         x = (0.2 * np.sin(2 * np.pi * 180 * t) * (1 + 0.5 * np.sin(2 * np.pi * 3 * t))).astype(np.float32)
         import io
-        import soundfile as sf
+        import wave  # standard library: no extra dependency (Q0 clean-install fix)
         buf = io.BytesIO()
-        sf.write(buf, x, sr, format="WAV")
+        with wave.open(buf, "wb") as w:
+            w.setnchannels(1)
+            w.setsampwidth(2)
+            w.setframerate(sr)
+            w.writeframes((x * 32767).astype("<i2").tobytes())
         vr = service.analyse("v.wav", buf.getvalue(), "v.wav")
         assert vr.state in ("flagged", "cant_assess") and vr.file_id == "v.wav"
     finally:

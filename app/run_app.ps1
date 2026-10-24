@@ -16,10 +16,10 @@ if (-not (Test-Path .venv)) {
     }
     if (-not $made) { python -m venv .venv }
     if (-not (Test-Path .\.venv\Scripts\python.exe)) { Write-Host "Could not create .venv: install Python 3.11+ from python.org"; exit 1 }
-    .\.venv\Scripts\python.exe -m pip install -r app\requirements.txt
+    .\.venv\Scripts\python.exe -m pip install -r requirements.txt
     if ($LASTEXITCODE -ne 0) { Write-Host "pip install failed (internet needed the first time)"; exit 1 }
 }
-.\.venv\Scripts\python.exe -m pytest -q tests app registry report
+.\.venv\Scripts\python.exe -m pytest
 if ($LASTEXITCODE -ne 0) { Write-Host "Some tests failed. Starting the app anyway; send the test output to Claude C." }
 $extra = @()
 if ($Phone) { $extra = @("--server.address", "0.0.0.0"); ipconfig | Select-String "IPv4" }
