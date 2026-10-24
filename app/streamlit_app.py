@@ -1,4 +1,4 @@
-"""VERIQ v0 (pre-build) app. Run from the repo root:  streamlit run app/streamlit_app.py
+"""VERIQ app. Run from the repo root:  streamlit run app/streamlit_app.py
 
 Steps: 1 Consent · 2 Upload · 3 Confirm the firm · 4 Payee names (user-reported) · 5 Answer · 6 Reports
 All chat-derived text is escaped before display. Nothing is written to disk by this app.
@@ -23,10 +23,14 @@ from app.adapters.extract import amount_in, payees as payee_list  # noqa: E402
 from app.adapters.voice import observed_for_display, score_display as voice_score_display  # noqa: E402
 from app.contracts import SCHEMA_SOURCE, evidence_class, get  # noqa: E402
 from app.evidence_input import SOURCES  # noqa: E402
-from app.intake import Intake, IntakeError, add_audio, add_chat, decode_text, sha256  # noqa: E402
+from app.intake import Intake, IntakeError, add_audio, add_chat, add_image, decode_text, sha256  # noqa: E402
+from app.overturn import REASONS as OVERTURN_REASONS, Ledger, is_valid_handle  # noqa: E402
+from rules import HIGH_PRESSURE  # noqa: E402
 from app.next_steps import NOT_A_GUARANTEE, PLAIN_LABEL, STANDING_LINE, display_next_step, with_money_sent  # noqa: E402
 from app.text_safety import code, md_escape  # noqa: E402
-from report.build import filing_sheet_html, filing_sheet_md, summary_html, summary_md  # noqa: E402
+from report.build import filing_sheet_html, filing_sheet_md, incident_json, summary_html, summary_md  # noqa: E402
+
+DEMO_QR = ROOT / "app" / "demo_media" / "demo_qr_synthetic.png"
 
 STEPS = ["Consent", "Upload", "Confirm the firm", "Payee names", "Answer", "Reports"]
 ICON = {"LINKED": "🔗", "NAME_DISCREPANCY": "⛔", "REGISTRATION_CONFLICT": "⛔", "HUMAN_REVIEW": "⚠️", "INCONCLUSIVE": "❔",
@@ -45,6 +49,7 @@ st.markdown(
 S = st.session_state
 S.setdefault("step", 1)
 S.setdefault("case_id", "case-" + uuid.uuid4().hex[:8])
+S.setdefault("ledger", Ledger())
 
 
 def go(n: int) -> None:
@@ -79,6 +84,8 @@ with st.sidebar:
         reset()
         st.rerun()
     st.caption(f"Contract: {SCHEMA_SOURCE}")
+    S.reviewer_mode = st.toggle("Reviewer view (fraud desk / second person)", value=S.get("reviewer_mode", False),
+                                key="rev_toggle", help="Shows review requests and lets a reviewer uphold or overturn them.")
     st.caption(STANDING_LINE)
 
 # ---------------------------------------------------------------- 1 consent ----
@@ -105,12 +112,16 @@ elif S.step == 2:
         chat = st.file_uploader("WhatsApp chat export (.txt or .zip, up to 2 MB of text)", type=["txt", "zip"], key="chatfile")
         voices = st.file_uploader("Voice notes (optional): .opus .ogg .m4a .mp3 .wav", type=["opus", "ogg", "m4a", "mp3", "wav", "aac"],
                                   accept_multiple_files=True, key="voicefiles")
+        imgs = st.file_uploader("Screenshots or QR images (optional): .jpg .png .webp. UPI QR codes in them are read.",
+                                type=["jpg", "jpeg", "png", "webp"], accept_multiple_files=True, key="imagefiles")
         if st.button("Check files", key="check_files", disabled=chat is None):
             intake = Intake()
             try:
                 add_chat(intake, chat.name, chat.getvalue())
                 for v in voices or []:
                     add_audio(intake, v.name, v.getvalue())
+                for im in imgs or []:
+                    add_image(intake, im.name, im.getvalue())
                 text = decode_text(intake.chat.data)
             except IntakeError as e:
                 st.error(str(e))
@@ -118,14 +129,17 @@ elif S.step == 2:
                 S.demo = None
                 S.chat_text = text
                 S.audio = {a.name: a.data for a in intake.audio}
+                S.images = {i.name: i.data for i in intake.images}
                 S.files = [{"name": intake.chat.name, "kind": "chat", "sha256": intake.chat.sha256}] + [
-                    {"name": a.name, "kind": "audio", "sha256": a.sha256} for a in intake.audio]
+                    {"name": a.name, "kind": "audio", "sha256": a.sha256} for a in intake.audio] + [
+                    {"name": i.name, "kind": "image", "sha256": i.sha256} for i in intake.images]
                 S.intake_warnings = intake.warnings
                 S.transcripts = {}
     with tab_demo:
-        st.write("Claude A's golden scenarios: fictional chats with the results the finished system should give. "
-                 "Until the rules engine is built, the answers shown are those **expected values**, not engine output.")
+        st.write("Fictional chats (all names and IDs invented). The demo only fills in the inputs; every answer is "
+                 "computed by the same engine as an upload, so you can change anything along the way.")
         sid = st.radio("Scenario", list(FIXTURES), format_func=lambda x: demo_title(load_demo(x)), key="demo_pick")
+        add_qr = st.checkbox("Also attach a QR screenshot the sender 'sent' (synthetic)", key="demo_qr")
         if st.button("Load this demo", key="load_demo"):
             fx = load_demo(sid)
             di = demo_inputs(fx)
@@ -133,13 +147,15 @@ elif S.step == 2:
             S.case_id = di["case_id"]
             S.chat_text = di["chat_text"]
             S.audio = {}
+            S.images = {DEMO_QR.name: DEMO_QR.read_bytes()} if add_qr else {}
             S.transcripts = di["transcripts"]
-            S.files = [{"name": f"{fx['fixture_id']}.txt (golden fixture)", "kind": "chat", "sha256": sha256(di["chat_text"].encode())}]
+            S.files = [{"name": f"{fx['fixture_id']}.txt (synthetic demo chat)", "kind": "chat", "sha256": sha256(di["chat_text"].encode())}] + (
+                [{"name": DEMO_QR.name, "kind": "image", "sha256": sha256(S.images[DEMO_QR.name])}] if add_qr else [])
             S.intake_warnings = []
             S.claimed_firm = di["claimed_firm"]
             S.checks = di["checks"]
     if S.get("chat_text"):
-        ex = extract(S.case_id, S.chat_text, S.get("transcripts"), load_demo(S.demo) if S.get("demo") else None)
+        ex = extract(S.case_id, S.chat_text, S.get("transcripts"), load_demo(S.demo) if S.get("demo") else None, S.get("images"))
         S.payee_values = [p.value_norm for p in payee_list(ex.indicators)]
         st.success(f"Read {len(ex.messages)} messages · found {len(S.payee_values)} payment destination(s).")
         for f in S.files:
@@ -157,7 +173,7 @@ elif S.step == 2:
 # ---------------------------------------------------------------- 3 confirm ----
 elif S.step == 3:
     st.header("3 · Who do you believe you are dealing with?")
-    ex = extract(S.case_id, S.chat_text, S.get("transcripts"), load_demo(S.demo) if S.get("demo") else None)
+    ex = extract(S.case_id, S.chat_text, S.get("transcripts"), load_demo(S.demo) if S.get("demo") else None, S.get("images"))
     firms = [i.value_raw for i in ex.indicators if i.type == "firm_name"]
     if firms:
         st.caption("Firm names mentioned in the chat: " + ", ".join(md_escape(f) for f in dict.fromkeys(firms)))
@@ -172,7 +188,8 @@ elif S.step == 3:
             kind = "UPI ID" if p.type == "upi_vpa" else "Bank account"
             st.markdown(f"**{n}. {kind}: {md_escape(p.value_raw)}**")
             amt = amount_in(m.text if m else "")
-            src = "a voice-note transcript (check it against what you heard)" if p.source == "voice" else "the message text"
+            src = {"voice": "a voice-note transcript (check it against what you heard)",
+                   "image": f"a QR code in {md_escape(m.media_ref if m else 'an image')}"}.get(p.source, "the message text")
             st.caption(f"Message #{p.msg_id} · {m.ts if m else ''} · {amt or 'amount not stated'} · found in {src} · confidence {p.confidence}")
     if not payee_list(ex.indicators):
         st.warning("No UPI ID or account number was found, so there is nothing to check yet.")
@@ -193,11 +210,17 @@ elif S.step == 4:
             "read it, then **cancel**. Never enter your PIN. What you type here is recorded as **user-reported**: VERIQ "
             "cannot see your app and does not contact any bank, UPI provider or SEBI.")
     S.setdefault("checks", {})
-    ex = extract(S.case_id, S.chat_text, S.get("transcripts"), load_demo(S.demo) if S.get("demo") else None)
+    ex = extract(S.case_id, S.chat_text, S.get("transcripts"), load_demo(S.demo) if S.get("demo") else None, S.get("images"))
     for n, p in enumerate(payee_list(ex.indicators), 1):
         prev = S.checks.get(p.value_norm, {"name": "", "source": SOURCES[1 if p.type == "upi_vpa" else 0], "date": date.today()})
         with st.container(border=True):
             st.markdown(f"**{n}. {md_escape(p.value_raw)}**")
+            if p.source == "image":
+                st.caption("Found in a QR code. The name written inside a QR is chosen by whoever made it, so scan or "
+                           "enter this UPI ID in your own app and type the name **your app** shows.")
+            if is_valid_handle(p.value_norm):
+                st.caption("This UPI ID uses SEBI's '@valid' format for registered intermediaries. Format alone proves "
+                           "nothing: confirm the firm on SEBI Check.")
             name = st.text_input("Exact name shown (leave blank if you couldn't check)", value=prev["name"], key=f"nm_{p.value_norm}", max_chars=120)
             src = st.selectbox("Where you saw it", SOURCES, index=SOURCES.index(prev["source"]), key=f"src_{p.value_norm}")
             when = st.date_input("Date you checked", value=prev["date"], max_value=date.today(), key=f"dt_{p.value_norm}")
@@ -216,9 +239,32 @@ elif S.step == 5:
     fx = load_demo(S.demo) if S.get("demo") else None
     case = build_case(case_id=S.case_id, chat_text=S.chat_text, claimed_firm=S.get("claimed_firm", ""),
                       checks={k: UserCheck(v["name"], v["source"], v["date"]) for k, v in S.get("checks", {}).items()},
-                      audio=S.get("audio"), files=S.get("files"), transcripts=S.get("transcripts"), fixture=fx)
+                      audio=S.get("audio"), files=S.get("files"), transcripts=S.get("transcripts"), fixture=fx,
+                      images=S.get("images"))
     S.case = case
+    ledger: Ledger = S.ledger
     st.header("5 · The answer")
+    if S.get("reviewer_mode"):
+        with st.container(border=True):
+            st.subheader("Reviewer view")
+            pending = [r for r in ledger.requests.values() if r.status == "review requested"]
+            if not pending:
+                st.caption("No review requests waiting.")
+            for r in pending:
+                st.markdown(f"**{md_escape(r.payee_label)}** · original result {code(r.original_result)} · {r.elapsed()}  \n"
+                            f"User's reason: {md_escape(r.reason)}  \nNote: {md_escape(r.note or '(none)')}  \n"
+                            f"Reference given: {md_escape(r.reference or '(none)')}")
+                if is_valid_handle(r.reference):
+                    st.caption("The reference is in SEBI's @valid format. Confirm it on SEBI Check before overturning.")
+                rv = st.text_input("Reviewer name", key=f"rvn_{r.payee_id}")
+                rr_ = st.text_input("Reason for your decision", key=f"rvr_{r.payee_id}")
+                b1, b2 = st.columns(2)
+                for btn, action in ((b1, "overturned"), (b2, "upheld")):
+                    if btn.button("Overturn" if action == "overturned" else "Uphold", key=f"rv_{action}_{r.payee_id}",
+                                  disabled=not (rv.strip() and rr_.strip())):
+                        from registry.sqlite_registry import from_env as _reg
+                        ledger.decide(r.payee_id, action, rv, rr_, registry=_reg())
+                        st.rerun()
     if case.bundle.is_stub:
         st.warning(f"**v0 stub:** results come from {case.bundle.source}. They are not a real rules-engine decision.")
         for n in case.bundle.notes:
@@ -233,16 +279,20 @@ elif S.step == 5:
     S.money_sent = st.toggle("I have already sent money", value=S.get("money_sent", False), key="money_toggle",
                              help="Changes only the next step (to the 1930 reporting path). It does not change any result.")
     if case.voice_is_stub or any("stub" in str(get(v, "model_version", "")).lower() for v in case.voice):
-        st.caption("Voice results shown here are stub values: no calibrated voice detector is connected in this v0 build.")
+        st.caption("Voice results shown here are stub values: no calibrated voice detector is connected yet (Claude B is calibrating).")
     msgs = {m.msg_id: m for m in case.extraction.messages}
     for n, p in enumerate(case.payees, 1):
         d = with_money_sent(case.result_for(p.id), S.money_sent)
         res = get(d, "result")
+        req = ledger.requests.get(p.id)
         with st.container(border=True):
             st.markdown(f"### {ICON.get(res, '')} {n}. {md_escape(p.value_raw)}")
             st.markdown(f"**{PLAIN_LABEL.get(res, res)}** · {code(res)} · rule {code(get(d, 'rule_id'))}")
+            if any(str(r).startswith(HIGH_PRESSURE) for r in get(d, "reasons") or []):
+                st.error("High pressure: the voice note couldn't be checked, but the chat pushes you to pay fast to an "
+                         "unverified recipient.")
             for r in get(d, "reasons") or []:
-                st.markdown(f"- {md_escape(r)}")
+                st.markdown(f"- {md_escape(str(r).replace(HIGH_PRESSURE, '').strip())}")
             evs = case.evidence_for(p.id)
             if evs:
                 for e in evs:
@@ -258,9 +308,43 @@ elif S.step == 5:
                                "Only 'flagged' can raise concern; a voice result never clears a payee.")
             rr = next((r for r in case.registry if get(r, "payee_id") == p.id), None)
             if rr is not None:
-                st.caption(f"Cross-victim registry: {md_escape(get(rr, 'status'))} · {md_escape(get(rr, 'note'))} · "
+                note = f" · {md_escape(get(rr, 'note'))}" if get(rr, "note") else ""
+                st.caption(f"Cross-victim registry: {md_escape(get(rr, 'status'))}{note} · "
                            f"source: {md_escape(get(rr, 'source'))}. {REGISTRY_WORDING}")
+            if req is not None and req.status == "overturned":
+                st.success(f"Reviewed: explained. Overturned by {md_escape(req.reviewer)}: {md_escape(req.reviewer_reason)} "
+                           f"({req.elapsed()}). Original result {res} stays on record. {NOT_A_GUARANTEE}")
+            elif req is not None and req.status == "upheld":
+                st.warning(f"Reviewed: upheld by {md_escape(req.reviewer)}: {md_escape(req.reviewer_reason)} ({req.elapsed()}).")
+            elif req is not None:
+                st.info(f"Review requested ({req.elapsed()}). A reviewer will uphold or overturn this result.")
             st.info(f"**Next step:** {display_next_step(d)}")
+            if res in ("NAME_DISCREPANCY", "HUMAN_REVIEW", "REGISTRATION_CONFLICT", "LINKED") and req is None:
+                with st.expander("This looks wrong? Explain and ask for a review"):
+                    st.caption("You can't clear a warning yourself (a scammer could talk you into it). A reviewer "
+                               "looks at your explanation; the original result stays on record.")
+                    why = st.selectbox("What happened?", OVERTURN_REASONS, key=f"ow_{p.id}")
+                    if why == OVERTURN_REASONS[0]:
+                        st.caption("Go back to step 4 and type the name exactly as your app shows it.")
+                        if st.button("Fix the name", key=f"ofix_{p.id}"):
+                            go(4)
+                            st.rerun()
+                    else:
+                        note = st.text_area("Explain in a sentence", key=f"on_{p.id}", max_chars=300)
+                        ref = st.text_input("Reference (the firm's @valid UPI ID, its SEBI registration no., or a bank "
+                                            "reference)", key=f"orf_{p.id}", max_chars=120)
+                        if st.button("Ask for a review", key=f"oreq_{p.id}"):
+                            ledger.request(p.id, p.value_norm, res, why, note, ref)
+                            st.rerun()
+    shifts = [p for p in case.payees]
+    if len(shifts) > 1:
+        with st.expander(f"The payment destination changed {len(shifts) - 1} time(s)"):
+            msgs_ = {m.msg_id: m for m in case.extraction.messages}
+            for k, p in enumerate(shifts, 1):
+                m = msgs_.get(p.msg_id)
+                where = {"voice": "in a voice note", "image": "in a QR code"}.get(p.source, "in a message")
+                st.markdown(f"{k}. {md_escape(m.ts if m else '')} · {code(p.value_raw)} · {where} (#{p.msg_id})")
+            st.caption("Scammers often rotate payees so no single account collects many reports.")
     if case.case_level_evidence():
         with st.expander("Evidence about the whole case (registration, voice)"):
             for e in case.case_level_evidence():
@@ -297,13 +381,22 @@ elif S.step == 6:
             per[p.id] = {"utr": st.text_input("12-digit transaction ID (UTR)", key=f"utr_{p.id}", max_chars=22),
                          "paid_on": st.text_input("Date paid", key=f"pd_{p.id}"),
                          "amount_paid": st.text_input("Amount paid", key=f"ap_{p.id}")}
-    data = report_data(case, money_sent=S.get("money_sent", False), user=user, per_payee=per)
+    reviews = {pid: f"{r.status}" + (f" by {r.reviewer}: {r.reviewer_reason}" if r.reviewer else "") + f" (original {r.original_result})"
+               for pid, r in S.ledger.requests.items()}
+    data = report_data(case, money_sent=S.get("money_sent", False), user=user, per_payee=per, reviews=reviews)
     c1, c2 = st.columns(2)
     c1.download_button("Filing sheet (HTML)", filing_sheet_html(data), file_name=f"veriq_filing_sheet_{case.case_id}.html", mime="text/html", key="dl1")
     c2.download_button("Filing sheet (Markdown)", filing_sheet_md(data), file_name=f"veriq_filing_sheet_{case.case_id}.md", mime="text/markdown", key="dl2")
     c3, c4 = st.columns(2)
     c3.download_button("Shareable summary (HTML)", summary_html(data), file_name=f"veriq_summary_{case.case_id}.html", mime="text/html", key="dl3")
     c4.download_button("Shareable summary (Markdown)", summary_md(data), file_name=f"veriq_summary_{case.case_id}.md", mime="text/markdown", key="dl4")
+    c5, c6 = st.columns(2)
+    c5.download_button("Incident card for 1930 / NCRP (JSON)", incident_json(data),
+                       file_name=f"veriq_incident_{case.case_id}.json", mime="application/json", key="dl5")
+    c6.download_button("Review audit trail (JSON)", S.ledger.audit_json(), file_name=f"veriq_audit_{case.case_id}.json",
+                       mime="application/json", key="dl6")
+    st.caption("The incident card lists the fields the 1930 / cybercrime.gov.in complaint asks for. It is not an "
+               "official format and is not sent anywhere. It contains full identifiers: keep it private.")
     with st.expander("Preview the shareable summary"):
         st.markdown(summary_md(data))
     st.caption(STANDING_LINE)

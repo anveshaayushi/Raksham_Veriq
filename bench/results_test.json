@@ -25,8 +25,8 @@
   "NO_MAJOR_ISSUE -> NO_MAJOR_ISSUE": 50
  },
  "ms_per_chat": {
-  "median": 0.37,
-  "max": 1.0
+  "median": 0.4,
+  "max": 3.46
  },
  "failures": [
   {

@@ -27,6 +27,7 @@ All AI-generated content, datasets, models, libraries and third-party assets. Ev
 | Library | Use | Licence |
 |---|---|---|
 | Streamlit | app UI | Apache-2.0 |
+| OpenCV (`opencv-python-headless`), FINALE | reading UPI QR codes in uploaded images (no model download) | Apache-2.0 |
 | pytest | tests | MIT |
 | Python standard library (`zipfile`, `hashlib`, `hmac`, `html`, `re`) | intake, hashing, escaping | PSF |
 

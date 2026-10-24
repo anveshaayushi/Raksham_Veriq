@@ -5,6 +5,8 @@ FINALE, 24 Oct 2026. Claude A's token matcher, ported and extended by Claude C a
 match_names(claimed, observed) -> (verdict, reason)
     verdict "match"        : shares a distinctive word with the claimed firm
     verdict "discrepancy"  : a business name with no distinctive word in common  -> can decide NAME_DISCREPANCY
+    verdict "lookalike"    : shares the brand word but adds a different word or business type ("NAVYUG ONLINE
+                             TRADERS" for "Navyug Wealth Research"): a possible shell / look-alike account -> HUMAN_REVIEW
     verdict "unverified"   : we can't tell, so we don't accuse (deck p9: false-positive classes)
         - payment gateway / aggregator names (Razorpay, Cashfree, ...): the merchant's name is not shown
         - a personal-looking name (could be the firm's proprietor or a mule; we can't tell which)
@@ -63,6 +65,23 @@ def _distinctive(tokens: list[str]) -> set[str]:
     return {t for t in tokens if t not in GENERIC and t not in HONORIFICS and len(t) > 1}
 
 
+# Business-type words, compared by their first 4 letters so "Broking"/"Brokers" or "Trading"/"Traders" count as the same.
+CATEGORY = {"research", "broking", "brokers", "broker", "securities", "security", "advisory", "advisors", "advisers",
+            "investment", "investments", "capital", "finance", "financial", "finserv", "wealth", "markets", "market",
+            "trading", "trade", "traders", "trader", "stock", "stocks", "shares", "share", "equity", "money", "fund",
+            "funds", "asset", "assets", "management", "managers", "consultancy", "consultants", "services", "service",
+            "solutions", "enterprises", "enterprise", "agency", "agencies", "store", "stores", "industries", "ventures",
+            "mart", "associates", "group", "online", "digital", "tech", "technologies", "infotech", "global"}
+
+
+def _cat(tokens) -> set[str]:
+    return {t[:4] for t in tokens if t in CATEGORY}
+
+
+def _abbrev_of(tok: str, full: list[str]) -> bool:
+    return len(tok) >= 2 and any(f != tok and f.startswith(tok) for f in full)
+
+
 def _near(a: str, b: str) -> bool:
     """One edit apart (insert/delete/substitute) for words of 5+ letters: likely the same word, spelled differently."""
     if min(len(a), len(b)) < 5 or abs(len(a) - len(b)) > 1:
@@ -86,6 +105,13 @@ def match_names(claimed: str, observed: str) -> tuple[str, str]:
         return "unverified", "the claimed firm's name has no distinctive word to compare"
     shared = c_d & o_d
     if shared:
+        extra = sorted(t for t in o_d - c_d if not _abbrev_of(t, c_tok) and t not in CATEGORY)
+        c_cat, o_cat = _cat(c_tok), {t[:4] for t in o_tok if t in CATEGORY and not _abbrev_of(t, c_tok)}
+        new_type = sorted(o_cat - c_cat) if c_cat else []
+        if extra or new_type:
+            what = ", ".join(extra + [t for t in o_tok if t[:4] in new_type and t in CATEGORY])
+            return "lookalike", (f"shares '{', '.join(sorted(shared))}' but adds '{what}': could be a look-alike "
+                                 "account rather than the firm itself")
         return "match", f"shares the distinctive word(s) {', '.join(sorted(shared))}"
     if any(_near(a, b) for a in c_d for b in o_d):
         return "unverified", "a near spelling of the claimed name (could be a variant or a look-alike)"

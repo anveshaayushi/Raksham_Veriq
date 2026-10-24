@@ -27,5 +27,8 @@ Legend: not started / in progress / merged / tested
 - FINALE: SQLite registry (keyed hashes, independent-reporter linking, reviewer confirm/reject, rate limits, burst
   defence, gateway exclusion, "unavailable" on failure) + synthetic seed: **tested** (17 tests)
 - Adapters to A's parser/extractor/rules and B's voice: **merged** (labelled stubs until those exist)
-- Campaign graph, reviewer console: not started (C4)
+- FINALE: QR codes in screenshots (OpenCV), look-alike payee names, obfuscated cue matching, high-pressure variant: **tested**
+- FINALE: mistake recovery (review request, reviewer overturn/uphold, audit trail, registry feedback): **tested** (AppTest UI flow)
+- FINALE: 1930 / NCRP incident card (JSON), red-team set (`bench/adversarial.py`): **tested / run**
+- Campaign graph: not started. Text OCR of screenshots: not started (Tesseract not installed). Semantic-embedding cue model: not planned (see CR-C14)
 - Windows run script (`app/run_app.ps1`): written, **not run**

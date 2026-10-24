@@ -20,6 +20,9 @@ MAX_ZIP_MEMBERS = 50
 MAX_ZIP_TOTAL_UNCOMPRESSED = 80 * 1024 * 1024
 MAX_ZIP_RATIO = 100  # uncompressed / compressed, per member
 AUDIO_EXT = {".opus", ".ogg", ".m4a", ".mp3", ".wav", ".aac"}
+IMAGE_EXT = {".jpg", ".jpeg", ".png", ".webp"}
+MAX_IMAGE_BYTES = 8 * 1024 * 1024
+MAX_IMAGES = 10
 
 
 class IntakeError(ValueError):
@@ -39,6 +42,7 @@ class IntakeFile:
 class Intake:
     chat: IntakeFile | None = None
     audio: list[IntakeFile] = field(default_factory=list)
+    images: list[IntakeFile] = field(default_factory=list)
     warnings: list[str] = field(default_factory=list)
 
 
@@ -72,6 +76,26 @@ def looks_like_audio(data: bytes) -> bool:
     head = data[:12]
     return (head.startswith(b"OggS") or head.startswith(b"RIFF") and head[8:12] == b"WAVE" or head.startswith(b"ID3")
             or head[:2] in (b"\xff\xfb", b"\xff\xf3", b"\xff\xf2", b"\xff\xf1", b"\xff\xf9") or head[4:8] == b"ftyp")
+
+
+def looks_like_image(data: bytes) -> bool:
+    return (data[:3] == b"\xff\xd8\xff" or data[:8] == b"\x89PNG\r\n\x1a\n"
+            or (data[:4] == b"RIFF" and data[8:12] == b"WEBP"))
+
+
+def add_image(intake: Intake, name: str, data: bytes) -> None:
+    """Screenshots / QR images. Only QR codes are read from them (no OCR, no image-forensics model)."""
+    if len(intake.images) >= MAX_IMAGES:
+        raise IntakeError(f"At most {MAX_IMAGES} images.")
+    if _ext(name) not in IMAGE_EXT:
+        raise IntakeError(f"'{safe_name(name)}' is not a supported image type ({', '.join(sorted(IMAGE_EXT))}).")
+    if not data:
+        raise IntakeError(f"'{safe_name(name)}' is empty.")
+    if len(data) > MAX_IMAGE_BYTES:
+        raise IntakeError(f"'{safe_name(name)}' is larger than {MAX_IMAGE_BYTES // (1024 * 1024)} MB.")
+    if not looks_like_image(data):
+        raise IntakeError(f"'{safe_name(name)}' does not look like a JPEG, PNG or WebP image.")
+    intake.images.append(IntakeFile(safe_name(name), "image", data, sha256(data)))
 
 
 def decode_text(data: bytes) -> str:
@@ -143,8 +167,13 @@ def _add_zip(intake: Intake, name: str, data: bytes) -> None:
             chat_found = True
         elif ext in AUDIO_EXT and len(intake.audio) < MAX_AUDIO_FILES:
             add_audio(intake, info.filename, zf.read(info))
+        elif ext in IMAGE_EXT and len(intake.images) < MAX_IMAGES:
+            try:
+                add_image(intake, info.filename, zf.read(info))
+            except IntakeError as e:
+                intake.warnings.append(str(e))
         else:
-            intake.warnings.append(f"Skipped '{safe_name(info.filename)}' from the .zip (not a chat or voice note).")
+            intake.warnings.append(f"Skipped '{safe_name(info.filename)}' from the .zip (not a chat, voice note or image).")
     if not chat_found:
         raise IntakeError("No chat .txt was found inside the .zip.")
     intake.chat.note = f"from {safe_name(name)}"

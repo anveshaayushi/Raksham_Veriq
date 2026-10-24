@@ -4,7 +4,7 @@
        rules.decide(claimed_firm=str, payees=list[Indicator], indicators=list[Indicator], cues=list[Cue],
                     evidence=list[Evidence], voice=list[VoiceResult], registry=list[RegistryResult]) -> list[Decision]
 2. Otherwise a STUB: INCONCLUSIVE (rule_id INCONCL, the contract's id) per payee, with a reason saying no engine ran.
-   Never NO_MAJOR_ISSUE. Demo scenarios do not come through here: they use Claude A's golden fixtures (app/case.py).
+   Never NO_MAJOR_ISSUE. Demos and uploads both come through here.
 """
 
 from __future__ import annotations

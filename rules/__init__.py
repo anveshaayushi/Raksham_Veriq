@@ -11,8 +11,12 @@ Ladder, first rule that applies wins (no weights, no scores):
  1 LINKED                 registry status "linked" (>= 2 independent reporters or a reviewer)       class C
  2 NAME_DISCREPANCY       user-run app check (class A) shows a business name unrelated to the firm   class A
  3 REGISTRATION_CONFLICT  quoted SEBI number not in the dated list, or listed to another entity      class B
- 4 HUMAN_REVIEW           a voice note is flagged, or two user checks for one payee disagree          class E / A
- 5 INCONCLUSIVE           no usable class A check, name unverified, voice can't be assessed, or a hard cue
+ 4 HUMAN_REVIEW           a voice note is flagged; two user checks disagree; the user's app shows a look-alike
+                          of the brand ("NAVYUG ONLINE TRADERS"); or a QR code in the chat names someone else
+                          (sources disagree)                                                         class E / A / D
+ 5 INCONCLUSIVE           no usable class A check, name unverified, voice can't be assessed, or a hard cue.
+                          "High pressure" variant: voice can't be assessed AND the chat pushes urgency or a hard
+                          cue AND the payee is not verified -> a sharper reason and next step (same result).
  6 NO_MAJOR_ISSUE         class A name matches and nothing above applies; always "This is not a guarantee."
 Class D (chat cues) and class E (voice) can only push towards caution; they never clear a payee.
 """
@@ -27,7 +31,12 @@ from match import match_names
 from . import sebi
 from .templates import NEXT_STEP
 
-__all__ = ["decide", "case_evidence", "case_result", "NEXT_STEP"]
+__all__ = ["decide", "case_evidence", "case_result", "NEXT_STEP", "HIGH_PRESSURE"]
+
+HIGH_PRESSURE = "HIGH PRESSURE:"
+HIGH_PRESSURE_NEXT = ("Don't pay yet. The voice note couldn't be checked, but the chat pushes you to pay quickly to a "
+                      "recipient you haven't verified. Check the payee name in your own bank or UPI app first, and "
+                      "contact the firm through a number you find yourself. If money was sent, call 1930.")
 
 
 def _g(o, k, default=None):
@@ -60,6 +69,9 @@ def decide(*, claimed_firm: str, payees: list, indicators: list, cues: list, evi
         own = [e for e in evidence if e.payee_id == p.id]
         names = [e for e in own if e.lane == "payee_name" and e.class_ == "A"]
         verdicts = [(e, *match_names(claimed_firm, e.observed)) for e in names]
+        qr_names = [e for e in own if e.lane == "payee_name" and e.class_ == "D"]
+        qr_odd = [(e, why) for e in qr_names for v, why in [match_names(claimed_firm, e.observed)]
+                  if v in ("discrepancy", "lookalike")]
         voice_ev = [e for e in own + case_ev if e.lane == "voice"]
         registry_ev = next((e for e in own if e.lane == "registry"), None)
         rr = registry_by_payee.get(p.id)
@@ -106,15 +118,24 @@ def decide(*, claimed_firm: str, payees: list, indicators: list, cues: list, evi
         # 4 HUMAN_REVIEW
         flagged = [e for e in voice_ev if _voice_state(e.observed) == "flagged"]
         disagree = len({v for _, v, _ in verdicts if v in ("match", "discrepancy")}) > 1
-        if flagged or disagree:
-            reasons = []
+        lookalike = [(e, why) for e, v, why in verdicts if v == "lookalike"]
+        if flagged or disagree or lookalike or qr_odd:
+            reasons, cited = [], []
             if flagged:
                 reasons.append("A voice note was flagged by the detector. That is a cue for a person to review, "
                                "not proof of a fake voice.")
+                cited += [e.evidence_id for e in flagged]
             if disagree:
                 reasons.append("Two name checks for this payee disagree.")
-            out.append(_decision(p.id, "HUMAN_REVIEW", reasons,
-                                 [e.evidence_id for e in flagged] + ([e.evidence_id for e in names] if disagree else [])))
+                cited += [e.evidence_id for e in names]
+            for e, why in lookalike:
+                reasons.append(f"Class A (user-reported): app shows '{e.observed}', which {why}.")
+                cited.append(e.evidence_id)
+            for e, why in qr_odd:
+                reasons.append(f"Class D: the QR code in the chat names '{e.observed}' ({why}). The QR comes from the "
+                               "sender, so it can't decide on its own; check the name in your own app.")
+                cited.append(e.evidence_id)
+            out.append(_decision(p.id, "HUMAN_REVIEW", reasons, list(dict.fromkeys(cited))))
             continue
         # 5 INCONCLUSIVE
         unverified = [(e, why) for e, v, why in verdicts if v == "unverified"]
@@ -134,7 +155,14 @@ def decide(*, claimed_firm: str, payees: list, indicators: list, cues: list, evi
                 reasons.append(f"Hard cue: {_g(c, 'type')} in msg {_g(c, 'msg_id')}.")
             if rstatus == "unavailable":
                 reasons.append("Registry: unavailable (not counted as clean).")
-            out.append(_decision(p.id, "INCONCLUSIVE", reasons, cited))
+            pressure = [c for c in cues if _g(c, "severity") == "hard" or _g(c, "type") == "urgency"]
+            d = _decision(p.id, "INCONCLUSIVE", reasons, cited)
+            if cant and pressure and not matched:
+                d = Decision(payee_id=p.id, result="INCONCLUSIVE", rule_id="INCONCL",
+                             reasons=[HIGH_PRESSURE + " Don't pay yet. The voice note was too short or unclear to check, "
+                                      "but the chat pushes you to pay quickly to a recipient you haven't verified."]
+                             + reasons, evidence_ids=cited, next_step=HIGH_PRESSURE_NEXT)
+            out.append(d)
             continue
         # 6 NO_MAJOR_ISSUE
         cited = [matched[0].evidence_id]
@@ -165,8 +193,10 @@ def _next_id(case_id: str, evidence: list) -> int:
 
 def case_evidence(*, case_id: str, claimed_firm: str, messages: list, indicators: list, payees: list,
                   payee_name_evidence: list, voice: list, registry: list, as_of: str,
-                  snapshot_path=sebi.DEFAULT_SNAPSHOT) -> list[Evidence]:
-    """The user's name checks (class A, built by the app) plus registration (B), voice (E) and registry (C)."""
+                  snapshot_path=sebi.DEFAULT_SNAPSHOT, qr: dict | None = None) -> list[Evidence]:
+    """The user's name checks (class A, built by the app) plus registration (B), voice (E), registry (C) and, for
+    payees found in a QR code, the name written inside the QR (class D: typed by whoever made the QR).
+    qr: {payee indicator id: {"pn": name in the QR, ...}} (extract.qr_details)."""
     ev = list(payee_name_evidence)
     n = _next_id(case_id, ev)
 
@@ -206,6 +236,15 @@ def case_evidence(*, case_id: str, claimed_firm: str, messages: list, indicators
                            observed=observed, source=("voice detector STUB" if stub else f"voice detector {mv}"),
                            as_of=as_of, limitation=limitation))
     del msgs
+
+    for p in payees:
+        pn = ((qr or {}).get(p.id) or {}).get("pn")
+        if pn:
+            ev.append(Evidence(evidence_id=eid(), payee_id=p.id, lane="payee_name", class_="D",
+                               claimed=f"payee belongs to {claimed_firm}", observed=pn,
+                               source="name written inside the QR code sent in the chat (sender-supplied)",
+                               as_of=as_of, limitation="Whoever makes a QR code chooses this name; it is not the "
+                                                       "bank's registered name. It can only raise caution."))
 
     for p in payees:
         r = next((x for x in registry or [] if _g(x, "payee_id") == p.id), None)

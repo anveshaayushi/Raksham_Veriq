@@ -31,6 +31,9 @@ If it was not run, it says "not run". Numbers from the Round 1 deck (EER 0.37, "
 | 2026-10-24 15:24 IST | see git log | FINALE: `python -m pytest -q tests app registry report` after the engine port (CR-C13) | **918 passed** (768 of them are the property grid: 384 input combinations x 2 properties) |
 | 2026-10-24 15:27 IST | see git log | FINALE: `python -m bench.run dev` (120 synthetic chats, used for fixing) | first run 79.0% decisions; after the personal-name fix 100% (not reported as a result) |
 | 2026-10-24 15:27 IST | see git log | FINALE: `python -m bench.run test` (300 synthetic chats, 399 payees, run once) | extraction 399/399, 0 false pickups; decisions 96.2% (384/399); false alarms on genuine payees 0/178; scam payees marked "no major issue" 0/221; median 0.37 ms per chat. Failure: "KRISHNA DAIRY FARM" read as a personal name (15 misses, safe direction). See bench/README.md |
+| 2026-10-24 17:09 IST | see git log | FINALE: `python -m bench.run test` run 2, after the look-alike and cue changes (made for the red-team brief, not from test failures) | unchanged: 399/399 payees, 96.2% decisions, 0/178 false alarms, 0/221 scams cleared; same 15 misses ("KRISHNA DAIRY FARM") |
+| 2026-10-24 17:09 IST | see git log | FINALE: `python -m bench.adversarial` (red-team set, written by us knowing our defences) | defended attacks 31/31 passed; known gaps still failing 4/4 (listed below) |
+| 2026-10-24 17:09 IST | see git log | FINALE: `python -m pytest -q tests app registry report voice` | **983 passed** |
 | — | — | Windows 11: `app\run_app.ps1` on the team laptop | **not run** |
 
 The 113/114 are code tests, not accuracy numbers. Demo results are Claude A's *expected* fixture values, not a rules engine.
@@ -51,3 +54,67 @@ Chat-side numbers above are on SYNTHETIC chats written by the team (bench/README
 | Calibrated threshold, EER, AUC, false-alarm, miss, per codec / language | not run | n/a | n/a | not run (ASVspoof LA download was still in progress: 3.2 of 7.1 GB at 24 Oct 09:55) |
 | Speaker consistency, speech-to-text | not built | n/a | n/a | not run |
 | Full suite after C merged B (C's sandbox, Linux, Python 3.13, ffmpeg present) | `python -m pytest -q tests app registry report voice` | 2026-10-24 15:38 IST | see git log | **963 passed** |
+
+
+## Red-team log (2026-10-24 17:09 IST, `python -m bench.adversarial`)
+
+| Group | Attack | Expected | Got | Result |
+|---|---|---|---|---|
+| look-alike payee name | NAVYUG ONLINE TRADERS | HUMAN_REVIEW | HUMAN_REVIEW | pass |
+| look-alike payee name | Navyug Broking Services | HUMAN_REVIEW | HUMAN_REVIEW | pass |
+| look-alike payee name | NAVYUG CAPITAL MARKETS | HUMAN_REVIEW | HUMAN_REVIEW | pass |
+| look-alike payee name | NAVYUG PAYMENTS | HUMAN_REVIEW | HUMAN_REVIEW | pass |
+| look-alike payee name | NAVYUG BROKING SOLUTIONS | HUMAN_REVIEW | HUMAN_REVIEW | pass |
+| look-alike payee name | NAVYUG TECH SERVICES | HUMAN_REVIEW | HUMAN_REVIEW | pass |
+| look-alike payee name | identical name on a mule account (NAVYUG BROKING PVT LTD) | not NO_MAJOR_ISSUE | NO_MAJOR_ISSUE | KNOWN GAP |
+| genuine name variant | NAVYUG BROKING PRIVATE LIMITED | NO_MAJOR_ISSUE | NO_MAJOR_ISSUE | pass |
+| genuine name variant | NAVYUG BROKING LTD | NO_MAJOR_ISSUE | NO_MAJOR_ISSUE | pass |
+| genuine name variant | M/S NAVYUG BROKING PVT LTD | NO_MAJOR_ISSUE | NO_MAJOR_ISSUE | pass |
+| genuine name variant | Navyug Broking | NO_MAJOR_ISSUE | NO_MAJOR_ISSUE | pass |
+| unrelated payee name | SHREE GANESH TRADERS | NAME_DISCREPANCY | NAME_DISCREPANCY | pass |
+| unrelated payee name | BALAJI GARMENTS | NAME_DISCREPANCY | NAME_DISCREPANCY | pass |
+| unrelated payee name | RK MOBILE POINT | NAME_DISCREPANCY | NAME_DISCREPANCY | pass |
+| unrelated payee name | KRISHNA DAIRY FARM (contains a given name) | NAME_DISCREPANCY | INCONCLUSIVE | KNOWN GAP |
+| obfuscated pressure phrase | gu@r@nteed 3x returns | guaranteed_return | guaranteed_return | pass |
+| obfuscated pressure phrase | 100% guaranteed profit | guaranteed_return | guaranteed_return | pass |
+| obfuscated pressure phrase | P.a.y 18% t@x to withdraw | fee_to_withdraw | fee_to_withdraw | pass |
+| obfuscated pressure phrase | pay unfreeze account fee | fee_to_withdraw | fee_to_withdraw | pass |
+| obfuscated pressure phrase | u_r_g_e_n_t | urgency | urgency | pass |
+| obfuscated pressure phrase | send in 5 mins | urgency | urgency | pass |
+| obfuscated pressure phrase | no loss pakka double | guaranteed_return | guaranteed_return | pass |
+| obfuscated pressure phrase | sure-shot gain | guaranteed_return | guaranteed_return | pass |
+| obfuscated pressure phrase | slot cancel ho jayega | urgency | urgency | pass |
+| obfuscated pressure phrase | share the OTP you got | otp_pin_request | otp_pin_request | pass |
+| obfuscated pressure phrase | install AnyDesk | remote_access | remote_access | pass |
+| obfuscated pressure phrase | your chance closes soon, act fast (reworded, no keyword) | urgency | missed | KNOWN GAP |
+| obfuscated pressure phrase | profit is fixed, you cannot lose (reworded, no keyword) | guaranteed_return | missed | KNOWN GAP |
+| benign sentence (false cue check) | Please confirm the payee name on your app before paying. | no hard cue | no hard cue | pass |
+| benign sentence (false cue check) | Onboarding fee ₹10,000 | no hard cue | no hard cue | pass |
+| benign sentence (false cue check) | Markets are volatile; returns are not guaranteed. | no hard cue | no hard cue | pass |
+| benign sentence (false cue check) | Thanks, received. | no hard cue | no hard cue | pass |
+| payee hidden in a QR image | QR names SUNITA TRADERS, no name check yet | found + HUMAN_REVIEW | found + HUMAN_REVIEW | pass |
+| payee hidden in a QR image | QR copies the firm's name (pn is sender-typed); no name check | not NO_MAJOR_ISSUE | not NO_MAJOR_ISSUE | pass |
+| short voice note + pressure | 0.3 s 'pay now' note, urgency in text | INCONCLUSIVE + HIGH PRESSURE | INCONCLUSIVE + HIGH PRESSURE | pass |
+
+Already covered by unit tests (not repeated above): registry poisoning (one token x20, five tokens in one minute: not
+linked), `<script>` and Markdown links in a chat (escaped, defanged), zip bomb / zip-slip / encrypted zip (rejected).
+
+## System dashboard (only measured numbers; everything else says "not run")
+
+```
+VERIQ SYSTEM RESULTS · 2026-10-24 17:09 IST · synthetic data written by the team unless stated
+LANE 1 VOICE (Claude B: ffmpeg -> quality gate -> pretrained AASIST)
+  - EER / AUC / false alarms / misses on any dataset ......... NOT RUN (no calibrated threshold yet)
+  - Short / unclear audio ..................................... returns cant_assess by design (code tests only)
+  - Seconds per clip ........................................... NOT RUN (controlled timing not done)
+LANE 2 RECIPIENT, QR & NAME MATCHING (rules, no trained model)
+  - Payee extraction, 300 held-out synthetic chats ............ 399/399 found, 0 false pickups
+  - Decisions as expected ...................................... 96.2% (384/399); named failure: given-name shop names
+  - False alarms on genuine payees ............................. 0/178
+  - Scam payees given "No major issue" ......................... 0/221
+  - Red-team: look-alike names 6/6, genuine variants 4/4, obfuscated cues 11/11, QR payees 2/2, benign sentences 4/4
+  - Known gaps: identical-name mule account, "KRISHNA DAIRY FARM", 2 reworded phrases with no keyword
+LANE 3 DECISION ENGINE
+  - Rules time per chat (laptop-class CPU, Linux sandbox) ...... median 0.4 ms, max ~1 ms (excludes voice)
+  - End-to-end time with voice ................................. NOT RUN
+```

@@ -58,4 +58,6 @@ def test_computed_results_have_no_stub_notice_but_stub_bundles_do(monkeypatch):
     assert "not a real rules-engine decision" not in summary_md(data())
     import app.case as case_mod
     monkeypatch.setattr(case_mod, "engine_available", lambda: False)
+    import rules
+    monkeypatch.delattr(rules, "decide")  # engine code missing -> labelled stub decisions
     assert "not a real rules-engine decision" in summary_md(data())

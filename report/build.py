@@ -56,6 +56,10 @@ class PayeeRow:
     utr: str = ""  # user-entered
     paid_on: str = ""  # user-entered
     amount_paid: str = ""  # user-entered
+    found_in: str = "text"  # text | voice | image (QR code)
+    first_seen: str = ""
+    qr: dict | None = None  # parsed UPI QR fields when the payee came from a QR code
+    review: str = ""  # mistake-recovery status, e.g. "overturned by reviewer X: reason"
 
 
 @dataclass
@@ -279,3 +283,49 @@ def summary_html(d: ReportData) -> str:
         b.append(f"<p class='stub'><b>v0 notice:</b> results come from {_h(d.decision_source)}. They are not a real rules-engine decision.</p>")
     b += _findings_html(d, True) + _timeline_html(d, True) + _files_html(d) + [f"<p><b>{_h(STANDING_LINE)}</b></p>"]
     return _html_wrap(f"VERIQ summary {d.case_id}", b)
+
+
+INCIDENT_FORMAT = ("VERIQ incident card v1: fields to copy into the complaint form at cybercrime.gov.in or to read out "
+                   "on the 1930 helpline. It is not an official NCRP format and nothing has been filed.")
+
+
+def incident_json(d: ReportData) -> str:
+    """Structured incident card (JSON). Full identifiers: keep it private, like the filing sheet."""
+    import json
+
+    def blank(v):
+        return v if v else None  # null = only the user knows it; never invented
+
+    card = {
+        "format": INCIDENT_FORMAT,
+        "standing_line": STANDING_LINE,
+        "case_id": d.case_id,
+        "generated_at": d.generated_at,
+        "suggested_category": "Online financial fraud: investment / trading scam (choose the closest category on the portal)",
+        "claimed_firm": d.claimed_firm,
+        "veriq_overall_result": d.case_result,
+        "decision_source": d.decision_source,
+        "money_already_sent": d.money_sent,
+        "complainant": {"mobile": blank(d.complainant_mobile), "debited_bank_or_wallet": blank(d.debited_bank),
+                        "debited_account_or_upi": blank(d.debited_account), "screenshots": blank(d.screenshots)},
+        "payees": [{
+            "identifier": p.identifier, "type": p.kind, "found_in": p.found_in, "first_seen": p.first_seen,
+            "message_ids": p.msg_ids, "amount_asked_in_chat": p.amount_in_chat,
+            "veriq_result": p.result, "rule": p.rule_id, "reasons": p.reasons, "next_step": p.next_step,
+            "qr_code": ({k: p.qr.get(k) for k in ("pa", "pn", "am", "tn", "link")} if p.qr else None),
+            "mistake_review": p.review or None,
+            "evidence": [{k: x.get(k) for k in ("class", "lane", "claimed", "observed", "source", "as_of", "rule",
+                                                 "limitation")} for x in p.findings],
+            "transaction": {"utr": blank(p.utr), "date_paid": blank(p.paid_on), "amount_paid": blank(p.amount_paid)},
+        } for p in d.payees],
+        "case_evidence": [{k: x.get(k) for k in ("class", "lane", "claimed", "observed", "source", "as_of", "limitation")}
+                          for x in d.case_findings],
+        "evidence_chain": {
+            "files": [{"name": f.get("name"), "kind": f.get("kind"), "sha256": f.get("sha256")} for f in d.files],
+            "events": [{"msg_id": t["msg_id"], "ts": t["ts"], "sender": t["sender"], "kind": t["kind"],
+                        "text": (t["text"] or "")[:500]} for t in d.timeline],
+            "pressure_cues": d.cues,
+        },
+        "voice_audit": d.voice,
+    }
+    return json.dumps(card, ensure_ascii=False, indent=1)

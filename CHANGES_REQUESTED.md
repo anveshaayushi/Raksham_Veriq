@@ -132,3 +132,26 @@ VoiceResult for `cant_assess` may carry a raw `score` with `threshold` null. Rul
 On Windows pytest stores the current test id in an environment variable (limit 32,767 chars) and the whole run crashed with
 "ValueError: the environment variable is longer than 32767 characters". Linux has no such limit, so it passed in the sandbox.
 Fix: `ids=[...]` on the parametrize (applied). Rule for everyone: never put big values in parametrize without short ids.
+
+## CR-C14 · Claude C → team · record of what was and wasn't taken from "VERIQ_Claude_Prompt.txt" (2026-10-24 17:09 IST)
+Built: QR payee extraction (`parsing/qr.py`, OpenCV, no pyzbar), look-alike / shell payee names, cue de-obfuscation and
+new phrases, payee-change display, high-pressure variant for unassessable audio, mistake-recovery path with reviewer and
+audit trail, 1930/NCRP incident card (JSON), red-team set.
+Not taken, and why:
+1. **The "benchmark dashboard" numbers** (EER 0.29%, AUC 0.89, "100% catch rate", "<0.5% (0/20)", "<1.2 s", cite tags):
+   none were measured by us; B reports no voice accuracy run. RESULTS.md has a dashboard with only measured numbers.
+2. **RapidFuzz `token_set_ratio >= 85 and brand word present`**: that test PASSES "Navyug Wealth Services" as the firm,
+   which is the shell exploit it was meant to stop. `match/` instead flags extra words / a new business type as a
+   look-alike (HUMAN_REVIEW) and keeps the distinctive-word rule; no new dependency.
+3. **QR "pn" triggering a discrepancy**: the name inside a QR is typed by whoever made it (class D), so it raises
+   HUMAN_REVIEW ("sources disagree"), never NAME_DISCREPANCY; the user's own app check (class A) still decides.
+4. **"INCONCLUSIVE - HIGH PRESSURE" as a new result** and **PAYEE_SHIFT_ALERT / QR_PAYEE_DISCREPANCY as new types**:
+   the contract's result and cue lists are fixed; implemented as INCONCLUSIVE with a "HIGH PRESSURE:" reason and next
+   step, the existing `payee_change` cue, and class D evidence. A contract change needs Claude A.
+5. **"Exact schema match for NCRP"**: there is no published NCRP schema we can match; the card is labelled as fields
+   to copy, not an official format. Raw voice scores are withheld until a threshold is calibrated (B and A rule).
+6. **SentenceTransformer semantic cues, WavLM front-end, LLR prior-shift, transient detector**: need model downloads and
+   evaluation we cannot finish honestly before the freeze (voice items are B's call). Reworded phrases without keywords
+   are listed as a known gap in the red-team log.
+7. **User clears an alert with an @valid handle**: a coached victim could do that; the user can only request a review,
+   a reviewer decides. @valid format is shown as a hint, never as verification.

@@ -26,6 +26,7 @@ class Extraction:
     source: str
     is_stub: bool
     warnings: list[str] = field(default_factory=list)
+    qr: dict = field(default_factory=dict)  # {msg_id: [QR payload, ...]} from uploaded images
 
 
 def _merge_transcripts(msgs: list, transcripts: dict[str, str] | None) -> list:
@@ -37,7 +38,40 @@ def _merge_transcripts(msgs: list, transcripts: dict[str, str] | None) -> list:
             and getattr(m, "media_ref", None) in t and not getattr(m, "text", "") else m for m in msgs]
 
 
-def run(text: str, case_id: str, transcripts: dict[str, str] | None = None) -> Extraction:
+def _attach_images(msgs: list, images: dict[str, bytes]) -> tuple[list, dict, list[str]]:
+    """Decode QR codes in uploaded images. An image named in the chat ("IMG-1.jpg (file attached)") belongs to that
+    message; any other uploaded image becomes an extra message marked as uploaded by the user."""
+    import dataclasses
+
+    from parsing.qr import decode_qr, parse_upi  # type: ignore
+
+    qr: dict[int, list[str]] = {}
+    warns: list[str] = []
+    msgs = list(msgs)
+    by_ref = {(m.media_ref or "").lower(): m for m in msgs if getattr(m, "kind", "") == "image"}
+    for name, data in (images or {}).items():
+        m = by_ref.get(name.lower())
+        if m is None:
+            last_ts = msgs[-1].ts if msgs else None
+            if not last_ts:
+                warns.append(f"'{name}' was not read: there is no dated chat to attach it to.")
+                continue
+            m = type(msgs[-1])(msg_id=len(msgs) + 1, ts=last_ts, sender="(image you uploaded)", kind="image",
+                               text="", media_ref=name)
+            msgs.append(m)
+        payloads = decode_qr(data)
+        upi = [p for p in payloads if parse_upi(p)]
+        if upi:
+            qr[m.msg_id] = upi
+        elif payloads:
+            warns.append(f"'{name}': a QR code was found, but it is not a UPI payment code.")
+        else:
+            warns.append(f"'{name}': no QR code found. (Reading text from screenshots is not available yet.)")
+    return msgs, qr, warns
+
+
+def run(text: str, case_id: str, transcripts: dict[str, str] | None = None,
+        images: dict[str, bytes] | None = None) -> Extraction:
     try:
         import extract as a_extract  # type: ignore  # Claude A
         import parsing as a_parsing  # type: ignore  # Claude A
@@ -48,8 +82,12 @@ def run(text: str, case_id: str, transcripts: dict[str, str] | None = None) -> E
             else:
                 raw, warns = a_parsing.parse_chat(text), []
             msgs = _merge_transcripts(raw, transcripts)
-            inds, cues = a_extract.extract(msgs, case_id)
-            return Extraction(msgs, inds, cues, "parsing/ + extract/ (FINALE engine)", False, list(warns))
+            qr: dict = {}
+            if images:
+                msgs, qr, iw = _attach_images(msgs, images)
+                warns = list(warns) + iw
+            inds, cues = a_extract.extract(msgs, case_id, qr=qr) if qr else a_extract.extract(msgs, case_id)
+            return Extraction(msgs, inds, cues, "parsing/ + extract/ (FINALE engine)", False, list(warns), qr)
     except ImportError:
         pass
     except Exception as e:  # real module present but contract mismatch: show it, fall back

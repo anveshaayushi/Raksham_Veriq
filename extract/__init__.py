@@ -35,14 +35,24 @@ _FIRM_STOP = {"SEBI", "RBI", "UPI", "NSE", "BSE", "WhatsApp", "Telegram", "India
               "Thursday", "Friday", "Saturday", "Sunday", "I", "We", "You"}
 
 CUE_RX = [
-    ("otp_pin_request", re.compile(r"\b(?:share|send|tell|enter)\b[^.\n]{0,20}\b(?:otp|upi pin|m-?pin|cvv|password)\b|\b(?:otp|upi pin|cvv)\b[^.\n]{0,20}\b(?:share|send|batao|bhejo)\b", re.I)),
-    ("remote_access", re.compile(r"\b(?:anydesk|teamviewer|rustdesk|quick ?support|screen ?share)\b", re.I)),
-    ("fee_to_withdraw", re.compile(r"\b(?:pay|deposit)?\s?\d*%?\s?(?:tax|fee|charges?|gst)\b[^.\n]{0,40}\bwithdraw\w*|\bwithdraw\w*[^.\n]{0,40}\b(?:tax|fee|charges?)\b", re.I)),
-    ("guaranteed_return", re.compile(r"\bguaranteed\b[^.\n!]{0,25}\breturns?\b|\bassured returns?\b|\b\d+x returns?\b|\bdouble your money\b|\brisk[- ]free\b", re.I)),
-    ("secrecy", re.compile(r"\b(?:don'?t tell|do not tell|keep (?:this|it) secret|confidential offer|kisi ko mat batana)\b", re.I)),
-    ("urgency", re.compile(r"\b(?:today only|urgent(?:ly)?|immediately|last chance|within \d+ (?:minutes|hours?)|aaj hi|jaldi)\b", re.I)),
+    ("otp_pin_request", re.compile(r"\b(?:share|send|tell|enter|give)\b[^.\n]{0,20}\b(?:otp|upi pin|m-?pin|cvv|password)\b|\b(?:otp|upi pin|cvv)\b[^.\n]{0,20}\b(?:share|send|batao|bhejo|do)\b", re.I)),
+    ("remote_access", re.compile(r"\b(?:anydesk|teamviewer|rustdesk|quick ?support|screen ?share|airdroid)\b", re.I)),
+    ("fee_to_withdraw", re.compile(r"\b(?:pay|deposit)?\s?\d*%?\s?(?:tax|fee|charges?|gst)\b[^.\n]{0,40}\bwithdraw\w*|\bwithdraw\w*[^.\n]{0,40}\b(?:tax|fee|charges?|gst)\b|\b(?:unfreeze|unfreezing|release|unlock|clearance)\b[^.\n]{0,15}\b(?:fee|charges?|tax)\b", re.I)),
+    ("guaranteed_return", re.compile(r"\bguaranteed?\b[^.\n!]{0,25}\b(?:returns?|profits?|income|gains?)\b|\b\d+\s?%\s?guaranteed?\b|\bassured (?:returns?|profits?)\b|\b\d+\s?x\s(?:returns?|profits?)\b|\bdouble (?:your )?money\b|\brisk[- ]?free\b|\bsure[- ]?shot\b|\bno[- ]loss\b|\bpakka (?:profit|double|return)\w*", re.I)),
+    ("secrecy", re.compile(r"\b(?:don'?t tell|do not tell|keep (?:this|it) secret|confidential offer|kisi ko mat batana|kisi ko (?:mat|na) bolna)\b", re.I)),
+    ("urgency", re.compile(r"\b(?:today only|urgent(?:ly)?|immediately|last chance|within \d+\s?(?:mins?|minutes|hours?|hrs?)|in (?:the next )?\d+\s?(?:mins?|minutes)|slot (?:will )?(?:be )?cancel\w*|aaj hi|jaldi|turant)\b", re.I)),
     ("authority_claim", re.compile(r"\b(?:we are )?(?:sebi|rbi)[- ]registered\b|\b(?:rbi|government|sebi) approved\b", re.I)),
 ]
+
+_LEET = str.maketrans({"@": "a", "$": "s", "0": "o", "1": "i", "3": "e", "4": "a", "5": "s", "7": "t"})
+_SPACED = re.compile(r"\b(?:[A-Za-z][._\-\s*]){2,}[A-Za-z]\b")
+
+
+def deobfuscate(text: str) -> str:
+    """For cue matching only (never for identifiers or spans): undo l33t inside words ("gu@r@nteed" -> "guaranteed")
+    and letter-by-letter spacing ("u_r_g_e_n_t", "P.a.y" -> "urgent", "Pay")."""
+    t = re.sub(r"(?<=[A-Za-z])[@$013457]+|[@$013457]+(?=[A-Za-z])", lambda m: m.group(0).translate(_LEET), text)
+    return _SPACED.sub(lambda m: re.sub(r"[._\-\s*]", "", m.group(0)), t)
 
 
 def normalise(text: str) -> str:
@@ -74,7 +84,11 @@ def _firm_names(body: str):
         yield raw, start, start + len(raw)
 
 
-def extract(messages: list, case_id: str) -> tuple[list[Indicator], list[Cue]]:
+def extract(messages: list, case_id: str, qr: dict | None = None) -> tuple[list[Indicator], list[Cue]]:
+    """qr: optional {msg_id: [decoded QR payload, ...]} for image messages (parsing.qr). A UPI ID inside a QR becomes
+    an Indicator with source "image" whose span points into the QR payload text (CR-3)."""
+    from parsing.qr import parse_upi
+
     found: list[tuple[int, int, str, str, str, str]] = []  # (msg_id, start, type, raw, source, end)
     cues: list[Cue] = []
     seen_payees: list[str] = []
@@ -89,9 +103,16 @@ def extract(messages: list, case_id: str) -> tuple[list[Indicator], list[Cue]]:
             for raw, s, e in _firm_names(body):
                 hits.append((s, e, "firm_name", raw))
         hits.sort()
+        for payload in (qr or {}).get(m.msg_id, []):
+            u = parse_upi(payload)
+            if u:
+                s = payload.lower().find(u["pa"])
+                hits.append((s, s + len(u["pa"]), "upi_vpa", u["pa"]))
         msg_cues: dict[str, Cue] = {}
+        qr_vpas = {parse_upi(x)["pa"] for x in (qr or {}).get(m.msg_id, []) if parse_upi(x)}
         for s, e, typ, raw in hits:
-            found.append((m.msg_id, s, typ, raw, src, e))
+            hsrc = "image" if (m.kind == "image" and typ == "upi_vpa" and raw in qr_vpas) else src
+            found.append((m.msg_id, s, typ, raw, hsrc, e))
             norm = _norm(typ, raw)
             if typ in PAYEE_TYPES and norm not in seen_payees:
                 if seen_payees and "payee_change" not in msg_cues:
@@ -99,11 +120,13 @@ def extract(messages: list, case_id: str) -> tuple[list[Indicator], list[Cue]]:
                     if lead > 0 and body[lead - 1] not in " \n":
                         sp = body.find(" ", lead, s)
                         lead = sp + 1 if sp != -1 else s
+                    excerpt = f"QR code in an image: {raw}" if hsrc == "image" else body[lead:e].strip()
                     msg_cues["payee_change"] = Cue(msg_id=m.msg_id, type="payee_change", severity="soft",
-                                                   excerpt=body[lead:e].strip())
+                                                   excerpt=excerpt or raw)
                 seen_payees.append(norm)
+        plain = deobfuscate(body)
         for typ, rx in CUE_RX:
-            mt = rx.search(body)
+            mt = rx.search(body) or rx.search(plain)
             if mt and typ not in msg_cues:
                 msg_cues[typ] = Cue(msg_id=m.msg_id, type=typ, severity=DEFAULT_CUE_SEVERITY[typ],
                                     excerpt=mt.group(0).strip())
@@ -112,6 +135,22 @@ def extract(messages: list, case_id: str) -> tuple[list[Indicator], list[Cue]]:
                       value_raw=raw, source=src, confidence="medium" if src == "voice" else "high", span=[s, e])
             for n, (mid, s, typ, raw, src, e) in enumerate(found, start=1)]
     return inds, cues
+
+
+def qr_details(qr: dict | None, indicators: list) -> dict[str, dict]:
+    """{payee indicator id: parsed UPI QR fields} for payees that came from a QR code (source "image")."""
+    from parsing.qr import parse_upi
+
+    out = {}
+    for i in indicators:
+        if i.source != "image" or i.type != "upi_vpa":
+            continue
+        for payload in (qr or {}).get(i.msg_id, []):
+            u = parse_upi(payload)
+            if u and u["pa"] == i.value_norm:
+                out[i.id] = u
+                break
+    return out
 
 
 def payees(indicators: list) -> list:

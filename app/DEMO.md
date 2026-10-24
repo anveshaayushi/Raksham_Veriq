@@ -1,8 +1,9 @@
 # Demo script and backup-video plan (Claude C)
 
-Label everything shown from this build as **v0 (pre-built)**. Synthetic data only. Say "stub" wherever the app says stub.
+Synthetic data only. Every answer is computed live by the engine (demos only pre-fill inputs). Say "stub" wherever
+the app says stub (demo voice results until B's threshold is calibrated).
 
-## Live demo, about 4 minutes (v0)
+## Live demo, about 4 minutes
 1. **Consent (15 s).** "Before anything is uploaded, VERIQ asks for consent and says what it can't do: it can't prove fraud or confirm a voice is real."
 2. **Upload (20 s).** Show the upload tab and its limits, then switch to *Try a synthetic demo* → Scenario A.
 3. **Confirm the firm (20 s).** "Meera believes she's dealing with Navyug Wealth Research. Each place she was asked to pay is listed separately: two UPI IDs and an account. The second came from a voice note."
@@ -10,9 +11,13 @@ Label everything shown from this build as **v0 (pre-built)**. Synthetic data onl
 5. **Answer (60 s).** Overall: payee name doesn't match. Walk payee by payee: `ramesh.k@upi`, `sunita.t@upi` (from the
    voice note) and the account each show their own name discrepancy (claimed firm vs the trading-company name her app showed),
    with source, date, rule and limitation. Open "Evidence about the whole case" for the registration and voice lines.
-   Point at the yellow banner: "In v0 these are Claude A's golden-fixture expected values; the rules engine is connected at the finale."
+   "Change any typed name and the answer is recomputed": try 'NAVYUG ONLINE TRADERS' on Scenario B (look-alike -> review).
 6. **Money already sent (30 s).** Turn on the toggle: the results stay the same, and the next step changes to calling 1930.
 7. **Reports (45 s).** Download the filing sheet: 1930 fields, BLANKs for what only Meera knows, and the "what to say on the call" box. Then the shareable summary: account cut to the last four digits.
+7b. **Mistake recovery (40 s, Scenario B + 'Also attach a QR screenshot').** The QR names OM SAI ENTERPRISES -> Needs
+   review. Open "This looks wrong?", choose "different legal or trading name", add the @valid reference, ask for review.
+   Turn on *Reviewer view* (left menu), overturn with a reason: "Reviewed: explained", time taken shown, original result
+   kept on record; download the audit trail and the 1930 incident card (JSON).
 8. **Close (20 s).** Scenario B shows "No major issue … This is not a guarantee." Scenario C shows Inconclusive. "VERIQ files no complaints, blocks nothing and contacts no one."
 
 ## Phone demo

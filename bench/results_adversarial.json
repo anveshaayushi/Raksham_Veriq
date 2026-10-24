@@ -1,0 +1,289 @@
+{
+ "cases": 35,
+ "defended_attacks_passed": 31,
+ "defended_attacks": 31,
+ "known_gaps": 4,
+ "known_gaps_still_failing": 4,
+ "rows": [
+  {
+   "group": "look-alike payee name",
+   "attack": "NAVYUG ONLINE TRADERS",
+   "expected": "HUMAN_REVIEW",
+   "got": "HUMAN_REVIEW",
+   "pass": true,
+   "known_gap": false
+  },
+  {
+   "group": "look-alike payee name",
+   "attack": "Navyug Broking Services",
+   "expected": "HUMAN_REVIEW",
+   "got": "HUMAN_REVIEW",
+   "pass": true,
+   "known_gap": false
+  },
+  {
+   "group": "look-alike payee name",
+   "attack": "NAVYUG CAPITAL MARKETS",
+   "expected": "HUMAN_REVIEW",
+   "got": "HUMAN_REVIEW",
+   "pass": true,
+   "known_gap": false
+  },
+  {
+   "group": "look-alike payee name",
+   "attack": "NAVYUG PAYMENTS",
+   "expected": "HUMAN_REVIEW",
+   "got": "HUMAN_REVIEW",
+   "pass": true,
+   "known_gap": false
+  },
+  {
+   "group": "look-alike payee name",
+   "attack": "NAVYUG BROKING SOLUTIONS",
+   "expected": "HUMAN_REVIEW",
+   "got": "HUMAN_REVIEW",
+   "pass": true,
+   "known_gap": false
+  },
+  {
+   "group": "look-alike payee name",
+   "attack": "NAVYUG TECH SERVICES",
+   "expected": "HUMAN_REVIEW",
+   "got": "HUMAN_REVIEW",
+   "pass": true,
+   "known_gap": false
+  },
+  {
+   "group": "look-alike payee name",
+   "attack": "identical name on a mule account (NAVYUG BROKING PVT LTD)",
+   "expected": "not NO_MAJOR_ISSUE",
+   "got": "NO_MAJOR_ISSUE",
+   "pass": false,
+   "known_gap": true
+  },
+  {
+   "group": "genuine name variant",
+   "attack": "NAVYUG BROKING PRIVATE LIMITED",
+   "expected": "NO_MAJOR_ISSUE",
+   "got": "NO_MAJOR_ISSUE",
+   "pass": true,
+   "known_gap": false
+  },
+  {
+   "group": "genuine name variant",
+   "attack": "NAVYUG BROKING LTD",
+   "expected": "NO_MAJOR_ISSUE",
+   "got": "NO_MAJOR_ISSUE",
+   "pass": true,
+   "known_gap": false
+  },
+  {
+   "group": "genuine name variant",
+   "attack": "M/S NAVYUG BROKING PVT LTD",
+   "expected": "NO_MAJOR_ISSUE",
+   "got": "NO_MAJOR_ISSUE",
+   "pass": true,
+   "known_gap": false
+  },
+  {
+   "group": "genuine name variant",
+   "attack": "Navyug Broking",
+   "expected": "NO_MAJOR_ISSUE",
+   "got": "NO_MAJOR_ISSUE",
+   "pass": true,
+   "known_gap": false
+  },
+  {
+   "group": "unrelated payee name",
+   "attack": "SHREE GANESH TRADERS",
+   "expected": "NAME_DISCREPANCY",
+   "got": "NAME_DISCREPANCY",
+   "pass": true,
+   "known_gap": false
+  },
+  {
+   "group": "unrelated payee name",
+   "attack": "BALAJI GARMENTS",
+   "expected": "NAME_DISCREPANCY",
+   "got": "NAME_DISCREPANCY",
+   "pass": true,
+   "known_gap": false
+  },
+  {
+   "group": "unrelated payee name",
+   "attack": "RK MOBILE POINT",
+   "expected": "NAME_DISCREPANCY",
+   "got": "NAME_DISCREPANCY",
+   "pass": true,
+   "known_gap": false
+  },
+  {
+   "group": "unrelated payee name",
+   "attack": "KRISHNA DAIRY FARM (contains a given name)",
+   "expected": "NAME_DISCREPANCY",
+   "got": "INCONCLUSIVE",
+   "pass": false,
+   "known_gap": true
+  },
+  {
+   "group": "obfuscated pressure phrase",
+   "attack": "gu@r@nteed 3x returns",
+   "expected": "guaranteed_return",
+   "got": "guaranteed_return",
+   "pass": true,
+   "known_gap": false
+  },
+  {
+   "group": "obfuscated pressure phrase",
+   "attack": "100% guaranteed profit",
+   "expected": "guaranteed_return",
+   "got": "guaranteed_return",
+   "pass": true,
+   "known_gap": false
+  },
+  {
+   "group": "obfuscated pressure phrase",
+   "attack": "P.a.y 18% t@x to withdraw",
+   "expected": "fee_to_withdraw",
+   "got": "fee_to_withdraw",
+   "pass": true,
+   "known_gap": false
+  },
+  {
+   "group": "obfuscated pressure phrase",
+   "attack": "pay unfreeze account fee",
+   "expected": "fee_to_withdraw",
+   "got": "fee_to_withdraw",
+   "pass": true,
+   "known_gap": false
+  },
+  {
+   "group": "obfuscated pressure phrase",
+   "attack": "u_r_g_e_n_t",
+   "expected": "urgency",
+   "got": "urgency",
+   "pass": true,
+   "known_gap": false
+  },
+  {
+   "group": "obfuscated pressure phrase",
+   "attack": "send in 5 mins",
+   "expected": "urgency",
+   "got": "urgency",
+   "pass": true,
+   "known_gap": false
+  },
+  {
+   "group": "obfuscated pressure phrase",
+   "attack": "no loss pakka double",
+   "expected": "guaranteed_return",
+   "got": "guaranteed_return",
+   "pass": true,
+   "known_gap": false
+  },
+  {
+   "group": "obfuscated pressure phrase",
+   "attack": "sure-shot gain",
+   "expected": "guaranteed_return",
+   "got": "guaranteed_return",
+   "pass": true,
+   "known_gap": false
+  },
+  {
+   "group": "obfuscated pressure phrase",
+   "attack": "slot cancel ho jayega",
+   "expected": "urgency",
+   "got": "urgency",
+   "pass": true,
+   "known_gap": false
+  },
+  {
+   "group": "obfuscated pressure phrase",
+   "attack": "share the OTP you got",
+   "expected": "otp_pin_request",
+   "got": "otp_pin_request",
+   "pass": true,
+   "known_gap": false
+  },
+  {
+   "group": "obfuscated pressure phrase",
+   "attack": "install AnyDesk",
+   "expected": "remote_access",
+   "got": "remote_access",
+   "pass": true,
+   "known_gap": false
+  },
+  {
+   "group": "obfuscated pressure phrase",
+   "attack": "your chance closes soon, act fast (reworded, no keyword)",
+   "expected": "urgency",
+   "got": "missed",
+   "pass": false,
+   "known_gap": true
+  },
+  {
+   "group": "obfuscated pressure phrase",
+   "attack": "profit is fixed, you cannot lose (reworded, no keyword)",
+   "expected": "guaranteed_return",
+   "got": "missed",
+   "pass": false,
+   "known_gap": true
+  },
+  {
+   "group": "benign sentence (false cue check)",
+   "attack": "Please confirm the payee name on your app before paying.",
+   "expected": "no hard cue",
+   "got": "no hard cue",
+   "pass": true,
+   "known_gap": false
+  },
+  {
+   "group": "benign sentence (false cue check)",
+   "attack": "Onboarding fee ₹10,000",
+   "expected": "no hard cue",
+   "got": "no hard cue",
+   "pass": true,
+   "known_gap": false
+  },
+  {
+   "group": "benign sentence (false cue check)",
+   "attack": "Markets are volatile; returns are not guaranteed.",
+   "expected": "no hard cue",
+   "got": "no hard cue",
+   "pass": true,
+   "known_gap": false
+  },
+  {
+   "group": "benign sentence (false cue check)",
+   "attack": "Thanks, received.",
+   "expected": "no hard cue",
+   "got": "no hard cue",
+   "pass": true,
+   "known_gap": false
+  },
+  {
+   "group": "payee hidden in a QR image",
+   "attack": "QR names SUNITA TRADERS, no name check yet",
+   "expected": "found + HUMAN_REVIEW",
+   "got": "found + HUMAN_REVIEW",
+   "pass": true,
+   "known_gap": false
+  },
+  {
+   "group": "payee hidden in a QR image",
+   "attack": "QR copies the firm's name (pn is sender-typed); no name check",
+   "expected": "not NO_MAJOR_ISSUE",
+   "got": "not NO_MAJOR_ISSUE",
+   "pass": true,
+   "known_gap": false
+  },
+  {
+   "group": "short voice note + pressure",
+   "attack": "0.3 s 'pay now' note, urgency in text",
+   "expected": "INCONCLUSIVE + HIGH PRESSURE",
+   "got": "INCONCLUSIVE + HIGH PRESSURE",
+   "pass": true,
+   "known_gap": false
+  }
+ ]
+}

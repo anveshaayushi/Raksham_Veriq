@@ -1,11 +1,9 @@
 """Assemble a case from inputs, with no Streamlit dependency (so it is testable).
 
-Two paths, and the UI always says which one produced the answer:
-
-* Demo scenarios use Claude A's golden fixtures (fixtures/scenario_*.json). While the user's inputs equal the
-  fixture's inputs (same chat, firm, typed names, and the same voice state), the app shows the fixture's EXPECTED
-  messages, indicators, evidence and decisions. These are Claude A's hand-specified expected values, not engine output.
-* Anything else goes through the adapters: Claude A's parser/extractor/rules when they exist, otherwise labelled stubs.
+Every answer is computed: parser -> extractor (chat text, voice transcripts, QR codes in images) -> the user's typed
+payee names -> evidence (registration, voice, registry, QR) -> rules.decide. Demo scenarios only pre-fill the
+INPUTS (chat, firm, typed names) from fixtures/scenario_*.json; their answers go through the same engine.
+If the engine code were missing, the app would fall back to labelled stub decisions (never pre-written answers).
 """
 
 from __future__ import annotations
@@ -75,6 +73,7 @@ class Case:
     files: list[dict]
     amounts: dict[str, str] = field(default_factory=dict)  # payee_id -> raw amount text
     fixture_id: str | None = None
+    qr: dict = field(default_factory=dict)  # payee_id -> parsed UPI QR fields (payees found in QR codes)
 
     @property
     def decisions(self) -> list:
@@ -99,16 +98,6 @@ class Case:
 
 
 # ------------------------------------------------------------------ extraction ----
-def golden_extraction(fx: dict) -> extract_adapter.Extraction:
-    e = fx["expected"]
-    return extract_adapter.Extraction(
-        messages=[from_json(Message, m) for m in e["messages"]],
-        indicators=[from_json(Indicator, i) for i in e["indicators"]],
-        cues=[from_json(Cue, c) for c in e["cues"]],
-        source=f"Claude A's golden fixture {fx['fixture_id']} (expected values; parser/extractor not built yet)",
-        is_stub=True)
-
-
 def engine_available() -> bool:
     """True when the real parser, extractor and rules (FINALE) are importable with the contract's entry points."""
     try:
@@ -120,10 +109,12 @@ def engine_available() -> bool:
     return all(hasattr(m, f) for m, f in ((_p, "parse_chat"), (_e, "extract"), (_r, "decide"), (_r, "case_evidence")))
 
 
-def extract(case_id: str, chat_text: str, transcripts: dict | None = None, fixture: dict | None = None) -> extract_adapter.Extraction:
-    if fixture is not None and chat_text == fixture["input"]["chat_txt"] and not engine_available():
-        return golden_extraction(fixture)
-    return extract_adapter.run(chat_text, case_id, transcripts)
+def extract(case_id: str, chat_text: str, transcripts: dict | None = None, fixture: dict | None = None,
+            images: dict[str, bytes] | None = None) -> extract_adapter.Extraction:
+    if fixture is not None:
+        case_id = fixture["case"]["case_id"]
+        transcripts = transcripts or fixture["input"].get("transcripts")
+    return extract_adapter.run(chat_text, case_id, transcripts, images)
 
 
 # ------------------------------------------------------------------ voice ----
@@ -155,19 +146,10 @@ def _voice_results(ex, audio: dict[str, bytes], fixture: dict | None) -> tuple[l
 
 
 # ------------------------------------------------------------------ build ----
-def _fixture_inputs_match(fx: dict, chat_text: str, claimed_firm: str, checks: dict[str, UserCheck], voice: list) -> bool:
-    want = demo_inputs(fx)
-    given = {k: c.observed_name.strip() for k, c in checks.items() if c.observed_name.strip()}
-    want_names = {k: v["name"] for k, v in want["checks"].items()}
-    want_voice = [v["state"] for v in fx["expected"]["voice_results"]]
-    return (chat_text == want["chat_text"] and claimed_firm.strip() == want["claimed_firm"] and given == want_names
-            and [get(v, "state") for v in voice] == want_voice)
-
-
 def build_case(*, case_id: str, chat_text: str, claimed_firm: str, checks: dict[str, UserCheck],
                audio: dict[str, bytes] | None = None, files: list[dict] | None = None, transcripts: dict | None = None,
-               fixture: dict | None = None) -> Case:
-    ex = extract(case_id, chat_text, transcripts, fixture)
+               fixture: dict | None = None, images: dict[str, bytes] | None = None) -> Case:
+    ex = extract(case_id, chat_text, transcripts, fixture, images)
     payees = extract_adapter.payees(ex.indicators)
     voice, voice_stub = _voice_results(ex, audio or {}, fixture)
 
@@ -175,19 +157,7 @@ def build_case(*, case_id: str, chat_text: str, claimed_firm: str, checks: dict[
         return _computed_case(case_id=case_id, chat_text=chat_text, claimed_firm=claimed_firm, checks=checks, ex=ex,
                               payees=payees, voice=voice, voice_stub=voice_stub, files=files, fixture=fixture)
 
-    if fixture is not None and _fixture_inputs_match(fixture, chat_text, claimed_firm, checks, voice):
-        e = fixture["expected"]
-        evidence = [from_json(Evidence, x) for x in e["evidence"]]
-        decisions = [from_json(Decision, x) for x in e["decisions"]]
-        registry = [RegistryResult(p.id, fixture["registry_stub"].get(p.id, "unavailable"), 0, False,
-                                   "registry STUB values from Claude A's golden fixture") for p in payees]
-        amounts = {a["payee_id"]: a["raw"] for a in e["amounts"]}
-        bundle = decide_adapter.DecisionBundle(
-            decisions, f"Claude A's golden fixture {fixture['fixture_id']} (expected values; rules engine not built yet)", True,
-            ["These are the results Claude A's golden fixture expects. No rules engine ran."])
-        return Case(fixture["case"]["case_id"], claimed_firm, ex, payees, evidence, voice, voice_stub, registry, bundle,
-                    files or [], amounts, fixture["fixture_id"])
-
+    # Engine code missing: labelled stub decisions only (never pre-written answers).
     evidence = []
     for p in payees:
         c = checks.get(p.value_norm)
@@ -199,8 +169,6 @@ def build_case(*, case_id: str, chat_text: str, claimed_firm: str, checks: dict[
     registry = [reg.lookup(p.id, p.type, p.value_norm) for p in payees]
     bundle = decide_adapter.decide(claimed_firm=claimed_firm, payees=payees, indicators=ex.indicators, cues=ex.cues,
                                    evidence=evidence, voice=voice, registry=registry)
-    if fixture is not None:
-        bundle.notes.append("You changed the demo's inputs, so Claude A's expected results no longer apply.")
     msgs = {get(m, "msg_id"): m for m in ex.messages}
     amounts = {}
     for p in payees:
@@ -219,8 +187,6 @@ def _computed_case(*, case_id, chat_text, claimed_firm, checks, ex, payees, voic
 
     if fixture is not None:
         case_id = fixture["case"]["case_id"]
-        ex = extract_adapter.run(chat_text, case_id, fixture["input"].get("transcripts"))
-        payees = extract_adapter.payees(ex.indicators)
     as_of = date.today().isoformat()
     name_ev = []
     for p in payees:
@@ -235,12 +201,14 @@ def _computed_case(*, case_id, chat_text, claimed_firm, checks, ex, payees, voic
         registry = [reg.lookup(p.id, p.type, p.value_norm) for p in payees]
     elif fixture is not None:
         registry = [RegistryResult(p.id, fixture["registry_stub"].get(p.id, "unavailable"), 0, False,
-                                   "registry STUB (demo fixture table)") for p in payees]
+                                   "registry STUB (demo fixture table)",
+                                   "" if p.id in fixture["registry_stub"] else "not in the demo table") for p in payees]
     else:
         registry = [StubRegistry().lookup(p.id, p.type, p.value_norm) for p in payees]
+    qr = a_extract.qr_details(ex.qr, ex.indicators) if hasattr(a_extract, "qr_details") else {}
     evidence = rules.case_evidence(case_id=case_id, claimed_firm=claimed_firm, messages=ex.messages,
                                    indicators=ex.indicators, payees=payees, payee_name_evidence=name_ev, voice=voice,
-                                   registry=registry, as_of=as_of)
+                                   registry=registry, as_of=as_of, qr=qr)
     bundle = decide_adapter.decide(claimed_firm=claimed_firm, payees=payees, indicators=ex.indicators, cues=ex.cues,
                                    evidence=evidence, voice=voice, registry=registry)
     if voice_stub:
@@ -248,13 +216,16 @@ def _computed_case(*, case_id, chat_text, claimed_firm, checks, ex, payees, voic
     amounts = {}
     if hasattr(a_extract, "amounts"):
         amounts = {a.payee_id: a.raw for a in a_extract.amounts(ex.messages, ex.indicators)}
+    for pid, u in qr.items():
+        if u.get("am") and pid not in amounts:
+            amounts[pid] = f"₹{u['am']:,} (in the QR code)"
     return Case(case_id, claimed_firm, ex, payees, evidence, voice, voice_stub, registry, bundle, files or [], amounts,
-                fixture["fixture_id"] if fixture else None)
+                fixture["fixture_id"] if fixture else None, qr)
 
 
 # ------------------------------------------------------------------ reports ----
 def report_data(case: Case, *, money_sent: bool, user: dict[str, str] | None = None,
-                per_payee: dict[str, dict[str, str]] | None = None) -> ReportData:
+                per_payee: dict[str, dict[str, str]] | None = None, reviews: dict[str, str] | None = None) -> ReportData:
     user = user or {}
     per_payee = per_payee or {}
     msgs = {get(m, "msg_id"): m for m in case.extraction.messages}
@@ -277,7 +248,9 @@ def report_data(case: Case, *, money_sent: bool, user: dict[str, str] | None = N
             next_step=display_next_step(d),
             findings=[_finding(e, d) for e in case.evidence_for(p.id)],
             voice_note=vnote, utr=pp.get("utr", "").strip(), paid_on=pp.get("paid_on", "").strip(),
-            amount_paid=pp.get("amount_paid", "").strip()))
+            amount_paid=pp.get("amount_paid", "").strip(), found_in=get(p, "source", "text"),
+            first_seen=get(first, "ts", "") if first is not None else "", qr=case.qr.get(p.id),
+            review=(reviews or {}).get(p.id, "")))
     return ReportData(
         case_id=case.case_id, generated_at=datetime.now().strftime("%Y-%m-%d %H:%M"), claimed_firm=case.claimed_firm,
         case_result=case.case_result(), decision_source=case.bundle.source, is_stub=case.bundle.is_stub, money_sent=money_sent,
@@ -286,7 +259,11 @@ def report_data(case: Case, *, money_sent: bool, user: dict[str, str] | None = N
                    "text": get(m, "text")} for m in case.extraction.messages],
         cues=[{"msg_id": get(c, "msg_id"), "type": get(c, "type"), "severity": get(c, "severity"), "excerpt": get(c, "excerpt")}
               for c in case.extraction.cues],
-        files=case.files, voice=[{"file_id": get(v, "file_id"), "state": get(v, "state")} for v in case.voice],
+        files=case.files,
+        voice=[{"file_id": get(v, "file_id"), "state": get(v, "state"), "speech_seconds": get(v, "speech_seconds"),
+                "reasons": list(get(v, "reasons") or []), "model_version": get(v, "model_version"),
+                "score": "withheld (no calibrated threshold)" if voice_adapter.score_display(v).startswith("no score")
+                else voice_adapter.score_display(v)} for v in case.voice],
         case_findings=[_finding(e) for e in case.case_level_evidence()],
         complainant_mobile=user.get("mobile", "").strip(), debited_bank=user.get("bank", "").strip(),
         debited_account=user.get("account", "").strip(), screenshots=user.get("screenshots", "").strip())
