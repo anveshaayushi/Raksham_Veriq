@@ -16,6 +16,7 @@ from datetime import date, datetime
 from pathlib import Path
 
 from registry.interface import RegistryResult
+from registry.sqlite_registry import from_env as sqlite_registry_from_env
 from registry.stub import StubRegistry
 from report.build import PayeeRow, ReportData
 
@@ -179,7 +180,7 @@ def build_case(*, case_id: str, chat_text: str, claimed_firm: str, checks: dict[
             ev = payee_name_evidence(f"{case_id}-E{len(evidence) + 1}", p.id, claimed_firm, c.observed_name, c.source, c.as_of)
             if ev is not None:
                 evidence.append(ev)
-    reg = StubRegistry()
+    reg = sqlite_registry_from_env() or StubRegistry()  # SQLite only when VERIQ_REGISTRY_DB is set
     registry = [reg.lookup(p.id, p.type, p.value_norm) for p in payees]
     bundle = decide_adapter.decide(claimed_firm=claimed_firm, payees=payees, indicators=ex.indicators, cues=ex.cues,
                                    evidence=evidence, voice=voice, registry=registry)

@@ -17,6 +17,7 @@ if str(ROOT) not in sys.path:
 
 import streamlit as st  # noqa: E402
 
+from registry.sqlite_registry import WORDING as REGISTRY_WORDING  # noqa: E402
 from app.case import FIXTURES, UserCheck, build_case, demo_inputs, demo_title, extract, load_demo, report_data  # noqa: E402
 from app.adapters.extract import amount_in, payees as payee_list  # noqa: E402
 from app.adapters.voice import observed_for_display, score_display as voice_score_display  # noqa: E402
@@ -255,6 +256,10 @@ elif S.step == 5:
                     st.caption(f"Found in a voice note. Voice check: {get(v, 'state')} · {md_escape('; '.join(get(v, 'reasons') or []))} "
                                f"· {voice_score_display(v)} · model: {md_escape(get(v, 'model_version'))}. "
                                "Only 'flagged' can raise concern; a voice result never clears a payee.")
+            rr = next((r for r in case.registry if get(r, "payee_id") == p.id), None)
+            if rr is not None:
+                st.caption(f"Cross-victim registry: {md_escape(get(rr, 'status'))} · {md_escape(get(rr, 'note'))} · "
+                           f"source: {md_escape(get(rr, 'source'))}. {REGISTRY_WORDING}")
             st.info(f"**Next step:** {display_next_step(d)}")
     if case.case_level_evidence():
         with st.expander("Evidence about the whole case (registration, voice)"):
