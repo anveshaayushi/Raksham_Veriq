@@ -27,6 +27,7 @@ If it was not run, it says "not run". Numbers from the Round 1 deck (EER 0.37, "
 | 2026-10-23 16:15 IST | see git log | `python -m pytest -q` after Claude B integration | **55 passed** in 7.3 s |
 | 2026-10-23 16:16 IST | `4a113b18fd` | `python -m pytest -q tests app registry report` after merging Claude A (Python 3.13, Streamlit 1.65, Linux) | **113 passed** (45 A golden/schema + 68 C) |
 | 2026-10-23 22:55 IST | see git log | `python -m pytest -q tests app registry report` after merging voice transcripts before A's extractor | **114 passed** |
+| 2026-10-24 11:43 IST | `704c9f5` | FINALE: `python -m pytest -q tests app registry report` after the SQLite registry (C3) | **127 passed** (incl. 17 registry tests: poisoning by one token x20 and 5 tokens in one minute does not link) |
 | — | — | Windows 11: `app\run_app.ps1` on the team laptop | **not run** |
 
 The 113/114 are code tests, not accuracy numbers. Demo results are Claude A's *expected* fixture values, not a rules engine.

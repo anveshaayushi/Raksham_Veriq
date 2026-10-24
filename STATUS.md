@@ -21,7 +21,9 @@ Legend: not started / in progress / merged / tested
 ## Claude C
 - Streamlit app (consent, upload, confirm firm, user-reported payee names, per-payee answer, money toggle): **tested** against A's contract and golden fixtures
 - Filing sheet + redacted summary (HTML, Markdown): **tested**
-- Registry interface + stub + keyed HMAC helper: **tested**
+- Registry interface + stub + keyed HMAC helper: **tested** (pre-built)
+- FINALE: SQLite registry (keyed hashes, independent-reporter linking, reviewer confirm/reject, rate limits, burst
+  defence, gateway exclusion, "unavailable" on failure) + synthetic seed: **tested** (17 tests)
 - Adapters to A's parser/extractor/rules and B's voice: **merged** (labelled stubs until those exist)
-- SQLite registry, campaign graph, reviewer console: not started (P2)
+- Campaign graph, reviewer console: not started (C4)
 - Windows run script (`app/run_app.ps1`): written, **not run**

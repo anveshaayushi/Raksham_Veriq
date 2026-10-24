@@ -1,0 +1,21 @@
+# CLAIMS: what we say VERIQ does, and the proof for each line
+
+Rule: a line goes on a slide only if its Status is **runs** and its Proof can be re-run. Each role appends its rows from
+`CLAIMS_ROWS.md`; Claude C merges them here. "Built" says whether it is in `v0-prebuilt` (PRE) or finale work (FINALE).
+
+| # | Claim (plain words) | Owner | Built | Status | Proof (command or file) |
+|---|---|---|---|---|---|
+| C-1 | Asks for consent before any upload, and checks file type, size, magic bytes and ZIP safety | C | PRE | runs | `app/tests/test_intake.py`, `test_app_flow.py` |
+| C-2 | Lists every place the user was asked to pay as a separate payee | C | PRE | runs (stub extractor until A's) | `app/tests/test_extract_stub.py` |
+| C-3 | The payee name the user saw in their own bank/UPI app is labelled "user-reported" (class A) | C | PRE | runs | `app/tests/test_adapters_and_case.py` |
+| C-4 | "I have already sent money" changes only the next step (to 1930), never the result | C | PRE | runs | `app/tests/test_next_steps_and_safety.py`, `test_golden_integration.py` |
+| C-5 | 1930 filing sheet keeps full identifiers; shareable summary shows accounts as last 4 digits | C | PRE | runs | `report/tests/test_reports.py` |
+| C-6 | Chat text is escaped in the app and reports (no script runs, links are defanged) | C | PRE | runs | `report/tests/test_reports.py`, `app/tests/test_next_steps_and_safety.py` |
+| C-7 | "No major issue" always says "This is not a guarantee." | C | PRE | runs | `app/tests/test_golden_integration.py` |
+| C-8 | Cross-victim registry stores only keyed hashes: pseudonymisation, not anonymity | C | FINALE | runs | `registry/tests/test_sqlite_registry.py::test_no_raw_identifiers_or_tokens_in_the_file` |
+| C-9 | A payee links only after 2 independent reporters or a reviewer; one reporter or a burst of new reporters cannot link it | C | FINALE | runs | `registry/tests/test_sqlite_registry.py` (poisoning tests) |
+| C-10 | Payment-gateway handles are never stored or linked; a broken registry says "unavailable", never "clean" | C | FINALE | runs | `registry/tests/test_sqlite_registry.py` |
+| C-11 | Per-payee decision from Claude A's rules | A/C | FINALE | **not yet** (demo replays fixture answers) | — |
+| C-12 | Voice-note check from Claude B's detector | B/C | FINALE | **not yet** (stub) | — |
+
+No accuracy, false-positive or voice numbers are claimed. Test counts are code tests, not accuracy.

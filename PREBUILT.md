@@ -1,62 +1,49 @@
-# PREBUILT: what was built before the finale
+# PREBUILT: what this repository contained before the finale
 
-Disclosure per the organisers' rule: clearly state what was built before the finale versus during it.
+Scope: this file covers the code in **this repository**. Everything in tag `v0-prebuilt` was written on
+**23 Oct 2026 between 14:55 and 22:49 IST** (pre-build window, before the finale started on 24 Oct, 11:00 IST),
+with AI assistance (Claude, Anthropic), and reviewed by the team. Commit times in `git log` are the record.
 
-**Honesty note.** The Round 1 deck described a *plan*. No working code existed when it was submitted.
-Everything below was written on **23 Oct 2026 (pre-build window, before the finale starts on 24 Oct)**,
-with AI assistance (Claude, Anthropic), and reviewed by the team.
+## Declared prototype: tag `v0-prebuilt` (commit `8718c9c`) claims ONLY
 
-**Commit hashes.** Claude A's files were written in a scratch workspace and first committed when Claude C merged
-them (commit `4a113b18fd`). See "Git" below.
+1. **The app flow**: consent, upload validation (types, sizes, magic bytes, safe ZIP reading, SHA-256), claimed-firm
+   confirmation, and the step-by-step Streamlit screens.
+2. **User-reported payee names and the per-payee answer screen**, with the money-already-sent toggle that changes only
+   the next step.
+3. **The 1930 report**: filing sheet and redacted shareable summary (HTML and Markdown).
+4. **The shared contract, golden fixtures and tests**: `core/schemas.py`, `core/validate.py`, three synthetic scenarios,
+   45 golden/schema tests (Claude A) and the app/report/registry tests (Claude C).
 
-| Area | Files | Written (IST) | Team-repo commit |
+Also present but **labelled as stubs**, not claimed as working features: the registry stub, voice-plumbing drafts
+(adapters that call Claude B's `voice` package when it exists), a small regex parser/extractor stub, and a screen that
+replays the golden fixtures' expected answers ("Claude A's golden fixture ... rules engine not built yet").
+
+**Not in `v0-prebuilt`:** the WhatsApp parser, payee extractor, name matcher and decision rules (Claude A's
+`parsing/`, `extract/`, `match/`, `rules/` are empty), any voice detector or threshold, the SQLite registry, the
+campaign graph and the reviewer console. These are built during the finale.
+
+## Files in `v0-prebuilt`
+
+| Owner | Path | What it is | Status at v0-prebuilt |
 |---|---|---|---|
-| Shared contract | `core/schemas.py` | 2026-10-23 (afternoon) | `4a113b18fd` |
-| Fixture validator | `core/validate.py` | 2026-10-23 | `4a113b18fd` |
-| Golden fixtures (synthetic) | `fixtures/scenario_*.json`, `fixtures/reference/sebi_snapshot_synthetic.json`, `fixtures/build_fixtures.py` | 2026-10-23 | `4a113b18fd` |
-| Golden/schema tests | `tests/golden/test_fixtures.py` | 2026-10-23 | `4a113b18fd` |
-| Shared docs | `CHANGES_REQUESTED.md`, `STATUS.md`, `PREBUILT.md`, `DISCLOSURE.md`, `RESULTS.md` | 2026-10-23 | `4a113b18fd` |
-
-Claude B and Claude C add their own rows.
-
-## Claude C (app, registry, report) · written 23 Oct 2026, about 14:55 IST – 16:16 IST, with AI assistance (Claude)
-
-| Path | What it is | Status |
-|---|---|---|
-| `app/streamlit_app.py` | 6-step Streamlit app: consent, upload, confirm firm, user-reported payee names, per-payee answer with money-already-sent toggle, reports | works; tested |
-| `app/intake.py` | upload guard: types, sizes, counts, magic bytes, in-memory ZIP reading with slip/bomb/encryption checks, SHA-256 | works; tested |
-| `app/case.py` | assembles a case from adapters (no Streamlit), builds report data | works; tested |
-| `app/contracts.py`, `app/_provisional_schemas.py` | import point for Claude A's `core/schemas.py` (now the real contract); the provisional copy is only a fallback | works; tested |
-| `app/adapters/extract.py` | calls Claude A's parser/extractor if present; otherwise a small labelled STUB (Android, iPhone and plain exports, per-file day/month order, regexes, cues) | **stub** |
-| `app/adapters/decide.py` | calls Claude A's `rules.decide` if present; otherwise INCONCLUSIVE (`INCONCL`) for uploads; demos show Claude A's golden-fixture expected values, labelled as such | **stub** |
-| `app/adapters/voice.py` | uses Claude B's `voice.stub.stub_result` for demos; `voice.analyse` for uploads when B exposes it, else `cant_assess`; hides scores without a calibrated threshold | **stub** |
-| `app/evidence_input.py` | user-typed bank/UPI-app name → contract `Evidence` (lane payee_name, class A, "User-reported") | works; tested |
-| `app/next_steps.py` | money-sent toggle (changes only `next_step`), "This is not a guarantee." enforcement | works; tested |
-| `app/text_safety.py` | Markdown escaping, URL defanging, redaction | works; tested |
-| `app/case.py` demo loading | loads Claude A's `fixtures/scenario_*.json`; if the user edits a demo input, the golden answer is dropped and the stub runs | works; tested |
-| `registry/interface.py`, `registry/stub.py` | registry result type, keyed HMAC-SHA256 helper, non-attributable rule; stub fixture table | interface works; registry is a **stub** |
-| `report/build.py` | filing sheet and redacted summary, HTML and Markdown | works; tested |
-| `app/tests`, `registry/tests`, `report/tests` | 68 tests (incl. golden-fixture checks, a test double of B's `voice/stub.py`, Streamlit AppTest of the UI flow) | run, see RESULTS.md |
-| `app/run_app.ps1`, `app/run_app.sh` | one-command setup + tests + start (`-Phone` / `--phone` for hotspot demo) | `.sh` run; `.ps1` not run |
-| `app/DEMO.md` | demo script, phone demo, backup-video plan | written |
-
-**Not implemented yet (planned):** SQLite registry, campaign graph, reviewer console, bilingual text, the real parser,
-extractor, rules and voice entry point (owned by A and B), speech-to-text, QR, video.
-
-## Earlier work by the team (not part of this v0)
-- 12 Oct 2026: a Streamlit prototype (`VERIQ_prototype.zip`) with a parser, rules and an AASIST voice check.
-- 23 Oct 2026 (morning): a React + FastAPI version (`VERIQ_full_app.zip`).
-Neither is used in this v0.
+| A | `core/schemas.py`, `core/validate.py` | shared contract and fixture validator | tested |
+| A | `fixtures/`, `tests/golden/` | 3 synthetic scenarios, synthetic SEBI snapshot, 45 tests | tested |
+| C | `app/streamlit_app.py`, `app/intake.py`, `app/case.py`, `app/evidence_input.py`, `app/next_steps.py`, `app/text_safety.py`, `app/contracts.py` | app flow, upload checks, user-reported names, money-sent toggle, escaping/redaction | tested |
+| C | `app/adapters/extract.py`, `decide.py`, `voice.py` | call A's and B's modules when present; otherwise labelled stubs | **stub** |
+| C | `report/build.py` | 1930 filing sheet and redacted summary | tested |
+| C | `registry/interface.py`, `registry/stub.py` | registry interface, keyed HMAC helper, stub table | interface tested; registry **stub** |
+| C | `app/run_app.ps1`, `app/run_app.sh`, `app/RUN.md`, `app/DEMO.md` | run scripts and demo notes | `.sh` run on Linux; `.ps1` not run |
 
 ## Git
-Repository in this folder (`.git`). History before the finale:
 
-| Commit | What |
+| Commit (23 Oct, IST) | What |
 |---|---|
-| `19a52177ec` | Claude C v0 (app, registry, report) |
-| `1f52e04` | Claude C: Claude B's voice stub wired in |
-| `4a113b18fd` | Claude A's contract, fixtures, golden tests merged; app moved onto A's contract |
+| `19a5217` 15:23 | Claude C v0: app, filing sheet, redacted summary, registry stub |
+| `64bfbb6` 15:23 | record the v0 hash |
+| `1f52e04` 16:04 | Claude B's voice stub wired in |
+| `4a113b1` 16:19 | Claude A's contract, fixtures and golden tests merged |
+| `6c2b592` 16:20 | record the merge hash |
+| `8718c9c` 22:49 | voice transcripts merged before A's extractor; **tag `v0-prebuilt`** |
 
-Tag `v0-prebuilt` points at the latest pre-finale commit. Check with `git log --oneline` and `git show v0-prebuilt --stat`.
-Author name/email are placeholders; set `git config user.name` / `user.email` before your next commit. To push: create an
-empty GitHub repo, then `git remote add origin <url>` and `git push -u origin main --tags`.
+Everything after `8718c9c` is finale work; those commit messages start with `FINALE:`.
+Check with `git log --oneline` and `git show v0-prebuilt --stat`.
