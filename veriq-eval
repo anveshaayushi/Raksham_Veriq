@@ -1,0 +1,9 @@
+#!/usr/bin/env python3
+"""Launcher so the brief's command `veriq-eval --input <folder> --out preds.csv [--json]` works from the repo root."""
+import os
+import sys
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from eval.cli import main  # noqa: E402
+
+raise SystemExit(main())

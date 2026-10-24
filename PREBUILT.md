@@ -34,6 +34,12 @@ campaign graph and the reviewer console. These are built during the finale.
 | C | `registry/interface.py`, `registry/stub.py` | registry interface, keyed HMAC helper, stub table | interface tested; registry **stub** |
 | C | `app/run_app.ps1`, `app/run_app.sh`, `app/RUN.md`, `app/DEMO.md` | run scripts and demo notes | `.sh` run on Linux; `.ps1` not run |
 
+## Drafted before the finale but not in this repository until the finale
+- **Claude B's `voice/` and `eval/` drafts** were written on 23 Oct 2026 (in `veriq_claude_B.zip`), and the AASIST
+  self-check was run on the team laptop on 23 Oct (15:20 IST). They entered this repository during the finale, in the
+  commit that merges Claude B (24 Oct). `voice/service.py`, the contract-valid `voice/stub.py`, `voice/tests`,
+  `eval/fit_threshold` and `scripts/` are finale work (see HANDOFF_B_to_C.md).
+
 ## Git
 
 | Commit (23 Oct, IST) | What |

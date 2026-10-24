@@ -46,7 +46,7 @@ def test_user_reported_evidence_is_class_a_and_labelled():
 
 def test_voice_stub_never_returns_no_signal():
     vr, is_stub = voice_adapter.analyse("v.opus", b"OggS....", "v.opus")
-    assert is_stub and vr.state == "cant_assess" and vr.score is None
+    assert vr.state == "cant_assess" and vr.score is None  # real voice.analyse() now exists, so is_stub is False (CR-B1)
 
 
 def test_voice_referenced_but_not_uploaded_is_cant_assess():

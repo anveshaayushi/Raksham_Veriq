@@ -9,6 +9,8 @@ ROOT = Path(__file__).resolve().parents[2]
 FAKE = Path(__file__).resolve().parent / "fake_b"
 
 SCRIPT = r"""
+import sys, os
+sys.path.insert(0, os.environ["VERIQ_FAKE_B"])  # test double must shadow the real voice/ (CR-B1)
 import json
 from app.contracts import SCHEMA_SOURCE
 from app.adapters import voice as va
@@ -28,7 +30,7 @@ print(json.dumps(out))
 
 
 def run_with_fake_b():
-    env = {**os.environ, "PYTHONPATH": os.pathsep.join([str(FAKE), str(ROOT)])}
+    env = {**os.environ, "PYTHONPATH": os.pathsep.join([str(FAKE), str(ROOT)]), "VERIQ_FAKE_B": str(FAKE)}
     r = subprocess.run([sys.executable, "-c", SCRIPT], cwd=ROOT, env=env, capture_output=True, text=True, timeout=60)
     assert r.returncode == 0, r.stderr
     return json.loads(r.stdout)

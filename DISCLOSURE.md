@@ -33,3 +33,13 @@ All AI-generated content, datasets, models, libraries and third-party assets. Ev
 ## Not yet used / not yet verified
 - OCR and QR libraries (to be chosen; licence to be recorded when added).
 - IFSC dataset, real SEBI list snapshot: not downloaded.
+
+## Claude B (voice), merged by Claude C
+
+| Asset | Use | Licence | Status |
+|---|---|---|---|
+| AASIST (clovaai/aasist) code + pretrained weights | detector (Plan C) | repo says MIT as recalled by B: LICENSE and weights terms NOT yet read by a human | UNVERIFIED |
+| ASVspoof 2019 LA | dev/test audio | ODC-By 1.0 (README.txt + LICENSE_text.txt, read 23 Oct); audio derived from VCTK, VCTK licence NOT yet checked | recorded in data/raw/asvspoof2019_la/LICENCE_CHECK.json |
+| ffmpeg (Gyan.FFmpeg 9.0.2 full build) | decode / codec copies | GPL build; fine for local use, check before redistributing | UNVERIFIED |
+
+Required notice if any ASVspoof-derived output is shown publicly: "Contains information from ASVspoof 2019 (https://doi.org/10.7488/ds/2555), made available under the ODC Attribution License (https://opendatacommons.org/licenses/by/1.0/)."

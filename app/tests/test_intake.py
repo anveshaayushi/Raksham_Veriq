@@ -25,7 +25,8 @@ def test_txt_accepted_and_hashed():
 
 @pytest.mark.parametrize("name,data,msg", [("c.pdf", CHAT, "WhatsApp export"), ("c.txt", b"   ", "empty"),
                                            ("c.txt", b"\x00\x01binary", "does not look like text"),
-                                           ("c.txt", b"x" * (2 * 1024 * 1024 + 1), "larger")])
+                                           ("c.txt", b"x" * (2 * 1024 * 1024 + 1), "larger")],
+                         ids=["wrong_extension", "blank", "binary", "too_large"])  # short ids: Windows env var limit (CR-B4)
 def test_bad_chat_rejected(name, data, msg):
     with pytest.raises(IntakeError, match=msg):
         add_chat(Intake(), name, data)

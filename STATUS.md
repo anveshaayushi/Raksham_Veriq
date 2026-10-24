@@ -13,10 +13,12 @@ Legend: not started / in progress / merged / tested
 - Image OCR / QR extraction: not started (after the core flow)
 - Video: **out of scope** (rejected at validation)
 
-## Claude B (as reported to C on 23 Oct)
-- AASIST runs on CPU; no calibrated threshold, so real results are `cant_assess`: **in progress**
-- `voice/stub.py` `stub_result("A"|"B"|"C"|"FLAGGED")`: reported; C's app calls it for demos
-- Entry point for uploaded voice notes (CR-C4): **open**
+## Claude B (merged by C, 2026-10-24 15:38 IST; see HANDOFF_B_to_C.md)
+- FINALE: `voice.analyse(file_id, data, filename)`: ffmpeg decode, quality gate, AASIST, three states, never raises: **merged, tested** (synthetic noise + fake detector; not accuracy)
+- `voice/stub.py`: contract-valid placeholders ("stub-NOT-A-MODEL"): **merged**
+- FINALE: `eval/` (veriq-eval, metrics, fit_threshold), `scripts/` (dataset licence log, ASVspoof subset): **merged**; subset script tested only on a mock folder
+- AASIST selfcheck on the team laptop (23 Oct): loads. Calibrated threshold, EER/AUC, seconds per clip: **not run**
+- ASVspoof 2019 LA download: in progress / extraction not confirmed. Speaker consistency, speech-to-text: not built
 
 ## Claude C
 - Streamlit app (consent, upload, confirm firm, user-reported payee names, per-payee answer, money toggle): **tested** against A's contract and golden fixtures

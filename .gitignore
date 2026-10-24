@@ -6,3 +6,9 @@ __pycache__/
 *.sqlite
 *.db
 registry_secret.txt
+external/
+data/raw/
+data/subsets/
+dev/
+out/
+*.pth
