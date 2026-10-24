@@ -61,7 +61,7 @@ def test_engine_extraction_equals_golden_and_stub_agrees_except_firm_names(sid):
 
 
 @pytest.mark.parametrize("typed,result", [
-    ("SOMEONE ELSE", "INCONCLUSIVE"),            # personal-looking name: unverified, never an accusation
+    ("SURESH KUMAR", "INCONCLUSIVE"),            # personal-looking name: unverified, never an accusation
     ("GLOBAL TECH TRADERS", "NAME_DISCREPANCY"),  # an unrelated business name
     ("NAVYUG BROKING LTD", "NO_MAJOR_ISSUE"),     # same firm, different legal suffix
     ("Razorpay Software Pvt Ltd", "INCONCLUSIVE"),  # payment gateway: merchant not visible

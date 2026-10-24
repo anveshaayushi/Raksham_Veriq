@@ -1,0 +1,32 @@
+{
+ "split": "dev",
+ "chats": 120,
+ "payees": 162,
+ "extraction": {
+  "tp": 162,
+  "fp": 0,
+  "fn": 0,
+  "precision": 1.0,
+  "recall": 1.0
+ },
+ "decision_accuracy": 1.0,
+ "false_alarms_on_legit_payees": {
+  "count": 0,
+  "of": 69
+ },
+ "scam_payees_marked_no_major_issue": {
+  "count": 0,
+  "of": 93
+ },
+ "confusion": {
+  "INCONCLUSIVE -> INCONCLUSIVE": 69,
+  "NAME_DISCREPANCY -> NAME_DISCREPANCY": 73,
+  "NO_MAJOR_ISSUE -> NO_MAJOR_ISSUE": 20
+ },
+ "ms_per_chat": {
+  "median": 0.35,
+  "max": 1.2
+ },
+ "failures": [],
+ "failure_count": 0
+}

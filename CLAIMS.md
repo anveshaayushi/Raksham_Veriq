@@ -19,6 +19,7 @@ Rule: a line goes on a slide only if its Status is **runs** and its Proof can be
 | C-13 | More risk never gives a milder answer; a voice result never clears a payee; "unavailable" is never "clean" | A/C | FINALE | runs | `tests/golden/test_engine_properties.py` (all 384 input combinations) |
 | C-14 | Gateway names, personal-looking names, initials and near spellings are "unverified", never an accusation | A/C | FINALE | runs | `tests/golden/test_engine_properties.py::test_name_matcher_classes` |
 | C-15 | A judge can change the typed payee name and the answer is recomputed on the spot | C | FINALE | runs | `app/tests/test_golden_integration.py::test_judge_can_vary_the_demo_and_the_engine_recomputes` |
+| C-16 | On 300 held-out synthetic chats: every payee found (399/399), 96.2% of answers as expected, 0 false alarms on 178 genuine payees, 0 scams cleared | C | FINALE | runs (synthetic) | `python -m bench.run test`, `bench/README.md` |
 | C-12 | Voice-note check from Claude B's detector | B/C | FINALE | **not yet** (stub) | — |
 
-No accuracy, false-positive or voice numbers are claimed. Test counts are code tests, not accuracy.
+Only C-16 is a measured number, and it is on synthetic chats (say so). No voice numbers are claimed. Test counts are code tests, not accuracy.

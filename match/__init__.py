@@ -34,7 +34,22 @@ GENERIC = {
 BUSINESS_MARKERS = GENERIC - {"the", "and", "of", "india", "indian", "global", "international", "pro"}
 GATEWAYS = ("razorpay", "cashfree", "payu", "billdesk", "ccavenue", "juspay", "easebuzz", "instamojo", "phonepe",
             "paytm payments", "bharatpe", "pine labs", "mswipe", "setu")
-HONORIFICS = {"mr", "mrs", "ms", "shri", "smt", "sri", "kumari", "dr"}
+HONORIFICS = {"mr", "mrs", "ms", "shri", "smt", "sri", "dr"}
+# Common Indian given names and surnames (general list, not tuned to any benchmark). A shown name counts as
+# "personal-looking" only if it contains one of these; any other unrelated name is treated as a business name.
+PERSON_WORDS = set("""
+kumar kumari devi singh sharma verma gupta agarwal aggarwal jain shah patel mehta joshi yadav khan ahmed ahmad mohd
+mohammad mohammed md shaikh sheikh ansari siddiqui qureshi pathan reddy rao naidu nair menon pillai iyer iyengar
+chatterjee banerjee mukherjee ghosh bose das dutta sen roy chowdhury mishra tiwari tripathi pandey dubey shukla
+srivastava saxena chauhan rathore thakur rajput patil pawar jadhav shinde deshmukh kulkarni gaikwad more sawant naik
+bhat hegde shetty gowda fernandes dsouza rodrigues pinto gill sandhu dhillon kaur malhotra kapoor khanna arora sethi
+bansal goyal mittal garg singhal chaudhary choudhary meena bhatt trivedi desai parmar solanki vaghela
+ramesh suresh mahesh rajesh rakesh mukesh dinesh ganesh umesh naresh prakash deepak vijay ajay sanjay amit sumit
+rahul rohit mohit anil sunil vinod manoj ashok arun varun kiran ravi raju ramu shyam mohan sohan krishna gopal
+salim aslam irfan imran farhan arif asif sameer salman zaid faisal rizwan javed
+sunita anita anjali pooja priya neha kavita savita lata geeta seema reena meena rekha asha usha nisha
+fatima ayesha zainab shabana nasreen
+""".split())
 
 
 def _tokens(name: str) -> list[str]:
@@ -80,6 +95,7 @@ def match_names(claimed: str, observed: str) -> tuple[str, str]:
     if not o_d:
         return "unverified", "the shown name has only generic words"
     is_business = any(t in BUSINESS_MARKERS for t in o_tok)
-    if not is_business and 1 <= len([t for t in o_tok if t not in HONORIFICS]) <= 4:
+    looks_personal = any(t in PERSON_WORDS for t in o_tok) or any(t in HONORIFICS for t in o_tok)
+    if not is_business and looks_personal and 1 <= len([t for t in o_tok if t not in HONORIFICS]) <= 4:
         return "unverified", "a personal-looking name: could be the firm's proprietor or someone else; we can't tell"
     return "discrepancy", f"no distinctive word in common with '{claimed.strip()}'"
