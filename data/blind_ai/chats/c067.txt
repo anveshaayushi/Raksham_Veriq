@@ -1,0 +1,10 @@
+[18/10/26, 2:00:12 PM] ‎Messages and calls are end-to-end encrypted.
+[18/10/26, 2:00:12 PM] Zubin: Hi Anand, invoice CS-2026-31 for the API work: ₹60,000 + 18% GST = ₹70,800. As per our contract TDS at 10% (₹6,000) applies on the base amount
+[18/10/26, 2:03:57 PM] Anand (Orchid Labs): So we pay ₹64,800 net and deposit TDS separately?
+[18/10/26, 2:04:08 PM] Zubin: Yes. Our payout cycle closes at 5 pm today so if it lands by then it goes into this month's books. Not urgent otherwise
+[18/10/26, 2:06:37 PM] Zubin: A/c 0000667744221
+IFSC XQBK0000813
+Name: Zubin Arora (Codeloom Studio)
+[18/10/26, 2:20:04 PM] Anand (Orchid Labs): Bank app shows ZUBIN ARORA, matches the PAN on the invoice. Sending ₹64,800
+[18/10/26, 2:22:09 PM] Anand (Orchid Labs): Done, ref 4455667788
+[18/10/26, 2:25:47 PM] Zubin: Received. Thanks! Form 16A will follow quarterly

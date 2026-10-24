@@ -1,0 +1,8 @@
+12/10/2026, 8:10 am - Messages and calls are end-to-end encrypted. No one outside of this chat, not even WhatsApp, can read or listen to them.
+12/10/2026, 8:10 am - TollPass KYC: Dear user, your TollPass FASTag will be blocked today due to pending KYC. Complete now: https://tollpass-kyc.verifydesk.test/u/3391
+12/10/2026, 8:14 am - Rajiv: I recharged it yesterday. Why blocked?
+12/10/2026, 8:15 am - TollPass KYC: Recharge does not clear KYC. Pay ₹10 verification on the link, then enter your card number and expiry to confirm
+12/10/2026, 8:20 am - Rajiv: The page says VERIFYDESK COLLECT, not TollPass
+12/10/2026, 8:21 am - TollPass KYC: It is our verified collection partner. Hurry, tag blocks at 12 noon and you will pay penalty at toll
+12/10/2026, 8:30 am - Rajiv: paid ₹10, but I won't give card details
+12/10/2026, 8:31 am - TollPass KYC: Then verification will fail and penalty ₹500 per toll applies

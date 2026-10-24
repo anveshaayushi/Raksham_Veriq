@@ -1,0 +1,7 @@
+[5/10/26, 10:00:51 AM] ‎Messages and calls are end-to-end encrypted.
+[5/10/26, 10:00:51 AM] Rosewood Accounts: Dear parent, term 2 fee for Class 6 (Aarav) is ₹21,000. Pay by 12 Oct to avoid ₹50/day late fee: https://pay.rosewood-demo.test/fee/4412
+[5/10/26, 10:15:03 AM] Anita: The page shows SCHOOLPAY COLLECT, is that yours?
+[5/10/26, 10:18:37 AM] Rosewood Accounts: Yes, Rosewood uses SchoolPay for all collections. You can also pay at the accounts counter by cheque
+[5/10/26, 10:30:22 AM] Anita: Paid ₹21,000
+[5/10/26, 10:40:38 AM] Rosewood Accounts: Receipt sent to your email, thanks.
+[5/10/26, 10:41:24 AM] Anita: Got it, thank you

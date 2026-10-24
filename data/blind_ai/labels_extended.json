@@ -1,0 +1,1527 @@
+[
+ {
+  "file": "c001.txt",
+  "label": "scam",
+  "scenario": "fake investment club with claimed registration, guaranteed returns, then withdrawal tax",
+  "language": "hinglish",
+  "difficulty": "medium",
+  "claimed_firm": "Tarkash Wealth Circle",
+  "payees": [
+   {
+    "identifier": "tarkash.wealth000@okzeta",
+    "kind": "upi",
+    "message_index": 6,
+    "name_relation": "unrelated_business",
+    "intended_risk": "risky"
+   }
+  ],
+  "voice_transcripts": [],
+  "why": "Guaranteed 40% monthly returns, urgency, payee is an unrelated general store, then a surprise tax to withdraw."
+ },
+ {
+  "file": "c002.txt",
+  "label": "genuine",
+  "scenario": "friend explains SIP and first instalment to a fund collection id",
+  "language": "english",
+  "difficulty": "easy",
+  "claimed_firm": "Lumina Mutual Fund",
+  "payees": [
+   {
+    "identifier": "lumina.sipcollect@paynova",
+    "kind": "upi",
+    "message_index": 5,
+    "name_relation": "matches_firm",
+    "intended_risk": "fine"
+   }
+  ],
+  "voice_transcripts": [],
+  "why": "Ordinary SIP advice between friends; honest risk language; payee name in the bank app matches the fund house."
+ },
+ {
+  "file": "c003.txt",
+  "label": "scam",
+  "scenario": "part-time task job, small early payouts, then refundable deposit to a personal account",
+  "language": "english",
+  "difficulty": "easy",
+  "claimed_firm": "BrightLoop Digital",
+  "payees": [
+   {
+    "identifier": "0000456781234",
+    "kind": "account",
+    "message_index": 7,
+    "name_relation": "personal_name",
+    "intended_risk": "risky"
+   }
+  ],
+  "voice_transcripts": [],
+  "why": "Classic task scam: early small payouts, deposit demanded into a staff member's personal account, then a bigger 'level 2' payment."
+ },
+ {
+  "file": "c004.txt",
+  "label": "genuine",
+  "scenario": "flatmates split monthly rent and pay one flatmate's phone UPI",
+  "language": "hinglish",
+  "difficulty": "easy",
+  "claimed_firm": "",
+  "payees": [
+   {
+    "identifier": "9123400056@paynova",
+    "kind": "phone_upi",
+    "message_index": 5,
+    "name_relation": "personal_name",
+    "intended_risk": "fine"
+   }
+  ],
+  "voice_transcripts": [],
+  "why": "Normal rent split among three flatmates; payee is a flatmate's phone UPI and the name checked matches."
+ },
+ {
+  "file": "c005.txt",
+  "label": "scam",
+  "scenario": "courier parcel held at customs, fee through a payment link, then extra charge",
+  "language": "devanagari_hindi",
+  "difficulty": "medium",
+  "claimed_firm": "SwiftPath Courier",
+  "payees": [
+   {
+    "identifier": "https://pay.swiftpath-clear.test/c/88213",
+    "kind": "link",
+    "message_index": 5,
+    "name_relation": "lookalike",
+    "intended_risk": "risky"
+   }
+  ],
+  "voice_transcripts": [],
+  "why": "Unexpected parcel, customs fee under threat, payment link whose page shows a look-alike clearance name, then a second fee."
+ },
+ {
+  "file": "c006.txt",
+  "label": "genuine",
+  "scenario": "registered-looking broker quotes an account-opening fee, with deadline and tax mentions",
+  "language": "english",
+  "difficulty": "hard",
+  "claimed_firm": "Kestrel Broking Pvt Ltd",
+  "payees": [
+   {
+    "identifier": "kestrelbroking@paynova",
+    "kind": "upi",
+    "message_index": 4,
+    "name_relation": "matches_firm",
+    "intended_risk": "fine"
+   }
+  ],
+  "voice_transcripts": [],
+  "why": "Sounds like a sales chat with a deadline and fee, but the fee is small, one-time, goes to the firm's own id, and risk is stated honestly."
+ },
+ {
+  "file": "c007.txt",
+  "label": "scam",
+  "scenario": "romance over two weeks, then crypto platform deposit to a phone UPI, then withdrawal tax",
+  "language": "english",
+  "difficulty": "medium",
+  "claimed_firm": "CoinHarbor Pro",
+  "payees": [
+   {
+    "identifier": "9345600078@ybzeta",
+    "kind": "phone_upi",
+    "message_index": 10,
+    "name_relation": "personal_name",
+    "intended_risk": "risky"
+   }
+  ],
+  "voice_transcripts": [],
+  "why": "Slow romance build-up, pressure phrased as love, deposit to an individual's phone UPI, balance inflated, 20% tax to withdraw."
+ },
+ {
+  "file": "c008.txt",
+  "label": "genuine",
+  "scenario": "customer buys phone accessories from a local shop with home delivery",
+  "language": "hinglish",
+  "difficulty": "easy",
+  "claimed_firm": "Gupta Mobile Point",
+  "payees": [
+   {
+    "identifier": "gupta.mobiles@okzeta",
+    "kind": "upi",
+    "message_index": 4,
+    "name_relation": "matches_firm",
+    "intended_risk": "fine"
+   }
+  ],
+  "voice_transcripts": [],
+  "why": "Routine purchase from a neighbourhood shop; UPI name matches the shop."
+ },
+ {
+  "file": "c009.txt",
+  "label": "scam",
+  "scenario": "fake bank KYC department, tiny fee to an obfuscated UPI id, then OTP and remote-access request",
+  "language": "hinglish",
+  "difficulty": "medium",
+  "claimed_firm": "Orrin Bank",
+  "payees": [
+   {
+    "identifier": "kyc.update.7@okzeta",
+    "kind": "upi",
+    "message_index": 5,
+    "name_relation": "lookalike",
+    "intended_risk": "risky"
+   }
+  ],
+  "voice_transcripts": [],
+  "why": "Impersonated bank staff, urgency, OTP and remote support request; payee written in words and the app name is a look-alike."
+ },
+ {
+  "file": "c010.txt",
+  "label": "genuine",
+  "scenario": "bank customer care handles a failed debit on chat, never asks for money, one voice note",
+  "language": "english",
+  "difficulty": "medium",
+  "claimed_firm": "Halden Bank",
+  "payees": [],
+  "voice_transcripts": [
+   {
+    "file": "PTT-20261006-WA0003.opus",
+    "transcript": "I am out of station till Thursday, so I can't come to the branch. Please just resolve it here on chat."
+   }
+  ],
+  "why": "Looks like a customer-care chat (the usual scam pretext) but it asks for no money and no OTP, and warns against sharing them."
+ },
+ {
+  "file": "c011.txt",
+  "label": "scam",
+  "scenario": "fake trading app with assured weekly profit, tax and compliance fees to a firm-named account",
+  "language": "english",
+  "difficulty": "hard",
+  "claimed_firm": "Quillon Ridge Securities",
+  "payees": [
+   {
+    "identifier": "0000789012345",
+    "kind": "account",
+    "message_index": 6,
+    "name_relation": "matches_firm",
+    "intended_risk": "risky"
+   }
+  ],
+  "voice_transcripts": [],
+  "why": "The payee account name genuinely matches the claimed firm, which looks reassuring, but the assured profit, tax-to-withdraw and extra deposit are a scam."
+ },
+ {
+  "file": "c012.txt",
+  "label": "genuine",
+  "scenario": "freelance designer sends final files and invoice with GST, client pays to her account",
+  "language": "english",
+  "difficulty": "easy",
+  "claimed_firm": "Pixelhaven Studio",
+  "payees": [
+   {
+    "identifier": "0000234567890",
+    "kind": "account",
+    "message_index": 4,
+    "name_relation": "personal_name",
+    "intended_risk": "fine"
+   }
+  ],
+  "voice_transcripts": [],
+  "why": "Standard freelancer invoice; amount arithmetic is right; payee name matches the proprietor."
+ },
+ {
+  "file": "c013.txt",
+  "label": "scam",
+  "scenario": "refund pretext for a missing order, token payment to a spoken-out UPI id, remote-access request",
+  "language": "hinglish",
+  "difficulty": "medium",
+  "claimed_firm": "Kartly Customer Care",
+  "payees": [
+   {
+    "identifier": "sunil.refund.desk@paynova",
+    "kind": "upi",
+    "message_index": 6,
+    "name_relation": "unrelated_business",
+    "intended_risk": "risky"
+   }
+  ],
+  "voice_transcripts": [],
+  "why": "Unsolicited 'customer care' offers a refund but wants a payment and a remote support code; payee is written in words and belongs to an unrelated services business."
+ },
+ {
+  "file": "c014.txt",
+  "label": "genuine",
+  "scenario": "school fee payment through the school's gateway link",
+  "language": "hinglish",
+  "difficulty": "hard",
+  "claimed_firm": "St. Alcuin's Public School",
+  "payees": [
+   {
+    "identifier": "https://fees.alcuins-demo.test/pay?inv=2291",
+    "kind": "link",
+    "message_index": 2,
+    "name_relation": "payment_gateway",
+    "intended_risk": "fine"
+   }
+  ],
+  "voice_transcripts": [],
+  "why": "A link and a gateway name instead of the school's name look suspicious, but the school office confirms this is its normal channel and offers the counter as an alternative."
+ },
+ {
+  "file": "c015.txt",
+  "label": "scam",
+  "scenario": "pre-approved loan with no checks, processing fee to an unrelated trading account, extra insurance fee",
+  "language": "devanagari_hindi",
+  "difficulty": "easy",
+  "claimed_firm": "Lendora Finance",
+  "payees": [
+   {
+    "identifier": "0000912345678",
+    "kind": "account",
+    "message_index": 5,
+    "name_relation": "unrelated_business",
+    "intended_risk": "risky"
+   }
+  ],
+  "voice_transcripts": [],
+  "why": "Loan with no guarantee or credit check, advance processing fee into an unrelated company's account, then further fees."
+ },
+ {
+  "file": "c016.txt",
+  "label": "genuine",
+  "scenario": "stock-tips group whose admin says it never takes money, with a hint of a paid group later",
+  "language": "english",
+  "difficulty": "ambiguous",
+  "claimed_firm": "Candor Circle",
+  "payees": [],
+  "voice_transcripts": [],
+  "why": "No payment is requested and the admin warns about impersonators, but unregistered tips, a 'maybe paid later' remark and the closing joke would make a careful reader hesitate."
+ },
+ {
+  "file": "c017.txt",
+  "label": "scam",
+  "scenario": "guaranteed weekly return, first payee personal UPI, payment details later switched to a look-alike firm account",
+  "language": "english",
+  "difficulty": "hard",
+  "claimed_firm": "Halcyon Yield Partners",
+  "payees": [
+   {
+    "identifier": "deepak.verma000@paynova",
+    "kind": "upi",
+    "message_index": 4,
+    "name_relation": "personal_name",
+    "intended_risk": "risky"
+   },
+   {
+    "identifier": "0000667788990",
+    "kind": "account",
+    "message_index": 8,
+    "name_relation": "lookalike",
+    "intended_risk": "risky"
+   }
+  ],
+  "voice_transcripts": [],
+  "why": "Fixed guaranteed returns, payee changes mid-chat from a person's UPI to a firm-like account, an 'audit' excuse and a withdrawal fee."
+ },
+ {
+  "file": "c018.txt",
+  "label": "genuine",
+  "scenario": "father and son pay an electricity bill through the utility's bill-pay UPI id",
+  "language": "hinglish",
+  "difficulty": "medium",
+  "claimed_firm": "Metrogrid Power",
+  "payees": [
+   {
+    "identifier": "payments.metrogrid@paynova",
+    "kind": "upi",
+    "message_index": 3,
+    "name_relation": "matches_firm",
+    "intended_risk": "fine"
+   }
+  ],
+  "voice_transcripts": [],
+  "why": "A bill with a due date and a 'late fee' warning, but it is a normal utility payment with a prefilled amount and a matching biller name."
+ },
+ {
+  "file": "c019.txt",
+  "label": "scam",
+  "scenario": "crypto daily returns, QR image that fails, voice note with the id, then KYC fee",
+  "language": "hinglish",
+  "difficulty": "medium",
+  "claimed_firm": "CoinVault Exchange",
+  "payees": [
+   {
+    "identifier": "coinvault.pay9@okzeta",
+    "kind": "upi",
+    "message_index": 8,
+    "name_relation": "unrelated_business",
+    "intended_risk": "risky"
+   }
+  ],
+  "voice_transcripts": [
+   {
+    "file": "PTT-20261009-WA0021.opus",
+    "transcript": "Bhai QR nahi chal raha to seedha UPI pe bhej de, coinvault dot pay nine at okzeta."
+   }
+  ],
+  "why": "Guaranteed daily 5% on crypto, payee is a personal-looking enterprise, withdrawal blocked behind a new fee."
+ },
+ {
+  "file": "c020.txt",
+  "label": "genuine",
+  "scenario": "cousin asks for an urgent admission deposit sent to someone else's phone UPI",
+  "language": "hinglish",
+  "difficulty": "ambiguous",
+  "claimed_firm": "",
+  "payees": [
+   {
+    "identifier": "9876500012@paynova",
+    "kind": "phone_upi",
+    "message_index": 6,
+    "name_relation": "personal_name",
+    "intended_risk": "unclear"
+   }
+  ],
+  "voice_transcripts": [],
+  "why": "Real family request, but the urgency, the third-party number and the blurry photo would make a reasonable person hesitate; the relative really is who she says."
+ },
+ {
+  "file": "c021.txt",
+  "label": "genuine",
+  "scenario": "insurance agent reminds client of annual premium due, honest about lapse, tax and risk",
+  "language": "hinglish",
+  "difficulty": "hard",
+  "claimed_firm": "Pranmark Life Insurance",
+  "payees": [
+   {
+    "identifier": "pranmarklife.premium@okzeta",
+    "kind": "upi",
+    "message_index": 6,
+    "name_relation": "matches_firm",
+    "intended_risk": "fine"
+   }
+  ],
+  "voice_transcripts": [],
+  "why": "Deadline, lapse warning and tax talk sound pressuring, but the payee is the insurer's own id, the agent warns against personal numbers, and says returns are not guaranteed."
+ },
+ {
+  "file": "c022.txt",
+  "label": "scam",
+  "scenario": "research firm with claimed registration sells assured-return subscription to a person's UPI, then upsell",
+  "language": "english",
+  "difficulty": "medium",
+  "claimed_firm": "Verdant Alpha Research",
+  "payees": [
+   {
+    "identifier": "manish.arora000@paynova",
+    "kind": "upi",
+    "message_index": 6,
+    "name_relation": "personal_name",
+    "intended_risk": "risky"
+   }
+  ],
+  "voice_transcripts": [],
+  "why": "Assured weekly returns and '90% accuracy' with a claimed RA number, payment to an individual 'relationship manager', then an upsell and no refund."
+ },
+ {
+  "file": "c023.txt",
+  "label": "scam",
+  "scenario": "electricity disconnection threat, tiny verification payment to a person's phone UPI, then remote access and OTP",
+  "language": "devanagari_hindi",
+  "difficulty": "easy",
+  "claimed_firm": "Vidyut Seva Kendra",
+  "payees": [
+   {
+    "identifier": "9234500045@ybzeta",
+    "kind": "phone_upi",
+    "message_index": 3,
+    "name_relation": "personal_name",
+    "intended_risk": "risky"
+   }
+  ],
+  "voice_transcripts": [],
+  "why": "Disconnection threat with a deadline, a 'department' paying to an individual's mobile number, secrecy from family, and OTP and screen-share requests."
+ },
+ {
+  "file": "c024.txt",
+  "label": "genuine",
+  "scenario": "son sends monthly money to his mother's phone UPI",
+  "language": "english",
+  "difficulty": "easy",
+  "claimed_firm": "",
+  "payees": [
+   {
+    "identifier": "9876500031@paynova",
+    "kind": "phone_upi",
+    "message_index": 3,
+    "name_relation": "personal_name",
+    "intended_risk": "fine"
+   }
+  ],
+  "voice_transcripts": [],
+  "why": "Ordinary family support; payee is the mother's phone UPI and the name matches."
+ },
+ {
+  "file": "c025.txt",
+  "label": "genuine",
+  "scenario": "customer orders Diwali sweets from a local shop with a small advance",
+  "language": "devanagari_hindi",
+  "difficulty": "easy",
+  "claimed_firm": "Sharma Sweets",
+  "payees": [
+   {
+    "identifier": "sharmasweets.diwali@okzeta",
+    "kind": "upi",
+    "message_index": 4,
+    "name_relation": "matches_firm",
+    "intended_risk": "fine"
+   }
+  ],
+  "voice_transcripts": [],
+  "why": "Normal festive order; small advance to the shop's own id and the app shows the shop name."
+ },
+ {
+  "file": "c026.txt",
+  "label": "scam",
+  "scenario": "unrequested instant loan, 'KYC update' fee to a look-alike firm account, then extra fee",
+  "language": "hinglish",
+  "difficulty": "medium",
+  "claimed_firm": "Finora Credit",
+  "payees": [
+   {
+    "identifier": "0000321098765",
+    "kind": "account",
+    "message_index": 5,
+    "name_relation": "lookalike",
+    "intended_risk": "risky"
+   }
+  ],
+  "voice_transcripts": [],
+  "why": "Loan the person never applied for, a 'refundable' fee paid into a firm name that is only close to the lender's, then another fee."
+ },
+ {
+  "file": "c027.txt",
+  "label": "scam",
+  "scenario": "impersonated official claims a case, demands secrecy and a refundable 'security deposit'",
+  "language": "english",
+  "difficulty": "hard",
+  "claimed_firm": "National Cyber Verification Desk",
+  "payees": [
+   {
+    "identifier": "0000554433221",
+    "kind": "account",
+    "message_index": 4,
+    "name_relation": "lookalike",
+    "intended_risk": "risky"
+   }
+  ],
+  "voice_transcripts": [],
+  "why": "Formal, official-sounding tone with a case number, but demands secrecy, threatens arrest, wants a deposit into a private-looking account, and tells the person not to leave home or go to the police."
+ },
+ {
+  "file": "c028.txt",
+  "label": "genuine",
+  "scenario": "buyer pays a booking amount to a private seller of a used bike",
+  "language": "hinglish",
+  "difficulty": "ambiguous",
+  "claimed_firm": "",
+  "payees": [
+   {
+    "identifier": "9012300034@paynova",
+    "kind": "phone_upi",
+    "message_index": 5,
+    "name_relation": "personal_name",
+    "intended_risk": "unclear"
+   }
+  ],
+  "voice_transcripts": [],
+  "why": "A real private sale, but a booking advance to a stranger before seeing the bike and a competing-buyer nudge would make a reasonable person hesitate; documents and name checks do match."
+ },
+ {
+  "file": "c029.txt",
+  "label": "genuine",
+  "scenario": "coaching centre registration fee with a same-day deadline and limited seats",
+  "language": "english",
+  "difficulty": "hard",
+  "claimed_firm": "Orbit Learning Academy",
+  "payees": [
+   {
+    "identifier": "orbitlearning@paynova",
+    "kind": "upi",
+    "message_index": 5,
+    "name_relation": "matches_firm",
+    "intended_risk": "fine"
+   }
+  ],
+  "voice_transcripts": [],
+  "why": "Limited seats and a 5 pm deadline sound like pressure, but the centre refuses to guarantee results, the fee is small and adjusted later, and the payee matches the firm."
+ },
+ {
+  "file": "c030.txt",
+  "label": "scam",
+  "scenario": "IPO allotment 'guarantee' club, desk fee through a payment link, then a release tax",
+  "language": "hinglish",
+  "difficulty": "medium",
+  "claimed_firm": "Zenith IPO Club",
+  "payees": [
+   {
+    "identifier": "https://ipo-allot.fastclaim.test/p/771",
+    "kind": "link",
+    "message_index": 5,
+    "name_relation": "payment_gateway",
+    "intended_risk": "risky"
+   }
+  ],
+  "voice_transcripts": [],
+  "why": "Guaranteed IPO allotment is impossible; fee through a link on a gateway page unrelated to the club, then a surprise tax."
+ },
+ {
+  "file": "c031.txt",
+  "label": "scam",
+  "scenario": "SIM deactivation threat, tiny re-KYC payment to a phone UPI written with 'at', then remote support request; one voice note",
+  "language": "english",
+  "difficulty": "medium",
+  "claimed_firm": "Vaanta Telecom",
+  "payees": [
+   {
+    "identifier": "9100000012@ybzeta",
+    "kind": "phone_upi",
+    "message_index": 3,
+    "name_relation": "lookalike",
+    "intended_risk": "risky"
+   }
+  ],
+  "voice_transcripts": [
+   {
+    "file": "PTT-20261013-WA0007.opus",
+    "transcript": "Sir I am not sure this is official, the number you gave looks like a normal mobile number."
+   }
+  ],
+  "why": "Two-hour deactivation threat, payment to an ordinary mobile number whose app name is only a look-alike, then a support app and code request."
+ },
+ {
+  "file": "c032.txt",
+  "label": "genuine",
+  "scenario": "bank customer care on chat resolves an unknown subscription debit, asks for no money; one voice note",
+  "language": "hinglish",
+  "difficulty": "medium",
+  "claimed_firm": "Mandrel Bank",
+  "payees": [],
+  "voice_transcripts": [
+   {
+    "file": "PTT-20261018-WA0011.opus",
+    "transcript": "14 October ko hua tha, card ke last 4 digit 3308 hain, bas wohi bata rahi hu."
+   }
+  ],
+  "why": "Customer-care chat about a debit, which resembles the refund pretext, but the agent asks for no payment, no OTP and no remote access, and warns against anyone who does."
+ },
+ {
+  "file": "c033.txt",
+  "label": "scam",
+  "scenario": "gold savings scheme promising doubled money, payee written in Hindi words, then receipt fee",
+  "language": "devanagari_hindi",
+  "difficulty": "medium",
+  "claimed_firm": "Kanchan Gold Savings",
+  "payees": [
+   {
+    "identifier": "kanchan.gold7@okzeta",
+    "kind": "upi",
+    "message_index": 4,
+    "name_relation": "lookalike",
+    "intended_risk": "risky"
+   }
+  ],
+  "voice_transcripts": [],
+  "why": "Money doubled in a year with a 100% guarantee, urgency about seats, payee id written with Hindi words for dot and at, app name only close to the scheme, then an extra fee."
+ },
+ {
+  "file": "c034.txt",
+  "label": "genuine",
+  "scenario": "pharmacy order paid by scanning the delivery person's QR, no advance",
+  "language": "english",
+  "difficulty": "medium",
+  "claimed_firm": "Vitalis Pharmacy",
+  "payees": [],
+  "voice_transcripts": [],
+  "why": "A QR is mentioned but no identifier is shared; the shop explicitly refuses advance payments, and the order is small and normal."
+ },
+ {
+  "file": "c035.txt",
+  "label": "scam",
+  "scenario": "overseas job and visa guarantee, processing fee to a firm-named account, then more fees",
+  "language": "english",
+  "difficulty": "hard",
+  "claimed_firm": "Skyline Overseas Careers",
+  "payees": [
+   {
+    "identifier": "0000445566778",
+    "kind": "account",
+    "message_index": 5,
+    "name_relation": "matches_firm",
+    "intended_risk": "risky"
+   }
+  ],
+  "voice_transcripts": [],
+  "why": "The payee account name really matches the claimed firm, which feels safe, but a guaranteed foreign visa, a closed office, partial payment refusal and new fees show it is a scam."
+ },
+ {
+  "file": "c036.txt",
+  "label": "genuine",
+  "scenario": "registered investment adviser collects its quarterly fee to its own firm id",
+  "language": "english",
+  "difficulty": "hard",
+  "claimed_firm": "Pivot Advisory LLP",
+  "payees": [
+   {
+    "identifier": "pivotadvisory@paynova",
+    "kind": "upi",
+    "message_index": 3,
+    "name_relation": "matches_firm",
+    "intended_risk": "fine"
+   }
+  ],
+  "voice_transcripts": [],
+  "why": "Deadline, fee and investing talk look risky, but the adviser stresses firm-only payments, denies guarantees, and the payee name matches the firm."
+ },
+ {
+  "file": "c037.txt",
+  "label": "scam",
+  "scenario": "fake buyer on a marketplace sends a QR to 'receive' money, then asks for a refund to a trader's phone UPI",
+  "language": "hinglish",
+  "difficulty": "medium",
+  "claimed_firm": "Zippy Market",
+  "payees": [
+   {
+    "identifier": "9801200067@okzeta",
+    "kind": "phone_upi",
+    "message_index": 6,
+    "name_relation": "unrelated_business",
+    "intended_risk": "risky"
+   }
+  ],
+  "voice_transcripts": [],
+  "why": "Receiving money never needs a PIN or a scan; the 'buyer' pushes the seller to send money back to a business-named phone UPI."
+ },
+ {
+  "file": "c038.txt",
+  "label": "genuine",
+  "scenario": "friend invests in a founder's small angel round via the founder's personal account",
+  "language": "english",
+  "difficulty": "ambiguous",
+  "claimed_firm": "Lotus Sprout Foods",
+  "payees": [
+   {
+    "identifier": "0000112233445",
+    "kind": "account",
+    "message_index": 5,
+    "name_relation": "personal_name",
+    "intended_risk": "unclear"
+   }
+  ],
+  "voice_transcripts": [],
+  "why": "A real friend-to-friend investment with honest 'might go to zero' language and paperwork reviewed by a CA, but paying a personal account for an unregistered company is something a reasonable person would hesitate over."
+ },
+ {
+  "file": "c039.txt",
+  "label": "scam",
+  "scenario": "tax refund pretext, processing fee through a payment link, then more fees and a request for a bank PIN",
+  "language": "hinglish",
+  "difficulty": "medium",
+  "claimed_firm": "Income Tax Refund Cell",
+  "payees": [
+   {
+    "identifier": "https://itr-refund.claimdesk.test/x/5520",
+    "kind": "link",
+    "message_index": 3,
+    "name_relation": "payment_gateway",
+    "intended_risk": "risky"
+   }
+  ],
+  "voice_transcripts": [],
+  "why": "Impersonated tax staff, a refund that needs a fee, a deadline, a payment link unrelated to any department, and finally a PIN request."
+ },
+ {
+  "file": "c040.txt",
+  "label": "genuine",
+  "scenario": "tenant pays monthly rent to the landlady's bank account",
+  "language": "devanagari_hindi",
+  "difficulty": "easy",
+  "claimed_firm": "",
+  "payees": [
+   {
+    "identifier": "0000778899001",
+    "kind": "account",
+    "message_index": 3,
+    "name_relation": "personal_name",
+    "intended_risk": "fine"
+   }
+  ],
+  "voice_transcripts": [],
+  "why": "Ordinary monthly rent between a tenant and a landlady; the account name shown matches the landlady."
+ },
+ {
+  "file": "c041.txt",
+  "label": "scam",
+  "scenario": "unsolicited VIP stock-tip group with claimed RA number, quarterly fee to a look-alike trading arm, then margin unlock fee",
+  "language": "hinglish",
+  "difficulty": "medium",
+  "claimed_firm": "Riverstone Stock Advisory",
+  "payees": [
+   {
+    "identifier": "riverstone.vip@paynova",
+    "kind": "upi",
+    "message_index": 4,
+    "name_relation": "lookalike",
+    "intended_risk": "risky"
+   }
+  ],
+  "voice_transcripts": [],
+  "why": "Added to a group without asking, accuracy and assured-return claims, payee written with 'dot' and 'at', then a new fee."
+ },
+ {
+  "file": "c042.txt",
+  "label": "genuine",
+  "scenario": "insurer's advisor sends a term-plan renewal reminder with the company payment id",
+  "language": "hinglish",
+  "difficulty": "easy",
+  "claimed_firm": "Aksharlife",
+  "payees": [
+   {
+    "identifier": "aksharlife.renewal@okzeta",
+    "kind": "upi",
+    "message_index": 3,
+    "name_relation": "matches_firm",
+    "intended_risk": "fine"
+   }
+  ],
+  "voice_transcripts": [],
+  "why": "Routine renewal with a due date; payee is the insurer's id and the advisor says they never ask for personal-account payments."
+ },
+ {
+  "file": "c043.txt",
+  "label": "scam",
+  "scenario": "lottery prize needing tax and processing fee, then insurance fee, secrecy from family",
+  "language": "devanagari_hindi",
+  "difficulty": "easy",
+  "claimed_firm": "Mega Inaam Draw",
+  "payees": [
+   {
+    "identifier": "megainaam.claim@okzeta",
+    "kind": "upi",
+    "message_index": 4,
+    "name_relation": "unrelated_business",
+    "intended_risk": "risky"
+   }
+  ],
+  "voice_transcripts": [],
+  "why": "A prize for a draw the person never entered, upfront fee to an unrelated shop name, extra fee, and a threat if family is told."
+ },
+ {
+  "file": "c044.txt",
+  "label": "scam",
+  "scenario": "FASTag KYC blocking threat with a payment link on an unrelated gateway page",
+  "language": "english",
+  "difficulty": "easy",
+  "claimed_firm": "TollPass Services",
+  "payees": [
+   {
+    "identifier": "https://tollpass-kyc.verifydesk.test/u/3391",
+    "kind": "link",
+    "message_index": 1,
+    "name_relation": "payment_gateway",
+    "intended_risk": "risky"
+   }
+  ],
+  "voice_transcripts": [],
+  "why": "Same-day block threat, a link whose gateway name has nothing to do with the toll operator, and a request for a card number."
+ },
+ {
+  "file": "c045.txt",
+  "label": "genuine",
+  "scenario": "friends plan a trip and the organiser asks for the villa advance to his personal UPI before a price rise",
+  "language": "english",
+  "difficulty": "ambiguous",
+  "claimed_firm": "",
+  "payees": [
+   {
+    "identifier": "9823400015@paynova",
+    "kind": "phone_upi",
+    "message_index": 3,
+    "name_relation": "personal_name",
+    "intended_risk": "unclear"
+   }
+  ],
+  "voice_transcripts": [],
+  "why": "A real group trip and a real organiser, but a personal-account advance with a 'price rises tomorrow' nudge is the kind of thing a careful person double-checks."
+ },
+ {
+  "file": "c046.txt",
+  "label": "genuine",
+  "scenario": "computer store holds a laptop at an offer price with a same-day payment cutoff",
+  "language": "hinglish",
+  "difficulty": "hard",
+  "claimed_firm": "ByteBay Computers",
+  "payees": [
+   {
+    "identifier": "bytebay.store@paynova",
+    "kind": "upi",
+    "message_index": 5,
+    "name_relation": "matches_firm",
+    "intended_risk": "fine"
+   }
+  ],
+  "voice_transcripts": [],
+  "why": "Limited stock, an offer ending at 5 pm and 'pay now' read like pressure, but the shop is a real counter, offers to hold without payment, and the payee name matches the shop."
+ },
+ {
+  "file": "c047.txt",
+  "label": "scam",
+  "scenario": "owner abroad asks for a flat advance to a third person's phone UPI before viewing",
+  "language": "english",
+  "difficulty": "ambiguous",
+  "claimed_firm": "",
+  "payees": [
+   {
+    "identifier": "9112300021@paynova",
+    "kind": "phone_upi",
+    "message_index": 6,
+    "name_relation": "personal_name",
+    "intended_risk": "risky"
+   }
+  ],
+  "voice_transcripts": [],
+  "why": "Looks like an ordinary rental chat with photos and a lease promise, but the advance is asked before any viewing and goes to a person unconnected to the owner, and the 'brother with the keys' never meets her."
+ },
+ {
+  "file": "c048.txt",
+  "label": "genuine",
+  "scenario": "freelance translator sends a GST invoice to a client",
+  "language": "english",
+  "difficulty": "easy",
+  "claimed_firm": "Lexicon Translations",
+  "payees": [
+   {
+    "identifier": "0000553311220",
+    "kind": "account",
+    "message_index": 4,
+    "name_relation": "personal_name",
+    "intended_risk": "fine"
+   }
+  ],
+  "voice_transcripts": [],
+  "why": "Normal freelancer billing with page count arithmetic, GST and a matching account holder."
+ },
+ {
+  "file": "c049.txt",
+  "label": "scam",
+  "scenario": "old-policy maturity bonus needing a release fee, account number written with spaces",
+  "language": "hinglish",
+  "difficulty": "medium",
+  "claimed_firm": "Amaya Insurance Maturity Cell",
+  "payees": [
+   {
+    "identifier": "0000889977665",
+    "kind": "account",
+    "message_index": 4,
+    "name_relation": "lookalike",
+    "intended_risk": "risky"
+   }
+  ],
+  "voice_transcripts": [],
+  "why": "An unnamed old policy 'matured', a fee needed to release it, payee account written in spaced groups and the name only resembles the insurer."
+ },
+ {
+  "file": "c050.txt",
+  "label": "genuine",
+  "scenario": "school sends a fee link for a parent to pay on its gateway",
+  "language": "english",
+  "difficulty": "easy",
+  "claimed_firm": "Rosewood International School",
+  "payees": [
+   {
+    "identifier": "https://pay.rosewood-demo.test/fee/4412",
+    "kind": "link",
+    "message_index": 1,
+    "name_relation": "payment_gateway",
+    "intended_risk": "fine"
+   }
+  ],
+  "voice_transcripts": [],
+  "why": "School fee through the school's gateway with a late-fee date; the parent checks the amount and receives a receipt."
+ },
+ {
+  "file": "c051.txt",
+  "label": "genuine",
+  "scenario": "brother sends a wedding gift of money to his sister's phone UPI",
+  "language": "devanagari_hindi",
+  "difficulty": "easy",
+  "claimed_firm": "",
+  "payees": [
+   {
+    "identifier": "9111100077@okzeta",
+    "kind": "phone_upi",
+    "message_index": 2,
+    "name_relation": "personal_name",
+    "intended_risk": "fine"
+   }
+  ],
+  "voice_transcripts": [],
+  "why": "A family gift between siblings to the sister's own phone UPI; name matches."
+ },
+ {
+  "file": "c052.txt",
+  "label": "scam",
+  "scenario": "matrimonial contact abroad sends a 'gift', then a cargo handling fee to an unrelated agency account",
+  "language": "english",
+  "difficulty": "medium",
+  "claimed_firm": "AirBridge Cargo",
+  "payees": [
+   {
+    "identifier": "0000115577339",
+    "kind": "account",
+    "message_index": 5,
+    "name_relation": "unrelated_business",
+    "intended_risk": "risky"
+   }
+  ],
+  "voice_transcripts": [],
+  "why": "A distant admirer, a promised gift parcel and a handling fee into an unrelated freight agency, followed by customs charges."
+ },
+ {
+  "file": "c053.txt",
+  "label": "genuine",
+  "scenario": "broadband provider chat about an overdue bill with a suspension warning and a payment link",
+  "language": "english",
+  "difficulty": "hard",
+  "claimed_firm": "Linkwave Broadband",
+  "payees": [
+   {
+    "identifier": "https://pay.linkwave-demo.test/b/10293",
+    "kind": "link",
+    "message_index": 5,
+    "name_relation": "matches_firm",
+    "intended_risk": "fine"
+   }
+  ],
+  "voice_transcripts": [],
+  "why": "A suspension warning and a link look like a scam, but the customer first verifies the amount in the provider's own app, the agent says to ignore other links, and the biller name matches."
+ },
+ {
+  "file": "c054.txt",
+  "label": "scam",
+  "scenario": "data-entry job needing a registration kit fee, QR image and a voice note spelling out the UPI id",
+  "language": "hinglish",
+  "difficulty": "medium",
+  "claimed_firm": "WorkNest Data Solutions",
+  "payees": [
+   {
+    "identifier": "9266600048@ybzeta",
+    "kind": "phone_upi",
+    "message_index": 7,
+    "name_relation": "unrelated_business",
+    "intended_risk": "risky"
+   }
+  ],
+  "voice_transcripts": [
+   {
+    "file": "PTT-20261007-WA0005.opus",
+    "transcript": "Madam QR nahi khul raha to ID likh rahi hu, nine two six six six zero zero zero four eight at ybzeta."
+   }
+  ],
+  "why": "Pay-to-start job, QR image plus a voice note giving a personal-looking id, then a security deposit."
+ },
+ {
+  "file": "c055.txt",
+  "label": "scam",
+  "scenario": "cloud-mining app with daily returns; first payee a phone UPI, later switched to a firm-like account",
+  "language": "english",
+  "difficulty": "hard",
+  "claimed_firm": "HashPetal Mining",
+  "payees": [
+   {
+    "identifier": "9399900038@paynova",
+    "kind": "phone_upi",
+    "message_index": 3,
+    "name_relation": "unrelated_business",
+    "intended_risk": "risky"
+   },
+   {
+    "identifier": "0000336699114",
+    "kind": "account",
+    "message_index": 7,
+    "name_relation": "lookalike",
+    "intended_risk": "risky"
+   }
+  ],
+  "voice_transcripts": [],
+  "why": "Daily guaranteed returns on mining, a payee that changes from an unrelated phone UPI to a firm-like account citing an 'upgrade', then a withdrawal fee."
+ },
+ {
+  "file": "c056.txt",
+  "label": "genuine",
+  "scenario": "bank customer care chat about an ATM card retained by a machine, voice note, asks for no money",
+  "language": "english",
+  "difficulty": "medium",
+  "claimed_firm": "Cresthill Bank",
+  "payees": [],
+  "voice_transcripts": [
+   {
+    "file": "PTT-20261015-WA0002.opus",
+    "transcript": "The last four digits are 6 4 2 1. I'm in a meeting so I'm sending voice."
+   }
+  ],
+  "why": "Customer-care chat that asks for no payment and warns against sharing OTPs or PINs; only offers a free card block and reissue."
+ },
+ {
+  "file": "c057.txt",
+  "label": "scam",
+  "scenario": "credit-card limit increase pretext, small fee to a look-alike id, then OTP request",
+  "language": "devanagari_hindi",
+  "difficulty": "medium",
+  "claimed_firm": "Brightway Bank Cards",
+  "payees": [
+   {
+    "identifier": "brightway.cardfee@paynova",
+    "kind": "upi",
+    "message_index": 3,
+    "name_relation": "lookalike",
+    "intended_risk": "risky"
+   }
+  ],
+  "voice_transcripts": [],
+  "why": "Unrequested limit increase, a fee, a look-alike payee name and finally an OTP request."
+ },
+ {
+  "file": "c058.txt",
+  "label": "genuine",
+  "scenario": "free tips group whose admin mentions a broker referral link from which he earns a small commission",
+  "language": "hinglish",
+  "difficulty": "ambiguous",
+  "claimed_firm": "Alpine Research Desk",
+  "payees": [],
+  "voice_transcripts": [],
+  "why": "No money is asked in the chat and the admin discloses his referral income, but unregistered tips, a deadline-ish nudge and a referral link would make a careful reader pause."
+ },
+ {
+  "file": "c059.txt",
+  "label": "genuine",
+  "scenario": "tenant pays a rental deposit to the landlord's son's phone UPI after checking the agreement",
+  "language": "hinglish",
+  "difficulty": "ambiguous",
+  "claimed_firm": "",
+  "payees": [
+   {
+    "identifier": "9455500093@okzeta",
+    "kind": "phone_upi",
+    "message_index": 3,
+    "name_relation": "personal_name",
+    "intended_risk": "unclear"
+   }
+  ],
+  "voice_transcripts": [],
+  "why": "A real landlord who asks for the deposit on his son's number because his own account is blocked; the agreement and names check out, but a third-party payee for a large deposit is something a reasonable tenant would query."
+ },
+ {
+  "file": "c060.txt",
+  "label": "scam",
+  "scenario": "trading course with signals and assured profit, fee to a payee written 'dot ... at the rate'",
+  "language": "hinglish",
+  "difficulty": "medium",
+  "claimed_firm": "TradeGuru Academy",
+  "payees": [
+   {
+    "identifier": "tradeguru.academy@paynova",
+    "kind": "upi",
+    "message_index": 3,
+    "name_relation": "lookalike",
+    "intended_risk": "risky"
+   }
+  ],
+  "voice_transcripts": [],
+  "why": "Course plus signals promising assured income, a payee written in words with 'at the rate', an EdTech look-alike name and a follow-up fee."
+ },
+ {
+  "file": "c061.txt",
+  "label": "genuine",
+  "scenario": "relationship manager nudges a lump-sum into a new fund offer closing the same day",
+  "language": "english",
+  "difficulty": "hard",
+  "claimed_firm": "Ardent Mutual Fund",
+  "payees": [
+   {
+    "identifier": "ardentmf.collect@okzeta",
+    "kind": "upi",
+    "message_index": 5,
+    "name_relation": "matches_firm",
+    "intended_risk": "fine"
+   }
+  ],
+  "voice_transcripts": [],
+  "why": "Closing date, a 5 pm cutoff and tax mentions sound like pressure, but the fund says returns are not guaranteed, the payee is its own collection id with a matching name, and the client can decline."
+ },
+ {
+  "file": "c062.txt",
+  "label": "scam",
+  "scenario": "demat account freeze threat for pending KYC, fee to a look-alike id, then OTP",
+  "language": "english",
+  "difficulty": "medium",
+  "claimed_firm": "Carbon Securities",
+  "payees": [
+   {
+    "identifier": "carbonsec.kyc@ybzeta",
+    "kind": "upi",
+    "message_index": 3,
+    "name_relation": "lookalike",
+    "intended_risk": "risky"
+   }
+  ],
+  "voice_transcripts": [],
+  "why": "Account-freeze threat, a fee for 'KYC', a payee that only resembles the broker's name, then a request for the OTP."
+ },
+ {
+  "file": "c063.txt",
+  "label": "genuine",
+  "scenario": "roommates split utility bills and pay one roommate's phone UPI",
+  "language": "english",
+  "difficulty": "easy",
+  "claimed_firm": "",
+  "payees": [
+   {
+    "identifier": "9288800011@paynova",
+    "kind": "phone_upi",
+    "message_index": 3,
+    "name_relation": "personal_name",
+    "intended_risk": "fine"
+   }
+  ],
+  "voice_transcripts": [],
+  "why": "Normal bill split among three roommates; the payee is a roommate and the name matches."
+ },
+ {
+  "file": "c064.txt",
+  "label": "genuine",
+  "scenario": "customer pays an advance for stitching a festive outfit at a local boutique",
+  "language": "devanagari_hindi",
+  "difficulty": "easy",
+  "claimed_firm": "Roshni Boutique",
+  "payees": [
+   {
+    "identifier": "roshniboutique@okzeta",
+    "kind": "upi",
+    "message_index": 4,
+    "name_relation": "matches_firm",
+    "intended_risk": "fine"
+   }
+  ],
+  "voice_transcripts": [],
+  "why": "Ordinary tailoring advance to the boutique's id; the name matches the shop."
+ },
+ {
+  "file": "c065.txt",
+  "label": "scam",
+  "scenario": "scholarship offer for a child with a verification fee to a phone UPI",
+  "language": "hinglish",
+  "difficulty": "ambiguous",
+  "claimed_firm": "Bright Future Scholarship Trust",
+  "payees": [
+   {
+    "identifier": "9644400029@paynova",
+    "kind": "phone_upi",
+    "message_index": 4,
+    "name_relation": "lookalike",
+    "intended_risk": "risky"
+   }
+  ],
+  "voice_transcripts": [],
+  "why": "A scholarship form, a website and a polite tone look plausible, but a scholarship that asks for a fee to a person's phone UPI, with a name only close to the trust, is a pretext."
+ },
+ {
+  "file": "c066.txt",
+  "label": "scam",
+  "scenario": "hotel-rating tasks with prepaid task packs; payee changes from a firm to an LLP account",
+  "language": "hinglish",
+  "difficulty": "medium",
+  "claimed_firm": "StayRate Online",
+  "payees": [
+   {
+    "identifier": "stayrate.tasks@okzeta",
+    "kind": "upi",
+    "message_index": 3,
+    "name_relation": "unrelated_business",
+    "intended_risk": "risky"
+   },
+   {
+    "identifier": "0000224466880",
+    "kind": "account",
+    "message_index": 7,
+    "name_relation": "matches_firm",
+    "intended_risk": "risky"
+   }
+  ],
+  "voice_transcripts": [],
+  "why": "Pay-to-unlock rating tasks with a 'bonus', payee switches mid-chat, and the withdrawal needs another payment."
+ },
+ {
+  "file": "c067.txt",
+  "label": "genuine",
+  "scenario": "freelance developer's invoice with GST and a TDS note, payment by 5 pm to meet the client's payout cycle",
+  "language": "english",
+  "difficulty": "hard",
+  "claimed_firm": "Codeloom Studio",
+  "payees": [
+   {
+    "identifier": "0000667744221",
+    "kind": "account",
+    "message_index": 4,
+    "name_relation": "personal_name",
+    "intended_risk": "fine"
+   }
+  ],
+  "voice_transcripts": [],
+  "why": "Tax deduction talk and a same-day cutoff sound alarming, but it is a normal B2B invoice with a matching account holder, an invoice number and arithmetic that works."
+ },
+ {
+  "file": "c068.txt",
+  "label": "scam",
+  "scenario": "arbitrage scheme with guaranteed monthly return, account written with hyphens, then a lock-in release fee",
+  "language": "hinglish",
+  "difficulty": "medium",
+  "claimed_firm": "Delta Arbitrage Partners",
+  "payees": [
+   {
+    "identifier": "0000775533119",
+    "kind": "account",
+    "message_index": 4,
+    "name_relation": "lookalike",
+    "intended_risk": "risky"
+   }
+  ],
+  "voice_transcripts": [],
+  "why": "Risk-free arbitrage with a fixed 3% monthly, account number in hyphenated groups to a look-alike firm name, then a lock-in release fee."
+ },
+ {
+  "file": "c069.txt",
+  "label": "genuine",
+  "scenario": "parent pays monthly home-tutor fee to the tutor's phone UPI",
+  "language": "hinglish",
+  "difficulty": "easy",
+  "claimed_firm": "",
+  "payees": [
+   {
+    "identifier": "9677700024@paynova",
+    "kind": "phone_upi",
+    "message_index": 2,
+    "name_relation": "personal_name",
+    "intended_risk": "fine"
+   }
+  ],
+  "voice_transcripts": [],
+  "why": "Monthly tuition paid to the teacher's own number; the name matches and nothing unusual is asked."
+ },
+ {
+  "file": "c070.txt",
+  "label": "scam",
+  "scenario": "insurance premium refund pretext, fee to a look-alike id, then GST fee",
+  "language": "devanagari_hindi",
+  "difficulty": "easy",
+  "claimed_firm": "Suryodaya Bima Refund Cell",
+  "payees": [
+   {
+    "identifier": "bimarefund.cell@okzeta",
+    "kind": "upi",
+    "message_index": 3,
+    "name_relation": "lookalike",
+    "intended_risk": "risky"
+   }
+  ],
+  "voice_transcripts": [],
+  "why": "An unclaimed 'premium refund' that needs a fee first, a payee id that only resembles the firm, and another fee after."
+ },
+ {
+  "file": "c071.txt",
+  "label": "scam",
+  "scenario": "'new number' relative impersonation asking for urgent money, phone UPI written with spaces, one voice note",
+  "language": "hinglish",
+  "difficulty": "medium",
+  "claimed_firm": "",
+  "payees": [
+   {
+    "identifier": "9722200015@paynova",
+    "kind": "phone_upi",
+    "message_index": 4,
+    "name_relation": "unrelated_business",
+    "intended_risk": "risky"
+   }
+  ],
+  "voice_transcripts": [
+   {
+    "file": "PTT-20261017-WA0009.opus",
+    "transcript": "Mummy abhi baat nahi kar sakta, bas paisa bhej do, baad me samjhata hu."
+   }
+  ],
+  "why": "A message from an unknown number claiming to be a family member, an urgent payment to an unrelated trader, refusal to talk, and a voice note that does not sound right."
+ },
+ {
+  "file": "c072.txt",
+  "label": "genuine",
+  "scenario": "a man repays a loan to his cousin but is asked to send it to another cousin's phone UPI",
+  "language": "hinglish",
+  "difficulty": "ambiguous",
+  "claimed_firm": "",
+  "payees": [
+   {
+    "identifier": "9544400066@okzeta",
+    "kind": "phone_upi",
+    "message_index": 2,
+    "name_relation": "personal_name",
+    "intended_risk": "unclear"
+   }
+  ],
+  "voice_transcripts": [],
+  "why": "A real family repayment, but being asked to send it to a different person's number because 'my app is not working' is something a reasonable person would check with a call first."
+ },
+ {
+  "file": "c073.txt",
+  "label": "genuine",
+  "scenario": "DTH provider sends the recharge id to a customer whose pack is about to expire",
+  "language": "hinglish",
+  "difficulty": "easy",
+  "claimed_firm": "SkyVista DTH",
+  "payees": [
+   {
+    "identifier": "skyvista.recharge@paynova",
+    "kind": "upi",
+    "message_index": 3,
+    "name_relation": "matches_firm",
+    "intended_risk": "fine"
+   }
+  ],
+  "voice_transcripts": [],
+  "why": "A routine recharge on the provider's own id with the name matching; nothing beyond the plan price is asked."
+ },
+ {
+  "file": "c074.txt",
+  "label": "scam",
+  "scenario": "cooking-gas subsidy pretext with a payment link on an unrelated claim portal",
+  "language": "hinglish",
+  "difficulty": "easy",
+  "claimed_firm": "GasSeva Subsidy Cell",
+  "payees": [
+   {
+    "identifier": "https://subsidy.gasseva-claim.test/s/204",
+    "kind": "link",
+    "message_index": 3,
+    "name_relation": "payment_gateway",
+    "intended_risk": "risky"
+   }
+  ],
+  "voice_transcripts": [],
+  "why": "An unrequested subsidy, a fee to claim it, a link on an unrelated claim portal and a deadline."
+ },
+ {
+  "file": "c075.txt",
+  "label": "genuine",
+  "scenario": "bank customer care blocks a lost card on chat, voice note, asks for no money",
+  "language": "devanagari_hindi",
+  "difficulty": "medium",
+  "claimed_firm": "Tarang Bank",
+  "payees": [],
+  "voice_transcripts": [
+   {
+    "file": "PTT-20261023-WA0004.opus",
+    "transcript": "कार्ड के आख़िरी चार अंक तीन, एक, दो, नौ हैं। मैं बाज़ार में हूँ इसलिए बोलकर भेज रहा हूँ।"
+   }
+  ],
+  "why": "Customer-care chat for a lost card; the agent warns about OTPs and PINs and asks for no payment."
+ },
+ {
+  "file": "c076.txt",
+  "label": "scam",
+  "scenario": "a new online friend introduces a forex app over twelve days, deposit to a look-alike technology firm id",
+  "language": "english",
+  "difficulty": "hard",
+  "claimed_firm": "PipNova Markets",
+  "payees": [
+   {
+    "identifier": "pipnova.deposit@okzeta",
+    "kind": "upi",
+    "message_index": 6,
+    "name_relation": "lookalike",
+    "intended_risk": "risky"
+   }
+  ],
+  "voice_transcripts": [],
+  "why": "A friendly contact builds trust over days before pushing a forex platform; the payee name is a technology firm only near the platform's name and returns are promised."
+ },
+ {
+  "file": "c077.txt",
+  "label": "scam",
+  "scenario": "impersonated bank staff offers to unfreeze an account for a fee, id written with 'at the rate'",
+  "language": "english",
+  "difficulty": "hard",
+  "claimed_firm": "Verity Bank",
+  "payees": [
+   {
+    "identifier": "verity.unfreeze@ybzeta",
+    "kind": "upi",
+    "message_index": 3,
+    "name_relation": "lookalike",
+    "intended_risk": "risky"
+   }
+  ],
+  "voice_transcripts": [],
+  "why": "Formal bank wording and a reference number make it credible, but real banks do not ask for a fee to unfreeze an account, and the payee id is written with 'at the rate' and a look-alike bank name."
+ },
+ {
+  "file": "c078.txt",
+  "label": "genuine",
+  "scenario": "residents' group where the secretary collects maintenance on his personal UPI",
+  "language": "english",
+  "difficulty": "ambiguous",
+  "claimed_firm": "Lakeview Heights RWA",
+  "payees": [
+   {
+    "identifier": "9355500052@paynova",
+    "kind": "phone_upi",
+    "message_index": 1,
+    "name_relation": "personal_name",
+    "intended_risk": "unclear"
+   }
+  ],
+  "voice_transcripts": [],
+  "why": "A real residents' association, but maintenance collected on the secretary's personal number and a late-fee nudge is something some residents would question."
+ },
+ {
+  "file": "c079.txt",
+  "label": "scam",
+  "scenario": "concert ticket seller asks for full advance to an event-decor business phone UPI",
+  "language": "english",
+  "difficulty": "medium",
+  "claimed_firm": "StageLine Tickets",
+  "payees": [
+   {
+    "identifier": "9833300058@ybzeta",
+    "kind": "phone_upi",
+    "message_index": 4,
+    "name_relation": "unrelated_business",
+    "intended_risk": "risky"
+   }
+  ],
+  "voice_transcripts": [],
+  "why": "Sold-out show with tickets 'from a contact', full advance before delivery, payee an unrelated decor business, then a transfer fee."
+ },
+ {
+  "file": "c080.txt",
+  "label": "genuine",
+  "scenario": "new client pays a freelancer a full upfront fee for a short project",
+  "language": "english",
+  "difficulty": "ambiguous",
+  "claimed_firm": "",
+  "payees": [
+   {
+    "identifier": "0000994411227",
+    "kind": "account",
+    "message_index": 5,
+    "name_relation": "personal_name",
+    "intended_risk": "unclear"
+   }
+  ],
+  "voice_transcripts": [],
+  "why": "Real freelance work, but a brand-new client paying 100% upfront to an individual account for an unseen portfolio is something both sides could hesitate over."
+ }
+]

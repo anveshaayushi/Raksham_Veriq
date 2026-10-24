@@ -1,0 +1,9 @@
+[10/10/26, 12:00:46 PM] ‎Messages and calls are end-to-end encrypted.
+[10/10/26, 12:00:46 PM] Carbon Securities KYC: Dear client, your Carbon Securities demat account will be FROZEN in 3 hours due to incomplete KYC
+[10/10/26, 12:03:35 PM] Lalit: I completed KYC when I opened it
+[10/10/26, 12:04:08 PM] Carbon Securities KYC: Exchange has revalidation order. Pay ₹199 revalidation charge to carbonsec.kyc@ybzeta
+[10/10/26, 12:08:18 PM] Lalit: It shows CARBON SECURITY SERVICES. Is that you?
+[10/10/26, 12:09:53 PM] Carbon Securities KYC: Yes our service arm. After payment you will get an OTP, share it so we can unlock
+[10/10/26, 12:12:02 PM] Lalit: Paid ₹199. No OTP yet
+[10/10/26, 12:15:10 PM] Carbon Securities KYC: Please install the support app for faster processing and read the code
+[10/10/26, 12:16:22 PM] Lalit: No. I'll call the broker helpline

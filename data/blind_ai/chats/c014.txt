@@ -1,0 +1,7 @@
+[7/10/26, 9:30:03 AM] ‎Messages and calls are end-to-end encrypted.
+[7/10/26, 9:30:03 AM] Seema: Good morning, Q3 ki fees ka link nahi aaya abhi tak. Last date 10th hai na?
+[7/10/26, 9:50:46 AM] Alcuin's Office: Namaste ma'am. Fee link: https://fees.alcuins-demo.test/pay?inv=2291. Amount ₹14,500 (tuition ₹13,000 + transport ₹1,500). Last date 10 Oct, uske baad ₹100/day late fee
+[7/10/26, 9:52:29 AM] Seema: link kholne par PAYSPHERE SCHOOL COLLECT dikh raha hai, school ka naam nahi
+[7/10/26, 9:55:17 AM] Alcuin's Office: Ji, hamare fee payments Paysphere gateway se hi hote hai. Receipt me school ka naam aayega. Chahe to office aake counter par bhi jama kar sakti hai
+[7/10/26, 10:20:29 AM] Seema: ok bhej diya, ref 9981122
+[7/10/26, 10:35:28 AM] Alcuin's Office: Payment received, receipt email kar di hai 👍

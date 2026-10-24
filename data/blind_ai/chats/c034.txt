@@ -1,0 +1,9 @@
+21/10/2026, 5:00 pm - Messages and calls are end-to-end encrypted. No one outside of this chat, not even WhatsApp, can read or listen to them.
+21/10/2026, 5:00 pm - Hema: Hi, I need vitamin D3 sachets, a cough syrup and a thermometer. Can you deliver?
+21/10/2026, 5:02 pm - Vitalis Pharmacy: Hello Hema ma'am, Vitalis Pharmacy. Yes. Total ₹486. Delivery free above ₹300
+21/10/2026, 5:03 pm - Hema: Can I pay by UPI on delivery?
+21/10/2026, 5:05 pm - Vitalis Pharmacy: Yes, the delivery boy will carry a QR, you can scan it. Or cash. Please don't pay anyone in advance, we don't take advance for medicines
+21/10/2026, 5:06 pm - Hema: Great, how long?
+21/10/2026, 5:08 pm - Vitalis Pharmacy: 45 minutes
+21/10/2026, 5:55 pm - Vitalis Pharmacy: Delivery boy has reached your gate
+21/10/2026, 6:00 pm - Hema: Got it, paid by scanning his QR. Thanks!

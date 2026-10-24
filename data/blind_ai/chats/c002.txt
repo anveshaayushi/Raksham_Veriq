@@ -1,0 +1,11 @@
+[8/10/26, 6:40:01 PM] ‎Messages and calls are end-to-end encrypted.
+[8/10/26, 6:40:01 PM] Dev: Ishita, you said you started a SIP last year? How does that work, I'm clueless
+[8/10/26, 6:42:51 PM] Ishita: Yes! Fund is Lumina Mutual Fund, a flexi-cap scheme. I put in ₹5,000 on the 5th every month through autopay
+[8/10/26, 6:42:56 PM] Ishita: Just remember returns are not guaranteed, it can go down too. I stay for 5+ years
+[8/10/26, 6:44:32 PM] Dev: And the first payment? Is it the same autopay?
+[8/10/26, 6:46:39 PM] Ishita: First instalment I paid by UPI to their collection id: lumina.sipcollect@paynova. The app showed LUMINA MUTUAL FUND COLLECTION so I knew it's right
+[8/10/26, 6:46:29 PM] Ishita: Then you set up the mandate and it auto-debits
+[8/10/26, 6:50:30 PM] Dev: Okay and tax on gains?
+[8/10/26, 6:52:12 PM] Ishita: Gains held over a year get long term capital gains tax above the yearly exempt limit. Ask your CA, I don't want to give wrong info 😅
+[8/10/26, 6:55:48 PM] Dev: Cool, I'll start with 3000 this weekend. Thanks!!
+[8/10/26, 6:56:02 PM] Ishita: Do it before the 5th so the first cycle is clean 👍
