@@ -14,7 +14,7 @@ only a review cue. It blocks nothing and contacts no one. It can be fooled (EVAS
 |---|---|
 | SUBMISSION.md | the index: what, how to run, reproduce, data and licences, limits |
 | RUBRIC_MAP.md | every rubric row → evidence, command, demo step |
-| DEMO_12MIN.md, QA_SHEET.md | the live slot and the answers |
+| DEMO_12MIN.md | the live slot and the answers |
 | RESULTS.md, CLAIMS.md, TESTPLAN.md | every number with its command; every claim with its test |
 | PROBLEM_USER.md, DEPLOYABILITY.md, DEPLOY.md | user, scenarios, sources; who runs it, cost estimates, pilot needs |
 | ENGINEERING_WALKTHROUGH.md, PLAN_VS_DELIVERED.md | what we built in the finale vs the Round 1 plan |
