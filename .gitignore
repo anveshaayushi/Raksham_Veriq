@@ -14,3 +14,9 @@ out/
 *.pth
 data/hinglish/real/
 data/hinglish/fake/
+
+.coverage
+results/coverage.json
+results/junit.xml
+results/pytest_output.txt
+results/regenerated/
