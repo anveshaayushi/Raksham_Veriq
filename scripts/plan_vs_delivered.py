@@ -31,7 +31,7 @@ PROMISES = [
     ("p10 cut first if late", "Hindi cues", "partial", ["C-19"], "Hinglish pressure phrases and Hindi account words; "
                                                                    "no full Hindi cue list, Hindi answer labels only"),
     ("p9 safety", "Gateway, trading/legal, proprietor names, transliteration -> Unverified, not discrepancy", "built",
-     ["C-14"], "measured on 97 name pairs: 3/42 same-firm names still called a discrepancy (bench/names)"),
+     ["C-14"], "97 name pairs: 0/42 same-firm names called a discrepancy (3/42 before the 25 Oct fixes); AI pairs: C-44"),
     ("p9 safety", "\"No major issue\" always says it is not a guarantee", "built", ["C-7"], ""),
     ("p9 safety", "Voice score can't change a payee result, either way", "partial", ["C-13"],
      "voice never clears; a flagged voice note CAN raise a payee to human review (by design, deck p6)"),

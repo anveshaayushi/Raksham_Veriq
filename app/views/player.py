@@ -17,8 +17,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 _START = re.compile(r"^\s*\[?\d{1,2}[/.-]\d{1,2}[/.-]\d{2,4},?\s+\d{1,2}[:.]\d{2}")
 
-# Scenario D: a LEGITIMATE broker whose bank account is registered under a short trading name. The user's bank app
-# shows "SSL CAPITAL SERVICES", which shares no word with "Sahyadri Securities Ltd", so VERIQ says
+# Scenario D: a LEGITIMATE broker that collects through its parent company's account. The user's bank app
+# shows "KONKAN FINVEST HOLDINGS PVT LTD", which shares no word with "Sahyadri Securities Ltd", so VERIQ says
 # NAME_DISCREPANCY: a false alarm. The user asks for a review; the reviewer checks SEBI and overturns it.
 SCENARIO_D = {
     "title": "D · Legitimate broker flagged by mistake, then cleared",
@@ -28,7 +28,7 @@ SCENARIO_D = {
              "sslcap.sec@validicici (our client funds account).\n"
              "20/10/2026, 10:05 am - Mr Joshi: Ok, will pay ₹15,000 today.\n"
              "20/10/2026, 10:06 am - Kavya (Sahyadri Securities): Thank you. You can also verify us on SEBI Check.\n"),
-    "names": {"sslcap.sec@validicici": "SSL CAPITAL SERVICES"},
+    "names": {"sslcap.sec@validicici": "KONKAN FINVEST HOLDINGS PVT LTD"},
     "transcripts": {},
 }
 

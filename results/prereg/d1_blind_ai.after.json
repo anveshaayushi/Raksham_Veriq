@@ -1,0 +1,2954 @@
+{
+ "set": "AI-generated blind set, n=80, author model not recorded, 25 Oct 2026",
+ "problems": [],
+ "run_at_ist": "2026-10-25 05:29 IST",
+ "commit": "2125984",
+ "engine_files_uncommitted": false,
+ "all": {
+  "n": 80,
+  "scam": {
+   "n": 40,
+   "warned": {
+    "count": 35,
+    "of": 40,
+    "rate": 0.875,
+    "wilson95": [
+     0.739,
+     0.945
+    ]
+   },
+   "accusing": {
+    "count": 29,
+    "of": 40,
+    "rate": 0.725,
+    "wilson95": [
+     0.572,
+     0.839
+    ]
+   },
+   "verify_first": {
+    "count": 6,
+    "of": 40,
+    "rate": 0.15,
+    "wilson95": [
+     0.071,
+     0.291
+    ]
+   },
+   "missed": {
+    "count": 0,
+    "of": 40,
+    "rate": 0.0,
+    "wilson95": [
+     0.0,
+     0.088
+    ]
+   },
+   "no_answer": {
+    "count": 5,
+    "of": 40,
+    "rate": 0.125,
+    "wilson95": [
+     0.055,
+     0.261
+    ]
+   }
+  },
+  "genuine": {
+   "n": 40,
+   "false_alarm_accusing": {
+    "count": 1,
+    "of": 40,
+    "rate": 0.025,
+    "wilson95": [
+     0.004,
+     0.129
+    ]
+   },
+   "verify_first": {
+    "count": 18,
+    "of": 40,
+    "rate": 0.45,
+    "wilson95": [
+     0.307,
+     0.602
+    ]
+   },
+   "clear_no_major_issue": {
+    "count": 11,
+    "of": 40,
+    "rate": 0.275,
+    "wilson95": [
+     0.161,
+     0.428
+    ]
+   },
+   "no_answer": {
+    "count": 10,
+    "of": 40,
+    "rate": 0.25,
+    "wilson95": [
+     0.142,
+     0.402
+    ]
+   }
+  },
+  "result_counts": {
+   "genuine: INCONCLUSIVE": 18,
+   "genuine: NO_MAJOR_ISSUE": 11,
+   "genuine: None": 10,
+   "genuine: REGISTRATION_CONFLICT": 1,
+   "scam: HUMAN_REVIEW": 15,
+   "scam: INCONCLUSIVE": 6,
+   "scam: NAME_DISCREPANCY": 11,
+   "scam: None": 5,
+   "scam: REGISTRATION_CONFLICT": 3
+  },
+  "payees": {
+   "risky": {
+    "n": 43,
+    "results": {
+     "NAME_DISCREPANCY": 11,
+     "INCONCLUSIVE": 8,
+     "not extracted": 5,
+     "HUMAN_REVIEW": 15,
+     "REGISTRATION_CONFLICT": 3,
+     "NO_MAJOR_ISSUE": 1
+    },
+    "accusing": {
+     "count": 29,
+     "of": 43,
+     "rate": 0.674,
+     "wilson95": [
+      0.525,
+      0.795
+     ]
+    },
+    "cleared": {
+     "count": 1,
+     "of": 43,
+     "rate": 0.023,
+     "wilson95": [
+      0.004,
+      0.121
+     ]
+    },
+    "not_extracted": {
+     "count": 5,
+     "of": 43,
+     "rate": 0.116,
+     "wilson95": [
+      0.051,
+      0.245
+     ]
+    },
+    "warned_or_verify_first": {
+     "count": 37,
+     "of": 43,
+     "rate": 0.86,
+     "wilson95": [
+      0.727,
+      0.934
+     ]
+    }
+   },
+   "fine": {
+    "n": 25,
+    "results": {
+     "NO_MAJOR_ISSUE": 11,
+     "INCONCLUSIVE": 10,
+     "REGISTRATION_CONFLICT": 1,
+     "not extracted": 3
+    },
+    "accusing": {
+     "count": 1,
+     "of": 25,
+     "rate": 0.04,
+     "wilson95": [
+      0.007,
+      0.195
+     ]
+    },
+    "cleared": {
+     "count": 11,
+     "of": 25,
+     "rate": 0.44,
+     "wilson95": [
+      0.267,
+      0.629
+     ]
+    },
+    "not_extracted": {
+     "count": 3,
+     "of": 25,
+     "rate": 0.12,
+     "wilson95": [
+      0.042,
+      0.3
+     ]
+    },
+    "warned_or_verify_first": {
+     "count": 11,
+     "of": 25,
+     "rate": 0.44,
+     "wilson95": [
+      0.267,
+      0.629
+     ]
+    }
+   },
+   "unclear (separate)": {
+    "n": 8,
+    "results": {
+     "INCONCLUSIVE": 8
+    },
+    "accusing": {
+     "count": 0,
+     "of": 8,
+     "rate": 0.0,
+     "wilson95": [
+      0.0,
+      0.324
+     ]
+    },
+    "cleared": {
+     "count": 0,
+     "of": 8,
+     "rate": 0.0,
+     "wilson95": [
+      0.0,
+      0.324
+     ]
+    },
+    "not_extracted": {
+     "count": 0,
+     "of": 8,
+     "rate": 0.0,
+     "wilson95": [
+      0.0,
+      0.324
+     ]
+    },
+    "warned_or_verify_first": {
+     "count": 8,
+     "of": 8,
+     "rate": 1.0,
+     "wilson95": [
+      0.676,
+      1.0
+     ]
+    }
+   }
+  },
+  "payees_by_name_relation": {
+   "lookalike (risky)": {
+    "not extracted": 1,
+    "HUMAN_REVIEW": 15,
+    "REGISTRATION_CONFLICT": 1,
+    "INCONCLUSIVE": 1
+   },
+   "matches_firm (fine)": {
+    "NO_MAJOR_ISSUE": 11,
+    "REGISTRATION_CONFLICT": 1,
+    "not extracted": 1,
+    "INCONCLUSIVE": 1
+   },
+   "matches_firm (risky)": {
+    "REGISTRATION_CONFLICT": 1,
+    "INCONCLUSIVE": 1,
+    "NO_MAJOR_ISSUE": 1
+   },
+   "payment_gateway (fine)": {
+    "not extracted": 2
+   },
+   "payment_gateway (risky)": {
+    "not extracted": 4
+   },
+   "personal_name (fine)": {
+    "INCONCLUSIVE": 9
+   },
+   "personal_name (risky)": {
+    "INCONCLUSIVE": 5,
+    "REGISTRATION_CONFLICT": 1
+   },
+   "personal_name (unclear)": {
+    "INCONCLUSIVE": 8
+   },
+   "unrelated_business (risky)": {
+    "NAME_DISCREPANCY": 11,
+    "INCONCLUSIVE": 1
+   }
+  },
+  "payees_extracted_by_kind": {
+   "account": {
+    "extracted": 18
+   },
+   "link": {
+    "not extracted": 8
+   },
+   "phone_upi": {
+    "extracted": 21
+   },
+   "upi": {
+    "extracted": 29
+   }
+  },
+  "by_language": {
+   "devanagari_hindi": {
+    "scam: no answer": 1,
+    "scam: accusing": 5,
+    "scam: verify-first": 1,
+    "genuine: clear": 2,
+    "genuine: verify-first": 2,
+    "genuine: no answer": 1
+   },
+   "english": {
+    "genuine: clear": 3,
+    "scam: verify-first": 4,
+    "genuine: false alarm": 1,
+    "genuine: no answer": 6,
+    "scam: accusing": 11,
+    "genuine: verify-first": 10,
+    "scam: no answer": 1
+   },
+   "hinglish": {
+    "scam: accusing": 13,
+    "genuine: verify-first": 6,
+    "genuine: clear": 6,
+    "genuine: no answer": 3,
+    "scam: no answer": 3,
+    "scam: verify-first": 1
+   }
+  },
+  "by_difficulty": {
+   "ambiguous": {
+    "genuine: no answer": 2,
+    "genuine: verify-first": 8,
+    "scam: verify-first": 1,
+    "scam: accusing": 1
+   },
+   "easy": {
+    "genuine: clear": 6,
+    "scam: verify-first": 2,
+    "genuine: verify-first": 8,
+    "scam: accusing": 3,
+    "scam: no answer": 2,
+    "genuine: no answer": 1
+   },
+   "hard": {
+    "genuine: false alarm": 1,
+    "scam: accusing": 6,
+    "genuine: no answer": 2,
+    "genuine: clear": 4,
+    "scam: verify-first": 1,
+    "genuine: verify-first": 2
+   },
+   "medium": {
+    "scam: accusing": 19,
+    "scam: no answer": 3,
+    "scam: verify-first": 2,
+    "genuine: no answer": 5,
+    "genuine: clear": 1
+   }
+  },
+  "voice_transcript_chats": {
+   "n": 8,
+   "voice_made_it_clearer": 0,
+   "note": "no audio supplied: the voice detector did not run; transcripts add text only"
+  },
+  "failures": [
+   {
+    "file": "c005.txt",
+    "label": "scam",
+    "veriq": null,
+    "outcome": "no answer",
+    "payee_problems": [
+     "https://pay.swiftpath-clear.test/c/88213 (link, risky, lookalike): not extracted"
+    ],
+    "warnings": [],
+    "kit_seen": true
+   },
+   {
+    "file": "c006.txt",
+    "label": "genuine",
+    "veriq": "REGISTRATION_CONFLICT",
+    "outcome": "false alarm",
+    "payee_problems": [
+     "kestrelbroking@paynova (upi, fine, matches_firm): REGISTRATION_CONFLICT"
+    ],
+    "warnings": [
+     "Every date in this file could be day-first or month-first; they were read day-first (Indian style)."
+    ],
+    "kit_seen": false
+   },
+   {
+    "file": "c010.txt",
+    "label": "genuine",
+    "veriq": null,
+    "outcome": "no answer",
+    "payee_problems": [],
+    "warnings": [
+     "Every date in this file could be day-first or month-first; they were read day-first (Indian style)."
+    ],
+    "kit_seen": false
+   },
+   {
+    "file": "c014.txt",
+    "label": "genuine",
+    "veriq": null,
+    "outcome": "no answer",
+    "payee_problems": [],
+    "warnings": [
+     "Every date in this file could be day-first or month-first; they were read day-first (Indian style)."
+    ],
+    "kit_seen": false
+   },
+   {
+    "file": "c016.txt",
+    "label": "genuine",
+    "veriq": null,
+    "outcome": "no answer",
+    "payee_problems": [],
+    "warnings": [],
+    "kit_seen": false
+   },
+   {
+    "file": "c030.txt",
+    "label": "scam",
+    "veriq": null,
+    "outcome": "no answer",
+    "payee_problems": [
+     "https://ipo-allot.fastclaim.test/p/771 (link, risky, payment_gateway): not extracted"
+    ],
+    "warnings": [
+     "Every date in this file could be day-first or month-first; they were read day-first (Indian style)."
+    ],
+    "kit_seen": false
+   },
+   {
+    "file": "c032.txt",
+    "label": "genuine",
+    "veriq": null,
+    "outcome": "no answer",
+    "payee_problems": [],
+    "warnings": [],
+    "kit_seen": false
+   },
+   {
+    "file": "c034.txt",
+    "label": "genuine",
+    "veriq": null,
+    "outcome": "no answer",
+    "payee_problems": [],
+    "warnings": [],
+    "kit_seen": false
+   },
+   {
+    "file": "c039.txt",
+    "label": "scam",
+    "veriq": null,
+    "outcome": "no answer",
+    "payee_problems": [
+     "https://itr-refund.claimdesk.test/x/5520 (link, risky, payment_gateway): not extracted"
+    ],
+    "warnings": [],
+    "kit_seen": false
+   },
+   {
+    "file": "c044.txt",
+    "label": "scam",
+    "veriq": null,
+    "outcome": "no answer",
+    "payee_problems": [
+     "https://tollpass-kyc.verifydesk.test/u/3391 (link, risky, payment_gateway): not extracted"
+    ],
+    "warnings": [
+     "Every date in this file could be day-first or month-first; they were read day-first (Indian style)."
+    ],
+    "kit_seen": false
+   },
+   {
+    "file": "c050.txt",
+    "label": "genuine",
+    "veriq": null,
+    "outcome": "no answer",
+    "payee_problems": [],
+    "warnings": [
+     "Every date in this file could be day-first or month-first; they were read day-first (Indian style)."
+    ],
+    "kit_seen": false
+   },
+   {
+    "file": "c053.txt",
+    "label": "genuine",
+    "veriq": null,
+    "outcome": "no answer",
+    "payee_problems": [],
+    "warnings": [],
+    "kit_seen": false
+   },
+   {
+    "file": "c056.txt",
+    "label": "genuine",
+    "veriq": null,
+    "outcome": "no answer",
+    "payee_problems": [],
+    "warnings": [],
+    "kit_seen": false
+   },
+   {
+    "file": "c058.txt",
+    "label": "genuine",
+    "veriq": null,
+    "outcome": "no answer",
+    "payee_problems": [],
+    "warnings": [],
+    "kit_seen": false
+   },
+   {
+    "file": "c066.txt",
+    "label": "scam",
+    "veriq": "NAME_DISCREPANCY",
+    "outcome": "accusing",
+    "payee_problems": [
+     "0000224466880 (account, risky, matches_firm): NO_MAJOR_ISSUE"
+    ],
+    "warnings": [
+     "Every date in this file could be day-first or month-first; they were read day-first (Indian style)."
+    ],
+    "kit_seen": false
+   },
+   {
+    "file": "c074.txt",
+    "label": "scam",
+    "veriq": null,
+    "outcome": "no answer",
+    "payee_problems": [
+     "https://subsidy.gasseva-claim.test/s/204 (link, risky, payment_gateway): not extracted"
+    ],
+    "warnings": [],
+    "kit_seen": false
+   },
+   {
+    "file": "c075.txt",
+    "label": "genuine",
+    "veriq": null,
+    "outcome": "no answer",
+    "payee_problems": [],
+    "warnings": [],
+    "kit_seen": false
+   }
+  ]
+ },
+ "unseen_by_kit": {
+  "n": 68,
+  "scam": {
+   "n": 34,
+   "warned": {
+    "count": 30,
+    "of": 34,
+    "rate": 0.882,
+    "wilson95": [
+     0.734,
+     0.953
+    ]
+   },
+   "accusing": {
+    "count": 26,
+    "of": 34,
+    "rate": 0.765,
+    "wilson95": [
+     0.6,
+     0.876
+    ]
+   },
+   "verify_first": {
+    "count": 4,
+    "of": 34,
+    "rate": 0.118,
+    "wilson95": [
+     0.047,
+     0.266
+    ]
+   },
+   "missed": {
+    "count": 0,
+    "of": 34,
+    "rate": 0.0,
+    "wilson95": [
+     0.0,
+     0.102
+    ]
+   },
+   "no_answer": {
+    "count": 4,
+    "of": 34,
+    "rate": 0.118,
+    "wilson95": [
+     0.047,
+     0.266
+    ]
+   }
+  },
+  "genuine": {
+   "n": 34,
+   "false_alarm_accusing": {
+    "count": 1,
+    "of": 34,
+    "rate": 0.029,
+    "wilson95": [
+     0.005,
+     0.149
+    ]
+   },
+   "verify_first": {
+    "count": 15,
+    "of": 34,
+    "rate": 0.441,
+    "wilson95": [
+     0.289,
+     0.605
+    ]
+   },
+   "clear_no_major_issue": {
+    "count": 8,
+    "of": 34,
+    "rate": 0.235,
+    "wilson95": [
+     0.124,
+     0.4
+    ]
+   },
+   "no_answer": {
+    "count": 10,
+    "of": 34,
+    "rate": 0.294,
+    "wilson95": [
+     0.168,
+     0.462
+    ]
+   }
+  },
+  "result_counts": {
+   "genuine: INCONCLUSIVE": 15,
+   "genuine: NO_MAJOR_ISSUE": 8,
+   "genuine: None": 10,
+   "genuine: REGISTRATION_CONFLICT": 1,
+   "scam: HUMAN_REVIEW": 14,
+   "scam: INCONCLUSIVE": 4,
+   "scam: NAME_DISCREPANCY": 9,
+   "scam: None": 4,
+   "scam: REGISTRATION_CONFLICT": 3
+  },
+  "payees": {
+   "risky": {
+    "n": 37,
+    "results": {
+     "REGISTRATION_CONFLICT": 3,
+     "NAME_DISCREPANCY": 9,
+     "INCONCLUSIVE": 6,
+     "HUMAN_REVIEW": 14,
+     "not extracted": 4,
+     "NO_MAJOR_ISSUE": 1
+    },
+    "accusing": {
+     "count": 26,
+     "of": 37,
+     "rate": 0.703,
+     "wilson95": [
+      0.542,
+      0.825
+     ]
+    },
+    "cleared": {
+     "count": 1,
+     "of": 37,
+     "rate": 0.027,
+     "wilson95": [
+      0.005,
+      0.138
+     ]
+    },
+    "not_extracted": {
+     "count": 4,
+     "of": 37,
+     "rate": 0.108,
+     "wilson95": [
+      0.043,
+      0.247
+     ]
+    },
+    "warned_or_verify_first": {
+     "count": 32,
+     "of": 37,
+     "rate": 0.865,
+     "wilson95": [
+      0.72,
+      0.941
+     ]
+    }
+   },
+   "fine": {
+    "n": 19,
+    "results": {
+     "REGISTRATION_CONFLICT": 1,
+     "not extracted": 3,
+     "NO_MAJOR_ISSUE": 8,
+     "INCONCLUSIVE": 7
+    },
+    "accusing": {
+     "count": 1,
+     "of": 19,
+     "rate": 0.053,
+     "wilson95": [
+      0.009,
+      0.246
+     ]
+    },
+    "cleared": {
+     "count": 8,
+     "of": 19,
+     "rate": 0.421,
+     "wilson95": [
+      0.231,
+      0.637
+     ]
+    },
+    "not_extracted": {
+     "count": 3,
+     "of": 19,
+     "rate": 0.158,
+     "wilson95": [
+      0.055,
+      0.376
+     ]
+    },
+    "warned_or_verify_first": {
+     "count": 8,
+     "of": 19,
+     "rate": 0.421,
+     "wilson95": [
+      0.231,
+      0.637
+     ]
+    }
+   },
+   "unclear (separate)": {
+    "n": 8,
+    "results": {
+     "INCONCLUSIVE": 8
+    },
+    "accusing": {
+     "count": 0,
+     "of": 8,
+     "rate": 0.0,
+     "wilson95": [
+      0.0,
+      0.324
+     ]
+    },
+    "cleared": {
+     "count": 0,
+     "of": 8,
+     "rate": 0.0,
+     "wilson95": [
+      0.0,
+      0.324
+     ]
+    },
+    "not_extracted": {
+     "count": 0,
+     "of": 8,
+     "rate": 0.0,
+     "wilson95": [
+      0.0,
+      0.324
+     ]
+    },
+    "warned_or_verify_first": {
+     "count": 8,
+     "of": 8,
+     "rate": 1.0,
+     "wilson95": [
+      0.676,
+      1.0
+     ]
+    }
+   }
+  },
+  "payees_by_name_relation": {
+   "lookalike (risky)": {
+    "HUMAN_REVIEW": 14,
+    "REGISTRATION_CONFLICT": 1,
+    "INCONCLUSIVE": 1
+   },
+   "matches_firm (fine)": {
+    "REGISTRATION_CONFLICT": 1,
+    "NO_MAJOR_ISSUE": 8,
+    "not extracted": 1,
+    "INCONCLUSIVE": 1
+   },
+   "matches_firm (risky)": {
+    "REGISTRATION_CONFLICT": 1,
+    "INCONCLUSIVE": 1,
+    "NO_MAJOR_ISSUE": 1
+   },
+   "payment_gateway (fine)": {
+    "not extracted": 2
+   },
+   "payment_gateway (risky)": {
+    "not extracted": 4
+   },
+   "personal_name (fine)": {
+    "INCONCLUSIVE": 6
+   },
+   "personal_name (risky)": {
+    "INCONCLUSIVE": 3,
+    "REGISTRATION_CONFLICT": 1
+   },
+   "personal_name (unclear)": {
+    "INCONCLUSIVE": 8
+   },
+   "unrelated_business (risky)": {
+    "NAME_DISCREPANCY": 9,
+    "INCONCLUSIVE": 1
+   }
+  },
+  "payees_extracted_by_kind": {
+   "account": {
+    "extracted": 16
+   },
+   "link": {
+    "not extracted": 7
+   },
+   "phone_upi": {
+    "extracted": 18
+   },
+   "upi": {
+    "extracted": 23
+   }
+  },
+  "by_language": {
+   "devanagari_hindi": {
+    "scam: accusing": 5,
+    "scam: verify-first": 1,
+    "genuine: clear": 2,
+    "genuine: verify-first": 2,
+    "genuine: no answer": 1
+   },
+   "english": {
+    "genuine: false alarm": 1,
+    "genuine: no answer": 6,
+    "scam: accusing": 11,
+    "genuine: clear": 2,
+    "scam: verify-first": 2,
+    "genuine: verify-first": 8,
+    "scam: no answer": 1
+   },
+   "hinglish": {
+    "genuine: no answer": 3,
+    "scam: accusing": 10,
+    "genuine: verify-first": 5,
+    "genuine: clear": 4,
+    "scam: no answer": 3,
+    "scam: verify-first": 1
+   }
+  },
+  "by_difficulty": {
+   "ambiguous": {
+    "genuine: no answer": 2,
+    "genuine: verify-first": 8,
+    "scam: verify-first": 1,
+    "scam: accusing": 1
+   },
+   "easy": {
+    "scam: accusing": 3,
+    "scam: verify-first": 1,
+    "genuine: clear": 4,
+    "genuine: verify-first": 5,
+    "scam: no answer": 2,
+    "genuine: no answer": 1
+   },
+   "hard": {
+    "genuine: false alarm": 1,
+    "scam: accusing": 6,
+    "genuine: no answer": 2,
+    "genuine: clear": 4,
+    "scam: verify-first": 1,
+    "genuine: verify-first": 2
+   },
+   "medium": {
+    "genuine: no answer": 5,
+    "scam: accusing": 16,
+    "scam: no answer": 2,
+    "scam: verify-first": 1
+   }
+  },
+  "voice_transcript_chats": {
+   "n": 8,
+   "voice_made_it_clearer": 0,
+   "note": "no audio supplied: the voice detector did not run; transcripts add text only"
+  },
+  "failures": [
+   {
+    "file": "c006.txt",
+    "label": "genuine",
+    "veriq": "REGISTRATION_CONFLICT",
+    "outcome": "false alarm",
+    "payee_problems": [
+     "kestrelbroking@paynova (upi, fine, matches_firm): REGISTRATION_CONFLICT"
+    ],
+    "warnings": [
+     "Every date in this file could be day-first or month-first; they were read day-first (Indian style)."
+    ],
+    "kit_seen": false
+   },
+   {
+    "file": "c010.txt",
+    "label": "genuine",
+    "veriq": null,
+    "outcome": "no answer",
+    "payee_problems": [],
+    "warnings": [
+     "Every date in this file could be day-first or month-first; they were read day-first (Indian style)."
+    ],
+    "kit_seen": false
+   },
+   {
+    "file": "c014.txt",
+    "label": "genuine",
+    "veriq": null,
+    "outcome": "no answer",
+    "payee_problems": [],
+    "warnings": [
+     "Every date in this file could be day-first or month-first; they were read day-first (Indian style)."
+    ],
+    "kit_seen": false
+   },
+   {
+    "file": "c016.txt",
+    "label": "genuine",
+    "veriq": null,
+    "outcome": "no answer",
+    "payee_problems": [],
+    "warnings": [],
+    "kit_seen": false
+   },
+   {
+    "file": "c030.txt",
+    "label": "scam",
+    "veriq": null,
+    "outcome": "no answer",
+    "payee_problems": [
+     "https://ipo-allot.fastclaim.test/p/771 (link, risky, payment_gateway): not extracted"
+    ],
+    "warnings": [
+     "Every date in this file could be day-first or month-first; they were read day-first (Indian style)."
+    ],
+    "kit_seen": false
+   },
+   {
+    "file": "c032.txt",
+    "label": "genuine",
+    "veriq": null,
+    "outcome": "no answer",
+    "payee_problems": [],
+    "warnings": [],
+    "kit_seen": false
+   },
+   {
+    "file": "c034.txt",
+    "label": "genuine",
+    "veriq": null,
+    "outcome": "no answer",
+    "payee_problems": [],
+    "warnings": [],
+    "kit_seen": false
+   },
+   {
+    "file": "c039.txt",
+    "label": "scam",
+    "veriq": null,
+    "outcome": "no answer",
+    "payee_problems": [
+     "https://itr-refund.claimdesk.test/x/5520 (link, risky, payment_gateway): not extracted"
+    ],
+    "warnings": [],
+    "kit_seen": false
+   },
+   {
+    "file": "c044.txt",
+    "label": "scam",
+    "veriq": null,
+    "outcome": "no answer",
+    "payee_problems": [
+     "https://tollpass-kyc.verifydesk.test/u/3391 (link, risky, payment_gateway): not extracted"
+    ],
+    "warnings": [
+     "Every date in this file could be day-first or month-first; they were read day-first (Indian style)."
+    ],
+    "kit_seen": false
+   },
+   {
+    "file": "c050.txt",
+    "label": "genuine",
+    "veriq": null,
+    "outcome": "no answer",
+    "payee_problems": [],
+    "warnings": [
+     "Every date in this file could be day-first or month-first; they were read day-first (Indian style)."
+    ],
+    "kit_seen": false
+   },
+   {
+    "file": "c053.txt",
+    "label": "genuine",
+    "veriq": null,
+    "outcome": "no answer",
+    "payee_problems": [],
+    "warnings": [],
+    "kit_seen": false
+   },
+   {
+    "file": "c056.txt",
+    "label": "genuine",
+    "veriq": null,
+    "outcome": "no answer",
+    "payee_problems": [],
+    "warnings": [],
+    "kit_seen": false
+   },
+   {
+    "file": "c058.txt",
+    "label": "genuine",
+    "veriq": null,
+    "outcome": "no answer",
+    "payee_problems": [],
+    "warnings": [],
+    "kit_seen": false
+   },
+   {
+    "file": "c066.txt",
+    "label": "scam",
+    "veriq": "NAME_DISCREPANCY",
+    "outcome": "accusing",
+    "payee_problems": [
+     "0000224466880 (account, risky, matches_firm): NO_MAJOR_ISSUE"
+    ],
+    "warnings": [
+     "Every date in this file could be day-first or month-first; they were read day-first (Indian style)."
+    ],
+    "kit_seen": false
+   },
+   {
+    "file": "c074.txt",
+    "label": "scam",
+    "veriq": null,
+    "outcome": "no answer",
+    "payee_problems": [
+     "https://subsidy.gasseva-claim.test/s/204 (link, risky, payment_gateway): not extracted"
+    ],
+    "warnings": [],
+    "kit_seen": false
+   },
+   {
+    "file": "c075.txt",
+    "label": "genuine",
+    "veriq": null,
+    "outcome": "no answer",
+    "payee_problems": [],
+    "warnings": [],
+    "kit_seen": false
+   }
+  ]
+ },
+ "per_chat": [
+  {
+   "file": "c001.txt",
+   "label": "scam",
+   "language": "hinglish",
+   "difficulty": "medium",
+   "result": "NAME_DISCREPANCY",
+   "payees_found": [
+    "tarkash.wealth000@okzeta"
+   ],
+   "payees": [
+    {
+     "identifier": "tarkash.wealth000@okzeta",
+     "kind": "upi",
+     "intended_risk": "risky",
+     "name_relation": "unrelated_business",
+     "result": "NAME_DISCREPANCY"
+    }
+   ],
+   "kit_seen": true,
+   "warnings": [
+    "Every date in this file could be day-first or month-first; they were read day-first (Indian style)."
+   ],
+   "why_label": "Guaranteed 40% monthly returns, urgency, payee is an unrelated general store, then a surprise tax to withdraw.",
+   "payment_links": []
+  },
+  {
+   "file": "c002.txt",
+   "label": "genuine",
+   "language": "english",
+   "difficulty": "easy",
+   "result": "NO_MAJOR_ISSUE",
+   "payees_found": [
+    "lumina.sipcollect@paynova"
+   ],
+   "payees": [
+    {
+     "identifier": "lumina.sipcollect@paynova",
+     "kind": "upi",
+     "intended_risk": "fine",
+     "name_relation": "matches_firm",
+     "result": "NO_MAJOR_ISSUE"
+    }
+   ],
+   "kit_seen": true,
+   "warnings": [
+    "Every date in this file could be day-first or month-first; they were read day-first (Indian style)."
+   ],
+   "why_label": "Ordinary SIP advice between friends; honest risk language; payee name in the bank app matches the fund house.",
+   "payment_links": []
+  },
+  {
+   "file": "c003.txt",
+   "label": "scam",
+   "language": "english",
+   "difficulty": "easy",
+   "result": "INCONCLUSIVE",
+   "payees_found": [
+    "0000456781234"
+   ],
+   "payees": [
+    {
+     "identifier": "0000456781234",
+     "kind": "account",
+     "intended_risk": "risky",
+     "name_relation": "personal_name",
+     "result": "INCONCLUSIVE"
+    }
+   ],
+   "kit_seen": true,
+   "warnings": [],
+   "why_label": "Classic task scam: early small payouts, deposit demanded into a staff member's personal account, then a bigger 'level 2' payment.",
+   "payment_links": []
+  },
+  {
+   "file": "c004.txt",
+   "label": "genuine",
+   "language": "hinglish",
+   "difficulty": "easy",
+   "result": "INCONCLUSIVE",
+   "payees_found": [
+    "9123400056@paynova"
+   ],
+   "payees": [
+    {
+     "identifier": "9123400056@paynova",
+     "kind": "phone_upi",
+     "intended_risk": "fine",
+     "name_relation": "personal_name",
+     "result": "INCONCLUSIVE"
+    }
+   ],
+   "kit_seen": true,
+   "warnings": [
+    "Every date in this file could be day-first or month-first; they were read day-first (Indian style)."
+   ],
+   "why_label": "Normal rent split among three flatmates; payee is a flatmate's phone UPI and the name checked matches.",
+   "payment_links": []
+  },
+  {
+   "file": "c005.txt",
+   "label": "scam",
+   "language": "devanagari_hindi",
+   "difficulty": "medium",
+   "result": null,
+   "payees_found": [],
+   "payees": [
+    {
+     "identifier": "https://pay.swiftpath-clear.test/c/88213",
+     "kind": "link",
+     "intended_risk": "risky",
+     "name_relation": "lookalike",
+     "result": "not extracted"
+    }
+   ],
+   "kit_seen": true,
+   "warnings": [],
+   "why_label": "Unexpected parcel, customs fee under threat, payment link whose page shows a look-alike clearance name, then a second fee.",
+   "payment_links": [
+    "https://pay.swiftpath-clear.test/c/88213"
+   ]
+  },
+  {
+   "file": "c006.txt",
+   "label": "genuine",
+   "language": "english",
+   "difficulty": "hard",
+   "result": "REGISTRATION_CONFLICT",
+   "payees_found": [
+    "kestrelbroking@paynova"
+   ],
+   "payees": [
+    {
+     "identifier": "kestrelbroking@paynova",
+     "kind": "upi",
+     "intended_risk": "fine",
+     "name_relation": "matches_firm",
+     "result": "REGISTRATION_CONFLICT"
+    }
+   ],
+   "kit_seen": false,
+   "warnings": [
+    "Every date in this file could be day-first or month-first; they were read day-first (Indian style)."
+   ],
+   "why_label": "Sounds like a sales chat with a deadline and fee, but the fee is small, one-time, goes to the firm's own id, and risk is stated honestly.",
+   "payment_links": []
+  },
+  {
+   "file": "c007.txt",
+   "label": "scam",
+   "language": "english",
+   "difficulty": "medium",
+   "result": "INCONCLUSIVE",
+   "payees_found": [
+    "9345600078@ybzeta"
+   ],
+   "payees": [
+    {
+     "identifier": "9345600078@ybzeta",
+     "kind": "phone_upi",
+     "intended_risk": "risky",
+     "name_relation": "personal_name",
+     "result": "INCONCLUSIVE"
+    }
+   ],
+   "kit_seen": true,
+   "warnings": [
+    "Every date in this file could be day-first or month-first; they were read day-first (Indian style)."
+   ],
+   "why_label": "Slow romance build-up, pressure phrased as love, deposit to an individual's phone UPI, balance inflated, 20% tax to withdraw.",
+   "payment_links": []
+  },
+  {
+   "file": "c008.txt",
+   "label": "genuine",
+   "language": "hinglish",
+   "difficulty": "easy",
+   "result": "NO_MAJOR_ISSUE",
+   "payees_found": [
+    "gupta.mobiles@okzeta"
+   ],
+   "payees": [
+    {
+     "identifier": "gupta.mobiles@okzeta",
+     "kind": "upi",
+     "intended_risk": "fine",
+     "name_relation": "matches_firm",
+     "result": "NO_MAJOR_ISSUE"
+    }
+   ],
+   "kit_seen": true,
+   "warnings": [
+    "Every date in this file could be day-first or month-first; they were read day-first (Indian style)."
+   ],
+   "why_label": "Routine purchase from a neighbourhood shop; UPI name matches the shop.",
+   "payment_links": []
+  },
+  {
+   "file": "c009.txt",
+   "label": "scam",
+   "language": "hinglish",
+   "difficulty": "medium",
+   "result": "HUMAN_REVIEW",
+   "payees_found": [
+    "kyc.update.7@okzeta"
+   ],
+   "payees": [
+    {
+     "identifier": "kyc.update.7@okzeta",
+     "kind": "upi",
+     "intended_risk": "risky",
+     "name_relation": "lookalike",
+     "result": "HUMAN_REVIEW"
+    }
+   ],
+   "kit_seen": true,
+   "warnings": [],
+   "why_label": "Impersonated bank staff, urgency, OTP and remote support request; payee written in words and the app name is a look-alike.",
+   "payment_links": []
+  },
+  {
+   "file": "c010.txt",
+   "label": "genuine",
+   "language": "english",
+   "difficulty": "medium",
+   "result": null,
+   "payees_found": [],
+   "payees": [],
+   "kit_seen": false,
+   "warnings": [
+    "Every date in this file could be day-first or month-first; they were read day-first (Indian style)."
+   ],
+   "why_label": "Looks like a customer-care chat (the usual scam pretext) but it asks for no money and no OTP, and warns against sharing them.",
+   "payment_links": [],
+   "without_transcripts": null,
+   "voice_made_it_clearer": false
+  },
+  {
+   "file": "c011.txt",
+   "label": "scam",
+   "language": "english",
+   "difficulty": "hard",
+   "result": "REGISTRATION_CONFLICT",
+   "payees_found": [
+    "0000789012345"
+   ],
+   "payees": [
+    {
+     "identifier": "0000789012345",
+     "kind": "account",
+     "intended_risk": "risky",
+     "name_relation": "matches_firm",
+     "result": "REGISTRATION_CONFLICT"
+    }
+   ],
+   "kit_seen": false,
+   "warnings": [
+    "Every date in this file could be day-first or month-first; they were read day-first (Indian style)."
+   ],
+   "why_label": "The payee account name genuinely matches the claimed firm, which looks reassuring, but the assured profit, tax-to-withdraw and extra deposit are a scam.",
+   "payment_links": []
+  },
+  {
+   "file": "c012.txt",
+   "label": "genuine",
+   "language": "english",
+   "difficulty": "easy",
+   "result": "INCONCLUSIVE",
+   "payees_found": [
+    "0000234567890"
+   ],
+   "payees": [
+    {
+     "identifier": "0000234567890",
+     "kind": "account",
+     "intended_risk": "fine",
+     "name_relation": "personal_name",
+     "result": "INCONCLUSIVE"
+    }
+   ],
+   "kit_seen": true,
+   "warnings": [],
+   "why_label": "Standard freelancer invoice; amount arithmetic is right; payee name matches the proprietor.",
+   "payment_links": []
+  },
+  {
+   "file": "c013.txt",
+   "label": "scam",
+   "language": "hinglish",
+   "difficulty": "medium",
+   "result": "NAME_DISCREPANCY",
+   "payees_found": [
+    "sunil.refund.desk@paynova"
+   ],
+   "payees": [
+    {
+     "identifier": "sunil.refund.desk@paynova",
+     "kind": "upi",
+     "intended_risk": "risky",
+     "name_relation": "unrelated_business",
+     "result": "NAME_DISCREPANCY"
+    }
+   ],
+   "kit_seen": true,
+   "warnings": [],
+   "why_label": "Unsolicited 'customer care' offers a refund but wants a payment and a remote support code; payee is written in words and belongs to an unrelated services business.",
+   "payment_links": []
+  },
+  {
+   "file": "c014.txt",
+   "label": "genuine",
+   "language": "hinglish",
+   "difficulty": "hard",
+   "result": null,
+   "payees_found": [],
+   "payees": [
+    {
+     "identifier": "https://fees.alcuins-demo.test/pay?inv=2291",
+     "kind": "link",
+     "intended_risk": "fine",
+     "name_relation": "payment_gateway",
+     "result": "not extracted"
+    }
+   ],
+   "kit_seen": false,
+   "warnings": [
+    "Every date in this file could be day-first or month-first; they were read day-first (Indian style)."
+   ],
+   "why_label": "A link and a gateway name instead of the school's name look suspicious, but the school office confirms this is its normal channel and offers the counter as an alternative.",
+   "payment_links": [
+    "https://fees.alcuins-demo.test/pay?inv=2291."
+   ]
+  },
+  {
+   "file": "c015.txt",
+   "label": "scam",
+   "language": "devanagari_hindi",
+   "difficulty": "easy",
+   "result": "NAME_DISCREPANCY",
+   "payees_found": [
+    "0000912345678"
+   ],
+   "payees": [
+    {
+     "identifier": "0000912345678",
+     "kind": "account",
+     "intended_risk": "risky",
+     "name_relation": "unrelated_business",
+     "result": "NAME_DISCREPANCY"
+    }
+   ],
+   "kit_seen": false,
+   "warnings": [],
+   "why_label": "Loan with no guarantee or credit check, advance processing fee into an unrelated company's account, then further fees.",
+   "payment_links": []
+  },
+  {
+   "file": "c016.txt",
+   "label": "genuine",
+   "language": "english",
+   "difficulty": "ambiguous",
+   "result": null,
+   "payees_found": [],
+   "payees": [],
+   "kit_seen": false,
+   "warnings": [],
+   "why_label": "No payment is requested and the admin warns about impersonators, but unregistered tips, a 'maybe paid later' remark and the closing joke would make a careful reader hesitate.",
+   "payment_links": []
+  },
+  {
+   "file": "c017.txt",
+   "label": "scam",
+   "language": "english",
+   "difficulty": "hard",
+   "result": "HUMAN_REVIEW",
+   "payees_found": [
+    "0000667788990",
+    "deepak.verma000@paynova"
+   ],
+   "payees": [
+    {
+     "identifier": "deepak.verma000@paynova",
+     "kind": "upi",
+     "intended_risk": "risky",
+     "name_relation": "personal_name",
+     "result": "INCONCLUSIVE"
+    },
+    {
+     "identifier": "0000667788990",
+     "kind": "account",
+     "intended_risk": "risky",
+     "name_relation": "lookalike",
+     "result": "HUMAN_REVIEW"
+    }
+   ],
+   "kit_seen": false,
+   "warnings": [
+    "Every date in this file could be day-first or month-first; they were read day-first (Indian style)."
+   ],
+   "why_label": "Fixed guaranteed returns, payee changes mid-chat from a person's UPI to a firm-like account, an 'audit' excuse and a withdrawal fee.",
+   "payment_links": []
+  },
+  {
+   "file": "c018.txt",
+   "label": "genuine",
+   "language": "hinglish",
+   "difficulty": "medium",
+   "result": "NO_MAJOR_ISSUE",
+   "payees_found": [
+    "payments.metrogrid@paynova"
+   ],
+   "payees": [
+    {
+     "identifier": "payments.metrogrid@paynova",
+     "kind": "upi",
+     "intended_risk": "fine",
+     "name_relation": "matches_firm",
+     "result": "NO_MAJOR_ISSUE"
+    }
+   ],
+   "kit_seen": true,
+   "warnings": [],
+   "why_label": "A bill with a due date and a 'late fee' warning, but it is a normal utility payment with a prefilled amount and a matching biller name.",
+   "payment_links": []
+  },
+  {
+   "file": "c019.txt",
+   "label": "scam",
+   "language": "hinglish",
+   "difficulty": "medium",
+   "result": "NAME_DISCREPANCY",
+   "payees_found": [
+    "coinvault.pay9@okzeta"
+   ],
+   "payees": [
+    {
+     "identifier": "coinvault.pay9@okzeta",
+     "kind": "upi",
+     "intended_risk": "risky",
+     "name_relation": "unrelated_business",
+     "result": "NAME_DISCREPANCY"
+    }
+   ],
+   "kit_seen": false,
+   "warnings": [
+    "Every date in this file could be day-first or month-first; they were read day-first (Indian style)."
+   ],
+   "why_label": "Guaranteed daily 5% on crypto, payee is a personal-looking enterprise, withdrawal blocked behind a new fee.",
+   "payment_links": [],
+   "without_transcripts": "NAME_DISCREPANCY",
+   "voice_made_it_clearer": false
+  },
+  {
+   "file": "c020.txt",
+   "label": "genuine",
+   "language": "hinglish",
+   "difficulty": "ambiguous",
+   "result": "INCONCLUSIVE",
+   "payees_found": [
+    "9876500012@paynova"
+   ],
+   "payees": [
+    {
+     "identifier": "9876500012@paynova",
+     "kind": "phone_upi",
+     "intended_risk": "unclear",
+     "name_relation": "personal_name",
+     "result": "INCONCLUSIVE"
+    }
+   ],
+   "kit_seen": false,
+   "warnings": [],
+   "why_label": "Real family request, but the urgency, the third-party number and the blurry photo would make a reasonable person hesitate; the relative really is who she says.",
+   "payment_links": []
+  },
+  {
+   "file": "c021.txt",
+   "label": "genuine",
+   "language": "hinglish",
+   "difficulty": "hard",
+   "result": "NO_MAJOR_ISSUE",
+   "payees_found": [
+    "pranmarklife.premium@okzeta"
+   ],
+   "payees": [
+    {
+     "identifier": "pranmarklife.premium@okzeta",
+     "kind": "upi",
+     "intended_risk": "fine",
+     "name_relation": "matches_firm",
+     "result": "NO_MAJOR_ISSUE"
+    }
+   ],
+   "kit_seen": false,
+   "warnings": [],
+   "why_label": "Deadline, lapse warning and tax talk sound pressuring, but the payee is the insurer's own id, the agent warns against personal numbers, and says returns are not guaranteed.",
+   "payment_links": []
+  },
+  {
+   "file": "c022.txt",
+   "label": "scam",
+   "language": "english",
+   "difficulty": "medium",
+   "result": "REGISTRATION_CONFLICT",
+   "payees_found": [
+    "manish.arora000@paynova"
+   ],
+   "payees": [
+    {
+     "identifier": "manish.arora000@paynova",
+     "kind": "upi",
+     "intended_risk": "risky",
+     "name_relation": "personal_name",
+     "result": "REGISTRATION_CONFLICT"
+    }
+   ],
+   "kit_seen": false,
+   "warnings": [
+    "Every date in this file could be day-first or month-first; they were read day-first (Indian style)."
+   ],
+   "why_label": "Assured weekly returns and '90% accuracy' with a claimed RA number, payment to an individual 'relationship manager', then an upsell and no refund.",
+   "payment_links": []
+  },
+  {
+   "file": "c023.txt",
+   "label": "scam",
+   "language": "devanagari_hindi",
+   "difficulty": "easy",
+   "result": "INCONCLUSIVE",
+   "payees_found": [
+    "9234500045@ybzeta"
+   ],
+   "payees": [
+    {
+     "identifier": "9234500045@ybzeta",
+     "kind": "phone_upi",
+     "intended_risk": "risky",
+     "name_relation": "personal_name",
+     "result": "INCONCLUSIVE"
+    }
+   ],
+   "kit_seen": false,
+   "warnings": [],
+   "why_label": "Disconnection threat with a deadline, a 'department' paying to an individual's mobile number, secrecy from family, and OTP and screen-share requests.",
+   "payment_links": []
+  },
+  {
+   "file": "c024.txt",
+   "label": "genuine",
+   "language": "english",
+   "difficulty": "easy",
+   "result": "INCONCLUSIVE",
+   "payees_found": [
+    "9876500031@paynova"
+   ],
+   "payees": [
+    {
+     "identifier": "9876500031@paynova",
+     "kind": "phone_upi",
+     "intended_risk": "fine",
+     "name_relation": "personal_name",
+     "result": "INCONCLUSIVE"
+    }
+   ],
+   "kit_seen": true,
+   "warnings": [
+    "Every date in this file could be day-first or month-first; they were read day-first (Indian style)."
+   ],
+   "why_label": "Ordinary family support; payee is the mother's phone UPI and the name matches.",
+   "payment_links": []
+  },
+  {
+   "file": "c025.txt",
+   "label": "genuine",
+   "language": "devanagari_hindi",
+   "difficulty": "easy",
+   "result": "NO_MAJOR_ISSUE",
+   "payees_found": [
+    "sharmasweets.diwali@okzeta"
+   ],
+   "payees": [
+    {
+     "identifier": "sharmasweets.diwali@okzeta",
+     "kind": "upi",
+     "intended_risk": "fine",
+     "name_relation": "matches_firm",
+     "result": "NO_MAJOR_ISSUE"
+    }
+   ],
+   "kit_seen": false,
+   "warnings": [],
+   "why_label": "Normal festive order; small advance to the shop's own id and the app shows the shop name.",
+   "payment_links": []
+  },
+  {
+   "file": "c026.txt",
+   "label": "scam",
+   "language": "hinglish",
+   "difficulty": "medium",
+   "result": "HUMAN_REVIEW",
+   "payees_found": [
+    "0000321098765"
+   ],
+   "payees": [
+    {
+     "identifier": "0000321098765",
+     "kind": "account",
+     "intended_risk": "risky",
+     "name_relation": "lookalike",
+     "result": "HUMAN_REVIEW"
+    }
+   ],
+   "kit_seen": false,
+   "warnings": [
+    "Every date in this file could be day-first or month-first; they were read day-first (Indian style)."
+   ],
+   "why_label": "Loan the person never applied for, a 'refundable' fee paid into a firm name that is only close to the lender's, then another fee.",
+   "payment_links": []
+  },
+  {
+   "file": "c027.txt",
+   "label": "scam",
+   "language": "english",
+   "difficulty": "hard",
+   "result": "HUMAN_REVIEW",
+   "payees_found": [
+    "0000554433221"
+   ],
+   "payees": [
+    {
+     "identifier": "0000554433221",
+     "kind": "account",
+     "intended_risk": "risky",
+     "name_relation": "lookalike",
+     "result": "HUMAN_REVIEW"
+    }
+   ],
+   "kit_seen": false,
+   "warnings": [],
+   "why_label": "Formal, official-sounding tone with a case number, but demands secrecy, threatens arrest, wants a deposit into a private-looking account, and tells the person not to leave home or go to the police.",
+   "payment_links": []
+  },
+  {
+   "file": "c028.txt",
+   "label": "genuine",
+   "language": "hinglish",
+   "difficulty": "ambiguous",
+   "result": "INCONCLUSIVE",
+   "payees_found": [
+    "9012300034@paynova"
+   ],
+   "payees": [
+    {
+     "identifier": "9012300034@paynova",
+     "kind": "phone_upi",
+     "intended_risk": "unclear",
+     "name_relation": "personal_name",
+     "result": "INCONCLUSIVE"
+    }
+   ],
+   "kit_seen": false,
+   "warnings": [],
+   "why_label": "A real private sale, but a booking advance to a stranger before seeing the bike and a competing-buyer nudge would make a reasonable person hesitate; documents and name checks do match.",
+   "payment_links": []
+  },
+  {
+   "file": "c029.txt",
+   "label": "genuine",
+   "language": "english",
+   "difficulty": "hard",
+   "result": "NO_MAJOR_ISSUE",
+   "payees_found": [
+    "orbitlearning@paynova"
+   ],
+   "payees": [
+    {
+     "identifier": "orbitlearning@paynova",
+     "kind": "upi",
+     "intended_risk": "fine",
+     "name_relation": "matches_firm",
+     "result": "NO_MAJOR_ISSUE"
+    }
+   ],
+   "kit_seen": false,
+   "warnings": [],
+   "why_label": "Limited seats and a 5 pm deadline sound like pressure, but the centre refuses to guarantee results, the fee is small and adjusted later, and the payee matches the firm.",
+   "payment_links": []
+  },
+  {
+   "file": "c030.txt",
+   "label": "scam",
+   "language": "hinglish",
+   "difficulty": "medium",
+   "result": null,
+   "payees_found": [],
+   "payees": [
+    {
+     "identifier": "https://ipo-allot.fastclaim.test/p/771",
+     "kind": "link",
+     "intended_risk": "risky",
+     "name_relation": "payment_gateway",
+     "result": "not extracted"
+    }
+   ],
+   "kit_seen": false,
+   "warnings": [
+    "Every date in this file could be day-first or month-first; they were read day-first (Indian style)."
+   ],
+   "why_label": "Guaranteed IPO allotment is impossible; fee through a link on a gateway page unrelated to the club, then a surprise tax.",
+   "payment_links": [
+    "https://ipo-allot.fastclaim.test/p/771"
+   ]
+  },
+  {
+   "file": "c031.txt",
+   "label": "scam",
+   "language": "english",
+   "difficulty": "medium",
+   "result": "HUMAN_REVIEW",
+   "payees_found": [
+    "9100000012@ybzeta"
+   ],
+   "payees": [
+    {
+     "identifier": "9100000012@ybzeta",
+     "kind": "phone_upi",
+     "intended_risk": "risky",
+     "name_relation": "lookalike",
+     "result": "HUMAN_REVIEW"
+    }
+   ],
+   "kit_seen": false,
+   "warnings": [],
+   "why_label": "Two-hour deactivation threat, payment to an ordinary mobile number whose app name is only a look-alike, then a support app and code request.",
+   "payment_links": [],
+   "without_transcripts": "HUMAN_REVIEW",
+   "voice_made_it_clearer": false
+  },
+  {
+   "file": "c032.txt",
+   "label": "genuine",
+   "language": "hinglish",
+   "difficulty": "medium",
+   "result": null,
+   "payees_found": [],
+   "payees": [],
+   "kit_seen": false,
+   "warnings": [],
+   "why_label": "Customer-care chat about a debit, which resembles the refund pretext, but the agent asks for no payment, no OTP and no remote access, and warns against anyone who does.",
+   "payment_links": [],
+   "without_transcripts": null,
+   "voice_made_it_clearer": false
+  },
+  {
+   "file": "c033.txt",
+   "label": "scam",
+   "language": "devanagari_hindi",
+   "difficulty": "medium",
+   "result": "HUMAN_REVIEW",
+   "payees_found": [
+    "kanchan.gold7@okzeta"
+   ],
+   "payees": [
+    {
+     "identifier": "kanchan.gold7@okzeta",
+     "kind": "upi",
+     "intended_risk": "risky",
+     "name_relation": "lookalike",
+     "result": "HUMAN_REVIEW"
+    }
+   ],
+   "kit_seen": false,
+   "warnings": [
+    "Every date in this file could be day-first or month-first; they were read day-first (Indian style)."
+   ],
+   "why_label": "Money doubled in a year with a 100% guarantee, urgency about seats, payee id written with Hindi words for dot and at, app name only close to the scheme, then an extra fee.",
+   "payment_links": []
+  },
+  {
+   "file": "c034.txt",
+   "label": "genuine",
+   "language": "english",
+   "difficulty": "medium",
+   "result": null,
+   "payees_found": [],
+   "payees": [],
+   "kit_seen": false,
+   "warnings": [],
+   "why_label": "A QR is mentioned but no identifier is shared; the shop explicitly refuses advance payments, and the order is small and normal.",
+   "payment_links": []
+  },
+  {
+   "file": "c035.txt",
+   "label": "scam",
+   "language": "english",
+   "difficulty": "hard",
+   "result": "INCONCLUSIVE",
+   "payees_found": [
+    "0000445566778"
+   ],
+   "payees": [
+    {
+     "identifier": "0000445566778",
+     "kind": "account",
+     "intended_risk": "risky",
+     "name_relation": "matches_firm",
+     "result": "INCONCLUSIVE"
+    }
+   ],
+   "kit_seen": false,
+   "warnings": [],
+   "why_label": "The payee account name really matches the claimed firm, which feels safe, but a guaranteed foreign visa, a closed office, partial payment refusal and new fees show it is a scam.",
+   "payment_links": []
+  },
+  {
+   "file": "c036.txt",
+   "label": "genuine",
+   "language": "english",
+   "difficulty": "hard",
+   "result": "NO_MAJOR_ISSUE",
+   "payees_found": [
+    "pivotadvisory@paynova"
+   ],
+   "payees": [
+    {
+     "identifier": "pivotadvisory@paynova",
+     "kind": "upi",
+     "intended_risk": "fine",
+     "name_relation": "matches_firm",
+     "result": "NO_MAJOR_ISSUE"
+    }
+   ],
+   "kit_seen": false,
+   "warnings": [],
+   "why_label": "Deadline, fee and investing talk look risky, but the adviser stresses firm-only payments, denies guarantees, and the payee name matches the firm.",
+   "payment_links": []
+  },
+  {
+   "file": "c037.txt",
+   "label": "scam",
+   "language": "hinglish",
+   "difficulty": "medium",
+   "result": "NAME_DISCREPANCY",
+   "payees_found": [
+    "9801200067@okzeta"
+   ],
+   "payees": [
+    {
+     "identifier": "9801200067@okzeta",
+     "kind": "phone_upi",
+     "intended_risk": "risky",
+     "name_relation": "unrelated_business",
+     "result": "NAME_DISCREPANCY"
+    }
+   ],
+   "kit_seen": false,
+   "warnings": [
+    "Every date in this file could be day-first or month-first; they were read day-first (Indian style)."
+   ],
+   "why_label": "Receiving money never needs a PIN or a scan; the 'buyer' pushes the seller to send money back to a business-named phone UPI.",
+   "payment_links": []
+  },
+  {
+   "file": "c038.txt",
+   "label": "genuine",
+   "language": "english",
+   "difficulty": "ambiguous",
+   "result": "INCONCLUSIVE",
+   "payees_found": [
+    "0000112233445"
+   ],
+   "payees": [
+    {
+     "identifier": "0000112233445",
+     "kind": "account",
+     "intended_risk": "unclear",
+     "name_relation": "personal_name",
+     "result": "INCONCLUSIVE"
+    }
+   ],
+   "kit_seen": false,
+   "warnings": [
+    "Every date in this file could be day-first or month-first; they were read day-first (Indian style)."
+   ],
+   "why_label": "A real friend-to-friend investment with honest 'might go to zero' language and paperwork reviewed by a CA, but paying a personal account for an unregistered company is something a reasonable person would hesitate over.",
+   "payment_links": []
+  },
+  {
+   "file": "c039.txt",
+   "label": "scam",
+   "language": "hinglish",
+   "difficulty": "medium",
+   "result": null,
+   "payees_found": [],
+   "payees": [
+    {
+     "identifier": "https://itr-refund.claimdesk.test/x/5520",
+     "kind": "link",
+     "intended_risk": "risky",
+     "name_relation": "payment_gateway",
+     "result": "not extracted"
+    }
+   ],
+   "kit_seen": false,
+   "warnings": [],
+   "why_label": "Impersonated tax staff, a refund that needs a fee, a deadline, a payment link unrelated to any department, and finally a PIN request.",
+   "payment_links": [
+    "https://itr-refund.claimdesk.test/x/5520"
+   ]
+  },
+  {
+   "file": "c040.txt",
+   "label": "genuine",
+   "language": "devanagari_hindi",
+   "difficulty": "easy",
+   "result": "INCONCLUSIVE",
+   "payees_found": [
+    "0000778899001"
+   ],
+   "payees": [
+    {
+     "identifier": "0000778899001",
+     "kind": "account",
+     "intended_risk": "fine",
+     "name_relation": "personal_name",
+     "result": "INCONCLUSIVE"
+    }
+   ],
+   "kit_seen": false,
+   "warnings": [
+    "Every date in this file could be day-first or month-first; they were read day-first (Indian style)."
+   ],
+   "why_label": "Ordinary monthly rent between a tenant and a landlady; the account name shown matches the landlady.",
+   "payment_links": []
+  },
+  {
+   "file": "c041.txt",
+   "label": "scam",
+   "language": "hinglish",
+   "difficulty": "medium",
+   "result": "REGISTRATION_CONFLICT",
+   "payees_found": [
+    "riverstone.vip@paynova"
+   ],
+   "payees": [
+    {
+     "identifier": "riverstone.vip@paynova",
+     "kind": "upi",
+     "intended_risk": "risky",
+     "name_relation": "lookalike",
+     "result": "REGISTRATION_CONFLICT"
+    }
+   ],
+   "kit_seen": false,
+   "warnings": [
+    "Every date in this file could be day-first or month-first; they were read day-first (Indian style)."
+   ],
+   "why_label": "Added to a group without asking, accuracy and assured-return claims, payee written with 'dot' and 'at', then a new fee.",
+   "payment_links": []
+  },
+  {
+   "file": "c042.txt",
+   "label": "genuine",
+   "language": "hinglish",
+   "difficulty": "easy",
+   "result": "NO_MAJOR_ISSUE",
+   "payees_found": [
+    "aksharlife.renewal@okzeta"
+   ],
+   "payees": [
+    {
+     "identifier": "aksharlife.renewal@okzeta",
+     "kind": "upi",
+     "intended_risk": "fine",
+     "name_relation": "matches_firm",
+     "result": "NO_MAJOR_ISSUE"
+    }
+   ],
+   "kit_seen": false,
+   "warnings": [
+    "Every date in this file could be day-first or month-first; they were read day-first (Indian style)."
+   ],
+   "why_label": "Routine renewal with a due date; payee is the insurer's id and the advisor says they never ask for personal-account payments.",
+   "payment_links": []
+  },
+  {
+   "file": "c043.txt",
+   "label": "scam",
+   "language": "devanagari_hindi",
+   "difficulty": "easy",
+   "result": "NAME_DISCREPANCY",
+   "payees_found": [
+    "megainaam.claim@okzeta"
+   ],
+   "payees": [
+    {
+     "identifier": "megainaam.claim@okzeta",
+     "kind": "upi",
+     "intended_risk": "risky",
+     "name_relation": "unrelated_business",
+     "result": "NAME_DISCREPANCY"
+    }
+   ],
+   "kit_seen": false,
+   "warnings": [
+    "Every date in this file could be day-first or month-first; they were read day-first (Indian style)."
+   ],
+   "why_label": "A prize for a draw the person never entered, upfront fee to an unrelated shop name, extra fee, and a threat if family is told.",
+   "payment_links": []
+  },
+  {
+   "file": "c044.txt",
+   "label": "scam",
+   "language": "english",
+   "difficulty": "easy",
+   "result": null,
+   "payees_found": [],
+   "payees": [
+    {
+     "identifier": "https://tollpass-kyc.verifydesk.test/u/3391",
+     "kind": "link",
+     "intended_risk": "risky",
+     "name_relation": "payment_gateway",
+     "result": "not extracted"
+    }
+   ],
+   "kit_seen": false,
+   "warnings": [
+    "Every date in this file could be day-first or month-first; they were read day-first (Indian style)."
+   ],
+   "why_label": "Same-day block threat, a link whose gateway name has nothing to do with the toll operator, and a request for a card number.",
+   "payment_links": [
+    "https://tollpass-kyc.verifydesk.test/u/3391"
+   ]
+  },
+  {
+   "file": "c045.txt",
+   "label": "genuine",
+   "language": "english",
+   "difficulty": "ambiguous",
+   "result": "INCONCLUSIVE",
+   "payees_found": [
+    "9823400015@paynova"
+   ],
+   "payees": [
+    {
+     "identifier": "9823400015@paynova",
+     "kind": "phone_upi",
+     "intended_risk": "unclear",
+     "name_relation": "personal_name",
+     "result": "INCONCLUSIVE"
+    }
+   ],
+   "kit_seen": false,
+   "warnings": [
+    "Every date in this file could be day-first or month-first; they were read day-first (Indian style)."
+   ],
+   "why_label": "A real group trip and a real organiser, but a personal-account advance with a 'price rises tomorrow' nudge is the kind of thing a careful person double-checks.",
+   "payment_links": []
+  },
+  {
+   "file": "c046.txt",
+   "label": "genuine",
+   "language": "hinglish",
+   "difficulty": "hard",
+   "result": "NO_MAJOR_ISSUE",
+   "payees_found": [
+    "bytebay.store@paynova"
+   ],
+   "payees": [
+    {
+     "identifier": "bytebay.store@paynova",
+     "kind": "upi",
+     "intended_risk": "fine",
+     "name_relation": "matches_firm",
+     "result": "NO_MAJOR_ISSUE"
+    }
+   ],
+   "kit_seen": false,
+   "warnings": [],
+   "why_label": "Limited stock, an offer ending at 5 pm and 'pay now' read like pressure, but the shop is a real counter, offers to hold without payment, and the payee name matches the shop.",
+   "payment_links": []
+  },
+  {
+   "file": "c047.txt",
+   "label": "scam",
+   "language": "english",
+   "difficulty": "ambiguous",
+   "result": "INCONCLUSIVE",
+   "payees_found": [
+    "9112300021@paynova"
+   ],
+   "payees": [
+    {
+     "identifier": "9112300021@paynova",
+     "kind": "phone_upi",
+     "intended_risk": "risky",
+     "name_relation": "personal_name",
+     "result": "INCONCLUSIVE"
+    }
+   ],
+   "kit_seen": false,
+   "warnings": [
+    "Every date in this file could be day-first or month-first; they were read day-first (Indian style)."
+   ],
+   "why_label": "Looks like an ordinary rental chat with photos and a lease promise, but the advance is asked before any viewing and goes to a person unconnected to the owner, and the 'brother with the keys' never meets her.",
+   "payment_links": []
+  },
+  {
+   "file": "c048.txt",
+   "label": "genuine",
+   "language": "english",
+   "difficulty": "easy",
+   "result": "INCONCLUSIVE",
+   "payees_found": [
+    "0000553311220"
+   ],
+   "payees": [
+    {
+     "identifier": "0000553311220",
+     "kind": "account",
+     "intended_risk": "fine",
+     "name_relation": "personal_name",
+     "result": "INCONCLUSIVE"
+    }
+   ],
+   "kit_seen": false,
+   "warnings": [],
+   "why_label": "Normal freelancer billing with page count arithmetic, GST and a matching account holder.",
+   "payment_links": []
+  },
+  {
+   "file": "c049.txt",
+   "label": "scam",
+   "language": "hinglish",
+   "difficulty": "medium",
+   "result": "HUMAN_REVIEW",
+   "payees_found": [
+    "0000889977665"
+   ],
+   "payees": [
+    {
+     "identifier": "0000889977665",
+     "kind": "account",
+     "intended_risk": "risky",
+     "name_relation": "lookalike",
+     "result": "HUMAN_REVIEW"
+    }
+   ],
+   "kit_seen": false,
+   "warnings": [],
+   "why_label": "An unnamed old policy 'matured', a fee needed to release it, payee account written in spaced groups and the name only resembles the insurer.",
+   "payment_links": []
+  },
+  {
+   "file": "c050.txt",
+   "label": "genuine",
+   "language": "english",
+   "difficulty": "easy",
+   "result": null,
+   "payees_found": [],
+   "payees": [
+    {
+     "identifier": "https://pay.rosewood-demo.test/fee/4412",
+     "kind": "link",
+     "intended_risk": "fine",
+     "name_relation": "payment_gateway",
+     "result": "not extracted"
+    }
+   ],
+   "kit_seen": false,
+   "warnings": [
+    "Every date in this file could be day-first or month-first; they were read day-first (Indian style)."
+   ],
+   "why_label": "School fee through the school's gateway with a late-fee date; the parent checks the amount and receives a receipt.",
+   "payment_links": [
+    "https://pay.rosewood-demo.test/fee/4412"
+   ]
+  },
+  {
+   "file": "c051.txt",
+   "label": "genuine",
+   "language": "devanagari_hindi",
+   "difficulty": "easy",
+   "result": "INCONCLUSIVE",
+   "payees_found": [
+    "9111100077@okzeta"
+   ],
+   "payees": [
+    {
+     "identifier": "9111100077@okzeta",
+     "kind": "phone_upi",
+     "intended_risk": "fine",
+     "name_relation": "personal_name",
+     "result": "INCONCLUSIVE"
+    }
+   ],
+   "kit_seen": false,
+   "warnings": [
+    "Every date in this file could be day-first or month-first; they were read day-first (Indian style)."
+   ],
+   "why_label": "A family gift between siblings to the sister's own phone UPI; name matches.",
+   "payment_links": []
+  },
+  {
+   "file": "c052.txt",
+   "label": "scam",
+   "language": "english",
+   "difficulty": "medium",
+   "result": "NAME_DISCREPANCY",
+   "payees_found": [
+    "0000115577339"
+   ],
+   "payees": [
+    {
+     "identifier": "0000115577339",
+     "kind": "account",
+     "intended_risk": "risky",
+     "name_relation": "unrelated_business",
+     "result": "NAME_DISCREPANCY"
+    }
+   ],
+   "kit_seen": false,
+   "warnings": [
+    "Every date in this file could be day-first or month-first; they were read day-first (Indian style)."
+   ],
+   "why_label": "A distant admirer, a promised gift parcel and a handling fee into an unrelated freight agency, followed by customs charges.",
+   "payment_links": []
+  },
+  {
+   "file": "c053.txt",
+   "label": "genuine",
+   "language": "english",
+   "difficulty": "hard",
+   "result": null,
+   "payees_found": [],
+   "payees": [
+    {
+     "identifier": "https://pay.linkwave-demo.test/b/10293",
+     "kind": "link",
+     "intended_risk": "fine",
+     "name_relation": "matches_firm",
+     "result": "not extracted"
+    }
+   ],
+   "kit_seen": false,
+   "warnings": [],
+   "why_label": "A suspension warning and a link look like a scam, but the customer first verifies the amount in the provider's own app, the agent says to ignore other links, and the biller name matches.",
+   "payment_links": [
+    "https://pay.linkwave-demo.test/b/10293"
+   ]
+  },
+  {
+   "file": "c054.txt",
+   "label": "scam",
+   "language": "hinglish",
+   "difficulty": "medium",
+   "result": "NAME_DISCREPANCY",
+   "payees_found": [
+    "9266600048@ybzeta"
+   ],
+   "payees": [
+    {
+     "identifier": "9266600048@ybzeta",
+     "kind": "phone_upi",
+     "intended_risk": "risky",
+     "name_relation": "unrelated_business",
+     "result": "NAME_DISCREPANCY"
+    }
+   ],
+   "kit_seen": false,
+   "warnings": [
+    "Every date in this file could be day-first or month-first; they were read day-first (Indian style)."
+   ],
+   "why_label": "Pay-to-start job, QR image plus a voice note giving a personal-looking id, then a security deposit.",
+   "payment_links": [],
+   "without_transcripts": "NAME_DISCREPANCY",
+   "voice_made_it_clearer": false
+  },
+  {
+   "file": "c055.txt",
+   "label": "scam",
+   "language": "english",
+   "difficulty": "hard",
+   "result": "NAME_DISCREPANCY",
+   "payees_found": [
+    "0000336699114",
+    "9399900038@paynova"
+   ],
+   "payees": [
+    {
+     "identifier": "9399900038@paynova",
+     "kind": "phone_upi",
+     "intended_risk": "risky",
+     "name_relation": "unrelated_business",
+     "result": "NAME_DISCREPANCY"
+    },
+    {
+     "identifier": "0000336699114",
+     "kind": "account",
+     "intended_risk": "risky",
+     "name_relation": "lookalike",
+     "result": "INCONCLUSIVE"
+    }
+   ],
+   "kit_seen": false,
+   "warnings": [
+    "Every date in this file could be day-first or month-first; they were read day-first (Indian style)."
+   ],
+   "why_label": "Daily guaranteed returns on mining, a payee that changes from an unrelated phone UPI to a firm-like account citing an 'upgrade', then a withdrawal fee.",
+   "payment_links": []
+  },
+  {
+   "file": "c056.txt",
+   "label": "genuine",
+   "language": "english",
+   "difficulty": "medium",
+   "result": null,
+   "payees_found": [],
+   "payees": [],
+   "kit_seen": false,
+   "warnings": [],
+   "why_label": "Customer-care chat that asks for no payment and warns against sharing OTPs or PINs; only offers a free card block and reissue.",
+   "payment_links": [],
+   "without_transcripts": null,
+   "voice_made_it_clearer": false
+  },
+  {
+   "file": "c057.txt",
+   "label": "scam",
+   "language": "devanagari_hindi",
+   "difficulty": "medium",
+   "result": "HUMAN_REVIEW",
+   "payees_found": [
+    "brightway.cardfee@paynova"
+   ],
+   "payees": [
+    {
+     "identifier": "brightway.cardfee@paynova",
+     "kind": "upi",
+     "intended_risk": "risky",
+     "name_relation": "lookalike",
+     "result": "HUMAN_REVIEW"
+    }
+   ],
+   "kit_seen": false,
+   "warnings": [],
+   "why_label": "Unrequested limit increase, a fee, a look-alike payee name and finally an OTP request.",
+   "payment_links": []
+  },
+  {
+   "file": "c058.txt",
+   "label": "genuine",
+   "language": "hinglish",
+   "difficulty": "ambiguous",
+   "result": null,
+   "payees_found": [],
+   "payees": [],
+   "kit_seen": false,
+   "warnings": [],
+   "why_label": "No money is asked in the chat and the admin discloses his referral income, but unregistered tips, a deadline-ish nudge and a referral link would make a careful reader pause.",
+   "payment_links": []
+  },
+  {
+   "file": "c059.txt",
+   "label": "genuine",
+   "language": "hinglish",
+   "difficulty": "ambiguous",
+   "result": "INCONCLUSIVE",
+   "payees_found": [
+    "9455500093@okzeta"
+   ],
+   "payees": [
+    {
+     "identifier": "9455500093@okzeta",
+     "kind": "phone_upi",
+     "intended_risk": "unclear",
+     "name_relation": "personal_name",
+     "result": "INCONCLUSIVE"
+    }
+   ],
+   "kit_seen": false,
+   "warnings": [
+    "Every date in this file could be day-first or month-first; they were read day-first (Indian style)."
+   ],
+   "why_label": "A real landlord who asks for the deposit on his son's number because his own account is blocked; the agreement and names check out, but a third-party payee for a large deposit is something a reasonable tenant would query.",
+   "payment_links": []
+  },
+  {
+   "file": "c060.txt",
+   "label": "scam",
+   "language": "hinglish",
+   "difficulty": "medium",
+   "result": "HUMAN_REVIEW",
+   "payees_found": [
+    "tradeguru.academy@paynova"
+   ],
+   "payees": [
+    {
+     "identifier": "tradeguru.academy@paynova",
+     "kind": "upi",
+     "intended_risk": "risky",
+     "name_relation": "lookalike",
+     "result": "HUMAN_REVIEW"
+    }
+   ],
+   "kit_seen": false,
+   "warnings": [],
+   "why_label": "Course plus signals promising assured income, a payee written in words with 'at the rate', an EdTech look-alike name and a follow-up fee.",
+   "payment_links": []
+  },
+  {
+   "file": "c061.txt",
+   "label": "genuine",
+   "language": "english",
+   "difficulty": "hard",
+   "result": "INCONCLUSIVE",
+   "payees_found": [
+    "ardentmf.collect@okzeta"
+   ],
+   "payees": [
+    {
+     "identifier": "ardentmf.collect@okzeta",
+     "kind": "upi",
+     "intended_risk": "fine",
+     "name_relation": "matches_firm",
+     "result": "INCONCLUSIVE"
+    }
+   ],
+   "kit_seen": false,
+   "warnings": [],
+   "why_label": "Closing date, a 5 pm cutoff and tax mentions sound like pressure, but the fund says returns are not guaranteed, the payee is its own collection id with a matching name, and the client can decline.",
+   "payment_links": []
+  },
+  {
+   "file": "c062.txt",
+   "label": "scam",
+   "language": "english",
+   "difficulty": "medium",
+   "result": "HUMAN_REVIEW",
+   "payees_found": [
+    "carbonsec.kyc@ybzeta"
+   ],
+   "payees": [
+    {
+     "identifier": "carbonsec.kyc@ybzeta",
+     "kind": "upi",
+     "intended_risk": "risky",
+     "name_relation": "lookalike",
+     "result": "HUMAN_REVIEW"
+    }
+   ],
+   "kit_seen": false,
+   "warnings": [
+    "Every date in this file could be day-first or month-first; they were read day-first (Indian style)."
+   ],
+   "why_label": "Account-freeze threat, a fee for 'KYC', a payee that only resembles the broker's name, then a request for the OTP.",
+   "payment_links": []
+  },
+  {
+   "file": "c063.txt",
+   "label": "genuine",
+   "language": "english",
+   "difficulty": "easy",
+   "result": "INCONCLUSIVE",
+   "payees_found": [
+    "9288800011@paynova"
+   ],
+   "payees": [
+    {
+     "identifier": "9288800011@paynova",
+     "kind": "phone_upi",
+     "intended_risk": "fine",
+     "name_relation": "personal_name",
+     "result": "INCONCLUSIVE"
+    }
+   ],
+   "kit_seen": false,
+   "warnings": [],
+   "why_label": "Normal bill split among three roommates; the payee is a roommate and the name matches.",
+   "payment_links": []
+  },
+  {
+   "file": "c064.txt",
+   "label": "genuine",
+   "language": "devanagari_hindi",
+   "difficulty": "easy",
+   "result": "NO_MAJOR_ISSUE",
+   "payees_found": [
+    "roshniboutique@okzeta"
+   ],
+   "payees": [
+    {
+     "identifier": "roshniboutique@okzeta",
+     "kind": "upi",
+     "intended_risk": "fine",
+     "name_relation": "matches_firm",
+     "result": "NO_MAJOR_ISSUE"
+    }
+   ],
+   "kit_seen": false,
+   "warnings": [],
+   "why_label": "Ordinary tailoring advance to the boutique's id; the name matches the shop.",
+   "payment_links": []
+  },
+  {
+   "file": "c065.txt",
+   "label": "scam",
+   "language": "hinglish",
+   "difficulty": "ambiguous",
+   "result": "HUMAN_REVIEW",
+   "payees_found": [
+    "9644400029@paynova"
+   ],
+   "payees": [
+    {
+     "identifier": "9644400029@paynova",
+     "kind": "phone_upi",
+     "intended_risk": "risky",
+     "name_relation": "lookalike",
+     "result": "HUMAN_REVIEW"
+    }
+   ],
+   "kit_seen": false,
+   "warnings": [
+    "Every date in this file could be day-first or month-first; they were read day-first (Indian style)."
+   ],
+   "why_label": "A scholarship form, a website and a polite tone look plausible, but a scholarship that asks for a fee to a person's phone UPI, with a name only close to the trust, is a pretext.",
+   "payment_links": []
+  },
+  {
+   "file": "c066.txt",
+   "label": "scam",
+   "language": "hinglish",
+   "difficulty": "medium",
+   "result": "NAME_DISCREPANCY",
+   "payees_found": [
+    "0000224466880",
+    "stayrate.tasks@okzeta"
+   ],
+   "payees": [
+    {
+     "identifier": "stayrate.tasks@okzeta",
+     "kind": "upi",
+     "intended_risk": "risky",
+     "name_relation": "unrelated_business",
+     "result": "NAME_DISCREPANCY"
+    },
+    {
+     "identifier": "0000224466880",
+     "kind": "account",
+     "intended_risk": "risky",
+     "name_relation": "matches_firm",
+     "result": "NO_MAJOR_ISSUE"
+    }
+   ],
+   "kit_seen": false,
+   "warnings": [
+    "Every date in this file could be day-first or month-first; they were read day-first (Indian style)."
+   ],
+   "why_label": "Pay-to-unlock rating tasks with a 'bonus', payee switches mid-chat, and the withdrawal needs another payment.",
+   "payment_links": []
+  },
+  {
+   "file": "c067.txt",
+   "label": "genuine",
+   "language": "english",
+   "difficulty": "hard",
+   "result": "INCONCLUSIVE",
+   "payees_found": [
+    "0000667744221"
+   ],
+   "payees": [
+    {
+     "identifier": "0000667744221",
+     "kind": "account",
+     "intended_risk": "fine",
+     "name_relation": "personal_name",
+     "result": "INCONCLUSIVE"
+    }
+   ],
+   "kit_seen": false,
+   "warnings": [],
+   "why_label": "Tax deduction talk and a same-day cutoff sound alarming, but it is a normal B2B invoice with a matching account holder, an invoice number and arithmetic that works.",
+   "payment_links": []
+  },
+  {
+   "file": "c068.txt",
+   "label": "scam",
+   "language": "hinglish",
+   "difficulty": "medium",
+   "result": "HUMAN_REVIEW",
+   "payees_found": [
+    "0000775533119"
+   ],
+   "payees": [
+    {
+     "identifier": "0000775533119",
+     "kind": "account",
+     "intended_risk": "risky",
+     "name_relation": "lookalike",
+     "result": "HUMAN_REVIEW"
+    }
+   ],
+   "kit_seen": false,
+   "warnings": [],
+   "why_label": "Risk-free arbitrage with a fixed 3% monthly, account number in hyphenated groups to a look-alike firm name, then a lock-in release fee.",
+   "payment_links": []
+  },
+  {
+   "file": "c069.txt",
+   "label": "genuine",
+   "language": "hinglish",
+   "difficulty": "easy",
+   "result": "INCONCLUSIVE",
+   "payees_found": [
+    "9677700024@paynova"
+   ],
+   "payees": [
+    {
+     "identifier": "9677700024@paynova",
+     "kind": "phone_upi",
+     "intended_risk": "fine",
+     "name_relation": "personal_name",
+     "result": "INCONCLUSIVE"
+    }
+   ],
+   "kit_seen": false,
+   "warnings": [
+    "Every date in this file could be day-first or month-first; they were read day-first (Indian style)."
+   ],
+   "why_label": "Monthly tuition paid to the teacher's own number; the name matches and nothing unusual is asked.",
+   "payment_links": []
+  },
+  {
+   "file": "c070.txt",
+   "label": "scam",
+   "language": "devanagari_hindi",
+   "difficulty": "easy",
+   "result": "HUMAN_REVIEW",
+   "payees_found": [
+    "bimarefund.cell@okzeta"
+   ],
+   "payees": [
+    {
+     "identifier": "bimarefund.cell@okzeta",
+     "kind": "upi",
+     "intended_risk": "risky",
+     "name_relation": "lookalike",
+     "result": "HUMAN_REVIEW"
+    }
+   ],
+   "kit_seen": false,
+   "warnings": [],
+   "why_label": "An unclaimed 'premium refund' that needs a fee first, a payee id that only resembles the firm, and another fee after.",
+   "payment_links": []
+  },
+  {
+   "file": "c071.txt",
+   "label": "scam",
+   "language": "hinglish",
+   "difficulty": "medium",
+   "result": "INCONCLUSIVE",
+   "payees_found": [
+    "9722200015@paynova"
+   ],
+   "payees": [
+    {
+     "identifier": "9722200015@paynova",
+     "kind": "phone_upi",
+     "intended_risk": "risky",
+     "name_relation": "unrelated_business",
+     "result": "INCONCLUSIVE"
+    }
+   ],
+   "kit_seen": false,
+   "warnings": [],
+   "why_label": "A message from an unknown number claiming to be a family member, an urgent payment to an unrelated trader, refusal to talk, and a voice note that does not sound right.",
+   "payment_links": [],
+   "without_transcripts": "INCONCLUSIVE",
+   "voice_made_it_clearer": false
+  },
+  {
+   "file": "c072.txt",
+   "label": "genuine",
+   "language": "hinglish",
+   "difficulty": "ambiguous",
+   "result": "INCONCLUSIVE",
+   "payees_found": [
+    "9544400066@okzeta"
+   ],
+   "payees": [
+    {
+     "identifier": "9544400066@okzeta",
+     "kind": "phone_upi",
+     "intended_risk": "unclear",
+     "name_relation": "personal_name",
+     "result": "INCONCLUSIVE"
+    }
+   ],
+   "kit_seen": false,
+   "warnings": [
+    "Every date in this file could be day-first or month-first; they were read day-first (Indian style)."
+   ],
+   "why_label": "A real family repayment, but being asked to send it to a different person's number because 'my app is not working' is something a reasonable person would check with a call first.",
+   "payment_links": []
+  },
+  {
+   "file": "c073.txt",
+   "label": "genuine",
+   "language": "hinglish",
+   "difficulty": "easy",
+   "result": "NO_MAJOR_ISSUE",
+   "payees_found": [
+    "skyvista.recharge@paynova"
+   ],
+   "payees": [
+    {
+     "identifier": "skyvista.recharge@paynova",
+     "kind": "upi",
+     "intended_risk": "fine",
+     "name_relation": "matches_firm",
+     "result": "NO_MAJOR_ISSUE"
+    }
+   ],
+   "kit_seen": false,
+   "warnings": [],
+   "why_label": "A routine recharge on the provider's own id with the name matching; nothing beyond the plan price is asked.",
+   "payment_links": []
+  },
+  {
+   "file": "c074.txt",
+   "label": "scam",
+   "language": "hinglish",
+   "difficulty": "easy",
+   "result": null,
+   "payees_found": [],
+   "payees": [
+    {
+     "identifier": "https://subsidy.gasseva-claim.test/s/204",
+     "kind": "link",
+     "intended_risk": "risky",
+     "name_relation": "payment_gateway",
+     "result": "not extracted"
+    }
+   ],
+   "kit_seen": false,
+   "warnings": [],
+   "why_label": "An unrequested subsidy, a fee to claim it, a link on an unrelated claim portal and a deadline.",
+   "payment_links": [
+    "https://subsidy.gasseva-claim.test/s/204"
+   ]
+  },
+  {
+   "file": "c075.txt",
+   "label": "genuine",
+   "language": "devanagari_hindi",
+   "difficulty": "medium",
+   "result": null,
+   "payees_found": [],
+   "payees": [],
+   "kit_seen": false,
+   "warnings": [],
+   "why_label": "Customer-care chat for a lost card; the agent warns about OTPs and PINs and asks for no payment.",
+   "payment_links": [],
+   "without_transcripts": null,
+   "voice_made_it_clearer": false
+  },
+  {
+   "file": "c076.txt",
+   "label": "scam",
+   "language": "english",
+   "difficulty": "hard",
+   "result": "HUMAN_REVIEW",
+   "payees_found": [
+    "pipnova.deposit@okzeta"
+   ],
+   "payees": [
+    {
+     "identifier": "pipnova.deposit@okzeta",
+     "kind": "upi",
+     "intended_risk": "risky",
+     "name_relation": "lookalike",
+     "result": "HUMAN_REVIEW"
+    }
+   ],
+   "kit_seen": false,
+   "warnings": [
+    "Every date in this file could be day-first or month-first; they were read day-first (Indian style)."
+   ],
+   "why_label": "A friendly contact builds trust over days before pushing a forex platform; the payee name is a technology firm only near the platform's name and returns are promised.",
+   "payment_links": []
+  },
+  {
+   "file": "c077.txt",
+   "label": "scam",
+   "language": "english",
+   "difficulty": "hard",
+   "result": "HUMAN_REVIEW",
+   "payees_found": [
+    "verity.unfreeze@ybzeta"
+   ],
+   "payees": [
+    {
+     "identifier": "verity.unfreeze@ybzeta",
+     "kind": "upi",
+     "intended_risk": "risky",
+     "name_relation": "lookalike",
+     "result": "HUMAN_REVIEW"
+    }
+   ],
+   "kit_seen": false,
+   "warnings": [],
+   "why_label": "Formal bank wording and a reference number make it credible, but real banks do not ask for a fee to unfreeze an account, and the payee id is written with 'at the rate' and a look-alike bank name.",
+   "payment_links": []
+  },
+  {
+   "file": "c078.txt",
+   "label": "genuine",
+   "language": "english",
+   "difficulty": "ambiguous",
+   "result": "INCONCLUSIVE",
+   "payees_found": [
+    "9355500052@paynova"
+   ],
+   "payees": [
+    {
+     "identifier": "9355500052@paynova",
+     "kind": "phone_upi",
+     "intended_risk": "unclear",
+     "name_relation": "personal_name",
+     "result": "INCONCLUSIVE"
+    }
+   ],
+   "kit_seen": false,
+   "warnings": [
+    "Every date in this file could be day-first or month-first; they were read day-first (Indian style)."
+   ],
+   "why_label": "A real residents' association, but maintenance collected on the secretary's personal number and a late-fee nudge is something some residents would question.",
+   "payment_links": []
+  },
+  {
+   "file": "c079.txt",
+   "label": "scam",
+   "language": "english",
+   "difficulty": "medium",
+   "result": "NAME_DISCREPANCY",
+   "payees_found": [
+    "9833300058@ybzeta"
+   ],
+   "payees": [
+    {
+     "identifier": "9833300058@ybzeta",
+     "kind": "phone_upi",
+     "intended_risk": "risky",
+     "name_relation": "unrelated_business",
+     "result": "NAME_DISCREPANCY"
+    }
+   ],
+   "kit_seen": false,
+   "warnings": [],
+   "why_label": "Sold-out show with tickets 'from a contact', full advance before delivery, payee an unrelated decor business, then a transfer fee.",
+   "payment_links": []
+  },
+  {
+   "file": "c080.txt",
+   "label": "genuine",
+   "language": "english",
+   "difficulty": "ambiguous",
+   "result": "INCONCLUSIVE",
+   "payees_found": [
+    "0000994411227"
+   ],
+   "payees": [
+    {
+     "identifier": "0000994411227",
+     "kind": "account",
+     "intended_risk": "unclear",
+     "name_relation": "personal_name",
+     "result": "INCONCLUSIVE"
+    }
+   ],
+   "kit_seen": false,
+   "warnings": [],
+   "why_label": "Real freelance work, but a brand-new client paying 100% upfront to an individual account for an unseen portfolio is something both sides could hesitate over.",
+   "payment_links": []
+  }
+ ],
+ "tag": "after"
+}

@@ -2,16 +2,16 @@
  "pairs": 97,
  "file": "name_pairs.csv",
  "false_discrepancy_on_same_entity": {
-  "count": 3,
+  "count": 0,
   "of": 42,
-  "rate": 0.071,
+  "rate": 0.0,
   "wilson95": [
-   0.025,
-   0.19
+   0.0,
+   0.084
   ]
  },
  "same_entity_sent_to_review_as_lookalike": {
-  "count": 3,
+  "count": 0,
   "of": 42
  },
  "discrepancy_found_on_unrelated_business": {
@@ -32,10 +32,8 @@
    "lookalike": 6
   },
   "same": {
-   "match": 22,
-   "discrepancy": 3,
-   "unverified": 14,
-   "lookalike": 3
+   "match": 24,
+   "unverified": 18
   },
   "unknown": {
    "unverified": 13
@@ -55,16 +53,13 @@
    "ok": 2
   },
   "same: legal form / spacing variant": {
-   "ok": 17,
-   "wrong": 1
+   "ok": 18
   },
   "same: spelling / transliteration variant": {
-   "ok": 8,
-   "wrong": 2
+   "ok": 10
   },
   "same: truncation / abbreviation / initials": {
-   "ok": 9,
-   "wrong": 3
+   "ok": 12
   },
   "unknown: payment gateway (merchant hidden)": {
    "ok": 5
@@ -76,55 +71,6 @@
    "ok": 3
   }
  },
- "errors": [
-  {
-   "claimed_firm": "BlueRiver Finserv Pvt Ltd",
-   "shown_name": "BLUE RIVER FINSERV PVT LTD",
-   "relation": "same",
-   "kind": "legal form / spacing variant",
-   "verdict": "discrepancy",
-   "reason": "no distinctive word in common with 'BlueRiver Finserv Pvt Ltd'"
-  },
-  {
-   "claimed_firm": "Sahyadri Securities Ltd",
-   "shown_name": "SSL",
-   "relation": "same",
-   "kind": "truncation / abbreviation / initials",
-   "verdict": "discrepancy",
-   "reason": "no distinctive word in common with 'Sahyadri Securities Ltd'"
-  },
-  {
-   "claimed_firm": "BlueRiver Finserv Pvt Ltd",
-   "shown_name": "BRF PVT LTD",
-   "relation": "same",
-   "kind": "truncation / abbreviation / initials",
-   "verdict": "discrepancy",
-   "reason": "no distinctive word in common with 'BlueRiver Finserv Pvt Ltd'"
-  },
-  {
-   "claimed_firm": "Ganga Stock Brokers Pvt Ltd",
-   "shown_name": "GANGA STK BROKERS",
-   "relation": "same",
-   "kind": "truncation / abbreviation / initials",
-   "verdict": "lookalike",
-   "reason": "shares 'ganga' but adds 'stk': could be a look-alike account rather than the firm itself"
-  },
-  {
-   "claimed_firm": "Shree Laxmi Broking Pvt Ltd",
-   "shown_name": "SHREE LAKSHMI BROKING PVT LTD",
-   "relation": "same",
-   "kind": "spelling / transliteration variant",
-   "verdict": "lookalike",
-   "reason": "shares 'shree' but adds 'lakshmi': could be a look-alike account rather than the firm itself"
-  },
-  {
-   "claimed_firm": "Shree Laxmi Broking Pvt Ltd",
-   "shown_name": "SHREE LAXMEE BROKING",
-   "relation": "same",
-   "kind": "spelling / transliteration variant",
-   "verdict": "lookalike",
-   "reason": "shares 'shree' but adds 'laxmee': could be a look-alike account rather than the firm itself"
-  }
- ],
+ "errors": [],
  "limit": "pairs written by the team after the matcher (specification check, not blind); fictional firms"
 }

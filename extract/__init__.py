@@ -24,13 +24,59 @@ _LOOKALIKE = str.maketrans({"＠": "@", "﹫": "@", "．": ".", "₹": "₹"})
 RX = {
     "upi_vpa": re.compile(r"(?<![\w.@-])([a-z0-9][a-z0-9._-]{1,63}@[a-z][a-z0-9]{1,31})(?![\w@-])(?!\.[a-z])", re.I),
     # Hindi account words added in Q1 after the mixed-language edge test missed "खाता संख्या <digits>"
-    "bank_account": re.compile(r"(?:\b(?:a/c|acct|account|khata)|खाता|खाते|अकाउंट)"
-                               r"(?:\s*(?:no\.?|number|संख्या|नंबर|नं\.?))?\s*[:#.-]?\s*(\d{9,18})\b", re.I),
+    "bank_account": re.compile(r"(?:\b(?:a/c|acct|acc|account|khata)|खाता|खाते|अकाउंट)"
+                               r"(?:\s*(?:no\.?|number|संख्या|नंबर|नं\.?))?\s*[:#.-]?\s*"
+                               # digits may be grouped with spaces or hyphens ("0000 8899 7766 5", "0000-7755-3311-9");
+                               # added 25 Oct after the pre-registered run missed grouped account numbers
+                               r"(\d{9,18}|\d{2,6}(?:[ -]\d{1,6}){1,6})(?![\d-])", re.I),
     "ifsc": re.compile(r"\b([A-Z]{4}0[A-Z0-9]{6})\b"),
     "sebi_reg": re.compile(r"\b(IN[AHZ][0-9A-Z]{9})\b"),
-    "phone": re.compile(r"(?<![\d/])((?:\+91[- ]?)?[6-9]\d{9})(?!\d)"),
+    # also "88002 00077" / "+91 98123-00045"; never the digits of a UPI ID ("9812300045@ybl")
+    "phone": re.compile(r"(?<![\d/])((?:\+91[- ]?)?[6-9]\d{4}[ -]?\d{5})(?![\d@]|\s?@)"),
     "url": re.compile(r"\b(https?://[^\s<>\"']+|www\.[^\s<>\"']+)", re.I),
 }
+# UPI IDs written to dodge filters: "kyc dot update dot 7 at okzeta", "dolly.m(at)ybl", "anita.d at the rate okhdfcbank",
+# "97222 00015 @ paynova", "k y c dot update @ okzeta". Added 25 Oct after the pre-registered run (D1/D3 misses).
+# A plain " at " counts only when the local part is clearly an ID (has dot/underscore/dash/digits) or the handle is a
+# well-known UPI handle, so "meet at office" is never read as a UPI ID.
+_SEPW = r"(?:\s*\b(?:dot|underscore|dash|hyphen)\b\s*|[._-])"
+_UNIT = r"(?:(?:[a-z0-9]\s){1,10}[a-z0-9](?![a-z0-9])|\d+(?:\s\d+){1,3}|[a-z0-9]+)"
+OBF_VPA = re.compile(
+    rf"(?<![\w.@-])({_UNIT}(?:{_SEPW}{_UNIT}){{0,6}}"
+    r"(?:\s*(?:@|\(\s*at\s*\)|\[\s*at\s*\]|\{\s*at\s*\})\s*|\s+at\s+the\s+rate(?:\s+of)?\s+|\s+at\s+)"
+    r"[a-z][a-z0-9]{1,31})(?![\w@-])(?!\.[a-z])", re.I)
+KNOWN_HANDLES = set("""ybl ibl axl okaxis okicici oksbi okhdfcbank paytm ptyes ptaxis pthdfc ptsbi apl yapl upi
+icici sbi hdfcbank axisbank kotak indus federal idfcbank aubank pnb barodampay unionbank cnrb kbl rbl yesbank
+jupiteraxis fam freecharge mobikwik ikwik slice""".split())
+
+
+def vpa_from(raw: str) -> str:
+    """Normalised UPI ID from a plain or obfuscated form ("tina dot r at ybl" -> "tina.r@ybl")."""
+    t = " " + raw.lower() + " "
+    t = re.sub(r"\s*(?:\(\s*at\s*\)|\[\s*at\s*\]|\{\s*at\s*\})\s*", "@", t)
+    t = re.sub(r"\s+at\s+the\s+rate(?:\s+of)?\s+", "@", t)
+    t = re.sub(r"\s+at\s+(?=[a-z][a-z0-9]*\s*$)", "@", t)
+    t = re.sub(r"\s*\bdot\b\s*", ".", t)
+    t = re.sub(r"\s*\bunderscore\b\s*", "_", t)
+    t = re.sub(r"\s*\b(?:dash|hyphen)\b\s*", "-", t)
+    return re.sub(r"\s+", "", t)
+
+
+def _obfuscated_vpas(body: str):
+    for mt in OBF_VPA.finditer(body):
+        raw = mt.group(1)
+        if re.fullmatch(r"[a-z0-9][a-z0-9._-]{1,63}@[a-z][a-z0-9]{1,31}", raw, re.I):
+            continue  # an ordinary UPI ID: the main pattern already has it
+        v = vpa_from(raw)
+        if not re.fullmatch(r"[a-z0-9][a-z0-9._-]{1,63}@[a-z][a-z0-9]{1,31}", v):
+            continue
+        local, handle = v.split("@")
+        plain_at = re.search(r"\s+at\s+(?!the\s+rate)", raw, re.I) and not re.search(r"@|\(\s*at|\[\s*at|\{\s*at|rate", raw, re.I)
+        if plain_at and not (re.search(r"[._\-\d]", local) or handle in KNOWN_HANDLES):
+            continue
+        yield raw, mt.start(1), mt.end(1)
+
+
 # "I am X from <Firm>", "head of research at <Firm>", "join <Firm>": capitalised words after a cue word.
 _FIRM = re.compile(r"\b(?:from|at|join|with)\s+((?:[A-Z][A-Za-z0-9&]*)(?:\s+(?:[A-Z][A-Za-z0-9&]*|&))*)")
 _FIRM_STOP = {"SEBI", "RBI", "UPI", "NSE", "BSE", "WhatsApp", "Telegram", "India", "Monday", "Tuesday", "Wednesday",
@@ -63,8 +109,12 @@ def normalise(text: str) -> str:
 
 
 def _norm(typ: str, raw: str) -> str:
-    if typ in ("upi_vpa", "url"):
+    if typ == "upi_vpa":
+        return vpa_from(raw)
+    if typ == "url":
         return raw.lower()
+    if typ == "bank_account":
+        return re.sub(r"\D", "", raw)
     if typ == "phone":
         return re.sub(r"\D", "", raw)[-10:]
     if typ == "firm_name":
@@ -101,6 +151,10 @@ def extract(messages: list, case_id: str, qr: dict | None = None) -> tuple[list[
         for typ, rx in RX.items():
             for mt in rx.finditer(body):
                 hits.append((mt.start(1), mt.end(1), typ, mt.group(1)))
+        taken = [(a, b) for a, b, t, _ in hits if t == "upi_vpa"]
+        for raw, s, e in _obfuscated_vpas(body):
+            if not any(a < e and s < b for a, b in taken):
+                hits.append((s, e, "upi_vpa", raw))
         if src == "text":
             for raw, s, e in _firm_names(body):
                 hits.append((s, e, "firm_name", raw))

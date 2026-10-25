@@ -1,5 +1,5 @@
 {
- "run_at_ist": "2026-10-25 02:53 IST",
+ "run_at_ist": "2026-10-25 05:30 IST",
  "firm_claimed": "Aarohan Securities Ltd",
  "cases": [
   {
@@ -24,12 +24,22 @@
   {
    "id": "J2 payee wording changed (UPI ID split with spaces, amount in words)",
    "expected": "a payee is found, or the miss is reported",
-   "answer": null,
-   "payees": {},
-   "why_shown": [],
-   "user_actions": [],
-   "report_pack_chars": 0,
-   "verdict": "MISS: no payee found"
+   "answer": "INCONCLUSIVE",
+   "payees": {
+    "ipo2@okaxis": "INCONCLUSIVE"
+   },
+   "why_shown": [
+    "No class A evidence for ipo2 @ okaxis: the user has not run a bank/UPI-app name check.",
+    "Registry: unavailable (not counted as clean)."
+   ],
+   "user_actions": [
+    "do not pay",
+    "check the name in the bank app",
+    "ask for review",
+    "report pack"
+   ],
+   "report_pack_chars": 1432,
+   "verdict": "as expected"
   },
   {
    "id": "J3 Hinglish, bank account + IFSC, no name check",

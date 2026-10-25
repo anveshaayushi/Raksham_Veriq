@@ -14,4 +14,4 @@ because we cannot tell, so we never accuse.
 | Can do | catch unrelated shop names used as mule accounts; avoid accusing on legal-form, spelling or script variants |
 | Cannot say | that a matching name means the firm is legitimate (a mule account can be opened in the firm's exact name) |
 | Tests / numbers | `tests/golden/test_engine_properties.py::test_name_matcher_classes`, `bench/names/` (97 labelled pairs) |
-| Known limit | 3/42 same-firm names still called a discrepancy ("BLUE RIVER" vs "BlueRiver", initials "SSL", "BRF"); see C-34. |
+| Known limit | Was 3/42 same-firm names called a discrepancy; 0/42 after the 25 Oct fixes (camel-case split, initials). Spelling variants ("LAXMI"/"Lakshmi") are "can't tell": we can't tell a transliteration from a copycat. See C-34, C-44. |

@@ -68,6 +68,33 @@ def names_eval():
     return _load("bench/names/results.json")
 
 
+def _prereg(st) -> None:
+    """1b: the pre-registered AI-generated sets, BEFORE (blind for D1) and FINAL (after fixes, not blind)."""
+    b1, f1 = _load("results/prereg/d1_blind_ai.before.json"), _load("results/prereg/d1_blind_ai.final.json")
+    b2, f2 = _load("results/prereg/d2_names.before.json"), _load("results/prereg/d2_names.final.json")
+    b3, f3 = _load("results/prereg/d3_extract.before.json"), _load("results/prereg/d3_extract.final.json")
+    st.subheader("1b · AI-generated test sets, scored as pre-registered (bench/PREREG.md)")
+    if not b1:
+        st.info("Not run in this copy: `python -m bench.prereg.run d1`.")
+        return
+    def fr(x):
+        return f"{x['count']}/{x['of']}"
+    rows = ["| Set | Metric | Before fixes | After fixes (not blind) |", "|---|---|---|---|"]
+    if f1:
+        rows += [f"| Chats, AI-generated blind set (n=80) | scams warned | **{fr(b1['all']['scam']['warned'])}** | {fr(f1['all']['scam']['warned'])} |",
+                 f"| | scams called 'no major issue' | {fr(b1['all']['scam']['missed'])} | {fr(f1['all']['scam']['missed'])} |",
+                 f"| | genuine chats accused | **{fr(b1['all']['genuine']['false_alarm_accusing'])}** | {fr(f1['all']['genuine']['false_alarm_accusing'])} |"]
+    if b2 and f2:
+        rows += [f"| Name pairs (AI, not blind, n=200) | other entity called a match | {fr(b2['headline_dangerous_matches'])} | {fr(f2['headline_dangerous_matches'])} |",
+                 f"| | same firm called a mismatch | {fr(b2['false_alarm_same_entity_called_discrepancy'])} | {fr(f2['false_alarm_same_entity_called_discrepancy'])} |"]
+    if b3 and f3:
+        rows += [f"| Extraction (AI, not blind, n=100) | UPI + account IDs found | {fr(b3['payees_upi_and_account']['recall'])} | {fr(f3['payees_upi_and_account']['recall'])} |"]
+    st.markdown("\n".join(rows))
+    st.caption("Only the 'before' chat numbers are blind. The fixes were made after seeing the failures, so 'after' is "
+               "not blind. Name pairs and extraction lines were written by an AI that had seen our code (optimistic). "
+               "Details: results/prereg/PREREG_RESULTS.md and RESULTS.md.")
+
+
 def render(st, md_escape) -> None:
     st.header("How accurate is VERIQ?")
     st.caption("Every number here comes from a command in this repository, run on data the system never trained on. "
@@ -99,6 +126,7 @@ def render(st, md_escape) -> None:
                 md_escape(f"{k} ×{n}") for k, n in kinds.most_common(3)))
     else:
         st.info("Not run yet: `python -m bench.run test`.")
+    _prereg(st)
     v = voice_rows()
     st.subheader("2 · Voice-note check (AASIST + our trained head)")
     if v:

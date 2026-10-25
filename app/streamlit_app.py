@@ -34,16 +34,39 @@ DEMO_QR = ROOT / "app" / "demo_media" / "demo_qr_synthetic.png"
 DEMO_VOICE = {"fake": ROOT / "app" / "demo_media" / "demo_voice_synthetic_tts.wav",
               "real": ROOT / "app" / "demo_media" / "demo_voice_real_human.wav"}
 
-STEPS = ["Consent", "Upload", "Confirm the firm", "Payee names", "Answer", "Reports"]
+STEPS = ["Start", "Chat", "Firm", "Bank name", "Answer", "Report"]
 ICON = {"LINKED": "🔗", "NAME_DISCREPANCY": "⛔", "REGISTRATION_CONFLICT": "⛔", "HUMAN_REVIEW": "⚠️", "INCONCLUSIVE": "❔",
         "NO_MAJOR_ISSUE": "✅"}
+# One-line, plain headline per result (the full rule, evidence and limitation stay one click away under "Details").
+SEVERITY = {"LINKED": "error", "NAME_DISCREPANCY": "error", "REGISTRATION_CONFLICT": "error",
+            "HUMAN_REVIEW": "warning", "INCONCLUSIVE": "warning", "NO_MAJOR_ISSUE": "success"}
+HEADLINE = {"LINKED": "Don't pay. Other people have reported this payee.",
+            "NAME_DISCREPANCY": "Don't pay yet. The money would go to someone else.",
+            "REGISTRATION_CONFLICT": "Don't pay yet. The registration they quoted doesn't check out.",
+            "HUMAN_REVIEW": "Hold on. Get a second opinion before you pay.",
+            "INCONCLUSIVE": "Not sure yet. Check the payee's name in your bank app first.",
+            "NO_MAJOR_ISSUE": "No major issue found."}
 
 st.set_page_config(page_title="VERIQ · check before you pay", page_icon="🛡️", layout="centered")
 st.markdown(
     """<style>
     html, body, [class*="css"] {font-size: 18px;}
-    .stButton>button, .stDownloadButton>button {width: 100%; min-height: 3rem; font-size: 1.05rem; font-weight: 600;}
-    div[data-testid="stCaptionContainer"] {font-size: 0.95rem;}
+    .block-container {max-width: 780px; padding-top: 2.2rem;}
+    h1 {letter-spacing: -0.02em; margin-bottom: 0;}
+    div[data-testid="stButton"] button, div[data-testid="stDownloadButton"] button, .stButton>button, .stDownloadButton>button {width: 100%; min-height: 3rem; font-size: 1.02rem; font-weight: 600;
+        border-radius: 12px;}
+    div[data-testid="stCaptionContainer"] {font-size: 0.92rem;}
+    div[data-testid="stVerticalBlockBorderWrapper"] {border-radius: 14px;}
+    div[data-testid="stAlert"] {border-radius: 12px;}
+    div[data-testid="stExpander"] details {border-radius: 12px;}
+    [data-testid="stAppDeployButton"], footer {display: none;}
+    button[kind="primary"] {background: #2563eb; border-color: #2563eb; color: #fff;}
+    button[kind="primary"]:hover {background: #1d4ed8; border-color: #1d4ed8; color: #fff;}
+    .vq-steps {display: flex; flex-wrap: wrap; gap: 6px; margin: 0.4rem 0 1.2rem 0;}
+    .vq-step {padding: 4px 12px; border-radius: 999px; font-size: 0.82rem; border: 1px solid rgba(128,128,128,0.35);
+        opacity: 0.6;}
+    .vq-step.done {opacity: 0.85;}
+    .vq-step.cur {opacity: 1; background: #2563eb; border-color: #2563eb; color: #fff; font-weight: 600;}
     </style>""",
     unsafe_allow_html=True,  # constant CSS only; never user content
 )
@@ -78,24 +101,55 @@ def reset() -> None:
         del S[k]
 
 
+def stepper(cur: int) -> None:
+    """Step pills. Built from the constant STEPS list only (never user content)."""
+    pills = "".join(f'<span class="vq-step {"cur" if i == cur else "done" if i < cur else ""}">{i} · {name}</span>'
+                    for i, name in enumerate(STEPS, 1))
+    st.markdown(f'<div class="vq-steps">{pills}</div>', unsafe_allow_html=True)
+
+
+def observed_name(p) -> str:
+    return str((S.get("checks", {}).get(p.value_norm) or {}).get("name", "")).strip()
+
+
+def plain_why(res: str, p, d) -> str:
+    """One plain sentence for a payee's result. Falls back to the engine's first reason. Chat/user text is escaped."""
+    obs, firm = observed_name(p), str(S.get("claimed_firm", "")).strip()
+    if res == "NAME_DISCREPANCY" and obs:
+        return f"Your bank app shows **{md_escape(obs)}**, but the chat said **{md_escape(firm or 'a different firm')}**."
+    if res == "REGISTRATION_CONFLICT":
+        return "The SEBI registration number quoted in the chat is not on the dated list for that firm."
+    if res == "LINKED":
+        return "Other people have reported losing money to this payee."
+    if res == "INCONCLUSIVE" and not obs:
+        return "You haven't checked which name your bank app shows for this payee."
+    if res == "NO_MAJOR_ISSUE" and obs:
+        return f"Your bank app shows **{md_escape(obs)}**, which matches the firm."
+    reasons = [str(r).replace(HIGH_PRESSURE, "").strip() for r in (get(d, "reasons") or [])]
+    return md_escape(reasons[0]) if reasons else PLAIN_LABEL.get(res, res)
+
+
 # ---------------------------------------------------------------- header ----
-st.title("VERIQ")
-st.write("Check a suspicious money chat **before you pay**: who you were told you're paying, and who would actually receive it.")
-st.progress(S.step / len(STEPS), text=f"Step {S.step} of {len(STEPS)}: {STEPS[S.step - 1]}")
+st.title("🛡️ VERIQ")
+st.write("Check who you're **really** paying, before you pay.")
+if S.get("page", "Check a chat") == "Check a chat" and not S.get("show_results"):
+    stepper(S.step)
 with st.sidebar:
     st.subheader("Your data")
-    st.write("Files stay in this app's memory for this browser session. Nothing is saved to disk by VERIQ.")
+    st.write("Stays in this session only. Nothing is saved to disk.")
     if st.button("Delete my data and start again", key="reset"):
         reset()
         st.rerun()
-    st.caption(f"Contract: {SCHEMA_SOURCE}")
-    S.show_results = st.toggle("How accurate is VERIQ? (measured results)", value=S.get("show_results", False),
-                               key="results_toggle")
-    S.reviewer_mode = st.toggle("Reviewer view (fraud desk / second person)", value=S.get("reviewer_mode", False),
-                                key="rev_toggle", help="Shows review requests and lets a reviewer uphold or overturn them.")
-    PAGES = ["Check a chat", "Scenario player", "Kit runner (judges)", "Plan vs delivered", "Privacy proof"]
-    S.page = st.radio("Pages", PAGES, index=PAGES.index(S.get("page", PAGES[0])), key="page_radio")
     st.caption(STANDING_LINE)
+    PAGES = ["Check a chat", "Scenario player", "Kit runner (judges)", "Plan vs delivered", "Privacy proof"]
+    _judge_open = S.get("page", PAGES[0]) != PAGES[0] or S.get("show_results", False) or S.get("reviewer_mode", False)
+    with st.expander("For judges and reviewers", expanded=_judge_open):
+        S.show_results = st.toggle("How accurate is VERIQ? (measured results)", value=S.get("show_results", False),
+                                   key="results_toggle")
+        S.reviewer_mode = st.toggle("Reviewer view (fraud desk / second person)", value=S.get("reviewer_mode", False),
+                                    key="rev_toggle", help="Shows review requests and lets a reviewer uphold or overturn them.")
+        S.page = st.radio("Pages", PAGES, index=PAGES.index(S.get("page", PAGES[0])), key="page_radio")
+        st.caption(f"Contract: {SCHEMA_SOURCE}")
 
 # ---------------------------------------------------------------- other pages (Q3) ----
 if S.get("page", "Check a chat") != "Check a chat" and not S.get("show_results"):
@@ -112,33 +166,37 @@ if S.get("show_results"):
 
 # ---------------------------------------------------------------- 1 consent ----
 if S.step == 1:
-    st.header("1 · Before you start")
-    st.markdown(
-        "- You can upload a **WhatsApp chat export** (.txt, or the .zip WhatsApp makes) and **voice notes**.\n"
-        "- VERIQ looks for who was claimed, where you were asked to pay, and pressure tactics.\n"
-        "- VERIQ **cannot prove fraud** and **cannot confirm that a voice is real**.\n"
-        "- Never type an OTP, UPI PIN, password or card number here. VERIQ never asks for them.\n"
-        "- This prototype keeps your files in memory for this session only and writes nothing to disk. "
-        "Use **Delete my data** (left menu) to clear them. Closing the server also clears them.")
+    st.header("Before you start")
+    st.markdown("Add the chat where someone asked you for money. VERIQ checks **who would actually receive it**.")
+    st.markdown("🔒 Never type an OTP, UPI PIN or password here. VERIQ never asks for them.")
+    with st.expander("What VERIQ can and can't do"):
+        st.markdown(
+            "- You can upload a **WhatsApp chat export** (.txt, or the .zip WhatsApp makes) and **voice notes**.\n"
+            "- VERIQ looks for who was claimed, where you were asked to pay, and pressure tactics.\n"
+            "- VERIQ **cannot prove fraud** and **cannot confirm that a voice is real**.\n"
+            "- This prototype keeps your files in memory for this session only and writes nothing to disk. "
+            "Use **Delete my data** (left menu) to clear them. Closing the server also clears them.")
     ok = st.checkbox("This is my own conversation (or I have permission), and I agree to have it analysed here.", key="consent")
-    if st.button("Continue", key="c1", disabled=not ok):
+    if st.button("Continue", key="c1", type="primary", disabled=not ok):
         S.consented = True
         go(2)
         st.rerun()
 
 # ---------------------------------------------------------------- 2 upload ----
 elif S.step == 2:
-    st.header("2 · Upload the chat")
+    st.header("Add the chat")
     tab_up, tab_demo = st.tabs(["Upload my chat", "Try a synthetic demo"])
     with tab_up:
-        chat = st.file_uploader("WhatsApp chat export (.txt or .zip, up to 2 MB of text)", type=["txt", "zip"], key="chatfile")
-        pasted = st.text_area("…or paste the chat here (lines like '20/10/2026, 8:59 pm - Name: message')", key="pasted",
-                              height=140, max_chars=200_000)
-        voices = st.file_uploader("Voice notes (optional): .opus .ogg .m4a .mp3 .wav", type=["opus", "ogg", "m4a", "mp3", "wav", "aac"],
-                                  accept_multiple_files=True, key="voicefiles")
-        imgs = st.file_uploader("Screenshots or QR images (optional): .jpg .png .webp. UPI QR codes in them are read.",
-                                type=["jpg", "jpeg", "png", "webp"], accept_multiple_files=True, key="imagefiles")
-        if st.button("Check files", key="check_files", disabled=chat is None and not pasted.strip()):
+        chat = st.file_uploader("WhatsApp chat export (.txt or .zip)", type=["txt", "zip"], key="chatfile",
+                                help="In WhatsApp: open the chat → ⋮ → More → Export chat → Without media. Up to 2 MB of text.")
+        pasted = st.text_area("…or paste the chat here", key="pasted", height=140, max_chars=200_000,
+                              placeholder="20/10/2026, 8:59 pm - Name: message")
+        with st.expander("Add voice notes or screenshots (optional)"):
+            voices = st.file_uploader("Voice notes: .opus .ogg .m4a .mp3 .wav", type=["opus", "ogg", "m4a", "mp3", "wav", "aac"],
+                                      accept_multiple_files=True, key="voicefiles")
+            imgs = st.file_uploader("Screenshots or QR images: .jpg .png .webp (UPI QR codes in them are read)",
+                                    type=["jpg", "jpeg", "png", "webp"], accept_multiple_files=True, key="imagefiles")
+        if st.button("Check files", key="check_files", type="primary", disabled=chat is None and not pasted.strip()):
             intake = Intake()
             try:
                 if chat is not None:
@@ -163,13 +221,12 @@ elif S.step == 2:
                 S.intake_warnings = intake.warnings
                 S.transcripts = {}
     with tab_demo:
-        st.write("Fictional chats (all names and IDs invented). The demo only fills in the inputs; every answer is "
-                 "computed by the same engine as an upload, so you can change anything along the way.")
+        st.caption("Fictional chats (all names and IDs invented). Answers come from the same engine as an upload.")
         sid = st.radio("Scenario", list(FIXTURES), format_func=lambda x: demo_title(load_demo(x)), key="demo_pick")
-        add_qr = st.checkbox("Also attach a QR screenshot the sender 'sent' (synthetic)", key="demo_qr")
-        add_voice = st.checkbox("Attach real audio for the voice note (a held-out test clip: synthetic TTS for A and C, "
-                                "a real human recording for B)", key="demo_voice")
-        if st.button("Load this demo", key="load_demo"):
+        add_qr = st.checkbox("Also attach a QR screenshot (synthetic)", key="demo_qr")
+        add_voice = st.checkbox("Attach audio for the voice note", key="demo_voice",
+                                help="A held-out test clip: synthetic TTS for A and C, a real human recording for B.")
+        if st.button("Load this demo", key="load_demo", type="primary"):
             fx = load_demo(sid)
             di = demo_inputs(fx)
             S.demo = sid
@@ -191,47 +248,56 @@ elif S.step == 2:
     if S.get("chat_text"):
         ex = extract(S.case_id, S.chat_text, S.get("transcripts"), load_demo(S.demo) if S.get("demo") else None, S.get("images"))
         S.payee_values = [p.value_norm for p in payee_list(ex.indicators)]
-        st.success(f"Read {len(ex.messages)} messages · found {len(S.payee_values)} payment destination(s).")
-        for f in S.files:
-            st.caption(f"✓ {f['name']} ({f['kind']}) · SHA-256 {f['sha256'][:16]}…")
+        st.success(f"Read {len(ex.messages)} messages · found {len(S.payee_values)} place(s) you were asked to pay."
+                   + (f" Demo {S.demo}: all names and IDs are fictional." if S.get("demo") else ""))
         for w in S.get("intake_warnings", []) + ex.warnings:
             st.warning(w)
         if ex.is_stub:
             st.info(f"Extraction: {ex.source}.")
-        if S.get("demo"):
-            st.info(f"Demo {S.demo} loaded. All names and IDs are fictional.")
-        if st.button("Continue", key="c2", disabled=not ex.messages):
+        with st.expander(f"Files received ({len(S.files)})"):
+            for f in S.files:
+                st.caption(f"✓ {f['name']} ({f['kind']}) · SHA-256 {f['sha256'][:16]}…")
+        if st.button("Continue", key="c2", type="primary", disabled=not ex.messages):
             go(3)
             st.rerun()
 
 # ---------------------------------------------------------------- 3 confirm ----
 elif S.step == 3:
-    st.header("3 · Who do you believe you are dealing with?")
+    st.header("Who did they say they were?")
     ex = extract(S.case_id, S.chat_text, S.get("transcripts"), load_demo(S.demo) if S.get("demo") else None, S.get("images"))
     firms = [i.value_raw for i in ex.indicators if i.type == "firm_name"]
+    S.claimed_firm = st.text_input("Firm or person they claimed to be", value=S.get("claimed_firm", ""), key="firm_input",
+                                   max_chars=120, placeholder="e.g. Navyug Wealth Research Pvt Ltd")
     if firms:
-        st.caption("Firm names mentioned in the chat: " + ", ".join(md_escape(f) for f in dict.fromkeys(firms)))
-    S.claimed_firm = st.text_input("Name of the firm the sender claimed to be", value=S.get("claimed_firm", ""), key="firm_input",
-                                   max_chars=120, help="Type the firm's name as you understood it, e.g. 'Navyug Wealth Research Pvt Ltd'.")
+        st.caption("Mentioned in the chat: " + ", ".join(md_escape(f) for f in dict.fromkeys(firms)))
     st.subheader("Where you were asked to pay")
-    st.caption("Each destination is checked separately. They are never merged.")
     msgs = {m.msg_id: m for m in ex.messages}
-    for n, p in enumerate(payee_list(ex.indicators), 1):
-        m = msgs.get(p.msg_id)
-        with st.container(border=True):
+    found = payee_list(ex.indicators)
+    with st.container(border=True):
+        for n, p in enumerate(found, 1):
+            m = msgs.get(p.msg_id)
             kind = "UPI ID" if p.type == "upi_vpa" else "Bank account"
-            st.markdown(f"**{n}. {kind}: {md_escape(p.value_raw)}**")
             amt = amount_in(m.text if m else "")
-            src = {"voice": "a voice-note transcript (check it against what you heard)",
-                   "image": f"a QR code in {md_escape(m.media_ref if m else 'an image')}"}.get(p.source, "the message text")
-            st.caption(f"Message #{p.msg_id} · {m.ts if m else ''} · {amt or 'amount not stated'} · found in {src} · confidence {p.confidence}")
-    if not payee_list(ex.indicators):
+            st.markdown(f"**{n}.** {kind} **{md_escape(p.value_raw)}**" + (f" · {md_escape(amt)}" if amt else ""))
+        if not found:
+            st.caption("Nothing found yet.")
+    if found:
+        with st.expander("Where each one was found"):
+            st.caption("Each destination is checked separately. They are never merged.")
+            for n, p in enumerate(found, 1):
+                m = msgs.get(p.msg_id)
+                amt = amount_in(m.text if m else "")
+                src = {"voice": "a voice-note transcript (check it against what you heard)",
+                       "image": f"a QR code in {md_escape(m.media_ref if m else 'an image')}"}.get(p.source, "the message text")
+                st.caption(f"{n}. Message #{p.msg_id} · {m.ts if m else ''} · {amt or 'amount not stated'} · found in {src} · "
+                           f"confidence {p.confidence}")
+    if not found:
         st.warning("No UPI ID or account number was found, so there is nothing to check yet.")
     c1, c2 = st.columns(2)
     if c1.button("Back", key="b3"):
         go(2)
         st.rerun()
-    if c2.button("Continue", key="c3"):
+    if c2.button("Continue", key="c3", type="primary"):
         if not S.claimed_firm.strip():
             st.warning("No firm entered: every payee will stay unverified.")
         go(4)
@@ -239,10 +305,13 @@ elif S.step == 3:
 
 # ---------------------------------------------------------------- 4 payee names ----
 elif S.step == 4:
-    st.header("4 · What name does your bank app show?")
-    st.info("For each payee: start a payment in **your own** bank or UPI app, stop at the screen that shows the payee's name, "
-            "read it, then **cancel**. Never enter your PIN. What you type here is recorded as **user-reported**: VERIQ "
-            "cannot see your app and does not contact any bank, UPI provider or SEBI.")
+    st.header("What name does your bank app show?")
+    st.info("In **your own** bank or UPI app, start a payment to each ID below, **read the name it shows, then cancel**. "
+            "Never enter your PIN.")
+    with st.expander("Why this matters"):
+        st.caption("Scammers use real-sounding firm names in chat, but the bank shows who actually owns the account. "
+                   "What you type is recorded as **user-reported**: VERIQ cannot see your app and does not contact any "
+                   "bank, UPI provider or SEBI.")
     S.setdefault("checks", {})
     ex = extract(S.case_id, S.chat_text, S.get("transcripts"), load_demo(S.demo) if S.get("demo") else None, S.get("images"))
     for n, p in enumerate(payee_list(ex.indicators), 1):
@@ -250,21 +319,21 @@ elif S.step == 4:
         with st.container(border=True):
             st.markdown(f"**{n}. {md_escape(p.value_raw)}**")
             if p.source == "image":
-                st.caption("Found in a QR code. The name written inside a QR is chosen by whoever made it, so scan or "
-                           "enter this UPI ID in your own app and type the name **your app** shows.")
+                st.caption("From a QR code: type the name **your app** shows, not the one inside the QR.")
             if is_valid_handle(p.value_norm):
-                st.caption("This UPI ID uses SEBI's '@valid' format for registered intermediaries. Format alone proves "
-                           "nothing: confirm the firm on SEBI Check.")
-            name = st.text_input("Exact name shown (leave blank if you couldn't check)", value=prev["name"], key=f"nm_{p.value_norm}", max_chars=120)
-            src = st.selectbox("Where you saw it", SOURCES, index=SOURCES.index(prev["source"]), key=f"src_{p.value_norm}")
-            when = st.date_input("Date you checked", value=prev["date"], max_value=date.today(), key=f"dt_{p.value_norm}")
-            st.caption("User-reported" if name.strip() else "Missing: this payee will stay unverified.")
+                st.caption("'@valid' format alone proves nothing: confirm the firm on SEBI Check.")
+            name = st.text_input("Name shown (leave blank if you couldn't check)", value=prev["name"], key=f"nm_{p.value_norm}",
+                                 max_chars=120)
+            with st.expander("Where and when you checked"):
+                src = st.selectbox("Where you saw it", SOURCES, index=SOURCES.index(prev["source"]), key=f"src_{p.value_norm}")
+                when = st.date_input("Date you checked", value=prev["date"], max_value=date.today(), key=f"dt_{p.value_norm}")
+            st.caption("✓ User-reported" if name.strip() else "Not checked: this payee will stay unverified.")
             S.checks[p.value_norm] = {"name": name, "source": src, "date": when}
     c1, c2 = st.columns(2)
     if c1.button("Back", key="b4"):
         go(3)
         st.rerun()
-    if c2.button("Get the answer", key="c4"):
+    if c2.button("Get the answer", key="c4", type="primary"):
         go(5)
         st.rerun()
 
@@ -277,7 +346,7 @@ elif S.step == 5:
                       images=S.get("images"))
     S.case = case
     ledger: Ledger = S.ledger
-    st.header("5 · The answer")
+    st.header("The answer")
     if S.get("reviewer_mode"):
         with st.container(border=True):
             st.subheader("Reviewer view")
@@ -305,17 +374,18 @@ elif S.step == 5:
             st.caption(n)
     overall = case.case_result()
     if overall:
-        st.subheader(f"{ICON.get(overall, '')} Overall: {PLAIN_LABEL[overall]} ({overall})")
+        getattr(st, SEVERITY.get(overall, "info"))(f"### {ICON.get(overall, '')} {HEADLINE.get(overall, PLAIN_LABEL[overall])}")
         if CFG.lang == "hi":
             from rules.templates import LABEL as _LABEL
             st.markdown(f"**{_LABEL[overall]['hi']}**")
         if overall == "NO_MAJOR_ISSUE":
             st.markdown(f"**{NOT_A_GUARANTEE}**")
         deciding = next(p for p in case.payees if case.result_for(p.id).result == overall)
-        why = [str(r) for r in (case.result_for(deciding.id).reasons or [])][:2]
-        st.markdown("**Why this alert fired:** " + md_escape(f"payee {deciding.value_raw}: " + " ".join(why)))
+        lead = "Why" if overall == "NO_MAJOR_ISSUE" else "Why this alert fired"
+        st.markdown(f"**{lead}:** " + plain_why(overall, deciding, case.result_for(deciding.id))
+                    + (f" (payee {md_escape(deciding.value_raw)})" if len(case.payees) > 1 else ""))
         with st.container(border=True):
-            st.markdown("**What you can do now** (VERIQ blocks nothing and contacts no one; you decide)")
+            st.markdown("**What you can do now**")
             a1, a2 = st.columns(2)
             if a1.button("🛑 I will not pay for now", key="act_nopay"):
                 S.user_action = "decided not to pay for now"
@@ -333,57 +403,32 @@ elif S.step == 5:
                                "veriq_report_pack.txt", "text/plain", key="act_pack")
             if S.get("user_action"):
                 st.success(f"You {S.user_action}.")
+            st.caption("VERIQ blocks nothing and contacts no one. You decide.")
+    elif case.payment_links():
+        st.warning("### ❔ Check before you pay. You were asked to pay through a link.")
+        st.markdown("**Why:** VERIQ can't see who receives money paid through a link: "
+                    + ", ".join(code(u) for u in case.payment_links()[:3])
+                    + ". Don't pay through a link sent in a chat. Open the firm's official app or website yourself, "
+                      "or pay a UPI ID whose name you can check in your own bank app.")
     else:
         st.subheader("No payment destination found, so nothing could be checked.")
     S.money_sent = st.toggle("I have already sent money", value=S.get("money_sent", False), key="money_toggle",
                              help="Changes only the next step (to the 1930 reporting path). It does not change any result.")
     if case.voice_is_stub or any("stub" in str(get(v, "model_version", "")).lower() for v in case.voice):
-        st.caption("Voice results shown here are stub values: no calibrated voice detector is connected yet (Claude B is calibrating).")
+        st.caption("Voice notes were not analysed here (no audio attached), so they count for nothing either way.")
     msgs = {m.msg_id: m for m in case.extraction.messages}
+    if len(case.payees) > 1:
+        st.subheader(f"Each place you were asked to pay ({len(case.payees)})")
     for n, p in enumerate(case.payees, 1):
         d = with_money_sent(case.result_for(p.id), S.money_sent)
         res = get(d, "result")
         req = ledger.requests.get(p.id)
         with st.container(border=True):
-            st.markdown(f"### {ICON.get(res, '')} {n}. {md_escape(p.value_raw)}")
-            st.markdown(f"**{PLAIN_LABEL.get(res, res)}** · {code(res)} · rule {code(get(d, 'rule_id'))}")
+            st.markdown(f"#### {ICON.get(res, '')} {md_escape(p.value_raw)}")
+            st.markdown(f"**{PLAIN_LABEL.get(res, res)}.** {plain_why(res, p, d)}")
             if any(str(r).startswith(HIGH_PRESSURE) for r in get(d, "reasons") or []):
                 st.error("High pressure: the voice note couldn't be checked, but the chat pushes you to pay fast to an "
                          "unverified recipient.")
-            for r in get(d, "reasons") or []:
-                st.markdown(f"- {md_escape(str(r).replace(HIGH_PRESSURE, '').strip())}")
-            evs = case.evidence_for(p.id)
-            if evs:
-                for e in evs:
-                    show_evidence(e, get(d, "rule_id"), cited=get(e, "evidence_id") in (get(d, "evidence_ids") or []))
-            else:
-                st.caption("Evidence: none entered for this payee. Missing evidence is not a match.")
-            m = msgs.get(p.msg_id)
-            if m is not None and m.kind == "voice":
-                v = next((v for v in case.voice if get(v, "file_id") == m.media_ref), None)
-                if v is not None:
-                    st.caption(f"Found in a voice note. Voice check: {get(v, 'state')} · {md_escape('; '.join(get(v, 'reasons') or []))} "
-                               f"· {voice_score_display(v)} · model: {md_escape(get(v, 'model_version'))}. "
-                               "Weak review cue (pretrained AASIST, threshold from ASVspoof 2019 LA dev; on LA eval it "
-                               "flagged 16% of genuine clips and missed 56% of synthetic ones). Only 'flagged' can raise "
-                               "concern; a voice result never clears a payee.")
-            rr = next((r for r in case.registry if get(r, "payee_id") == p.id), None)
-            if rr is not None:
-                note = f" · {md_escape(get(rr, 'note'))}" if get(rr, "note") else ""
-                st.caption(f"Cross-victim registry: {md_escape(get(rr, 'status'))}{note} · "
-                           f"source: {md_escape(get(rr, 'source'))}. {REGISTRY_WORDING}")
-                from registry.sqlite_registry import from_env as _reg_env, new_reporter_token
-                _r = _reg_env()
-                if _r is not None and p.type in ("upi_vpa", "bank_account"):
-                    if st.button("I lost money to this payee: add my report to the registry (stored as a keyed hash)",
-                                 key=f"rep_{p.id}"):
-                        tok = S.setdefault("reporter_token", new_reporter_token())  # one token per browser session
-                        out = _r.report(p.type, p.value_norm, tok)
-                        S[f"rep_out_{p.id}"] = out.status + (': ' + out.note if out.note else '')
-                        st.rerun()
-                    if S.get(f"rep_out_{p.id}"):
-                        st.caption(f"Your report: {md_escape(S[f'rep_out_{p.id}'])}. A payee is linked only after "
-                                   "2 independent reporters or a reviewer.")
             if req is not None and req.status == "overturned":
                 st.success(f"Reviewed: explained. Overturned by {md_escape(req.reviewer)}: {md_escape(req.reviewer_reason)} "
                            f"({req.elapsed()}). Original result {res} stays on record. {NOT_A_GUARANTEE}")
@@ -392,6 +437,43 @@ elif S.step == 5:
             elif req is not None:
                 st.info(f"Review requested ({req.elapsed()}). A reviewer will uphold or overturn this result.")
             st.info(f"**Next step:** {display_next_step(d)}")
+            with st.expander("Details: rule, evidence, sources"):
+                st.markdown(f"Result {code(res)} · rule {code(get(d, 'rule_id'))}")
+                for r in get(d, "reasons") or []:
+                    st.markdown(f"- {md_escape(str(r).replace(HIGH_PRESSURE, '').strip())}")
+                evs = case.evidence_for(p.id)
+                if evs:
+                    for e in evs:
+                        show_evidence(e, get(d, "rule_id"), cited=get(e, "evidence_id") in (get(d, "evidence_ids") or []))
+                else:
+                    st.caption("Evidence: none entered for this payee. Missing evidence is not a match.")
+                m = msgs.get(p.msg_id)
+                if m is not None and m.kind == "voice":
+                    v = next((v for v in case.voice if get(v, "file_id") == m.media_ref), None)
+                    if v is not None:
+                        st.caption(f"Found in a voice note. Voice check: {get(v, 'state')} · {md_escape('; '.join(get(v, 'reasons') or []))} "
+                                   f"· {voice_score_display(v)} · model: {md_escape(get(v, 'model_version'))}. "
+                                   "Weak review cue (pretrained AASIST, threshold from ASVspoof 2019 LA dev; on LA eval it "
+                                   "flagged 16% of genuine clips and missed 56% of synthetic ones). Only 'flagged' can raise "
+                                   "concern; a voice result never clears a payee.")
+                rr = next((r for r in case.registry if get(r, "payee_id") == p.id), None)
+                if rr is not None:
+                    note = f" · {md_escape(get(rr, 'note'))}" if get(rr, "note") else ""
+                    st.caption(f"Cross-victim registry: {md_escape(get(rr, 'status'))}{note} · "
+                               f"source: {md_escape(get(rr, 'source'))}. {REGISTRY_WORDING}")
+            rr = next((r for r in case.registry if get(r, "payee_id") == p.id), None)
+            if rr is not None:
+                from registry.sqlite_registry import from_env as _reg_env, new_reporter_token
+                _r = _reg_env()
+                if _r is not None and p.type in ("upi_vpa", "bank_account"):
+                    if st.button("I lost money to this payee: report it (stored as a keyed hash)", key=f"rep_{p.id}"):
+                        tok = S.setdefault("reporter_token", new_reporter_token())  # one token per browser session
+                        out = _r.report(p.type, p.value_norm, tok)
+                        S[f"rep_out_{p.id}"] = out.status + (': ' + out.note if out.note else '')
+                        st.rerun()
+                    if S.get(f"rep_out_{p.id}"):
+                        st.caption(f"Your report: {md_escape(S[f'rep_out_{p.id}'])}. A payee is linked only after "
+                                   "2 independent reporters or a reviewer.")
             if res in ("NAME_DISCREPANCY", "HUMAN_REVIEW", "REGISTRATION_CONFLICT", "LINKED") and req is None:
                 with st.expander("This looks wrong? Explain and ask for a review"):
                     st.caption("You can't clear a warning yourself (a scammer could talk you into it). A reviewer "
@@ -409,6 +491,7 @@ elif S.step == 5:
                         if st.button("Ask for a review", key=f"oreq_{p.id}"):
                             ledger.request(p.id, p.value_norm, res, why, note, ref)
                             st.rerun()
+    st.caption("More detail")
     shifts = [p for p in case.payees]
     if len(shifts) > 1:
         with st.expander(f"The payment destination changed {len(shifts) - 1} time(s)"):
@@ -446,16 +529,15 @@ elif S.step == 5:
     if c1.button("Back", key="b5"):
         go(4)
         st.rerun()
-    if c2.button("Make the reports", key="c5"):
+    if c2.button("Make the reports", key="c5", type="primary"):
         go(6)
         st.rerun()
 
 # ---------------------------------------------------------------- 6 reports ----
 elif S.step == 6:
     case = S.case
-    st.header("6 · Reports")
-    st.write("Two drafts: a **filing sheet** for you (full details, for 1930 / cybercrime.gov.in) and a **shareable summary** "
-             "with account numbers cut to the last four digits. Neither is filed anywhere.")
+    st.header("Reports (optional)")
+    st.write("Download a report to keep or to share. **Nothing is sent anywhere.**")
     with st.expander("Add details only you know (optional; left blank otherwise)", expanded=S.get("money_sent", False)):
         user = {"mobile": st.text_input("Your mobile number", key="u_mobile"),
                 "bank": st.text_input("Bank, wallet or merchant the money left from", key="u_bank"),
@@ -470,19 +552,22 @@ elif S.step == 6:
     reviews = {pid: f"{r.status}" + (f" by {r.reviewer}: {r.reviewer_reason}" if r.reviewer else "") + f" (original {r.original_result})"
                for pid, r in S.ledger.requests.items()}
     data = report_data(case, money_sent=S.get("money_sent", False), user=user, per_payee=per, reviews=reviews)
-    c1, c2 = st.columns(2)
-    c1.download_button("Filing sheet (HTML)", filing_sheet_html(data), file_name=f"veriq_filing_sheet_{case.case_id}.html", mime="text/html", key="dl1")
-    c2.download_button("Filing sheet (Markdown)", filing_sheet_md(data), file_name=f"veriq_filing_sheet_{case.case_id}.md", mime="text/markdown", key="dl2")
-    c3, c4 = st.columns(2)
-    c3.download_button("Shareable summary (HTML)", summary_html(data), file_name=f"veriq_summary_{case.case_id}.html", mime="text/html", key="dl3")
-    c4.download_button("Shareable summary (Markdown)", summary_md(data), file_name=f"veriq_summary_{case.case_id}.md", mime="text/markdown", key="dl4")
-    c5, c6 = st.columns(2)
-    c5.download_button("Incident card for 1930 / NCRP (JSON)", incident_json(data),
-                       file_name=f"veriq_incident_{case.case_id}.json", mime="application/json", key="dl5")
-    c6.download_button("Review audit trail (JSON)", S.ledger.audit_json(), file_name=f"veriq_audit_{case.case_id}.json",
-                       mime="application/json", key="dl6")
-    st.caption("The incident card lists the fields the 1930 / cybercrime.gov.in complaint asks for. It is not an "
-               "official format and is not sent anywhere. It contains full identifiers: keep it private.")
+    c1, c3 = st.columns(2)
+    c1.download_button("📄 Filing sheet for 1930", filing_sheet_html(data), file_name=f"veriq_filing_sheet_{case.case_id}.html",
+                       mime="text/html", key="dl1", help="Full details, for 1930 / cybercrime.gov.in. Keep it private.")
+    c3.download_button("🔗 Summary to share", summary_html(data), file_name=f"veriq_summary_{case.case_id}.html",
+                       mime="text/html", key="dl3", help="Account numbers cut to the last four digits.")
+    with st.expander("Other formats"):
+        c2, c4 = st.columns(2)
+        c2.download_button("Filing sheet (Markdown)", filing_sheet_md(data), file_name=f"veriq_filing_sheet_{case.case_id}.md", mime="text/markdown", key="dl2")
+        c4.download_button("Shareable summary (Markdown)", summary_md(data), file_name=f"veriq_summary_{case.case_id}.md", mime="text/markdown", key="dl4")
+        c5, c6 = st.columns(2)
+        c5.download_button("Incident card for 1930 / NCRP (JSON)", incident_json(data),
+                           file_name=f"veriq_incident_{case.case_id}.json", mime="application/json", key="dl5")
+        c6.download_button("Review audit trail (JSON)", S.ledger.audit_json(), file_name=f"veriq_audit_{case.case_id}.json",
+                           mime="application/json", key="dl6")
+        st.caption("The incident card lists the fields the 1930 / cybercrime.gov.in complaint asks for. It is not an "
+                   "official format and is not sent anywhere. It contains full identifiers: keep it private.")
     with st.expander("Preview the shareable summary"):
         st.markdown(summary_md(data))
     st.caption(STANDING_LINE)

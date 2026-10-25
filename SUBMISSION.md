@@ -63,7 +63,7 @@ All finale commits start with "FINALE:". Nothing was rebased, amended or force-p
 - Chat accuracy numbers are on chats we generated (partly circular); the blind teammate set is small.
 - Voice: no threshold transferred across datasets; the app uses pretrained AASIST with an ASVspoof-dev threshold only as a weak review cue (a flag asks for review; nothing is cleared by voice). Pretrained AASIST on held-out
   ASVspoof LA eval (in-distribution): AUC 0.77, misses 56% of synthetic clips at a dev threshold.
-- Name matcher: 3/42 same-firm names in our pair set still called a discrepancy (abbreviations, joined words).
+- Name matcher: 0/42 same-firm names in our pair set called a discrepancy after the 25 Oct fixes (3/42 before); spelling variants are "can't tell" by design. On AI-written pairs (not blind) 1/100 other-entity names still called a match (C-44).
 - Evasion: a mule account in the firm's exact name, pressure without keywords, links sent outside the chat.
 - Not built: speech-to-text, OCR of screenshots without QR, voice check on the team's own voices and clones.
 - Docker files written but not built by us (no Docker Hub access in the build sandbox); phone demo not verified.

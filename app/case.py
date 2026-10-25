@@ -8,6 +8,8 @@ If the engine code were missing, the app would fall back to labelled stub decisi
 
 from __future__ import annotations
 
+import re
+
 import json
 from dataclasses import dataclass, field
 from datetime import date, datetime
@@ -95,6 +97,26 @@ class Case:
 
     def case_level_evidence(self) -> list:
         return [e for e in self.evidence if get(e, "payee_id") == CASE_LEVEL]
+
+    def payment_links(self) -> list[str]:
+        """Links sent in a message that asks for money ("pay here: https://..."). VERIQ can't see who receives a
+        link payment, so the app answers these with 'check before you pay' instead of 'nothing found'.
+        Added 25 Oct after the pre-registered run: 5 of 40 scam chats asked for payment only through a link."""
+        msgs = {m.msg_id: m for m in self.extraction.messages}
+        out = []
+        for i in self.extraction.indicators:
+            if i.type != "url":
+                continue
+            m = msgs.get(i.msg_id)
+            text = (m.text if m else "") + " " + i.value_norm
+            if _PAY_WORDS.search(text) and i.value_norm not in out:
+                out.append(i.value_norm)
+        return out
+
+
+_PAY_WORDS = re.compile(r"\b(?:pay|payment|paying|fee|fees|deposit|amount|invest|transfer|bhej\w*|jama|₹|rs\.?|inr|"
+                        r"refund|claim|kyc|checkout|invoice|subscribe|bill)\b|/(?:pay|checkout|invoice|p|c|u|s|x)/",
+                        re.I)
 
 
 # ------------------------------------------------------------------ extraction ----

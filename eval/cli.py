@@ -20,6 +20,7 @@ import argparse
 import csv
 import json
 import os
+import re
 import sys
 from collections import Counter
 from pathlib import Path
@@ -123,6 +124,11 @@ def evaluate_folder(root: Path, detector, det_err, calibration: Optional[Calibra
                              threshold=("" if r.threshold is None else r.threshold), score_kind=a.score_kind,
                              speech_seconds=r.speech_seconds, reasons=" | ".join(reasons),
                              model_version=r.model_version, elapsed_s=f"{a.elapsed_s:.3f}", **extra))
+            continue
+        # a kit's own notes (README.txt, LICENSE, NOTES.md) keep their row (one row per file) but are not scored as chats
+        if re.match(r"(readme|license|licence|notes|manifest)(\.(txt|md))?$", f.name.lower()):
+            rows.append(_row(file_id=rel, path=str(f), sha256=sha, modality="other", state="cant_assess",
+                             reasons="kit notes file (README/LICENSE), not an input", **extra))
             continue
         if ext in IMAGE_EXT or ext in ARCHIVE_EXT or ext == ".txt":  # Q3 kit runner: eval/kit.py
             from eval import kit

@@ -1,36 +1,36 @@
 {
- "scenario": "D (synthetic): Sahyadri Securities Ltd; bank app shows 'SSL CAPITAL SERVICES'",
+ "scenario": "D (synthetic): Sahyadri Securities Ltd; bank app shows 'KONKAN FINVEST HOLDINGS PVT LTD' (its parent company)",
  "first_answer": "NAME_DISCREPANCY",
- "reason_shown": "- `sslcap.sec@validicici`: **NAME_DISCREPANCY** \u00b7 why: Class A \\(user\\-reported\\)\\: app shows 'SSL CAPITAL SERVICES'; no shared distinctive word with claimed 'Sahyadri Securities Ltd'\\.",
+ "reason_shown": "- `sslcap.sec@validicici`: **NAME_DISCREPANCY** \u00b7 why: Class A \\(user\\-reported\\)\\: app shows 'KONKAN FINVEST HOLDINGS PVT LTD'; no shared distinctive word with claimed 'Sahyadri Securities Ltd'\\.",
  "final": "overturned",
  "user_clicks_after_alert": 1,
  "reviewer_clicks": 1,
- "app_processing_seconds_total": 0.52,
+ "app_processing_seconds_total": 0.39,
  "steps": [
   {
    "step": "open the scenario player",
    "who": "user",
-   "app_seconds": 0.112
+   "app_seconds": 0.082
   },
   {
    "step": "pick scenario D",
    "who": "user",
-   "app_seconds": 0.087
+   "app_seconds": 0.076
   },
   {
    "step": "chat arrives (show all messages)",
    "who": "user",
-   "app_seconds": 0.093
+   "app_seconds": 0.072
   },
   {
    "step": "user: 'this is my real broker, ask for review'",
    "who": "user",
-   "app_seconds": 0.114
+   "app_seconds": 0.079
   },
   {
    "step": "reviewer: SEBI Check confirms the @valid handle, overturn",
    "who": "reviewer",
-   "app_seconds": 0.114
+   "app_seconds": 0.08
   }
  ],
  "recorded": {
@@ -41,5 +41,5 @@
   "raw_payee_id_in_audit": false
  },
  "not_included": "human reading time and the reviewer's checking time (a person checks SEBI Check)",
- "run_at_ist": "2026-10-25 02:53 IST"
+ "run_at_ist": "2026-10-25 05:31 IST"
 }

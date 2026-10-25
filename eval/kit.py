@@ -86,6 +86,11 @@ def chat_assessment(path: Path, lab_row: dict) -> dict:
         reasons.append("hard cues: " + ", ".join(hard))
     reasons += [w for w in c.extraction.warnings[:2]]
     if res is None:
+        links = c.payment_links()
+        if links:
+            return {"state": "cant_assess", "pred_label": "", "reasons": reasons + [
+                "asked to pay through a link (" + ", ".join(links[:2]) + "): VERIQ can't see who receives it; the app "
+                "answers 'check before you pay'"]}
         return {"state": "cant_assess", "pred_label": "", "reasons": reasons + ["no payee or no dated message"]}
     if res in FLAG_RESULTS or (res == "INCONCLUSIVE" and hard):
         return {"state": "flagged", "pred_label": "fake", "reasons": reasons, "result": res}
@@ -153,7 +158,18 @@ def _metrics(rows: List[dict]) -> dict:
     return m
 
 
+def _clean(md: str) -> str:
+    """Never print a bare 'None': say why a metric has no value."""
+    md = md.replace("None (n=0)", "n/a (0 files decided)")
+    md = md.replace("| **None** |", "| **n/a** (no genuine file decided) |").replace("| None |", "| n/a |")
+    return md.replace("| None |", "| n/a |")
+
+
 def build_report(rows: List[dict], command: str, polarity: Optional[str]) -> str:
+    return _clean(_build_report(rows, command, polarity))
+
+
+def _build_report(rows: List[dict], command: str, polarity: Optional[str]) -> str:
     for r in rows:
         r["polarity"] = polarity or ""
     by_mod: Dict[str, List[dict]] = defaultdict(list)

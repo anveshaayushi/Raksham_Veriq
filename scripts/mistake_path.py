@@ -43,7 +43,7 @@ def run() -> dict:
     done = " ".join(x.value for x in at.success)
     led = at.session_state.pl_ledger
     audit = json.loads(led.audit_json())
-    return {"scenario": "D (synthetic): Sahyadri Securities Ltd; bank app shows 'SSL CAPITAL SERVICES'",
+    return {"scenario": "D (synthetic): Sahyadri Securities Ltd; bank app shows 'KONKAN FINVEST HOLDINGS PVT LTD' (its parent company)",
             "first_answer": first, "reason_shown": reason, "final": "overturned" if "Overturned" in done else "not cleared",
             "user_clicks_after_alert": sum(s["who"] == "user" for s in steps[3:]),
             "reviewer_clicks": sum(s["who"] == "reviewer" for s in steps),

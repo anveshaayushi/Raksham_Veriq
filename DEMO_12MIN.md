@@ -6,6 +6,8 @@ $env:VERIQ_REGISTRY_SECRET="demo-secret-change-me-0123"; python -m registry.seed
 ```
 Night before: `python scripts\acceptance.py --fast` must end "ACCEPTED" (it replays every step below).
 
+The other pages (scenario player, kit runner, plan vs delivered, privacy proof), the results page and the reviewer view are in the left menu under **For judges and reviewers**. Each answer shows a short summary first; rule, evidence and sources are under **Details** on each payee.
+
 | Min | Step (judge drives where possible) | What to show / say | Evidence |
 |---|---|---|---|
 | 0-1 | Who and what | Meera's story (PROBLEM_USER.md); "VERIQ checks who would actually receive the money, before you pay." | PROBLEM_USER.md |
