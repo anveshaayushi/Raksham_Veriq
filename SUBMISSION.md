@@ -8,7 +8,7 @@ voice note only as a review cue. One answer per payee from fixed rules, with evi
 was sent). It blocks nothing, files nothing and contacts no one.
 
 ## Where to look
-README.md (start here) · RUBRIC_MAP.md (every rubric row → evidence, command, demo step) · DEMO_12MIN.md · QA_SHEET.md ·
+README.md (start here) · RUBRIC_MAP.md (every rubric row → evidence, command, demo step) · DEMO_12MIN.md ·
 PROBLEM_USER.md · ENGINEERING_WALKTHROUGH.md · EVASION_LAB.md · DEPLOYABILITY.md · RESULTS.md · CLAIMS.md · TESTPLAN.md.
 Internal build notes (cross-team handoffs, change requests, old drafts): docs/history/.
 

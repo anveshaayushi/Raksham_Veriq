@@ -102,7 +102,7 @@ def a_slide(_):
 def a_docs(_):
     need = ["SUBMISSION.md", "REPRODUCE.md", "TESTPLAN.md", "RESULTS.md", "CLAIMS.md", "STATUS.md", "DISCLOSURE.md",
             "FINALE_LOG.md", "HANDOFF.md", "DEPLOY.md", "DEPLOYABILITY.md", "PLAN_VS_DELIVERED.md", "PREBUILT.md",
-            "FINALE_SLIDE.md", "QA_SHEET.md", "DEMO_12MIN.md", "docs/DEMO_SCRIPT.md", "README.md", "RUBRIC_MAP.md",
+            "FINALE_SLIDE.md", "DEMO_12MIN.md", "docs/DEMO_SCRIPT.md", "README.md", "RUBRIC_MAP.md",
             "ENGINEERING_WALKTHROUGH.md", "PROBLEM_USER.md", "EVASION_LAB.md", "Dockerfile", "docker-compose.yml",
             "requirements.txt", "requirements-dev.txt", "requirements-voice.txt"]
     miss = [n for n in need if not (ROOT / n).is_file()]
