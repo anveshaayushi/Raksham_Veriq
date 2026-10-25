@@ -1,0 +1,29 @@
+{
+ "command": "python scripts/stt_check.py",
+ "run_at_ist": "2026-10-25 09:39 IST",
+ "model": "faster-whisper:small",
+ "clips": 1,
+ "with_text": 1,
+ "by_group": {
+  "demo_human": {
+   "clips": 1,
+   "with_text": 1,
+   "median_similarity": null,
+   "similarity_at_least_0.5": null
+  }
+ },
+ "rows": [
+  {
+   "group": "demo_human",
+   "clip": "app/demo_media/demo_voice_real_human.wav",
+   "sentence": null,
+   "text": "9, 9, 2, 1, 2, 3.",
+   "language": "en",
+   "error": null,
+   "model": "faster-whisper:small",
+   "seconds": 781.38,
+   "similarity": null
+  }
+ ],
+ "limit": "few clips and speakers; similarity is a rough character match, not a word error rate"
+}

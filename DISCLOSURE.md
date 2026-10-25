@@ -53,3 +53,10 @@ Required notice if any ASVspoof-derived output is shown publicly: "Contains info
 | kokoro-onnx (Python package) | runs Kokoro on CPU | MIT (as recalled; verify) | UNVERIFIED |
 | scikit-learn | logistic-regression head | BSD-3-Clause | |
 | VERIQ voice head (`bench/voice/head.json`) | trained on-site on AASIST embeddings | team's own | trained 24 Oct (custom, on top of off-the-shelf AASIST) |
+
+## Speech-to-text (branch claude-b-voice-results; added 25 Oct 2026)
+| Item | Licence | How verified |
+|---|---|---|
+| faster-whisper 1.2.1 (SYSTRAN), Python package | MIT | package metadata (`pip show faster-whisper`) and the LICENSE file in github.com/SYSTRAN/faster-whisper, read 25 Oct |
+| OpenAI Whisper code and model weights | MIT | github.com/openai/whisper README: "Whisper's code and model weights are released under the MIT License", read 25 Oct |
+| CTranslate2 conversions downloaded by faster-whisper (Hugging Face `Systran/faster-whisper-<size>`) | converted from the MIT Whisper weights; the model card's own licence line was NOT checked (Hugging Face not reachable from our build sandbox) | check the model card on the laptop before quoting |

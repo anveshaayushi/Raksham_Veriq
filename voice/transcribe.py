@@ -9,8 +9,10 @@ typed chat. It is only as good as the speech-to-text: Hinglish (Hindi and Englis
 letters, or half and half, and numbers or names may be wrong. So transcript-derived cues stay medium confidence (never high),
 and a transcript never clears or accuses a payee.
 
-Status: written and unit-tested with a FAKE model. NOT yet run with the real faster-whisper model: the weights must be
-downloaded once on a machine with internet (the first transcribe() call does it; or run `python -m voice.transcribe clip.wav`).
+Status (25 Oct): unit-tested with a FAKE model. The first real-model run on the team laptop transcribed 0/6 clips
+(TypeError while the model decoded the file itself; results/asvspoof/B_STT_SAMPLE.json). Fixed: on any failure it retries
+once with audio decoded by VERIQ's ffmpeg path. Re-check with the real model: `python scripts/stt_check.py` (results in
+results/asvspoof/B_STT_RECHECK.md). The weights must be downloaded once on a machine with internet.
 After that it runs offline. Nothing is stored: audio goes through a private temp folder that is deleted before returning.
 
 Config (environment): VERIQ_WHISPER_MODEL (default "small"; "tiny"/"base" are faster, "medium" is better for Hindi),
