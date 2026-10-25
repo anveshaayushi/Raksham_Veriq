@@ -1,0 +1,2123 @@
+{
+ "set": "AI-generated, NOT blind (the writer had seen the engine; results are optimistic)",
+ "problems": [],
+ "run_at_ist": "2026-10-25 05:17 IST",
+ "commit": "2080ce0",
+ "engine_files_uncommitted": false,
+ "n": 200,
+ "verdicts_by_relation": {
+  "cannot_tell": {
+   "discrepancy": 19,
+   "unverified": 10,
+   "lookalike": 1
+  },
+  "different_entity": {
+   "discrepancy": 55,
+   "unverified": 14,
+   "lookalike": 1
+  },
+  "lookalike_of_different_entity": {
+   "lookalike": 26,
+   "match": 4
+  },
+  "same_entity": {
+   "match": 42,
+   "lookalike": 22,
+   "unverified": 4,
+   "discrepancy": 2
+  }
+ },
+ "headline_dangerous_matches": {
+  "count": 4,
+  "of": 100,
+  "rate": 0.04,
+  "wilson95": [
+   0.016,
+   0.098
+  ]
+ },
+ "false_alarm_same_entity_called_discrepancy": {
+  "count": 2,
+  "of": 70,
+  "rate": 0.029,
+  "wilson95": [
+   0.008,
+   0.098
+  ]
+ },
+ "same_entity_matched": {
+  "count": 42,
+  "of": 70,
+  "rate": 0.6,
+  "wilson95": [
+   0.483,
+   0.707
+  ]
+ },
+ "different_entity_discrepancy": {
+  "count": 55,
+  "of": 70,
+  "rate": 0.786,
+  "wilson95": [
+   0.676,
+   0.866
+  ]
+ },
+ "lookalike_warned_lookalike_or_discrepancy": {
+  "count": 26,
+  "of": 30,
+  "rate": 0.867,
+  "wilson95": [
+   0.703,
+   0.947
+  ]
+ },
+ "cannot_tell_unverified": {
+  "count": 10,
+  "of": 30,
+  "rate": 0.333,
+  "wilson95": [
+   0.192,
+   0.512
+  ]
+ },
+ "failures": [
+  {
+   "id": "n002",
+   "claimed_firm": "Nimbus Edge Technologies Pvt Ltd",
+   "bank_app_name": "N E TECH",
+   "relation": "cannot_tell",
+   "verdict": "discrepancy",
+   "reason": "no distinctive word in common with 'Nimbus Edge Technologies Pvt Ltd'",
+   "note": "initials only"
+  },
+  {
+   "id": "n023",
+   "claimed_firm": "Pinewick Brokers Pvt Ltd",
+   "bank_app_name": "KWIKCOLLECT PRIVATE LIMITED",
+   "relation": "cannot_tell",
+   "verdict": "discrepancy",
+   "reason": "no distinctive word in common with 'Pinewick Brokers Pvt Ltd'",
+   "note": "fictional aggregator"
+  },
+  {
+   "id": "n024",
+   "claimed_firm": "Oakridge Group Pvt Ltd",
+   "bank_app_name": "OAKPAY WALLET",
+   "relation": "cannot_tell",
+   "verdict": "discrepancy",
+   "reason": "no distinctive word in common with 'Oakridge Group Pvt Ltd'",
+   "note": "claim names the group only; brand not stated"
+  },
+  {
+   "id": "n027",
+   "claimed_firm": "Lumen Arc Analytics LLP",
+   "bank_app_name": "SETTLEHUB PAYMENT SOLUTIONS",
+   "relation": "cannot_tell",
+   "verdict": "discrepancy",
+   "reason": "no distinctive word in common with 'Lumen Arc Analytics LLP'",
+   "note": "fictional settlement account"
+  },
+  {
+   "id": "n042",
+   "claimed_firm": "Saffron Quay Finserv Pvt Ltd",
+   "bank_app_name": "UPIWAVE COLLECT",
+   "relation": "cannot_tell",
+   "verdict": "discrepancy",
+   "reason": "no distinctive word in common with 'Saffron Quay Finserv Pvt Ltd'",
+   "note": "fictional collection account"
+  },
+  {
+   "id": "n060",
+   "claimed_firm": "Pennywhistle Advisors Pvt Ltd",
+   "bank_app_name": "PENNY ADVISORS",
+   "relation": "cannot_tell",
+   "verdict": "discrepancy",
+   "reason": "no distinctive word in common with 'Pennywhistle Advisors Pvt Ltd'",
+   "note": "plausible brand shortening, unconfirmed"
+  },
+  {
+   "id": "n064",
+   "claimed_firm": "Cinderfield Capital Pvt Ltd",
+   "bank_app_name": "CINDER CAP",
+   "relation": "cannot_tell",
+   "verdict": "discrepancy",
+   "reason": "no distinctive word in common with 'Cinderfield Capital Pvt Ltd'",
+   "note": "informal short brand, unconfirmed"
+  },
+  {
+   "id": "n065",
+   "claimed_firm": "Siddhi Vinayak Agencies",
+   "bank_app_name": "SIDDHIVINAYAK AGENCIES",
+   "relation": "same_entity",
+   "verdict": "discrepancy",
+   "reason": "no distinctive word in common with 'Siddhi Vinayak Agencies'",
+   "note": "word joined"
+  },
+  {
+   "id": "n069",
+   "claimed_firm": "Ironbark Securities Ltd",
+   "bank_app_name": "RAJ KISHORE",
+   "relation": "cannot_tell",
+   "verdict": "discrepancy",
+   "reason": "no distinctive word in common with 'Ironbark Securities Ltd'",
+   "note": "owner name not given in the claim"
+  },
+  {
+   "id": "n076",
+   "claimed_firm": "Cobalt Meadow Capital Pvt Ltd",
+   "bank_app_name": "COINBRIDGE MERCHANT SERVICES",
+   "relation": "cannot_tell",
+   "verdict": "discrepancy",
+   "reason": "no distinctive word in common with 'Cobalt Meadow Capital Pvt Ltd'",
+   "note": "fictional aggregator name"
+  },
+  {
+   "id": "n080",
+   "claimed_firm": "Marrowdale Research",
+   "bank_app_name": "MARROWDALE RESEARCH 1",
+   "relation": "lookalike_of_different_entity",
+   "verdict": "match",
+   "reason": "shares the distinctive word(s) marrowdale",
+   "note": "digit appended"
+  },
+  {
+   "id": "n084",
+   "claimed_firm": "Kestrel Ledger Advisors Pvt Ltd",
+   "bank_app_name": "PAYNEST SOLUTIONS PVT LTD",
+   "relation": "cannot_tell",
+   "verdict": "discrepancy",
+   "reason": "no distinctive word in common with 'Kestrel Ledger Advisors Pvt Ltd'",
+   "note": "fictional payment gateway name"
+  },
+  {
+   "id": "n089",
+   "claimed_firm": "Copperleaf Trust Company",
+   "bank_app_name": "COPPERLEAF TRUST CORPORATION",
+   "relation": "lookalike_of_different_entity",
+   "verdict": "match",
+   "reason": "shares the distinctive word(s) copperleaf, trust",
+   "note": "different legal form"
+  },
+  {
+   "id": "n090",
+   "claimed_firm": "Orchid Bay Securities Ltd",
+   "bank_app_name": "ZIPCOLLECT TECHNOLOGIES",
+   "relation": "cannot_tell",
+   "verdict": "discrepancy",
+   "reason": "no distinctive word in common with 'Orchid Bay Securities Ltd'",
+   "note": "fictional aggregator name"
+  },
+  {
+   "id": "n099",
+   "claimed_firm": "Tamarind Row Research LLP",
+   "bank_app_name": "RAPIDREMIT PAYMENTS PVT LTD",
+   "relation": "cannot_tell",
+   "verdict": "discrepancy",
+   "reason": "no distinctive word in common with 'Tamarind Row Research LLP'",
+   "note": "fictional gateway name"
+  },
+  {
+   "id": "n116",
+   "claimed_firm": "Rosewater Advisory",
+   "bank_app_name": "ROSE",
+   "relation": "cannot_tell",
+   "verdict": "discrepancy",
+   "reason": "no distinctive word in common with 'Rosewater Advisory'",
+   "note": "single short word"
+  },
+  {
+   "id": "n120",
+   "claimed_firm": "Thistledown Markets Pvt Ltd",
+   "bank_app_name": "TMPL",
+   "relation": "cannot_tell",
+   "verdict": "discrepancy",
+   "reason": "no distinctive word in common with 'Thistledown Markets Pvt Ltd'",
+   "note": "initials of legal name"
+  },
+  {
+   "id": "n129",
+   "claimed_firm": "Quillon Harbour Investments Ltd",
+   "bank_app_name": "PAYLOOP MERCHANT ACCOUNT",
+   "relation": "cannot_tell",
+   "verdict": "discrepancy",
+   "reason": "no distinctive word in common with 'Quillon Harbour Investments Ltd'",
+   "note": "fictional gateway"
+  },
+  {
+   "id": "n146",
+   "claimed_firm": "Glenrock Investments Ltd",
+   "bank_app_name": "GLEN",
+   "relation": "cannot_tell",
+   "verdict": "discrepancy",
+   "reason": "no distinctive word in common with 'Glenrock Investments Ltd'",
+   "note": "single short word"
+  },
+  {
+   "id": "n152",
+   "claimed_firm": "Glenrock Investments",
+   "bank_app_name": "GLENROCK INVESTMENTS 2",
+   "relation": "lookalike_of_different_entity",
+   "verdict": "match",
+   "reason": "shares the distinctive word(s) glenrock",
+   "note": "digit appended"
+  },
+  {
+   "id": "n153",
+   "claimed_firm": "Orchid Bay Securities",
+   "bank_app_name": "ORCHID BAY SECURITIES INDIA",
+   "relation": "lookalike_of_different_entity",
+   "verdict": "match",
+   "reason": "shares the distinctive word(s) bay, orchid",
+   "note": "extra word suggests a different entity"
+  },
+  {
+   "id": "n161",
+   "claimed_firm": "Cinderfield Capital Pvt Ltd",
+   "bank_app_name": "CINDERFEILD CAPITAL PVT LTD",
+   "relation": "same_entity",
+   "verdict": "discrepancy",
+   "reason": "no distinctive word in common with 'Cinderfield Capital Pvt Ltd'",
+   "note": "typo in vowel order"
+  },
+  {
+   "id": "n165",
+   "claimed_firm": "Hazelwood Finance Pvt Ltd",
+   "bank_app_name": "HFPL COLLECTIONS",
+   "relation": "cannot_tell",
+   "verdict": "discrepancy",
+   "reason": "no distinctive word in common with 'Hazelwood Finance Pvt Ltd'",
+   "note": "unclear collections account"
+  },
+  {
+   "id": "n168",
+   "claimed_firm": "Larkspur Investments Pvt Ltd",
+   "bank_app_name": "LARK INVEST",
+   "relation": "cannot_tell",
+   "verdict": "discrepancy",
+   "reason": "no distinctive word in common with 'Larkspur Investments Pvt Ltd'",
+   "note": "short brand, unconfirmed"
+  },
+  {
+   "id": "n180",
+   "claimed_firm": "Brightwater Holdings Pvt Ltd",
+   "bank_app_name": "BLUEFIN INVEST",
+   "relation": "cannot_tell",
+   "verdict": "discrepancy",
+   "reason": "no distinctive word in common with 'Brightwater Holdings Pvt Ltd'",
+   "note": "claim names the holding company only; brand not stated"
+  },
+  {
+   "id": "n185",
+   "claimed_firm": "Stonebridge Fintech Pvt Ltd",
+   "bank_app_name": "STONEBRIDGE CLIENT FUNDS",
+   "relation": "cannot_tell",
+   "verdict": "lookalike",
+   "reason": "shares 'stonebridge' but adds 'client': could be a look-alike account rather than the firm itself",
+   "note": "client-money account, unclear owner"
+  }
+ ],
+ "per_pair": [
+  {
+   "id": "n001",
+   "claimed_firm": "Mistral Hill Advisory Services",
+   "bank_app_name": "ZOYA FASHION HOUSE",
+   "relation": "different_entity",
+   "note": "unrelated shop",
+   "verdict": "discrepancy",
+   "reason": "no distinctive word in common with 'Mistral Hill Advisory Services'"
+  },
+  {
+   "id": "n002",
+   "claimed_firm": "Nimbus Edge Technologies Pvt Ltd",
+   "bank_app_name": "N E TECH",
+   "relation": "cannot_tell",
+   "note": "initials only",
+   "verdict": "discrepancy",
+   "reason": "no distinctive word in common with 'Nimbus Edge Technologies Pvt Ltd'"
+  },
+  {
+   "id": "n003",
+   "claimed_firm": "Zephyra Fintech Pvt Ltd (trading as ZephPay)",
+   "bank_app_name": "ZEPHPAY",
+   "relation": "same_entity",
+   "note": "claim states the trading brand",
+   "verdict": "match",
+   "reason": "shares the distinctive word(s) zephpay"
+  },
+  {
+   "id": "n004",
+   "claimed_firm": "Highgate Mutual Services",
+   "bank_app_name": "HIGHGATE MUTUAL SERVICES LTD UK",
+   "relation": "lookalike_of_different_entity",
+   "note": "different jurisdiction tag",
+   "verdict": "lookalike",
+   "reason": "shares 'highgate, mutual' but adds 'uk': could be a look-alike account rather than the firm itself"
+  },
+  {
+   "id": "n005",
+   "claimed_firm": "Cobalt Meadow Capital Pvt Ltd",
+   "bank_app_name": "LANTERN HILL CAPITAL PVT LTD",
+   "relation": "different_entity",
+   "note": "shares only 'Capital'",
+   "verdict": "discrepancy",
+   "reason": "no distinctive word in common with 'Cobalt Meadow Capital Pvt Ltd'"
+  },
+  {
+   "id": "n006",
+   "claimed_firm": "Marigold Court Wealth Pvt Ltd",
+   "bank_app_name": "SILVERBROOK WEALTH PVT LTD",
+   "relation": "different_entity",
+   "note": "shares only 'Wealth'",
+   "verdict": "discrepancy",
+   "reason": "no distinctive word in common with 'Marigold Court Wealth Pvt Ltd'"
+  },
+  {
+   "id": "n007",
+   "claimed_firm": "Marigold Court Research",
+   "bank_app_name": "MARIGOLD COURT RESEARCH ALERTS",
+   "relation": "lookalike_of_different_entity",
+   "note": "extra word, different outfit",
+   "verdict": "lookalike",
+   "reason": "shares 'court, marigold' but adds 'alerts': could be a look-alike account rather than the firm itself"
+  },
+  {
+   "id": "n008",
+   "claimed_firm": "Vaishnavi Silk House",
+   "bank_app_name": "VAISHNAWI SILK HOUSE",
+   "relation": "same_entity",
+   "note": "v/w variant",
+   "verdict": "lookalike",
+   "reason": "shares 'house, silk' but adds 'vaishnawi': could be a look-alike account rather than the firm itself"
+  },
+  {
+   "id": "n009",
+   "claimed_firm": "Stonebridge Fintech Pvt Ltd",
+   "bank_app_name": "MANISH GENERAL STORE",
+   "relation": "different_entity",
+   "note": "unrelated shop",
+   "verdict": "discrepancy",
+   "reason": "no distinctive word in common with 'Stonebridge Fintech Pvt Ltd'"
+  },
+  {
+   "id": "n010",
+   "claimed_firm": "Alderwood Asset Management",
+   "bank_app_name": "ALDERWOOD ASSET MGMT PARTNERS",
+   "relation": "lookalike_of_different_entity",
+   "note": "partners vs company",
+   "verdict": "lookalike",
+   "reason": "shares 'alderwood' but adds 'mgmt, partners': could be a look-alike account rather than the firm itself"
+  },
+  {
+   "id": "n011",
+   "claimed_firm": "Willowmere Advisors",
+   "bank_app_name": "WILLOWMERE ADVISER",
+   "relation": "lookalike_of_different_entity",
+   "note": "near-copy, singular adviser",
+   "verdict": "lookalike",
+   "reason": "shares 'willowmere' but adds 'adviser': could be a look-alike account rather than the firm itself"
+  },
+  {
+   "id": "n012",
+   "claimed_firm": "Willowmere Advisors Pvt Ltd",
+   "bank_app_name": "WILLOWMERE ADVISORS (JAIPUR)",
+   "relation": "same_entity",
+   "note": "city in brackets",
+   "verdict": "lookalike",
+   "reason": "shares 'willowmere' but adds 'jaipur': could be a look-alike account rather than the firm itself"
+  },
+  {
+   "id": "n013",
+   "claimed_firm": "Quillon Harbour Investments Ltd",
+   "bank_app_name": "OM SAI ELECTRONICS",
+   "relation": "different_entity",
+   "note": "unrelated shop",
+   "verdict": "discrepancy",
+   "reason": "no distinctive word in common with 'Quillon Harbour Investments Ltd'"
+  },
+  {
+   "id": "n014",
+   "claimed_firm": "Brightwater Holdings Pvt Ltd",
+   "bank_app_name": "DAULAT RAM AND SONS",
+   "relation": "different_entity",
+   "note": "unrelated business",
+   "verdict": "discrepancy",
+   "reason": "no distinctive word in common with 'Brightwater Holdings Pvt Ltd'"
+  },
+  {
+   "id": "n015",
+   "claimed_firm": "Brightwater Holdings Pvt Ltd (operates the Bluefin Invest app)",
+   "bank_app_name": "BLUEFIN INVEST",
+   "relation": "same_entity",
+   "note": "claim states the brand it operates",
+   "verdict": "match",
+   "reason": "shares the distinctive word(s) bluefin, invest"
+  },
+  {
+   "id": "n016",
+   "claimed_firm": "Meridian Oaks Research Pvt Ltd",
+   "bank_app_name": "TIRUPATI AGENCIES",
+   "relation": "different_entity",
+   "note": "unrelated business",
+   "verdict": "discrepancy",
+   "reason": "no distinctive word in common with 'Meridian Oaks Research Pvt Ltd'"
+  },
+  {
+   "id": "n017",
+   "claimed_firm": "Cobalt Meadow Capital",
+   "bank_app_name": "COBOLT MEADOW CAPITAL",
+   "relation": "lookalike_of_different_entity",
+   "note": "letter swap in brand word",
+   "verdict": "lookalike",
+   "reason": "shares 'meadow' but adds 'cobolt': could be a look-alike account rather than the firm itself"
+  },
+  {
+   "id": "n018",
+   "claimed_firm": "Meridian Oaks Research Pvt Ltd",
+   "bank_app_name": "RAMKISHORE PRASAD",
+   "relation": "different_entity",
+   "note": "personal name, no link",
+   "verdict": "discrepancy",
+   "reason": "no distinctive word in common with 'Meridian Oaks Research Pvt Ltd'"
+  },
+  {
+   "id": "n019",
+   "claimed_firm": "Glenrock Investments Ltd",
+   "bank_app_name": "FATIMA BOUTIQUE",
+   "relation": "different_entity",
+   "note": "unrelated shop",
+   "verdict": "discrepancy",
+   "reason": "no distinctive word in common with 'Glenrock Investments Ltd'"
+  },
+  {
+   "id": "n020",
+   "claimed_firm": "Hazelwood Finance Pvt Ltd",
+   "bank_app_name": "IQBAL FURNITURE MART",
+   "relation": "different_entity",
+   "note": "unrelated shop",
+   "verdict": "discrepancy",
+   "reason": "no distinctive word in common with 'Hazelwood Finance Pvt Ltd'"
+  },
+  {
+   "id": "n021",
+   "claimed_firm": "Orchid Bay Securities Ltd",
+   "bank_app_name": "RIVERSTONE SECURITIES LTD",
+   "relation": "different_entity",
+   "note": "shares only 'Securities'",
+   "verdict": "discrepancy",
+   "reason": "no distinctive word in common with 'Orchid Bay Securities Ltd'"
+  },
+  {
+   "id": "n022",
+   "claimed_firm": "Saffron Quay Finserv Pvt Ltd",
+   "bank_app_name": "BIRCHWOOD FINSERV PVT LTD",
+   "relation": "different_entity",
+   "note": "shares only 'Finserv'",
+   "verdict": "discrepancy",
+   "reason": "no distinctive word in common with 'Saffron Quay Finserv Pvt Ltd'"
+  },
+  {
+   "id": "n023",
+   "claimed_firm": "Pinewick Brokers Pvt Ltd",
+   "bank_app_name": "KWIKCOLLECT PRIVATE LIMITED",
+   "relation": "cannot_tell",
+   "note": "fictional aggregator",
+   "verdict": "discrepancy",
+   "reason": "no distinctive word in common with 'Pinewick Brokers Pvt Ltd'"
+  },
+  {
+   "id": "n024",
+   "claimed_firm": "Oakridge Group Pvt Ltd",
+   "bank_app_name": "OAKPAY WALLET",
+   "relation": "cannot_tell",
+   "note": "claim names the group only; brand not stated",
+   "verdict": "discrepancy",
+   "reason": "no distinctive word in common with 'Oakridge Group Pvt Ltd'"
+  },
+  {
+   "id": "n025",
+   "claimed_firm": "Lumen Arc Analytics LLP",
+   "bank_app_name": "DEEPAK VERMA",
+   "relation": "different_entity",
+   "note": "personal name, no link",
+   "verdict": "unverified",
+   "reason": "a personal-looking name: could be the firm's proprietor or someone else; we can't tell"
+  },
+  {
+   "id": "n026",
+   "claimed_firm": "Tidewater Wealth Pvt Ltd",
+   "bank_app_name": "TIDEWATER WEALTH PVT LTD PUNE",
+   "relation": "same_entity",
+   "note": "city suffix",
+   "verdict": "lookalike",
+   "reason": "shares 'tidewater' but adds 'pune': could be a look-alike account rather than the firm itself"
+  },
+  {
+   "id": "n027",
+   "claimed_firm": "Lumen Arc Analytics LLP",
+   "bank_app_name": "SETTLEHUB PAYMENT SOLUTIONS",
+   "relation": "cannot_tell",
+   "note": "fictional settlement account",
+   "verdict": "discrepancy",
+   "reason": "no distinctive word in common with 'Lumen Arc Analytics LLP'"
+  },
+  {
+   "id": "n028",
+   "claimed_firm": "Shri Ganesh Provision Stores",
+   "bank_app_name": "SREE GANESH PROVISION STORES",
+   "relation": "same_entity",
+   "note": "Shri/Sree variant",
+   "verdict": "lookalike",
+   "reason": "shares 'ganesh, provision' but adds 'sree': could be a look-alike account rather than the firm itself"
+  },
+  {
+   "id": "n029",
+   "claimed_firm": "M/s Rosewater Advisory",
+   "bank_app_name": "ROSEWATER ADVISORY",
+   "relation": "same_entity",
+   "note": "M/s prefix",
+   "verdict": "match",
+   "reason": "shares the distinctive word(s) rosewater"
+  },
+  {
+   "id": "n030",
+   "claimed_firm": "Wren & Falcon Capital LLP",
+   "bank_app_name": "PAVAN KUMAR REDDY",
+   "relation": "different_entity",
+   "note": "personal name, no link",
+   "verdict": "unverified",
+   "reason": "a personal-looking name: could be the firm's proprietor or someone else; we can't tell"
+  },
+  {
+   "id": "n031",
+   "claimed_firm": "Quillon Harbour Investments Ltd",
+   "bank_app_name": "STARLING PEAK INVESTMENTS LTD",
+   "relation": "different_entity",
+   "note": "shares only 'Investments'",
+   "verdict": "discrepancy",
+   "reason": "no distinctive word in common with 'Quillon Harbour Investments Ltd'"
+  },
+  {
+   "id": "n032",
+   "claimed_firm": "Alderwood Asset Management Ltd",
+   "bank_app_name": "VIKRAM SINGH RATHORE",
+   "relation": "different_entity",
+   "note": "personal name, no link",
+   "verdict": "unverified",
+   "reason": "a personal-looking name: could be the firm's proprietor or someone else; we can't tell"
+  },
+  {
+   "id": "n033",
+   "claimed_firm": "Evergreen Valley Brokers Ltd",
+   "bank_app_name": "EVERGREEN VALLEY BROKER LTD",
+   "relation": "same_entity",
+   "note": "singular/plural",
+   "verdict": "match",
+   "reason": "shares the distinctive word(s) evergreen, valley"
+  },
+  {
+   "id": "n034",
+   "claimed_firm": "Tamarind Row Research LLP",
+   "bank_app_name": "Tamarind Row Research L.L.P.",
+   "relation": "same_entity",
+   "note": "LLP punctuation",
+   "verdict": "match",
+   "reason": "shares the distinctive word(s) row, tamarind"
+  },
+  {
+   "id": "n035",
+   "claimed_firm": "Quillon Harbour Investments",
+   "bank_app_name": "QUILLON HARBOR INVEST HUB",
+   "relation": "lookalike_of_different_entity",
+   "note": "spelling plus different tail",
+   "verdict": "lookalike",
+   "reason": "shares 'quillon' but adds 'harbor, hub': could be a look-alike account rather than the firm itself"
+  },
+  {
+   "id": "n036",
+   "claimed_firm": "Tamarind Row Research LLP",
+   "bank_app_name": "GOLDCREST RESEARCH LLP",
+   "relation": "different_entity",
+   "note": "shares only 'Research'",
+   "verdict": "discrepancy",
+   "reason": "no distinctive word in common with 'Tamarind Row Research LLP'"
+  },
+  {
+   "id": "n037",
+   "claimed_firm": "Lumen Arc Analytics",
+   "bank_app_name": "LUMEN ARK ANALYTICS",
+   "relation": "lookalike_of_different_entity",
+   "note": "Arc vs Ark",
+   "verdict": "lookalike",
+   "reason": "shares 'analytics, lumen' but adds 'ark': could be a look-alike account rather than the firm itself"
+  },
+  {
+   "id": "n038",
+   "claimed_firm": "Cinderfield Capital Pvt Ltd",
+   "bank_app_name": "VINAY KUMAR GUPTA",
+   "relation": "different_entity",
+   "note": "personal name, no link",
+   "verdict": "unverified",
+   "reason": "a personal-looking name: could be the firm's proprietor or someone else; we can't tell"
+  },
+  {
+   "id": "n039",
+   "claimed_firm": "Marrowdale Research LLP",
+   "bank_app_name": "MAROWDALE RESEARCH LLP",
+   "relation": "same_entity",
+   "note": "dropped letter",
+   "verdict": "unverified",
+   "reason": "a near spelling of the claimed name (could be a variant or a look-alike)"
+  },
+  {
+   "id": "n040",
+   "claimed_firm": "Orchid Bay Securities Limited",
+   "bank_app_name": "ORCHID BAY SECURITIES LTD",
+   "relation": "same_entity",
+   "note": "Limited vs Ltd",
+   "verdict": "match",
+   "reason": "shares the distinctive word(s) bay, orchid"
+  },
+  {
+   "id": "n041",
+   "claimed_firm": "Marigold Court Research LLP",
+   "bank_app_name": "MCR LLP",
+   "relation": "cannot_tell",
+   "note": "initials only",
+   "verdict": "unverified",
+   "reason": "looks like initials of the claimed firm"
+  },
+  {
+   "id": "n042",
+   "claimed_firm": "Saffron Quay Finserv Pvt Ltd",
+   "bank_app_name": "UPIWAVE COLLECT",
+   "relation": "cannot_tell",
+   "note": "fictional collection account",
+   "verdict": "discrepancy",
+   "reason": "no distinctive word in common with 'Saffron Quay Finserv Pvt Ltd'"
+  },
+  {
+   "id": "n043",
+   "claimed_firm": "Lindenholt Research Desk LLP",
+   "bank_app_name": "NARESH PLUMBING WORKS",
+   "relation": "different_entity",
+   "note": "unrelated business",
+   "verdict": "discrepancy",
+   "reason": "no distinctive word in common with 'Lindenholt Research Desk LLP'"
+  },
+  {
+   "id": "n044",
+   "claimed_firm": "Jyoti Sweet Corner",
+   "bank_app_name": "JYOTHI SWEET CORNER",
+   "relation": "same_entity",
+   "note": "Jyoti/Jyothi",
+   "verdict": "lookalike",
+   "reason": "shares 'corner, sweet' but adds 'jyothi': could be a look-alike account rather than the firm itself"
+  },
+  {
+   "id": "n045",
+   "claimed_firm": "Glenrock Investments Ltd",
+   "bank_app_name": "SAI KRIPA TRADERS",
+   "relation": "different_entity",
+   "note": "generic shop name",
+   "verdict": "discrepancy",
+   "reason": "no distinctive word in common with 'Glenrock Investments Ltd'"
+  },
+  {
+   "id": "n046",
+   "claimed_firm": "Moti Mart",
+   "bank_app_name": "MOTI MART",
+   "relation": "same_entity",
+   "note": "very short, exact",
+   "verdict": "match",
+   "reason": "shares the distinctive word(s) moti"
+  },
+  {
+   "id": "n047",
+   "claimed_firm": "Tamarind Row Research LLP",
+   "bank_app_name": "SURESH KUMAR",
+   "relation": "different_entity",
+   "note": "personal name, no link",
+   "verdict": "unverified",
+   "reason": "a personal-looking name: could be the firm's proprietor or someone else; we can't tell"
+  },
+  {
+   "id": "n048",
+   "claimed_firm": "Nimbus Edge Technologies",
+   "bank_app_name": "NIMBUS EDGE TECHNOLOGIES SOLUTIONS",
+   "relation": "lookalike_of_different_entity",
+   "note": "different entity name",
+   "verdict": "lookalike",
+   "reason": "shares 'edge, nimbus, technologies' but adds 'solutions': could be a look-alike account rather than the firm itself"
+  },
+  {
+   "id": "n049",
+   "claimed_firm": "Saffron Quay Finserv Private Limited",
+   "bank_app_name": "SAFFRON QUAY FINSERV P LTD",
+   "relation": "same_entity",
+   "note": "P Ltd abbreviation",
+   "verdict": "match",
+   "reason": "shares the distinctive word(s) quay, saffron"
+  },
+  {
+   "id": "n050",
+   "claimed_firm": "Choudhary Hardware Mart",
+   "bank_app_name": "CHAUDHARY HARDWARE MART",
+   "relation": "same_entity",
+   "note": "Choudhary/Chaudhary",
+   "verdict": "lookalike",
+   "reason": "shares 'hardware' but adds 'chaudhary': could be a look-alike account rather than the firm itself"
+  },
+  {
+   "id": "n051",
+   "claimed_firm": "Marrowdale Research LLP",
+   "bank_app_name": "NEW INDIA ENTERPRISES",
+   "relation": "different_entity",
+   "note": "generic shop name",
+   "verdict": "discrepancy",
+   "reason": "no distinctive word in common with 'Marrowdale Research LLP'"
+  },
+  {
+   "id": "n052",
+   "claimed_firm": "AK Sons",
+   "bank_app_name": "A K SONS",
+   "relation": "same_entity",
+   "note": "very short, spacing",
+   "verdict": "match",
+   "reason": "shares the distinctive word(s) sons"
+  },
+  {
+   "id": "n053",
+   "claimed_firm": "Pennywhistle Advisors",
+   "bank_app_name": "PENNYWHISTLE ADVISORS FZE",
+   "relation": "lookalike_of_different_entity",
+   "note": "foreign entity tag",
+   "verdict": "lookalike",
+   "reason": "shares 'pennywhistle' but adds 'fze': could be a look-alike account rather than the firm itself"
+  },
+  {
+   "id": "n054",
+   "claimed_firm": "Nimbus Edge Technologies Pvt Ltd",
+   "bank_app_name": "LUCKY GIFT CENTRE",
+   "relation": "different_entity",
+   "note": "unrelated shop",
+   "verdict": "discrepancy",
+   "reason": "no distinctive word in common with 'Nimbus Edge Technologies Pvt Ltd'"
+  },
+  {
+   "id": "n055",
+   "claimed_firm": "Aurelian Grove Capital Pvt Ltd",
+   "bank_app_name": "GUPTA MEDICAL HALL",
+   "relation": "different_entity",
+   "note": "unrelated shop",
+   "verdict": "discrepancy",
+   "reason": "no distinctive word in common with 'Aurelian Grove Capital Pvt Ltd'"
+  },
+  {
+   "id": "n056",
+   "claimed_firm": "Driftwood Lane Wealth Pvt Ltd",
+   "bank_app_name": "ANITA SHARMA",
+   "relation": "different_entity",
+   "note": "personal name, no link",
+   "verdict": "unverified",
+   "reason": "a personal-looking name: could be the firm's proprietor or someone else; we can't tell"
+  },
+  {
+   "id": "n057",
+   "claimed_firm": "Ambika Devi Enterprises",
+   "bank_app_name": "AMBIKA DEVI ENTERPRISE",
+   "relation": "same_entity",
+   "note": "singular/plural",
+   "verdict": "match",
+   "reason": "shares the distinctive word(s) ambika, devi"
+  },
+  {
+   "id": "n058",
+   "claimed_firm": "Evergreen Valley Brokers Ltd",
+   "bank_app_name": "PARVATI STORES",
+   "relation": "different_entity",
+   "note": "unrelated shop",
+   "verdict": "discrepancy",
+   "reason": "no distinctive word in common with 'Evergreen Valley Brokers Ltd'"
+  },
+  {
+   "id": "n059",
+   "claimed_firm": "Tarkash Wealth Circle",
+   "bank_app_name": "TARKESH WEALTH CIRCLE",
+   "relation": "lookalike_of_different_entity",
+   "note": "one vowel differs: different distinctive word",
+   "verdict": "lookalike",
+   "reason": "shares 'circle' but adds 'tarkesh': could be a look-alike account rather than the firm itself"
+  },
+  {
+   "id": "n060",
+   "claimed_firm": "Pennywhistle Advisors Pvt Ltd",
+   "bank_app_name": "PENNY ADVISORS",
+   "relation": "cannot_tell",
+   "note": "plausible brand shortening, unconfirmed",
+   "verdict": "discrepancy",
+   "reason": "no distinctive word in common with 'Pennywhistle Advisors Pvt Ltd'"
+  },
+  {
+   "id": "n061",
+   "claimed_firm": "Amberfall Capital Markets Pvt Ltd",
+   "bank_app_name": "KAMLA FRUIT CENTRE",
+   "relation": "different_entity",
+   "note": "unrelated shop",
+   "verdict": "discrepancy",
+   "reason": "no distinctive word in common with 'Amberfall Capital Markets Pvt Ltd'"
+  },
+  {
+   "id": "n062",
+   "claimed_firm": "Alderwood Asset Management Co. Ltd.",
+   "bank_app_name": "ALDERWOOD ASSET MANAGEMENT COMPANY LIMITED",
+   "relation": "same_entity",
+   "note": "Co. Ltd. expansion",
+   "verdict": "match",
+   "reason": "shares the distinctive word(s) alderwood"
+  },
+  {
+   "id": "n063",
+   "claimed_firm": "R S Electricals",
+   "bank_app_name": "RS ELECTRICALS",
+   "relation": "same_entity",
+   "note": "short, initials joined",
+   "verdict": "lookalike",
+   "reason": "shares 'electricals' but adds 'rs': could be a look-alike account rather than the firm itself"
+  },
+  {
+   "id": "n064",
+   "claimed_firm": "Cinderfield Capital Pvt Ltd",
+   "bank_app_name": "CINDER CAP",
+   "relation": "cannot_tell",
+   "note": "informal short brand, unconfirmed",
+   "verdict": "discrepancy",
+   "reason": "no distinctive word in common with 'Cinderfield Capital Pvt Ltd'"
+  },
+  {
+   "id": "n065",
+   "claimed_firm": "Siddhi Vinayak Agencies",
+   "bank_app_name": "SIDDHIVINAYAK AGENCIES",
+   "relation": "same_entity",
+   "note": "word joined",
+   "verdict": "discrepancy",
+   "reason": "no distinctive word in common with 'Siddhi Vinayak Agencies'"
+  },
+  {
+   "id": "n066",
+   "claimed_firm": "Krishna Kiran Medicals",
+   "bank_app_name": "KRUSHNA KIRAN MEDICALS",
+   "relation": "same_entity",
+   "note": "Krishna/Krushna",
+   "verdict": "lookalike",
+   "reason": "shares 'kiran, medicals' but adds 'krushna': could be a look-alike account rather than the firm itself"
+  },
+  {
+   "id": "n067",
+   "claimed_firm": "Rosewater Advisory",
+   "bank_app_name": "BABU LAL MISHRA",
+   "relation": "different_entity",
+   "note": "personal name, no link",
+   "verdict": "unverified",
+   "reason": "a personal-looking name: could be the firm's proprietor or someone else; we can't tell"
+  },
+  {
+   "id": "n068",
+   "claimed_firm": "Nimbus Edge Technologies Pvt Ltd",
+   "bank_app_name": "SHANKAR FLOUR MILL",
+   "relation": "different_entity",
+   "note": "unrelated business",
+   "verdict": "discrepancy",
+   "reason": "no distinctive word in common with 'Nimbus Edge Technologies Pvt Ltd'"
+  },
+  {
+   "id": "n069",
+   "claimed_firm": "Ironbark Securities Ltd",
+   "bank_app_name": "RAJ KISHORE",
+   "relation": "cannot_tell",
+   "note": "owner name not given in the claim",
+   "verdict": "discrepancy",
+   "reason": "no distinctive word in common with 'Ironbark Securities Ltd'"
+  },
+  {
+   "id": "n070",
+   "claimed_firm": "Capital Markets Amberfall Pvt Ltd",
+   "bank_app_name": "AMBERFALL CAPITAL MARKETS PVT LTD",
+   "relation": "same_entity",
+   "note": "reordered words",
+   "verdict": "match",
+   "reason": "shares the distinctive word(s) amberfall"
+  },
+  {
+   "id": "n071",
+   "claimed_firm": "Saffron Quay Finserv Pvt Ltd",
+   "bank_app_name": "BALAJI HARDWARE",
+   "relation": "different_entity",
+   "note": "unrelated shop",
+   "verdict": "discrepancy",
+   "reason": "no distinctive word in common with 'Saffron Quay Finserv Pvt Ltd'"
+  },
+  {
+   "id": "n072",
+   "claimed_firm": "Prakash Joshi Stationers (proprietor: Prakash Joshi)",
+   "bank_app_name": "PRAKASH JOSHI",
+   "relation": "same_entity",
+   "note": "claim states the proprietor",
+   "verdict": "match",
+   "reason": "shares the distinctive word(s) joshi, prakash"
+  },
+  {
+   "id": "n073",
+   "claimed_firm": "Saffron Quay Finserv",
+   "bank_app_name": "SAFFRON KEY FINSERV",
+   "relation": "lookalike_of_different_entity",
+   "note": "Quay vs Key",
+   "verdict": "lookalike",
+   "reason": "shares 'saffron' but adds 'key': could be a look-alike account rather than the firm itself"
+  },
+  {
+   "id": "n074",
+   "claimed_firm": "Hari Om Tent House",
+   "bank_app_name": "HARIOM TENT HOUSE",
+   "relation": "same_entity",
+   "note": "word joined",
+   "verdict": "lookalike",
+   "reason": "shares 'house, tent' but adds 'hariom': could be a look-alike account rather than the firm itself"
+  },
+  {
+   "id": "n075",
+   "claimed_firm": "Wren & Falcon Capital LLP",
+   "bank_app_name": "KISHORE TRADING CO",
+   "relation": "different_entity",
+   "note": "unrelated business",
+   "verdict": "discrepancy",
+   "reason": "no distinctive word in common with 'Wren & Falcon Capital LLP'"
+  },
+  {
+   "id": "n076",
+   "claimed_firm": "Cobalt Meadow Capital Pvt Ltd",
+   "bank_app_name": "COINBRIDGE MERCHANT SERVICES",
+   "relation": "cannot_tell",
+   "note": "fictional aggregator name",
+   "verdict": "discrepancy",
+   "reason": "no distinctive word in common with 'Cobalt Meadow Capital Pvt Ltd'"
+  },
+  {
+   "id": "n077",
+   "claimed_firm": "Marrowdale Research LLP",
+   "bank_app_name": "SANJAY AUTO WORKS",
+   "relation": "different_entity",
+   "note": "unrelated business",
+   "verdict": "discrepancy",
+   "reason": "no distinctive word in common with 'Marrowdale Research LLP'"
+  },
+  {
+   "id": "n078",
+   "claimed_firm": "Aurelian Grove Capital Pvt Ltd",
+   "bank_app_name": "AGC",
+   "relation": "cannot_tell",
+   "note": "initials only",
+   "verdict": "unverified",
+   "reason": "looks like initials of the claimed firm"
+  },
+  {
+   "id": "n079",
+   "claimed_firm": "The Copperleaf Trust Company Ltd",
+   "bank_app_name": "COPPERLEAF TRUST COMPANY LTD",
+   "relation": "same_entity",
+   "note": "leading The",
+   "verdict": "match",
+   "reason": "shares the distinctive word(s) copperleaf, trust"
+  },
+  {
+   "id": "n080",
+   "claimed_firm": "Marrowdale Research",
+   "bank_app_name": "MARROWDALE RESEARCH 1",
+   "relation": "lookalike_of_different_entity",
+   "note": "digit appended",
+   "verdict": "match",
+   "reason": "shares the distinctive word(s) marrowdale"
+  },
+  {
+   "id": "n081",
+   "claimed_firm": "Oakridge Group Pvt Ltd (brand: OakPay Wallet)",
+   "bank_app_name": "OAKPAY WALLET",
+   "relation": "same_entity",
+   "note": "claim states the brand",
+   "verdict": "match",
+   "reason": "shares the distinctive word(s) oakpay, wallet"
+  },
+  {
+   "id": "n082",
+   "claimed_firm": "Tidewater Wealth Pvt Ltd",
+   "bank_app_name": "SWAMI TENT HOUSE",
+   "relation": "different_entity",
+   "note": "unrelated business",
+   "verdict": "discrepancy",
+   "reason": "no distinctive word in common with 'Tidewater Wealth Pvt Ltd'"
+  },
+  {
+   "id": "n083",
+   "claimed_firm": "Stonebridge Fin-Tech Private Limited",
+   "bank_app_name": "STONEBRIDGE FINTECH PRIVATE LIMITED",
+   "relation": "same_entity",
+   "note": "hyphen removed",
+   "verdict": "match",
+   "reason": "shares the distinctive word(s) stonebridge"
+  },
+  {
+   "id": "n084",
+   "claimed_firm": "Kestrel Ledger Advisors Pvt Ltd",
+   "bank_app_name": "PAYNEST SOLUTIONS PVT LTD",
+   "relation": "cannot_tell",
+   "note": "fictional payment gateway name",
+   "verdict": "discrepancy",
+   "reason": "no distinctive word in common with 'Kestrel Ledger Advisors Pvt Ltd'"
+  },
+  {
+   "id": "n085",
+   "claimed_firm": "Highgate Mutual Services",
+   "bank_app_name": "LAKEVIEW SERVICES PVT LTD",
+   "relation": "different_entity",
+   "note": "shares only 'Services'",
+   "verdict": "discrepancy",
+   "reason": "no distinctive word in common with 'Highgate Mutual Services'"
+  },
+  {
+   "id": "n086",
+   "claimed_firm": "Driftwood Lane Wealth",
+   "bank_app_name": "DRIFTWOOD LANE WEALTH CLUB",
+   "relation": "lookalike_of_different_entity",
+   "note": "Club suggests a different group",
+   "verdict": "lookalike",
+   "reason": "shares 'driftwood, lane' but adds 'club': could be a look-alike account rather than the firm itself"
+  },
+  {
+   "id": "n087",
+   "claimed_firm": "Gopal Krishna Tea Stall (owner Gopal Krishna Nair)",
+   "bank_app_name": "GOPAL KRISHNA NAIR",
+   "relation": "same_entity",
+   "note": "claim states the owner",
+   "verdict": "match",
+   "reason": "shares the distinctive word(s) gopal, krishna, nair"
+  },
+  {
+   "id": "n088",
+   "claimed_firm": "Meridian Oaks Research Pvt Ltd",
+   "bank_app_name": "MOR TRUST ACCOUNT",
+   "relation": "cannot_tell",
+   "note": "trust/escrow account, unclear owner",
+   "verdict": "unverified",
+   "reason": "looks like initials of the claimed firm"
+  },
+  {
+   "id": "n089",
+   "claimed_firm": "Copperleaf Trust Company",
+   "bank_app_name": "COPPERLEAF TRUST CORPORATION",
+   "relation": "lookalike_of_different_entity",
+   "note": "different legal form",
+   "verdict": "match",
+   "reason": "shares the distinctive word(s) copperleaf, trust"
+  },
+  {
+   "id": "n090",
+   "claimed_firm": "Orchid Bay Securities Ltd",
+   "bank_app_name": "ZIPCOLLECT TECHNOLOGIES",
+   "relation": "cannot_tell",
+   "note": "fictional aggregator name",
+   "verdict": "discrepancy",
+   "reason": "no distinctive word in common with 'Orchid Bay Securities Ltd'"
+  },
+  {
+   "id": "n091",
+   "claimed_firm": "Sapphire Coast Analytics",
+   "bank_app_name": "TIMBERLINE ANALYTICS LLP",
+   "relation": "different_entity",
+   "note": "shares only 'Analytics'",
+   "verdict": "lookalike",
+   "reason": "shares 'analytics' but adds 'timberline': could be a look-alike account rather than the firm itself"
+  },
+  {
+   "id": "n092",
+   "claimed_firm": "Highgate Mutual Services",
+   "bank_app_name": "H M S",
+   "relation": "cannot_tell",
+   "note": "initials only",
+   "verdict": "unverified",
+   "reason": "the shown name has only generic words"
+  },
+  {
+   "id": "n093",
+   "claimed_firm": "Sapphire Coast Financial Services Pvt Ltd",
+   "bank_app_name": "SAPPHIRE COAST FIN SERVICES PVT LTD",
+   "relation": "same_entity",
+   "note": "Fin for Financial",
+   "verdict": "match",
+   "reason": "shares the distinctive word(s) coast, sapphire"
+  },
+  {
+   "id": "n094",
+   "claimed_firm": "Venkatesh Auto Spares",
+   "bank_app_name": "VENKATESHA AUTO SPARES",
+   "relation": "same_entity",
+   "note": "Venkatesh/Venkatesha",
+   "verdict": "lookalike",
+   "reason": "shares 'auto, spares' but adds 'venkatesha': could be a look-alike account rather than the firm itself"
+  },
+  {
+   "id": "n095",
+   "claimed_firm": "Highgate Mutual Services Pvt Ltd",
+   "bank_app_name": "HIGHGATE MUTUAL SERVS PVT LTD",
+   "relation": "same_entity",
+   "note": "abbreviated Services",
+   "verdict": "lookalike",
+   "reason": "shares 'highgate, mutual' but adds 'servs': could be a look-alike account rather than the firm itself"
+  },
+  {
+   "id": "n096",
+   "claimed_firm": "Cinderfield Capital",
+   "bank_app_name": "CINDERFIELD CAPITAL TRADE",
+   "relation": "lookalike_of_different_entity",
+   "note": "extra word, new activity",
+   "verdict": "lookalike",
+   "reason": "shares 'cinderfield' but adds 'trade': could be a look-alike account rather than the firm itself"
+  },
+  {
+   "id": "n097",
+   "claimed_firm": "Hazelwood Finance Pvt Ltd",
+   "bank_app_name": "DUNMORE FINANCE PVT LTD",
+   "relation": "different_entity",
+   "note": "shares only 'Finance'",
+   "verdict": "discrepancy",
+   "reason": "no distinctive word in common with 'Hazelwood Finance Pvt Ltd'"
+  },
+  {
+   "id": "n098",
+   "claimed_firm": "Wren & Falcon Capital LLP",
+   "bank_app_name": "WF CAPITAL SERVICES",
+   "relation": "cannot_tell",
+   "note": "initial-based name, unconfirmed",
+   "verdict": "unverified",
+   "reason": "looks like initials of the claimed firm"
+  },
+  {
+   "id": "n099",
+   "claimed_firm": "Tamarind Row Research LLP",
+   "bank_app_name": "RAPIDREMIT PAYMENTS PVT LTD",
+   "relation": "cannot_tell",
+   "note": "fictional gateway name",
+   "verdict": "discrepancy",
+   "reason": "no distinctive word in common with 'Tamarind Row Research LLP'"
+  },
+  {
+   "id": "n100",
+   "claimed_firm": "Zephyra Fintech Pvt Ltd",
+   "bank_app_name": "CRIMSON TIDE FINTECH PVT LTD",
+   "relation": "different_entity",
+   "note": "shares only 'Fintech'",
+   "verdict": "discrepancy",
+   "reason": "no distinctive word in common with 'Zephyra Fintech Pvt Ltd'"
+  },
+  {
+   "id": "n101",
+   "claimed_firm": "Nightingale Row Wealth Pvt Ltd",
+   "bank_app_name": "GAYATRI CATERERS",
+   "relation": "different_entity",
+   "note": "unrelated business",
+   "verdict": "discrepancy",
+   "reason": "no distinctive word in common with 'Nightingale Row Wealth Pvt Ltd'"
+  },
+  {
+   "id": "n102",
+   "claimed_firm": "Marigold Court Research LLP",
+   "bank_app_name": "RAJU PAN SHOP",
+   "relation": "different_entity",
+   "note": "unrelated shop",
+   "verdict": "unverified",
+   "reason": "a personal-looking name: could be the firm's proprietor or someone else; we can't tell"
+  },
+  {
+   "id": "n103",
+   "claimed_firm": "Nightingale Row Wealth Pvt. Ltd.",
+   "bank_app_name": "NIGHTINGALE ROW WEALTH PVT LTD.",
+   "relation": "same_entity",
+   "note": "trailing dot",
+   "verdict": "match",
+   "reason": "shares the distinctive word(s) nightingale, row"
+  },
+  {
+   "id": "n104",
+   "claimed_firm": "Sundaram Bros Hardware",
+   "bank_app_name": "NEELAM BOUTIQUE",
+   "relation": "different_entity",
+   "note": "unrelated shop",
+   "verdict": "discrepancy",
+   "reason": "no distinctive word in common with 'Sundaram Bros Hardware'"
+  },
+  {
+   "id": "n105",
+   "claimed_firm": "Rosewater Advisory",
+   "bank_app_name": "NAZIA KHATOON",
+   "relation": "different_entity",
+   "note": "personal name, no link",
+   "verdict": "discrepancy",
+   "reason": "no distinctive word in common with 'Rosewater Advisory'"
+  },
+  {
+   "id": "n106",
+   "claimed_firm": "Ironbark Securities Ltd",
+   "bank_app_name": "LALITA DEVI",
+   "relation": "different_entity",
+   "note": "personal name, no link",
+   "verdict": "unverified",
+   "reason": "a personal-looking name: could be the firm's proprietor or someone else; we can't tell"
+  },
+  {
+   "id": "n107",
+   "claimed_firm": "K. R. Anand Associates",
+   "bank_app_name": "KR ANAND ASSOCIATES",
+   "relation": "same_entity",
+   "note": "initial dots",
+   "verdict": "lookalike",
+   "reason": "shares 'anand' but adds 'kr': could be a look-alike account rather than the firm itself"
+  },
+  {
+   "id": "n108",
+   "claimed_firm": "Ironbark Securities",
+   "bank_app_name": "IRONBARK SECURITYS",
+   "relation": "lookalike_of_different_entity",
+   "note": "misspelling used by copycats",
+   "verdict": "lookalike",
+   "reason": "shares 'ironbark' but adds 'securitys': could be a look-alike account rather than the firm itself"
+  },
+  {
+   "id": "n109",
+   "claimed_firm": "Kestrel Ledger Advisors Pvt Ltd",
+   "bank_app_name": "MOHAN LAL GENERAL STORE",
+   "relation": "different_entity",
+   "note": "unrelated shop",
+   "verdict": "discrepancy",
+   "reason": "no distinctive word in common with 'Kestrel Ledger Advisors Pvt Ltd'"
+  },
+  {
+   "id": "n110",
+   "claimed_firm": "Lumen Arc Analytics LLP",
+   "bank_app_name": "LUMEN ARC ANALYTICS",
+   "relation": "same_entity",
+   "note": "suffix dropped",
+   "verdict": "match",
+   "reason": "shares the distinctive word(s) analytics, arc, lumen"
+  },
+  {
+   "id": "n111",
+   "claimed_firm": "Gurunanak Cloth Emporium",
+   "bank_app_name": "GURU NANAK CLOTH EMPORIUM",
+   "relation": "same_entity",
+   "note": "word split",
+   "verdict": "lookalike",
+   "reason": "shares 'cloth, emporium' but adds 'nanak': could be a look-alike account rather than the firm itself"
+  },
+  {
+   "id": "n112",
+   "claimed_firm": "Greenfield Orchard Trading Co",
+   "bank_app_name": "BRIGHT STAR MOBILES",
+   "relation": "different_entity",
+   "note": "unrelated shop",
+   "verdict": "discrepancy",
+   "reason": "no distinctive word in common with 'Greenfield Orchard Trading Co'"
+  },
+  {
+   "id": "n113",
+   "claimed_firm": "Laxmi Narayan Dairy",
+   "bank_app_name": "LAKSHMI NARAYAN DAIRY",
+   "relation": "same_entity",
+   "note": "Laxmi/Lakshmi",
+   "verdict": "lookalike",
+   "reason": "shares 'dairy, narayan' but adds 'lakshmi': could be a look-alike account rather than the firm itself"
+  },
+  {
+   "id": "n114",
+   "claimed_firm": "Ironbark Securities Ltd",
+   "bank_app_name": "IRONBARK SECURITIES LTD - INDORE BRANCH",
+   "relation": "same_entity",
+   "note": "branch suffix",
+   "verdict": "lookalike",
+   "reason": "shares 'ironbark' but adds 'branch, indore': could be a look-alike account rather than the firm itself"
+  },
+  {
+   "id": "n115",
+   "claimed_firm": "Kestrel Ledger Advisors",
+   "bank_app_name": "KESTRAL LEDGER ADVISORY",
+   "relation": "lookalike_of_different_entity",
+   "note": "near-copy, different registered name",
+   "verdict": "lookalike",
+   "reason": "shares 'ledger' but adds 'kestral': could be a look-alike account rather than the firm itself"
+  },
+  {
+   "id": "n116",
+   "claimed_firm": "Rosewater Advisory",
+   "bank_app_name": "ROSE",
+   "relation": "cannot_tell",
+   "note": "single short word",
+   "verdict": "discrepancy",
+   "reason": "no distinctive word in common with 'Rosewater Advisory'"
+  },
+  {
+   "id": "n117",
+   "claimed_firm": "Marigold Court Research Services LLP (known as MC Research)",
+   "bank_app_name": "MC RESEARCH",
+   "relation": "same_entity",
+   "note": "claim states the short name",
+   "verdict": "match",
+   "reason": "shares the distinctive word(s) mc"
+  },
+  {
+   "id": "n118",
+   "claimed_firm": "Orchid Bay Securities Limited",
+   "bank_app_name": "KAVITA BEAUTY PARLOUR",
+   "relation": "different_entity",
+   "note": "unrelated shop",
+   "verdict": "discrepancy",
+   "reason": "no distinctive word in common with 'Orchid Bay Securities Limited'"
+  },
+  {
+   "id": "n119",
+   "claimed_firm": "Zed Traders",
+   "bank_app_name": "ZED TRADERS",
+   "relation": "same_entity",
+   "note": "very short, exact",
+   "verdict": "match",
+   "reason": "shares the distinctive word(s) zed"
+  },
+  {
+   "id": "n120",
+   "claimed_firm": "Thistledown Markets Pvt Ltd",
+   "bank_app_name": "TMPL",
+   "relation": "cannot_tell",
+   "note": "initials of legal name",
+   "verdict": "discrepancy",
+   "reason": "no distinctive word in common with 'Thistledown Markets Pvt Ltd'"
+  },
+  {
+   "id": "n121",
+   "claimed_firm": "Dewan Anil Kumar & Sons",
+   "bank_app_name": "ANIL KUMAR DEWAN AND SONS",
+   "relation": "same_entity",
+   "note": "reordered personal name",
+   "verdict": "match",
+   "reason": "shares the distinctive word(s) anil, dewan, kumar, sons"
+  },
+  {
+   "id": "n122",
+   "claimed_firm": "Thistledown Markets",
+   "bank_app_name": "THISTLEDOWN MARKETZ",
+   "relation": "lookalike_of_different_entity",
+   "note": "z for s",
+   "verdict": "lookalike",
+   "reason": "shares 'thistledown' but adds 'marketz': could be a look-alike account rather than the firm itself"
+  },
+  {
+   "id": "n123",
+   "claimed_firm": "Hazelwood Finance",
+   "bank_app_name": "HAZELWOOD FINANSE",
+   "relation": "lookalike_of_different_entity",
+   "note": "phonetic misspelling used by copycats",
+   "verdict": "lookalike",
+   "reason": "shares 'hazelwood' but adds 'finanse': could be a look-alike account rather than the firm itself"
+  },
+  {
+   "id": "n124",
+   "claimed_firm": "Kalyani Sweets and Namkeen",
+   "bank_app_name": "KALYANI SWEETS & NAMKEEN",
+   "relation": "same_entity",
+   "note": "and vs &",
+   "verdict": "match",
+   "reason": "shares the distinctive word(s) kalyani, namkeen, sweets"
+  },
+  {
+   "id": "n125",
+   "claimed_firm": "Pennywhistle Advisors Pvt Ltd",
+   "bank_app_name": "POOJA CLOTH HOUSE",
+   "relation": "different_entity",
+   "note": "unrelated shop",
+   "verdict": "discrepancy",
+   "reason": "no distinctive word in common with 'Pennywhistle Advisors Pvt Ltd'"
+  },
+  {
+   "id": "n126",
+   "claimed_firm": "Meridian Oaks Research (India) Pvt Ltd",
+   "bank_app_name": "MERIDIAN OAKS RESEARCH INDIA PVT LTD",
+   "relation": "same_entity",
+   "note": "(India) brackets",
+   "verdict": "match",
+   "reason": "shares the distinctive word(s) meridian, oaks"
+  },
+  {
+   "id": "n127",
+   "claimed_firm": "Quillon Harbour Investments Ltd",
+   "bank_app_name": "QUILLON HARBOUR INVESTMENTS",
+   "relation": "same_entity",
+   "note": "suffix dropped",
+   "verdict": "match",
+   "reason": "shares the distinctive word(s) harbour, quillon"
+  },
+  {
+   "id": "n128",
+   "claimed_firm": "Pennywhistle Advisors Pvt Ltd",
+   "bank_app_name": "PENNYWISTLE ADVISORS PVT LTD",
+   "relation": "same_entity",
+   "note": "dropped letter",
+   "verdict": "unverified",
+   "reason": "a near spelling of the claimed name (could be a variant or a look-alike)"
+  },
+  {
+   "id": "n129",
+   "claimed_firm": "Quillon Harbour Investments Ltd",
+   "bank_app_name": "PAYLOOP MERCHANT ACCOUNT",
+   "relation": "cannot_tell",
+   "note": "fictional gateway",
+   "verdict": "discrepancy",
+   "reason": "no distinctive word in common with 'Quillon Harbour Investments Ltd'"
+  },
+  {
+   "id": "n130",
+   "claimed_firm": "Evergreen Valley Brokers",
+   "bank_app_name": "EVERGREEN VALLY BROKERS",
+   "relation": "lookalike_of_different_entity",
+   "note": "dropped letter used by copycats",
+   "verdict": "lookalike",
+   "reason": "shares 'evergreen' but adds 'vally': could be a look-alike account rather than the firm itself"
+  },
+  {
+   "id": "n131",
+   "claimed_firm": "Willowmere Advisors Pvt Ltd",
+   "bank_app_name": "ANJALI PANDEY",
+   "relation": "cannot_tell",
+   "note": "possible proprietor, not stated",
+   "verdict": "unverified",
+   "reason": "a personal-looking name: could be the firm's proprietor or someone else; we can't tell"
+  },
+  {
+   "id": "n132",
+   "claimed_firm": "Copperleaf Trust Company Ltd",
+   "bank_app_name": "ASHOK CYCLE STORE",
+   "relation": "different_entity",
+   "note": "unrelated shop",
+   "verdict": "discrepancy",
+   "reason": "no distinctive word in common with 'Copperleaf Trust Company Ltd'"
+  },
+  {
+   "id": "n133",
+   "claimed_firm": "Kestrel Ledger Advisors Pvt Ltd",
+   "bank_app_name": "KESTREL LEDGER ADVISORS PRIVATE LIMITED",
+   "relation": "same_entity",
+   "note": "Pvt Ltd vs Private Limited",
+   "verdict": "match",
+   "reason": "shares the distinctive word(s) kestrel, ledger"
+  },
+  {
+   "id": "n134",
+   "claimed_firm": "Greenfield Orchard Trading",
+   "bank_app_name": "GREENFIELD ORCHARDS TRADERS",
+   "relation": "lookalike_of_different_entity",
+   "note": "plural Orchards, Traders",
+   "verdict": "lookalike",
+   "reason": "shares 'greenfield' but adds 'orchards': could be a look-alike account rather than the firm itself"
+  },
+  {
+   "id": "n135",
+   "claimed_firm": "Banyan & Birch Wealth Pvt Ltd",
+   "bank_app_name": "BANYAN AND BIRCH WEALTH PRIVATE LIMITED",
+   "relation": "same_entity",
+   "note": "& vs and plus suffix",
+   "verdict": "match",
+   "reason": "shares the distinctive word(s) banyan, birch"
+  },
+  {
+   "id": "n136",
+   "claimed_firm": "Larkspur Investments Pvt Ltd",
+   "bank_app_name": "LARKSPUR INVESTMENT PVT LTD",
+   "relation": "same_entity",
+   "note": "singular/plural",
+   "verdict": "match",
+   "reason": "shares the distinctive word(s) larkspur"
+  },
+  {
+   "id": "n137",
+   "claimed_firm": "Cinderfield Capital Pvt Ltd",
+   "bank_app_name": "MAYA STATIONERS",
+   "relation": "different_entity",
+   "note": "unrelated shop",
+   "verdict": "discrepancy",
+   "reason": "no distinctive word in common with 'Cinderfield Capital Pvt Ltd'"
+  },
+  {
+   "id": "n138",
+   "claimed_firm": "Savita Verma Boutique, proprietor Smt. Savita Verma",
+   "bank_app_name": "SAVITA VERMA",
+   "relation": "same_entity",
+   "note": "claim states the proprietor",
+   "verdict": "match",
+   "reason": "shares the distinctive word(s) savita, verma"
+  },
+  {
+   "id": "n139",
+   "claimed_firm": "Aurelian Grove Capital Pvt Ltd",
+   "bank_app_name": "RAVI KUMAR STORES",
+   "relation": "different_entity",
+   "note": "personal-looking store",
+   "verdict": "discrepancy",
+   "reason": "no distinctive word in common with 'Aurelian Grove Capital Pvt Ltd'"
+  },
+  {
+   "id": "n140",
+   "claimed_firm": "Thistledown Markets Private Limited, trading as Thistle Trade",
+   "bank_app_name": "THISTLE TRADE",
+   "relation": "same_entity",
+   "note": "claim states the trading name",
+   "verdict": "match",
+   "reason": "shares the distinctive word(s) thistle"
+  },
+  {
+   "id": "n141",
+   "claimed_firm": "Stonebridge Fintech Pvt Ltd",
+   "bank_app_name": "ISHAAN TRADERS",
+   "relation": "different_entity",
+   "note": "unrelated business",
+   "verdict": "discrepancy",
+   "reason": "no distinctive word in common with 'Stonebridge Fintech Pvt Ltd'"
+  },
+  {
+   "id": "n142",
+   "claimed_firm": "Mohan Lal Sharma Stationers",
+   "bank_app_name": "MOHANLAL SHARMA STATIONERS",
+   "relation": "same_entity",
+   "note": "word joined",
+   "verdict": "lookalike",
+   "reason": "shares 'sharma, stationers' but adds 'mohanlal': could be a look-alike account rather than the firm itself"
+  },
+  {
+   "id": "n143",
+   "claimed_firm": "Willowmere Capital Markets",
+   "bank_app_name": "FERNHILL CAPITAL MARKETS",
+   "relation": "different_entity",
+   "note": "shares only generic words",
+   "verdict": "discrepancy",
+   "reason": "no distinctive word in common with 'Willowmere Capital Markets'"
+  },
+  {
+   "id": "n144",
+   "claimed_firm": "Thistledown Markets Pvt Ltd",
+   "bank_app_name": "SHREE TRADERS",
+   "relation": "different_entity",
+   "note": "generic shop name",
+   "verdict": "discrepancy",
+   "reason": "no distinctive word in common with 'Thistledown Markets Pvt Ltd'"
+  },
+  {
+   "id": "n145",
+   "claimed_firm": "A. B. Kulkarni & Sons",
+   "bank_app_name": "AB KULKARNI AND SONS",
+   "relation": "same_entity",
+   "note": "initials and &",
+   "verdict": "lookalike",
+   "reason": "shares 'kulkarni, sons' but adds 'ab': could be a look-alike account rather than the firm itself"
+  },
+  {
+   "id": "n146",
+   "claimed_firm": "Glenrock Investments Ltd",
+   "bank_app_name": "GLEN",
+   "relation": "cannot_tell",
+   "note": "single short word",
+   "verdict": "discrepancy",
+   "reason": "no distinctive word in common with 'Glenrock Investments Ltd'"
+  },
+  {
+   "id": "n147",
+   "claimed_firm": "Evergreen Valley Brokers Ltd",
+   "bank_app_name": "GEETA DEVI",
+   "relation": "different_entity",
+   "note": "personal name, no link",
+   "verdict": "unverified",
+   "reason": "a personal-looking name: could be the firm's proprietor or someone else; we can't tell"
+  },
+  {
+   "id": "n148",
+   "claimed_firm": "Pinewick Brokers Private Limited",
+   "bank_app_name": "PINEWICK BROKERS PVT. LTD.",
+   "relation": "same_entity",
+   "note": "suffix style",
+   "verdict": "match",
+   "reason": "shares the distinctive word(s) pinewick"
+  },
+  {
+   "id": "n149",
+   "claimed_firm": "Driftwood Lane Wealth Pvt Ltd operating as DriftWealth",
+   "bank_app_name": "DRIFTWEALTH",
+   "relation": "same_entity",
+   "note": "claim states operating name",
+   "verdict": "match",
+   "reason": "shares the distinctive word(s) driftwealth"
+  },
+  {
+   "id": "n150",
+   "claimed_firm": "Pinewick Brokers Pvt Ltd",
+   "bank_app_name": "ASHGROVE BROKERS PVT LTD",
+   "relation": "different_entity",
+   "note": "shares only 'Brokers'",
+   "verdict": "discrepancy",
+   "reason": "no distinctive word in common with 'Pinewick Brokers Pvt Ltd'"
+  },
+  {
+   "id": "n151",
+   "claimed_firm": "Thistledown Markets Pvt Ltd",
+   "bank_app_name": "PRIYA TAILORS",
+   "relation": "different_entity",
+   "note": "unrelated shop",
+   "verdict": "unverified",
+   "reason": "a personal-looking name: could be the firm's proprietor or someone else; we can't tell"
+  },
+  {
+   "id": "n152",
+   "claimed_firm": "Glenrock Investments",
+   "bank_app_name": "GLENROCK INVESTMENTS 2",
+   "relation": "lookalike_of_different_entity",
+   "note": "digit appended",
+   "verdict": "match",
+   "reason": "shares the distinctive word(s) glenrock"
+  },
+  {
+   "id": "n153",
+   "claimed_firm": "Orchid Bay Securities",
+   "bank_app_name": "ORCHID BAY SECURITIES INDIA",
+   "relation": "lookalike_of_different_entity",
+   "note": "extra word suggests a different entity",
+   "verdict": "match",
+   "reason": "shares the distinctive word(s) bay, orchid"
+  },
+  {
+   "id": "n154",
+   "claimed_firm": "Mistral Hill Advisory Services Pvt Ltd",
+   "bank_app_name": "MISTRAL HILL ADVISORY SERVICES",
+   "relation": "same_entity",
+   "note": "suffix dropped",
+   "verdict": "match",
+   "reason": "shares the distinctive word(s) hill, mistral"
+  },
+  {
+   "id": "n155",
+   "claimed_firm": "Pinewick Brokers",
+   "bank_app_name": "PINEWICK BROKING SERVICES",
+   "relation": "lookalike_of_different_entity",
+   "note": "brand reused, different business",
+   "verdict": "lookalike",
+   "reason": "shares 'pinewick' but adds 'services': could be a look-alike account rather than the firm itself"
+  },
+  {
+   "id": "n156",
+   "claimed_firm": "Wren & Falcon Capital LLP",
+   "bank_app_name": "WREN AND FALCON CAPITAL LLP",
+   "relation": "same_entity",
+   "note": "& vs and",
+   "verdict": "match",
+   "reason": "shares the distinctive word(s) falcon, wren"
+  },
+  {
+   "id": "n157",
+   "claimed_firm": "Hillcrest Research Services",
+   "bank_app_name": "SUMAN VERMA",
+   "relation": "cannot_tell",
+   "note": "personal name with no stated link to the firm",
+   "verdict": "unverified",
+   "reason": "a personal-looking name: could be the firm's proprietor or someone else; we can't tell"
+  },
+  {
+   "id": "n158",
+   "claimed_firm": "Sapphire Coast Financial Services",
+   "bank_app_name": "SCFS",
+   "relation": "cannot_tell",
+   "note": "initials only",
+   "verdict": "unverified",
+   "reason": "looks like initials of the claimed firm"
+  },
+  {
+   "id": "n159",
+   "claimed_firm": "Purohit and Sons Jewellers",
+   "bank_app_name": "PUROHIT & SONS JEWELLERS",
+   "relation": "same_entity",
+   "note": "and vs &",
+   "verdict": "match",
+   "reason": "shares the distinctive word(s) jewellers, purohit, sons"
+  },
+  {
+   "id": "n160",
+   "claimed_firm": "Patel Rajesh Bhai Traders",
+   "bank_app_name": "RAJESH BHAI PATEL TRADERS",
+   "relation": "same_entity",
+   "note": "reordered personal name",
+   "verdict": "match",
+   "reason": "shares the distinctive word(s) bhai, patel, rajesh"
+  },
+  {
+   "id": "n161",
+   "claimed_firm": "Cinderfield Capital Pvt Ltd",
+   "bank_app_name": "CINDERFEILD CAPITAL PVT LTD",
+   "relation": "same_entity",
+   "note": "typo in vowel order",
+   "verdict": "discrepancy",
+   "reason": "no distinctive word in common with 'Cinderfield Capital Pvt Ltd'"
+  },
+  {
+   "id": "n162",
+   "claimed_firm": "Zephyra Fintech Pvt Ltd",
+   "bank_app_name": "ZF",
+   "relation": "cannot_tell",
+   "note": "two letters only",
+   "verdict": "unverified",
+   "reason": "looks like initials of the claimed firm"
+  },
+  {
+   "id": "n163",
+   "claimed_firm": "Zephyra Fintech Pvt Ltd",
+   "bank_app_name": "KIRAN DAIRY FARM",
+   "relation": "different_entity",
+   "note": "unrelated business",
+   "verdict": "discrepancy",
+   "reason": "no distinctive word in common with 'Zephyra Fintech Pvt Ltd'"
+  },
+  {
+   "id": "n164",
+   "claimed_firm": "Research Desk Lindenholt LLP",
+   "bank_app_name": "LINDENHOLT RESEARCH DESK LLP",
+   "relation": "same_entity",
+   "note": "reordered words",
+   "verdict": "match",
+   "reason": "shares the distinctive word(s) desk, lindenholt"
+  },
+  {
+   "id": "n165",
+   "claimed_firm": "Hazelwood Finance Pvt Ltd",
+   "bank_app_name": "HFPL COLLECTIONS",
+   "relation": "cannot_tell",
+   "note": "unclear collections account",
+   "verdict": "discrepancy",
+   "reason": "no distinctive word in common with 'Hazelwood Finance Pvt Ltd'"
+  },
+  {
+   "id": "n166",
+   "claimed_firm": "Oakridge Group Pvt Ltd",
+   "bank_app_name": "TASLEEM AHMED",
+   "relation": "different_entity",
+   "note": "personal name, no link",
+   "verdict": "unverified",
+   "reason": "a personal-looking name: could be the firm's proprietor or someone else; we can't tell"
+  },
+  {
+   "id": "n167",
+   "claimed_firm": "Aurelian Grove Capital Pvt Ltd (brand: GroveInvest)",
+   "bank_app_name": "GROVEINVEST",
+   "relation": "same_entity",
+   "note": "claim states the brand",
+   "verdict": "match",
+   "reason": "shares the distinctive word(s) groveinvest"
+  },
+  {
+   "id": "n168",
+   "claimed_firm": "Larkspur Investments Pvt Ltd",
+   "bank_app_name": "LARK INVEST",
+   "relation": "cannot_tell",
+   "note": "short brand, unconfirmed",
+   "verdict": "discrepancy",
+   "reason": "no distinctive word in common with 'Larkspur Investments Pvt Ltd'"
+  },
+  {
+   "id": "n169",
+   "claimed_firm": "Cobalt Meadow Capital Pvt Ltd",
+   "bank_app_name": "HINDUSTAN TRANSPORT CO",
+   "relation": "different_entity",
+   "note": "unrelated firm",
+   "verdict": "discrepancy",
+   "reason": "no distinctive word in common with 'Cobalt Meadow Capital Pvt Ltd'"
+  },
+  {
+   "id": "n170",
+   "claimed_firm": "Highgate Mutual Services",
+   "bank_app_name": "HARPREET SINGH",
+   "relation": "different_entity",
+   "note": "personal name, no link",
+   "verdict": "unverified",
+   "reason": "a personal-looking name: could be the firm's proprietor or someone else; we can't tell"
+  },
+  {
+   "id": "n171",
+   "claimed_firm": "Fairhaven Brokers Pvt Ltd",
+   "bank_app_name": "ROYAL TAILORS",
+   "relation": "different_entity",
+   "note": "unrelated shop",
+   "verdict": "discrepancy",
+   "reason": "no distinctive word in common with 'Fairhaven Brokers Pvt Ltd'"
+  },
+  {
+   "id": "n172",
+   "claimed_firm": "Raghav Computers & Peripherals",
+   "bank_app_name": "RAGHAV COMPUTERS AND PERIPHERALS",
+   "relation": "same_entity",
+   "note": "& vs and",
+   "verdict": "match",
+   "reason": "shares the distinctive word(s) computers, peripherals, raghav"
+  },
+  {
+   "id": "n173",
+   "claimed_firm": "Sundaram Brothers Hardware",
+   "bank_app_name": "SUNDARAM BROS HARDWARE",
+   "relation": "same_entity",
+   "note": "Brothers/Bros",
+   "verdict": "lookalike",
+   "reason": "shares 'hardware, sundaram' but adds 'bros': could be a look-alike account rather than the firm itself"
+  },
+  {
+   "id": "n174",
+   "claimed_firm": "Zephyra Fintech",
+   "bank_app_name": "ZEPHYRA FINTECH 24X7",
+   "relation": "lookalike_of_different_entity",
+   "note": "suffix suggests copycat",
+   "verdict": "lookalike",
+   "reason": "shares 'zephyra' but adds '24x7': could be a look-alike account rather than the firm itself"
+  },
+  {
+   "id": "n175",
+   "claimed_firm": "Ironbark Wealth Advisors LLP",
+   "bank_app_name": "COPPERTON WEALTH ADVISORS LLP",
+   "relation": "different_entity",
+   "note": "shares only generic words",
+   "verdict": "discrepancy",
+   "reason": "no distinctive word in common with 'Ironbark Wealth Advisors LLP'"
+  },
+  {
+   "id": "n176",
+   "claimed_firm": "Kestrel Ledger Advisors Pvt Ltd",
+   "bank_app_name": "SUMMIT PEAK ADVISORS PVT LTD",
+   "relation": "different_entity",
+   "note": "shares only 'Advisors'",
+   "verdict": "discrepancy",
+   "reason": "no distinctive word in common with 'Kestrel Ledger Advisors Pvt Ltd'"
+  },
+  {
+   "id": "n177",
+   "claimed_firm": "Greenfield Orchard Traders",
+   "bank_app_name": "SUNNYDALE TRADERS",
+   "relation": "different_entity",
+   "note": "shares only 'Traders'",
+   "verdict": "discrepancy",
+   "reason": "no distinctive word in common with 'Greenfield Orchard Traders'"
+  },
+  {
+   "id": "n178",
+   "claimed_firm": "Glenrock Investments Ltd",
+   "bank_app_name": "GLENROK INVESTMENTS LTD",
+   "relation": "same_entity",
+   "note": "dropped letter",
+   "verdict": "unverified",
+   "reason": "a near spelling of the claimed name (could be a variant or a look-alike)"
+  },
+  {
+   "id": "n179",
+   "claimed_firm": "Hazelwood Finance Pvt Ltd",
+   "bank_app_name": "HAZELWOOD FINANCE PVT LTD HQ",
+   "relation": "same_entity",
+   "note": "HQ suffix",
+   "verdict": "lookalike",
+   "reason": "shares 'hazelwood' but adds 'hq': could be a look-alike account rather than the firm itself"
+  },
+  {
+   "id": "n180",
+   "claimed_firm": "Brightwater Holdings Pvt Ltd",
+   "bank_app_name": "BLUEFIN INVEST",
+   "relation": "cannot_tell",
+   "note": "claim names the holding company only; brand not stated",
+   "verdict": "discrepancy",
+   "reason": "no distinctive word in common with 'Brightwater Holdings Pvt Ltd'"
+  },
+  {
+   "id": "n181",
+   "claimed_firm": "Larkspur Investments Pvt Ltd",
+   "bank_app_name": "SHIVAM PAINT HOUSE",
+   "relation": "different_entity",
+   "note": "unrelated shop",
+   "verdict": "discrepancy",
+   "reason": "no distinctive word in common with 'Larkspur Investments Pvt Ltd'"
+  },
+  {
+   "id": "n182",
+   "claimed_firm": "Willowmere Advisors Pvt Ltd",
+   "bank_app_name": "CHAUDHARY TRANSPORT",
+   "relation": "different_entity",
+   "note": "unrelated business",
+   "verdict": "discrepancy",
+   "reason": "no distinctive word in common with 'Willowmere Advisors Pvt Ltd'"
+  },
+  {
+   "id": "n183",
+   "claimed_firm": "Sapphire Coast Financial",
+   "bank_app_name": "SAPPHIRE COST FINANCIAL",
+   "relation": "lookalike_of_different_entity",
+   "note": "Coast vs Cost",
+   "verdict": "lookalike",
+   "reason": "shares 'sapphire' but adds 'cost': could be a look-alike account rather than the firm itself"
+  },
+  {
+   "id": "n184",
+   "claimed_firm": "Driftwood Lane Wealth Pvt Ltd",
+   "bank_app_name": "SUNRISE ENTERPRISES",
+   "relation": "different_entity",
+   "note": "generic shop name",
+   "verdict": "discrepancy",
+   "reason": "no distinctive word in common with 'Driftwood Lane Wealth Pvt Ltd'"
+  },
+  {
+   "id": "n185",
+   "claimed_firm": "Stonebridge Fintech Pvt Ltd",
+   "bank_app_name": "STONEBRIDGE CLIENT FUNDS",
+   "relation": "cannot_tell",
+   "note": "client-money account, unclear owner",
+   "verdict": "lookalike",
+   "reason": "shares 'stonebridge' but adds 'client': could be a look-alike account rather than the firm itself"
+  },
+  {
+   "id": "n186",
+   "claimed_firm": "Fairhaven Brokers Pvt Ltd",
+   "bank_app_name": "ANNAPURNA CATERERS",
+   "relation": "different_entity",
+   "note": "unrelated business",
+   "verdict": "discrepancy",
+   "reason": "no distinctive word in common with 'Fairhaven Brokers Pvt Ltd'"
+  },
+  {
+   "id": "n187",
+   "claimed_firm": "Sapphire Coast Financial Services",
+   "bank_app_name": "YADAV DAIRY PRODUCTS",
+   "relation": "different_entity",
+   "note": "unrelated business",
+   "verdict": "discrepancy",
+   "reason": "no distinctive word in common with 'Sapphire Coast Financial Services'"
+  },
+  {
+   "id": "n188",
+   "claimed_firm": "Shree Lakshmi Jewellers",
+   "bank_app_name": "SRI LAXMI JEWELLERS",
+   "relation": "same_entity",
+   "note": "Shree/Sri and Lakshmi/Laxmi",
+   "verdict": "lookalike",
+   "reason": "shares 'jewellers' but adds 'laxmi': could be a look-alike account rather than the firm itself"
+  },
+  {
+   "id": "n189",
+   "claimed_firm": "Tamarind Row Research LLP",
+   "bank_app_name": "TAMARIND ROW RESEARCH GLOBAL",
+   "relation": "lookalike_of_different_entity",
+   "note": "'Global' added: different entity",
+   "verdict": "lookalike",
+   "reason": "shares 'row, tamarind' but adds 'global': could be a look-alike account rather than the firm itself"
+  },
+  {
+   "id": "n190",
+   "claimed_firm": "Larkspur Investments",
+   "bank_app_name": "LARKSPUR INVEST SCHEMES",
+   "relation": "lookalike_of_different_entity",
+   "note": "invest schemes: different outfit",
+   "verdict": "lookalike",
+   "reason": "shares 'larkspur' but adds 'schemes': could be a look-alike account rather than the firm itself"
+  },
+  {
+   "id": "n191",
+   "claimed_firm": "Greenfield Orchard Trading Company",
+   "bank_app_name": "GREENFIELD ORCHARD TRDG CO",
+   "relation": "same_entity",
+   "note": "abbreviation Trdg Co",
+   "verdict": "lookalike",
+   "reason": "shares 'greenfield, orchard' but adds 'trdg': could be a look-alike account rather than the firm itself"
+  },
+  {
+   "id": "n192",
+   "claimed_firm": "Larkspur Investments Pvt Ltd",
+   "bank_app_name": "DIVYA ENTERPRISES",
+   "relation": "different_entity",
+   "note": "unrelated business",
+   "verdict": "discrepancy",
+   "reason": "no distinctive word in common with 'Larkspur Investments Pvt Ltd'"
+  },
+  {
+   "id": "n193",
+   "claimed_firm": "Anand Photo Studio, prop. Anand Kulkarni",
+   "bank_app_name": "ANAND KULKARNI",
+   "relation": "same_entity",
+   "note": "claim states the proprietor",
+   "verdict": "match",
+   "reason": "shares the distinctive word(s) anand, kulkarni"
+  },
+  {
+   "id": "n194",
+   "claimed_firm": "Cobalt Meadow Capital Pvt. Ltd.",
+   "bank_app_name": "COBALT MEADOW CAPITAL PVT LTD",
+   "relation": "same_entity",
+   "note": "dots in Pvt. Ltd.",
+   "verdict": "match",
+   "reason": "shares the distinctive word(s) cobalt, meadow"
+  },
+  {
+   "id": "n195",
+   "claimed_firm": "Fairhaven Brokers",
+   "bank_app_name": "FAIRHAVEN BROKERS ONLINE",
+   "relation": "lookalike_of_different_entity",
+   "note": "different business unit",
+   "verdict": "lookalike",
+   "reason": "shares 'fairhaven' but adds 'online': could be a look-alike account rather than the firm itself"
+  },
+  {
+   "id": "n196",
+   "claimed_firm": "Pinewick Brokers Pvt Ltd",
+   "bank_app_name": "JOSEPH FERNANDES",
+   "relation": "different_entity",
+   "note": "personal name, no link",
+   "verdict": "unverified",
+   "reason": "a personal-looking name: could be the firm's proprietor or someone else; we can't tell"
+  },
+  {
+   "id": "n197",
+   "claimed_firm": "S.V. Textile Traders",
+   "bank_app_name": "SV TEXTILE TRADERS",
+   "relation": "same_entity",
+   "note": "initial dots",
+   "verdict": "lookalike",
+   "reason": "shares 'textile' but adds 'sv': could be a look-alike account rather than the firm itself"
+  },
+  {
+   "id": "n198",
+   "claimed_firm": "Greenfield Orchard Trading Company",
+   "bank_app_name": "G O TRADING",
+   "relation": "cannot_tell",
+   "note": "plausible short form, unconfirmed",
+   "verdict": "unverified",
+   "reason": "the shown name has only generic words"
+  },
+  {
+   "id": "n199",
+   "claimed_firm": "Fairhaven Brokers Pvt Ltd",
+   "bank_app_name": "FAIRHAVAN BROKERS PVT LTD",
+   "relation": "same_entity",
+   "note": "a/e swap typo",
+   "verdict": "unverified",
+   "reason": "a near spelling of the claimed name (could be a variant or a look-alike)"
+  },
+  {
+   "id": "n200",
+   "claimed_firm": "Aurelian Grove Capital",
+   "bank_app_name": "AURELIAN GROVE CAPITOL",
+   "relation": "lookalike_of_different_entity",
+   "note": "Capital vs Capitol",
+   "verdict": "lookalike",
+   "reason": "shares 'aurelian, grove' but adds 'capitol': could be a look-alike account rather than the firm itself"
+  }
+ ],
+ "tag": "before"
+}

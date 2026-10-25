@@ -1,0 +1,2620 @@
+{
+ "set": "AI-generated, NOT blind (the writer had seen the engine; results are optimistic)",
+ "problems": [],
+ "run_at_ist": "2026-10-25 05:17 IST",
+ "commit": "2080ce0",
+ "engine_files_uncommitted": false,
+ "n": 100,
+ "by_kind": {
+  "upi_vpa": {
+   "tp": 15,
+   "fp": 1,
+   "fn": 19,
+   "precision": {
+    "count": 15,
+    "of": 16,
+    "rate": 0.938,
+    "wilson95": [
+     0.717,
+     0.989
+    ]
+   },
+   "recall": {
+    "count": 15,
+    "of": 34,
+    "rate": 0.441,
+    "wilson95": [
+     0.289,
+     0.605
+    ]
+   },
+   "cases_with_this_kind_all_found": {
+    "count": 15,
+    "of": 33,
+    "rate": 0.455,
+    "wilson95": [
+     0.298,
+     0.62
+    ]
+   }
+  },
+  "bank_account": {
+   "tp": 3,
+   "fp": 0,
+   "fn": 16,
+   "precision": {
+    "count": 3,
+    "of": 3,
+    "rate": 1.0,
+    "wilson95": [
+     0.438,
+     1.0
+    ]
+   },
+   "recall": {
+    "count": 3,
+    "of": 19,
+    "rate": 0.158,
+    "wilson95": [
+     0.055,
+     0.376
+    ]
+   },
+   "cases_with_this_kind_all_found": {
+    "count": 3,
+    "of": 19,
+    "rate": 0.158,
+    "wilson95": [
+     0.055,
+     0.376
+    ]
+   }
+  },
+  "ifsc": {
+   "tp": 7,
+   "fp": 0,
+   "fn": 4,
+   "precision": {
+    "count": 7,
+    "of": 7,
+    "rate": 1.0,
+    "wilson95": [
+     0.646,
+     1.0
+    ]
+   },
+   "recall": {
+    "count": 7,
+    "of": 11,
+    "rate": 0.636,
+    "wilson95": [
+     0.354,
+     0.848
+    ]
+   },
+   "cases_with_this_kind_all_found": {
+    "count": 7,
+    "of": 11,
+    "rate": 0.636,
+    "wilson95": [
+     0.354,
+     0.848
+    ]
+   }
+  },
+  "phone": {
+   "tp": 2,
+   "fp": 1,
+   "fn": 6,
+   "precision": {
+    "count": 2,
+    "of": 3,
+    "rate": 0.667,
+    "wilson95": [
+     0.208,
+     0.939
+    ]
+   },
+   "recall": {
+    "count": 2,
+    "of": 8,
+    "rate": 0.25,
+    "wilson95": [
+     0.071,
+     0.591
+    ]
+   },
+   "cases_with_this_kind_all_found": {
+    "count": 2,
+    "of": 8,
+    "rate": 0.25,
+    "wilson95": [
+     0.071,
+     0.591
+    ]
+   }
+  },
+  "url": {
+   "tp": 6,
+   "fp": 3,
+   "fn": 0,
+   "precision": {
+    "count": 6,
+    "of": 9,
+    "rate": 0.667,
+    "wilson95": [
+     0.354,
+     0.879
+    ]
+   },
+   "recall": {
+    "count": 6,
+    "of": 6,
+    "rate": 1.0,
+    "wilson95": [
+     0.61,
+     1.0
+    ]
+   },
+   "cases_with_this_kind_all_found": {
+    "count": 6,
+    "of": 6,
+    "rate": 1.0,
+    "wilson95": [
+     0.61,
+     1.0
+    ]
+   }
+  }
+ },
+ "payees_upi_and_account": {
+  "precision": {
+   "count": 18,
+   "of": 19,
+   "rate": 0.947,
+   "wilson95": [
+    0.754,
+    0.991
+   ]
+  },
+  "recall": {
+   "count": 18,
+   "of": 53,
+   "rate": 0.34,
+   "wilson95": [
+    0.227,
+    0.474
+   ]
+  }
+ },
+ "amounts (display helper amount_in, first amount per message)": {
+  "precision": {
+   "count": 24,
+   "of": 24,
+   "rate": 1.0,
+   "wilson95": [
+    0.862,
+    1.0
+   ]
+  },
+  "recall": {
+   "count": 24,
+   "of": 50,
+   "rate": 0.48,
+   "wilson95": [
+    0.348,
+    0.615
+   ]
+  }
+ },
+ "false_extraction_on_should_not_extract": {
+  "count": 4,
+  "of": 43,
+  "rate": 0.093,
+  "wilson95": [
+   0.037,
+   0.216
+  ]
+ },
+ "cases_exact_all_kinds": {
+  "count": 56,
+  "of": 100,
+  "rate": 0.56,
+  "wilson95": [
+   0.462,
+   0.653
+  ]
+ },
+ "no_dated_message_parsed": 0,
+ "failures": [
+  {
+   "id": "x002",
+   "expected": {
+    "phone": [
+     "8800200077"
+    ]
+   },
+   "got": {},
+   "all_payee_kinds_exact": false,
+   "amounts_expected": [
+    15000
+   ],
+   "amounts_got": [],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 1
+  },
+  {
+   "id": "x003",
+   "expected": {
+    "bank_account": [
+     "00006655443322"
+    ]
+   },
+   "got": {},
+   "all_payee_kinds_exact": false,
+   "amounts_expected": [
+    18000
+   ],
+   "amounts_got": [
+    18000
+   ],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 2
+  },
+  {
+   "id": "x005",
+   "expected": {
+    "upi_vpa": [
+     "tanvi.r@okaxis"
+    ]
+   },
+   "got": {
+    "upi_vpa": [
+     "tanvi.r@okaxis",
+     "tanvi.r@okaxix"
+    ]
+   },
+   "all_payee_kinds_exact": false,
+   "amounts_expected": [],
+   "amounts_got": [],
+   "should_not_extract_but_did": [
+    "tanvi.r@okaxix"
+   ],
+   "messages_parsed": 2
+  },
+  {
+   "id": "x009",
+   "expected": {
+    "upi_vpa": [
+     "ravi.k@okaxis"
+    ]
+   },
+   "got": {},
+   "all_payee_kinds_exact": false,
+   "amounts_expected": [
+    4500
+   ],
+   "amounts_got": [
+    4500
+   ],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 1
+  },
+  {
+   "id": "x010",
+   "expected": {
+    "bank_account": [
+     "00001357924680"
+    ],
+    "ifsc": [
+     "xqbk0000412"
+    ]
+   },
+   "got": {},
+   "all_payee_kinds_exact": false,
+   "amounts_expected": [],
+   "amounts_got": [],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 1
+  },
+  {
+   "id": "x011",
+   "expected": {
+    "upi_vpa": [
+     "rahim.s@ybl"
+    ],
+    "phone": [
+     "7001100023"
+    ]
+   },
+   "got": {
+    "upi_vpa": [
+     "rahim.s@ybl"
+    ]
+   },
+   "all_payee_kinds_exact": false,
+   "amounts_expected": [
+    25000
+   ],
+   "amounts_got": [],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 2
+  },
+  {
+   "id": "x012",
+   "expected": {
+    "upi_vpa": [
+     "dolly.m@ybl"
+    ]
+   },
+   "got": {},
+   "all_payee_kinds_exact": false,
+   "amounts_expected": [
+    10000
+   ],
+   "amounts_got": [],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 2
+  },
+  {
+   "id": "x013",
+   "expected": {
+    "upi_vpa": [
+     "tej-pal@okzeta"
+    ]
+   },
+   "got": {},
+   "all_payee_kinds_exact": false,
+   "amounts_expected": [
+    10000
+   ],
+   "amounts_got": [
+    10000
+   ],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 2
+  },
+  {
+   "id": "x019",
+   "expected": {
+    "upi_vpa": [
+     "ravi.k@okaxis",
+     "tara.m@ybl"
+    ]
+   },
+   "got": {},
+   "all_payee_kinds_exact": false,
+   "amounts_expected": [
+    25000
+   ],
+   "amounts_got": [],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 3
+  },
+  {
+   "id": "x022",
+   "expected": {
+    "bank_account": [
+     "000011223344556677"
+    ]
+   },
+   "got": {},
+   "all_payee_kinds_exact": false,
+   "amounts_expected": [
+    125000
+   ],
+   "amounts_got": [],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 2
+  },
+  {
+   "id": "x023",
+   "expected": {
+    "bank_account": [
+     "00009090808070"
+    ],
+    "ifsc": [
+     "xqbk0000412"
+    ]
+   },
+   "got": {
+    "ifsc": [
+     "xqbk0000412"
+    ]
+   },
+   "all_payee_kinds_exact": false,
+   "amounts_expected": [
+    100000
+   ],
+   "amounts_got": [],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 1
+  },
+  {
+   "id": "x026",
+   "expected": {},
+   "got": {
+    "url": [
+     "https://harbourlane.in/blog/sip-basics"
+    ]
+   },
+   "all_payee_kinds_exact": false,
+   "amounts_expected": [],
+   "amounts_got": [],
+   "should_not_extract_but_did": [
+    "https://harbourlane.in/blog/sip-basics"
+   ],
+   "messages_parsed": 1
+  },
+  {
+   "id": "x028",
+   "expected": {
+    "bank_account": [
+     "000087654321"
+    ],
+    "ifsc": [
+     "xqbk0000412"
+    ]
+   },
+   "got": {},
+   "all_payee_kinds_exact": false,
+   "amounts_expected": [],
+   "amounts_got": [],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 1
+  },
+  {
+   "id": "x030",
+   "expected": {
+    "upi_vpa": [
+     "hari.om@okaxis"
+    ]
+   },
+   "got": {},
+   "all_payee_kinds_exact": false,
+   "amounts_expected": [
+    6000
+   ],
+   "amounts_got": [
+    6000
+   ],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 2
+  },
+  {
+   "id": "x032",
+   "expected": {
+    "upi_vpa": [
+     "ravi.k@okaxis"
+    ]
+   },
+   "got": {},
+   "all_payee_kinds_exact": false,
+   "amounts_expected": [
+    5000
+   ],
+   "amounts_got": [
+    5000
+   ],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 2
+  },
+  {
+   "id": "x033",
+   "expected": {
+    "upi_vpa": [
+     "tina.r@ybl"
+    ]
+   },
+   "got": {
+    "url": [
+     "https://harbourlane.in/terms"
+    ]
+   },
+   "all_payee_kinds_exact": false,
+   "amounts_expected": [
+    10000
+   ],
+   "amounts_got": [],
+   "should_not_extract_but_did": [
+    "https://harbourlane.in/terms"
+   ],
+   "messages_parsed": 1
+  },
+  {
+   "id": "x037",
+   "expected": {},
+   "got": {
+    "url": [
+     "www.harbourlane.in"
+    ]
+   },
+   "all_payee_kinds_exact": false,
+   "amounts_expected": [],
+   "amounts_got": [],
+   "should_not_extract_but_did": [
+    "www.harbourlane.in"
+   ],
+   "messages_parsed": 1
+  },
+  {
+   "id": "x043",
+   "expected": {
+    "bank_account": [
+     "0000123456789"
+    ],
+    "ifsc": [
+     "znbk0000101"
+    ]
+   },
+   "got": {},
+   "all_payee_kinds_exact": false,
+   "amounts_expected": [],
+   "amounts_got": [],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 2
+  },
+  {
+   "id": "x044",
+   "expected": {
+    "upi_vpa": [
+     "nitin.b@okaxis"
+    ]
+   },
+   "got": {},
+   "all_payee_kinds_exact": false,
+   "amounts_expected": [
+    4000
+   ],
+   "amounts_got": [
+    4000
+   ],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 1
+  },
+  {
+   "id": "x046",
+   "expected": {
+    "upi_vpa": [
+     "jay_prakash99@okaxis"
+    ]
+   },
+   "got": {},
+   "all_payee_kinds_exact": false,
+   "amounts_expected": [
+    25000
+   ],
+   "amounts_got": [],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 1
+  },
+  {
+   "id": "x048",
+   "expected": {
+    "upi_vpa": [
+     "anita.d@okhdfcbank"
+    ]
+   },
+   "got": {},
+   "all_payee_kinds_exact": false,
+   "amounts_expected": [
+    25000
+   ],
+   "amounts_got": [],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 2
+  },
+  {
+   "id": "x049",
+   "expected": {
+    "upi_vpa": [
+     "veena-p@zenbank"
+    ]
+   },
+   "got": {},
+   "all_payee_kinds_exact": false,
+   "amounts_expected": [
+    9999
+   ],
+   "amounts_got": [
+    9999
+   ],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 2
+  },
+  {
+   "id": "x054",
+   "expected": {
+    "bank_account": [
+     "00007788990011"
+    ],
+    "ifsc": [
+     "xqbk0000412"
+    ]
+   },
+   "got": {},
+   "all_payee_kinds_exact": false,
+   "amounts_expected": [],
+   "amounts_got": [],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 1
+  },
+  {
+   "id": "x057",
+   "expected": {
+    "phone": [
+     "9812300045"
+    ]
+   },
+   "got": {},
+   "all_payee_kinds_exact": false,
+   "amounts_expected": [],
+   "amounts_got": [],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 1
+  },
+  {
+   "id": "x059",
+   "expected": {
+    "bank_account": [
+     "00003344556677"
+    ],
+    "ifsc": [
+     "znbk0000101"
+    ]
+   },
+   "got": {
+    "ifsc": [
+     "znbk0000101"
+    ]
+   },
+   "all_payee_kinds_exact": false,
+   "amounts_expected": [
+    150000
+   ],
+   "amounts_got": [],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 1
+  },
+  {
+   "id": "x060",
+   "expected": {
+    "phone": [
+     "7001100023"
+    ]
+   },
+   "got": {},
+   "all_payee_kinds_exact": false,
+   "amounts_expected": [
+    12000
+   ],
+   "amounts_got": [
+    12000
+   ],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 2
+  },
+  {
+   "id": "x061",
+   "expected": {
+    "bank_account": [
+     "00001234567890"
+    ]
+   },
+   "got": {},
+   "all_payee_kinds_exact": false,
+   "amounts_expected": [],
+   "amounts_got": [],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 1
+  },
+  {
+   "id": "x063",
+   "expected": {
+    "upi_vpa": [
+     "lalit.k@ybl"
+    ],
+    "bank_account": [
+     "00003322110099"
+    ]
+   },
+   "got": {
+    "upi_vpa": [
+     "lalit.k@ybl"
+    ]
+   },
+   "all_payee_kinds_exact": false,
+   "amounts_expected": [
+    10000,
+    25000
+   ],
+   "amounts_got": [
+    10000,
+    25000
+   ],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 2
+  },
+  {
+   "id": "x065",
+   "expected": {
+    "upi_vpa": [
+     "sunil.p@oksbi"
+    ]
+   },
+   "got": {},
+   "all_payee_kinds_exact": false,
+   "amounts_expected": [],
+   "amounts_got": [],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 2
+  },
+  {
+   "id": "x068",
+   "expected": {
+    "upi_vpa": [
+     "9812300045@ybl"
+    ]
+   },
+   "got": {
+    "phone": [
+     "9812300045"
+    ],
+    "upi_vpa": [
+     "9812300045@ybl"
+    ]
+   },
+   "all_payee_kinds_exact": false,
+   "amounts_expected": [
+    10000
+   ],
+   "amounts_got": [],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 2
+  },
+  {
+   "id": "x069",
+   "expected": {
+    "bank_account": [
+     "00002468135799"
+    ],
+    "ifsc": [
+     "znbk0000101"
+    ]
+   },
+   "got": {
+    "ifsc": [
+     "znbk0000101"
+    ]
+   },
+   "all_payee_kinds_exact": false,
+   "amounts_expected": [],
+   "amounts_got": [],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 1
+  },
+  {
+   "id": "x071",
+   "expected": {
+    "phone": [
+     "6300100018"
+    ]
+   },
+   "got": {},
+   "all_payee_kinds_exact": false,
+   "amounts_expected": [
+    20000
+   ],
+   "amounts_got": [],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 2
+  },
+  {
+   "id": "x076",
+   "expected": {
+    "upi_vpa": [
+     "bhavna_s@oksbi"
+    ]
+   },
+   "got": {},
+   "all_payee_kinds_exact": false,
+   "amounts_expected": [
+    5000
+   ],
+   "amounts_got": [],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 1
+  },
+  {
+   "id": "x079",
+   "expected": {
+    "upi_vpa": [
+     "mohit.s@ybl"
+    ]
+   },
+   "got": {},
+   "all_payee_kinds_exact": false,
+   "amounts_expected": [
+    500
+   ],
+   "amounts_got": [],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 1
+  },
+  {
+   "id": "x081",
+   "expected": {
+    "upi_vpa": [
+     "preeti.v@okaxis"
+    ]
+   },
+   "got": {},
+   "all_payee_kinds_exact": false,
+   "amounts_expected": [
+    10000
+   ],
+   "amounts_got": [],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 1
+  },
+  {
+   "id": "x082",
+   "expected": {
+    "bank_account": [
+     "0000445566778899"
+    ],
+    "ifsc": [
+     "xqbk0000412"
+    ]
+   },
+   "got": {
+    "ifsc": [
+     "xqbk0000412"
+    ]
+   },
+   "all_payee_kinds_exact": false,
+   "amounts_expected": [
+    11000
+   ],
+   "amounts_got": [
+    11000
+   ],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 1
+  },
+  {
+   "id": "x087",
+   "expected": {
+    "upi_vpa": [
+     "rajiv_m@ybl"
+    ]
+   },
+   "got": {},
+   "all_payee_kinds_exact": false,
+   "amounts_expected": [
+    8000
+   ],
+   "amounts_got": [],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 1
+  },
+  {
+   "id": "x088",
+   "expected": {
+    "bank_account": [
+     "00001234567890"
+    ]
+   },
+   "got": {},
+   "all_payee_kinds_exact": false,
+   "amounts_expected": [
+    15000
+   ],
+   "amounts_got": [],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 2
+  },
+  {
+   "id": "x091",
+   "expected": {
+    "phone": [
+     "9812300045"
+    ]
+   },
+   "got": {},
+   "all_payee_kinds_exact": false,
+   "amounts_expected": [
+    100000
+   ],
+   "amounts_got": [],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 1
+  },
+  {
+   "id": "x093",
+   "expected": {
+    "bank_account": [
+     "00005566778899"
+    ],
+    "ifsc": [
+     "qtrb0000207"
+    ]
+   },
+   "got": {
+    "ifsc": [
+     "qtrb0000207"
+    ]
+   },
+   "all_payee_kinds_exact": false,
+   "amounts_expected": [],
+   "amounts_got": [],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 1
+  },
+  {
+   "id": "x094",
+   "expected": {
+    "upi_vpa": [
+     "kiran_s@ybl"
+    ]
+   },
+   "got": {},
+   "all_payee_kinds_exact": false,
+   "amounts_expected": [],
+   "amounts_got": [],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 1
+  },
+  {
+   "id": "x096",
+   "expected": {
+    "upi_vpa": [
+     "dinesh.r@paytm"
+    ]
+   },
+   "got": {},
+   "all_payee_kinds_exact": false,
+   "amounts_expected": [
+    100000
+   ],
+   "amounts_got": [],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 1
+  },
+  {
+   "id": "x097",
+   "expected": {
+    "bank_account": [
+     "0000456781234567"
+    ]
+   },
+   "got": {},
+   "all_payee_kinds_exact": false,
+   "amounts_expected": [
+    50000
+   ],
+   "amounts_got": [
+    50000
+   ],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 2
+  },
+  {
+   "id": "x099",
+   "expected": {
+    "bank_account": [
+     "0000123456789"
+    ]
+   },
+   "got": {},
+   "all_payee_kinds_exact": false,
+   "amounts_expected": [],
+   "amounts_got": [],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 1
+  }
+ ],
+ "per_case": [
+  {
+   "id": "x001",
+   "expected": {
+    "phone": [
+     "8800200077"
+    ]
+   },
+   "got": {
+    "phone": [
+     "8800200077"
+    ]
+   },
+   "all_payee_kinds_exact": true,
+   "amounts_expected": [
+    30000
+   ],
+   "amounts_got": [],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 1
+  },
+  {
+   "id": "x002",
+   "expected": {
+    "phone": [
+     "8800200077"
+    ]
+   },
+   "got": {},
+   "all_payee_kinds_exact": false,
+   "amounts_expected": [
+    15000
+   ],
+   "amounts_got": [],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 1
+  },
+  {
+   "id": "x003",
+   "expected": {
+    "bank_account": [
+     "00006655443322"
+    ]
+   },
+   "got": {},
+   "all_payee_kinds_exact": false,
+   "amounts_expected": [
+    18000
+   ],
+   "amounts_got": [
+    18000
+   ],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 2
+  },
+  {
+   "id": "x004",
+   "expected": {},
+   "got": {},
+   "all_payee_kinds_exact": true,
+   "amounts_expected": [],
+   "amounts_got": [],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 1
+  },
+  {
+   "id": "x005",
+   "expected": {
+    "upi_vpa": [
+     "tanvi.r@okaxis"
+    ]
+   },
+   "got": {
+    "upi_vpa": [
+     "tanvi.r@okaxis",
+     "tanvi.r@okaxix"
+    ]
+   },
+   "all_payee_kinds_exact": false,
+   "amounts_expected": [],
+   "amounts_got": [],
+   "should_not_extract_but_did": [
+    "tanvi.r@okaxix"
+   ],
+   "messages_parsed": 2
+  },
+  {
+   "id": "x006",
+   "expected": {
+    "phone": [
+     "9812300045"
+    ]
+   },
+   "got": {
+    "phone": [
+     "9812300045"
+    ]
+   },
+   "all_payee_kinds_exact": true,
+   "amounts_expected": [
+    200000
+   ],
+   "amounts_got": [],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 1
+  },
+  {
+   "id": "x007",
+   "expected": {},
+   "got": {},
+   "all_payee_kinds_exact": true,
+   "amounts_expected": [],
+   "amounts_got": [],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 1
+  },
+  {
+   "id": "x008",
+   "expected": {},
+   "got": {
+    "firm_name": [
+     "connaughtplace"
+    ]
+   },
+   "all_payee_kinds_exact": true,
+   "amounts_expected": [],
+   "amounts_got": [],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 2
+  },
+  {
+   "id": "x009",
+   "expected": {
+    "upi_vpa": [
+     "ravi.k@okaxis"
+    ]
+   },
+   "got": {},
+   "all_payee_kinds_exact": false,
+   "amounts_expected": [
+    4500
+   ],
+   "amounts_got": [
+    4500
+   ],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 1
+  },
+  {
+   "id": "x010",
+   "expected": {
+    "bank_account": [
+     "00001357924680"
+    ],
+    "ifsc": [
+     "xqbk0000412"
+    ]
+   },
+   "got": {},
+   "all_payee_kinds_exact": false,
+   "amounts_expected": [],
+   "amounts_got": [],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 1
+  },
+  {
+   "id": "x011",
+   "expected": {
+    "upi_vpa": [
+     "rahim.s@ybl"
+    ],
+    "phone": [
+     "7001100023"
+    ]
+   },
+   "got": {
+    "upi_vpa": [
+     "rahim.s@ybl"
+    ]
+   },
+   "all_payee_kinds_exact": false,
+   "amounts_expected": [
+    25000
+   ],
+   "amounts_got": [],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 2
+  },
+  {
+   "id": "x012",
+   "expected": {
+    "upi_vpa": [
+     "dolly.m@ybl"
+    ]
+   },
+   "got": {},
+   "all_payee_kinds_exact": false,
+   "amounts_expected": [
+    10000
+   ],
+   "amounts_got": [],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 2
+  },
+  {
+   "id": "x013",
+   "expected": {
+    "upi_vpa": [
+     "tej-pal@okzeta"
+    ]
+   },
+   "got": {},
+   "all_payee_kinds_exact": false,
+   "amounts_expected": [
+    10000
+   ],
+   "amounts_got": [
+    10000
+   ],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 2
+  },
+  {
+   "id": "x014",
+   "expected": {},
+   "got": {},
+   "all_payee_kinds_exact": true,
+   "amounts_expected": [],
+   "amounts_got": [],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 1
+  },
+  {
+   "id": "x015",
+   "expected": {},
+   "got": {},
+   "all_payee_kinds_exact": true,
+   "amounts_expected": [],
+   "amounts_got": [],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 1
+  },
+  {
+   "id": "x016",
+   "expected": {},
+   "got": {},
+   "all_payee_kinds_exact": true,
+   "amounts_expected": [],
+   "amounts_got": [],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 1
+  },
+  {
+   "id": "x017",
+   "expected": {
+    "upi_vpa": [
+     "kavita.s@apl"
+    ]
+   },
+   "got": {
+    "upi_vpa": [
+     "kavita.s@apl"
+    ]
+   },
+   "all_payee_kinds_exact": true,
+   "amounts_expected": [
+    3500
+   ],
+   "amounts_got": [
+    3500
+   ],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 1
+  },
+  {
+   "id": "x018",
+   "expected": {
+    "url": [
+     "https://pay-quill.top/r/55a0"
+    ]
+   },
+   "got": {
+    "url": [
+     "https://pay-quill.top/r/55a0"
+    ]
+   },
+   "all_payee_kinds_exact": true,
+   "amounts_expected": [
+    100000
+   ],
+   "amounts_got": [
+    100000
+   ],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 1
+  },
+  {
+   "id": "x019",
+   "expected": {
+    "upi_vpa": [
+     "ravi.k@okaxis",
+     "tara.m@ybl"
+    ]
+   },
+   "got": {},
+   "all_payee_kinds_exact": false,
+   "amounts_expected": [
+    25000
+   ],
+   "amounts_got": [],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 3
+  },
+  {
+   "id": "x020",
+   "expected": {
+    "upi_vpa": [
+     "hema.k@ybl"
+    ]
+   },
+   "got": {
+    "upi_vpa": [
+     "hema.k@ybl"
+    ]
+   },
+   "all_payee_kinds_exact": true,
+   "amounts_expected": [
+    6000
+   ],
+   "amounts_got": [
+    6000
+   ],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 1
+  },
+  {
+   "id": "x021",
+   "expected": {
+    "url": [
+     "https://quillpay-secure.top/c/ab12"
+    ]
+   },
+   "got": {
+    "url": [
+     "https://quillpay-secure.top/c/ab12"
+    ]
+   },
+   "all_payee_kinds_exact": true,
+   "amounts_expected": [
+    7500
+   ],
+   "amounts_got": [
+    7500
+   ],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 1
+  },
+  {
+   "id": "x022",
+   "expected": {
+    "bank_account": [
+     "000011223344556677"
+    ]
+   },
+   "got": {},
+   "all_payee_kinds_exact": false,
+   "amounts_expected": [
+    125000
+   ],
+   "amounts_got": [],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 2
+  },
+  {
+   "id": "x023",
+   "expected": {
+    "bank_account": [
+     "00009090808070"
+    ],
+    "ifsc": [
+     "xqbk0000412"
+    ]
+   },
+   "got": {
+    "ifsc": [
+     "xqbk0000412"
+    ]
+   },
+   "all_payee_kinds_exact": false,
+   "amounts_expected": [
+    100000
+   ],
+   "amounts_got": [],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 1
+  },
+  {
+   "id": "x024",
+   "expected": {
+    "url": [
+     "https://zenlink-collect.xyz/p/9981"
+    ]
+   },
+   "got": {
+    "url": [
+     "https://zenlink-collect.xyz/p/9981"
+    ]
+   },
+   "all_payee_kinds_exact": true,
+   "amounts_expected": [
+    10000
+   ],
+   "amounts_got": [
+    10000
+   ],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 1
+  },
+  {
+   "id": "x025",
+   "expected": {
+    "upi_vpa": [
+     "ravi.k@okaxis"
+    ]
+   },
+   "got": {
+    "upi_vpa": [
+     "ravi.k@okaxis"
+    ]
+   },
+   "all_payee_kinds_exact": true,
+   "amounts_expected": [
+    300000
+   ],
+   "amounts_got": [],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 1
+  },
+  {
+   "id": "x026",
+   "expected": {},
+   "got": {
+    "url": [
+     "https://harbourlane.in/blog/sip-basics"
+    ]
+   },
+   "all_payee_kinds_exact": false,
+   "amounts_expected": [],
+   "amounts_got": [],
+   "should_not_extract_but_did": [
+    "https://harbourlane.in/blog/sip-basics"
+   ],
+   "messages_parsed": 1
+  },
+  {
+   "id": "x027",
+   "expected": {},
+   "got": {},
+   "all_payee_kinds_exact": true,
+   "amounts_expected": [],
+   "amounts_got": [],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 1
+  },
+  {
+   "id": "x028",
+   "expected": {
+    "bank_account": [
+     "000087654321"
+    ],
+    "ifsc": [
+     "xqbk0000412"
+    ]
+   },
+   "got": {},
+   "all_payee_kinds_exact": false,
+   "amounts_expected": [],
+   "amounts_got": [],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 1
+  },
+  {
+   "id": "x029",
+   "expected": {},
+   "got": {},
+   "all_payee_kinds_exact": true,
+   "amounts_expected": [],
+   "amounts_got": [],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 1
+  },
+  {
+   "id": "x030",
+   "expected": {
+    "upi_vpa": [
+     "hari.om@okaxis"
+    ]
+   },
+   "got": {},
+   "all_payee_kinds_exact": false,
+   "amounts_expected": [
+    6000
+   ],
+   "amounts_got": [
+    6000
+   ],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 2
+  },
+  {
+   "id": "x031",
+   "expected": {
+    "upi_vpa": [
+     "ravi.k@okaxis"
+    ]
+   },
+   "got": {
+    "upi_vpa": [
+     "ravi.k@okaxis"
+    ]
+   },
+   "all_payee_kinds_exact": true,
+   "amounts_expected": [],
+   "amounts_got": [],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 1
+  },
+  {
+   "id": "x032",
+   "expected": {
+    "upi_vpa": [
+     "ravi.k@okaxis"
+    ]
+   },
+   "got": {},
+   "all_payee_kinds_exact": false,
+   "amounts_expected": [
+    5000
+   ],
+   "amounts_got": [
+    5000
+   ],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 2
+  },
+  {
+   "id": "x033",
+   "expected": {
+    "upi_vpa": [
+     "tina.r@ybl"
+    ]
+   },
+   "got": {
+    "url": [
+     "https://harbourlane.in/terms"
+    ]
+   },
+   "all_payee_kinds_exact": false,
+   "amounts_expected": [
+    10000
+   ],
+   "amounts_got": [],
+   "should_not_extract_but_did": [
+    "https://harbourlane.in/terms"
+   ],
+   "messages_parsed": 1
+  },
+  {
+   "id": "x034",
+   "expected": {},
+   "got": {},
+   "all_payee_kinds_exact": true,
+   "amounts_expected": [],
+   "amounts_got": [],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 1
+  },
+  {
+   "id": "x035",
+   "expected": {},
+   "got": {},
+   "all_payee_kinds_exact": true,
+   "amounts_expected": [
+    500
+   ],
+   "amounts_got": [
+    500
+   ],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 1
+  },
+  {
+   "id": "x036",
+   "expected": {
+    "bank_account": [
+     "0000556677889900"
+    ],
+    "ifsc": [
+     "znbk0000101"
+    ]
+   },
+   "got": {
+    "bank_account": [
+     "0000556677889900"
+    ],
+    "ifsc": [
+     "znbk0000101"
+    ]
+   },
+   "all_payee_kinds_exact": true,
+   "amounts_expected": [],
+   "amounts_got": [],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 1
+  },
+  {
+   "id": "x037",
+   "expected": {},
+   "got": {
+    "url": [
+     "www.harbourlane.in"
+    ]
+   },
+   "all_payee_kinds_exact": false,
+   "amounts_expected": [],
+   "amounts_got": [],
+   "should_not_extract_but_did": [
+    "www.harbourlane.in"
+   ],
+   "messages_parsed": 1
+  },
+  {
+   "id": "x038",
+   "expected": {},
+   "got": {},
+   "all_payee_kinds_exact": true,
+   "amounts_expected": [],
+   "amounts_got": [],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 1
+  },
+  {
+   "id": "x039",
+   "expected": {},
+   "got": {},
+   "all_payee_kinds_exact": true,
+   "amounts_expected": [],
+   "amounts_got": [],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 1
+  },
+  {
+   "id": "x040",
+   "expected": {},
+   "got": {},
+   "all_payee_kinds_exact": true,
+   "amounts_expected": [
+    2400
+   ],
+   "amounts_got": [
+    2400
+   ],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 1
+  },
+  {
+   "id": "x041",
+   "expected": {
+    "upi_vpa": [
+     "sapna@ybl"
+    ]
+   },
+   "got": {
+    "upi_vpa": [
+     "sapna@ybl"
+    ]
+   },
+   "all_payee_kinds_exact": true,
+   "amounts_expected": [
+    6250
+   ],
+   "amounts_got": [
+    6250
+   ],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 1
+  },
+  {
+   "id": "x042",
+   "expected": {},
+   "got": {},
+   "all_payee_kinds_exact": true,
+   "amounts_expected": [],
+   "amounts_got": [],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 1
+  },
+  {
+   "id": "x043",
+   "expected": {
+    "bank_account": [
+     "0000123456789"
+    ],
+    "ifsc": [
+     "znbk0000101"
+    ]
+   },
+   "got": {},
+   "all_payee_kinds_exact": false,
+   "amounts_expected": [],
+   "amounts_got": [],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 2
+  },
+  {
+   "id": "x044",
+   "expected": {
+    "upi_vpa": [
+     "nitin.b@okaxis"
+    ]
+   },
+   "got": {},
+   "all_payee_kinds_exact": false,
+   "amounts_expected": [
+    4000
+   ],
+   "amounts_got": [
+    4000
+   ],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 1
+  },
+  {
+   "id": "x045",
+   "expected": {
+    "bank_account": [
+     "000098765432"
+    ],
+    "ifsc": [
+     "xqbk0000412"
+    ]
+   },
+   "got": {
+    "bank_account": [
+     "000098765432"
+    ],
+    "ifsc": [
+     "xqbk0000412"
+    ]
+   },
+   "all_payee_kinds_exact": true,
+   "amounts_expected": [],
+   "amounts_got": [],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 2
+  },
+  {
+   "id": "x046",
+   "expected": {
+    "upi_vpa": [
+     "jay_prakash99@okaxis"
+    ]
+   },
+   "got": {},
+   "all_payee_kinds_exact": false,
+   "amounts_expected": [
+    25000
+   ],
+   "amounts_got": [],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 1
+  },
+  {
+   "id": "x047",
+   "expected": {
+    "bank_account": [
+     "000099887766554433"
+    ]
+   },
+   "got": {
+    "bank_account": [
+     "000099887766554433"
+    ]
+   },
+   "all_payee_kinds_exact": true,
+   "amounts_expected": [
+    75000
+   ],
+   "amounts_got": [
+    75000
+   ],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 1
+  },
+  {
+   "id": "x048",
+   "expected": {
+    "upi_vpa": [
+     "anita.d@okhdfcbank"
+    ]
+   },
+   "got": {},
+   "all_payee_kinds_exact": false,
+   "amounts_expected": [
+    25000
+   ],
+   "amounts_got": [],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 2
+  },
+  {
+   "id": "x049",
+   "expected": {
+    "upi_vpa": [
+     "veena-p@zenbank"
+    ]
+   },
+   "got": {},
+   "all_payee_kinds_exact": false,
+   "amounts_expected": [
+    9999
+   ],
+   "amounts_got": [
+    9999
+   ],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 2
+  },
+  {
+   "id": "x050",
+   "expected": {},
+   "got": {},
+   "all_payee_kinds_exact": true,
+   "amounts_expected": [],
+   "amounts_got": [],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 1
+  },
+  {
+   "id": "x051",
+   "expected": {
+    "upi_vpa": [
+     "sandhya.r@paytm"
+    ]
+   },
+   "got": {
+    "upi_vpa": [
+     "sandhya.r@paytm"
+    ]
+   },
+   "all_payee_kinds_exact": true,
+   "amounts_expected": [
+    2000
+   ],
+   "amounts_got": [],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 2
+  },
+  {
+   "id": "x052",
+   "expected": {
+    "url": [
+     "http://collect-now.club/x/771"
+    ]
+   },
+   "got": {
+    "url": [
+     "http://collect-now.club/x/771"
+    ]
+   },
+   "all_payee_kinds_exact": true,
+   "amounts_expected": [
+    40000
+   ],
+   "amounts_got": [],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 1
+  },
+  {
+   "id": "x053",
+   "expected": {},
+   "got": {},
+   "all_payee_kinds_exact": true,
+   "amounts_expected": [],
+   "amounts_got": [],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 1
+  },
+  {
+   "id": "x054",
+   "expected": {
+    "bank_account": [
+     "00007788990011"
+    ],
+    "ifsc": [
+     "xqbk0000412"
+    ]
+   },
+   "got": {},
+   "all_payee_kinds_exact": false,
+   "amounts_expected": [],
+   "amounts_got": [],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 1
+  },
+  {
+   "id": "x055",
+   "expected": {},
+   "got": {},
+   "all_payee_kinds_exact": true,
+   "amounts_expected": [],
+   "amounts_got": [],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 1
+  },
+  {
+   "id": "x056",
+   "expected": {
+    "url": [
+     "https://www.zenlink-collect.xyz/p/9981"
+    ]
+   },
+   "got": {
+    "url": [
+     "https://www.zenlink-collect.xyz/p/9981"
+    ]
+   },
+   "all_payee_kinds_exact": true,
+   "amounts_expected": [
+    150000
+   ],
+   "amounts_got": [],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 2
+  },
+  {
+   "id": "x057",
+   "expected": {
+    "phone": [
+     "9812300045"
+    ]
+   },
+   "got": {},
+   "all_payee_kinds_exact": false,
+   "amounts_expected": [],
+   "amounts_got": [],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 1
+  },
+  {
+   "id": "x058",
+   "expected": {},
+   "got": {},
+   "all_payee_kinds_exact": true,
+   "amounts_expected": [
+    3000
+   ],
+   "amounts_got": [
+    3000
+   ],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 1
+  },
+  {
+   "id": "x059",
+   "expected": {
+    "bank_account": [
+     "00003344556677"
+    ],
+    "ifsc": [
+     "znbk0000101"
+    ]
+   },
+   "got": {
+    "ifsc": [
+     "znbk0000101"
+    ]
+   },
+   "all_payee_kinds_exact": false,
+   "amounts_expected": [
+    150000
+   ],
+   "amounts_got": [],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 1
+  },
+  {
+   "id": "x060",
+   "expected": {
+    "phone": [
+     "7001100023"
+    ]
+   },
+   "got": {},
+   "all_payee_kinds_exact": false,
+   "amounts_expected": [
+    12000
+   ],
+   "amounts_got": [
+    12000
+   ],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 2
+  },
+  {
+   "id": "x061",
+   "expected": {
+    "bank_account": [
+     "00001234567890"
+    ]
+   },
+   "got": {},
+   "all_payee_kinds_exact": false,
+   "amounts_expected": [],
+   "amounts_got": [],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 1
+  },
+  {
+   "id": "x062",
+   "expected": {},
+   "got": {},
+   "all_payee_kinds_exact": true,
+   "amounts_expected": [],
+   "amounts_got": [],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 1
+  },
+  {
+   "id": "x063",
+   "expected": {
+    "upi_vpa": [
+     "lalit.k@ybl"
+    ],
+    "bank_account": [
+     "00003322110099"
+    ]
+   },
+   "got": {
+    "upi_vpa": [
+     "lalit.k@ybl"
+    ]
+   },
+   "all_payee_kinds_exact": false,
+   "amounts_expected": [
+    10000,
+    25000
+   ],
+   "amounts_got": [
+    10000,
+    25000
+   ],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 2
+  },
+  {
+   "id": "x064",
+   "expected": {},
+   "got": {},
+   "all_payee_kinds_exact": true,
+   "amounts_expected": [],
+   "amounts_got": [],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 1
+  },
+  {
+   "id": "x065",
+   "expected": {
+    "upi_vpa": [
+     "sunil.p@oksbi"
+    ]
+   },
+   "got": {},
+   "all_payee_kinds_exact": false,
+   "amounts_expected": [],
+   "amounts_got": [],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 2
+  },
+  {
+   "id": "x066",
+   "expected": {},
+   "got": {},
+   "all_payee_kinds_exact": true,
+   "amounts_expected": [],
+   "amounts_got": [],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 1
+  },
+  {
+   "id": "x067",
+   "expected": {
+    "upi_vpa": [
+     "lakshmi.n@ybl"
+    ]
+   },
+   "got": {
+    "upi_vpa": [
+     "lakshmi.n@ybl"
+    ]
+   },
+   "all_payee_kinds_exact": true,
+   "amounts_expected": [],
+   "amounts_got": [],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 1
+  },
+  {
+   "id": "x068",
+   "expected": {
+    "upi_vpa": [
+     "9812300045@ybl"
+    ]
+   },
+   "got": {
+    "phone": [
+     "9812300045"
+    ],
+    "upi_vpa": [
+     "9812300045@ybl"
+    ]
+   },
+   "all_payee_kinds_exact": false,
+   "amounts_expected": [
+    10000
+   ],
+   "amounts_got": [],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 2
+  },
+  {
+   "id": "x069",
+   "expected": {
+    "bank_account": [
+     "00002468135799"
+    ],
+    "ifsc": [
+     "znbk0000101"
+    ]
+   },
+   "got": {
+    "ifsc": [
+     "znbk0000101"
+    ]
+   },
+   "all_payee_kinds_exact": false,
+   "amounts_expected": [],
+   "amounts_got": [],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 1
+  },
+  {
+   "id": "x070",
+   "expected": {
+    "upi_vpa": [
+     "biller.k@okaxis"
+    ]
+   },
+   "got": {
+    "upi_vpa": [
+     "biller.k@okaxis"
+    ]
+   },
+   "all_payee_kinds_exact": true,
+   "amounts_expected": [
+    3000
+   ],
+   "amounts_got": [],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 1
+  },
+  {
+   "id": "x071",
+   "expected": {
+    "phone": [
+     "6300100018"
+    ]
+   },
+   "got": {},
+   "all_payee_kinds_exact": false,
+   "amounts_expected": [
+    20000
+   ],
+   "amounts_got": [],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 2
+  },
+  {
+   "id": "x072",
+   "expected": {
+    "url": [
+     "https://bit-pay.club/pay-ab12"
+    ]
+   },
+   "got": {
+    "url": [
+     "https://bit-pay.club/pay-ab12"
+    ]
+   },
+   "all_payee_kinds_exact": true,
+   "amounts_expected": [],
+   "amounts_got": [],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 1
+  },
+  {
+   "id": "x073",
+   "expected": {
+    "upi_vpa": [
+     "neha.gupta12@okhdfcbank"
+    ]
+   },
+   "got": {
+    "upi_vpa": [
+     "neha.gupta12@okhdfcbank"
+    ]
+   },
+   "all_payee_kinds_exact": true,
+   "amounts_expected": [
+    125000
+   ],
+   "amounts_got": [
+    125000
+   ],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 1
+  },
+  {
+   "id": "x074",
+   "expected": {
+    "upi_vpa": [
+     "shop.kumar@oksbi"
+    ]
+   },
+   "got": {
+    "upi_vpa": [
+     "shop.kumar@oksbi"
+    ]
+   },
+   "all_payee_kinds_exact": true,
+   "amounts_expected": [
+    200000
+   ],
+   "amounts_got": [
+    200000
+   ],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 2
+  },
+  {
+   "id": "x075",
+   "expected": {},
+   "got": {},
+   "all_payee_kinds_exact": true,
+   "amounts_expected": [],
+   "amounts_got": [],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 1
+  },
+  {
+   "id": "x076",
+   "expected": {
+    "upi_vpa": [
+     "bhavna_s@oksbi"
+    ]
+   },
+   "got": {},
+   "all_payee_kinds_exact": false,
+   "amounts_expected": [
+    5000
+   ],
+   "amounts_got": [],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 1
+  },
+  {
+   "id": "x077",
+   "expected": {},
+   "got": {},
+   "all_payee_kinds_exact": true,
+   "amounts_expected": [],
+   "amounts_got": [],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 1
+  },
+  {
+   "id": "x078",
+   "expected": {
+    "upi_vpa": [
+     "ajay.s@okaxis"
+    ]
+   },
+   "got": {
+    "upi_vpa": [
+     "ajay.s@okaxis"
+    ]
+   },
+   "all_payee_kinds_exact": true,
+   "amounts_expected": [],
+   "amounts_got": [],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 1
+  },
+  {
+   "id": "x079",
+   "expected": {
+    "upi_vpa": [
+     "mohit.s@ybl"
+    ]
+   },
+   "got": {},
+   "all_payee_kinds_exact": false,
+   "amounts_expected": [
+    500
+   ],
+   "amounts_got": [],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 1
+  },
+  {
+   "id": "x080",
+   "expected": {},
+   "got": {},
+   "all_payee_kinds_exact": true,
+   "amounts_expected": [],
+   "amounts_got": [],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 1
+  },
+  {
+   "id": "x081",
+   "expected": {
+    "upi_vpa": [
+     "preeti.v@okaxis"
+    ]
+   },
+   "got": {},
+   "all_payee_kinds_exact": false,
+   "amounts_expected": [
+    10000
+   ],
+   "amounts_got": [],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 1
+  },
+  {
+   "id": "x082",
+   "expected": {
+    "bank_account": [
+     "0000445566778899"
+    ],
+    "ifsc": [
+     "xqbk0000412"
+    ]
+   },
+   "got": {
+    "ifsc": [
+     "xqbk0000412"
+    ]
+   },
+   "all_payee_kinds_exact": false,
+   "amounts_expected": [
+    11000
+   ],
+   "amounts_got": [
+    11000
+   ],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 1
+  },
+  {
+   "id": "x083",
+   "expected": {},
+   "got": {},
+   "all_payee_kinds_exact": true,
+   "amounts_expected": [],
+   "amounts_got": [],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 1
+  },
+  {
+   "id": "x084",
+   "expected": {},
+   "got": {},
+   "all_payee_kinds_exact": true,
+   "amounts_expected": [],
+   "amounts_got": [],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 1
+  },
+  {
+   "id": "x085",
+   "expected": {},
+   "got": {},
+   "all_payee_kinds_exact": true,
+   "amounts_expected": [],
+   "amounts_got": [],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 1
+  },
+  {
+   "id": "x086",
+   "expected": {},
+   "got": {},
+   "all_payee_kinds_exact": true,
+   "amounts_expected": [],
+   "amounts_got": [],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 1
+  },
+  {
+   "id": "x087",
+   "expected": {
+    "upi_vpa": [
+     "rajiv_m@ybl"
+    ]
+   },
+   "got": {},
+   "all_payee_kinds_exact": false,
+   "amounts_expected": [
+    8000
+   ],
+   "amounts_got": [],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 1
+  },
+  {
+   "id": "x088",
+   "expected": {
+    "bank_account": [
+     "00001234567890"
+    ]
+   },
+   "got": {},
+   "all_payee_kinds_exact": false,
+   "amounts_expected": [
+    15000
+   ],
+   "amounts_got": [],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 2
+  },
+  {
+   "id": "x089",
+   "expected": {},
+   "got": {},
+   "all_payee_kinds_exact": true,
+   "amounts_expected": [],
+   "amounts_got": [],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 1
+  },
+  {
+   "id": "x090",
+   "expected": {},
+   "got": {},
+   "all_payee_kinds_exact": true,
+   "amounts_expected": [],
+   "amounts_got": [],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 1
+  },
+  {
+   "id": "x091",
+   "expected": {
+    "phone": [
+     "9812300045"
+    ]
+   },
+   "got": {},
+   "all_payee_kinds_exact": false,
+   "amounts_expected": [
+    100000
+   ],
+   "amounts_got": [],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 1
+  },
+  {
+   "id": "x092",
+   "expected": {},
+   "got": {},
+   "all_payee_kinds_exact": true,
+   "amounts_expected": [],
+   "amounts_got": [],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 1
+  },
+  {
+   "id": "x093",
+   "expected": {
+    "bank_account": [
+     "00005566778899"
+    ],
+    "ifsc": [
+     "qtrb0000207"
+    ]
+   },
+   "got": {
+    "ifsc": [
+     "qtrb0000207"
+    ]
+   },
+   "all_payee_kinds_exact": false,
+   "amounts_expected": [],
+   "amounts_got": [],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 1
+  },
+  {
+   "id": "x094",
+   "expected": {
+    "upi_vpa": [
+     "kiran_s@ybl"
+    ]
+   },
+   "got": {},
+   "all_payee_kinds_exact": false,
+   "amounts_expected": [],
+   "amounts_got": [],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 1
+  },
+  {
+   "id": "x095",
+   "expected": {},
+   "got": {},
+   "all_payee_kinds_exact": true,
+   "amounts_expected": [],
+   "amounts_got": [],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 1
+  },
+  {
+   "id": "x096",
+   "expected": {
+    "upi_vpa": [
+     "dinesh.r@paytm"
+    ]
+   },
+   "got": {},
+   "all_payee_kinds_exact": false,
+   "amounts_expected": [
+    100000
+   ],
+   "amounts_got": [],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 1
+  },
+  {
+   "id": "x097",
+   "expected": {
+    "bank_account": [
+     "0000456781234567"
+    ]
+   },
+   "got": {},
+   "all_payee_kinds_exact": false,
+   "amounts_expected": [
+    50000
+   ],
+   "amounts_got": [
+    50000
+   ],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 2
+  },
+  {
+   "id": "x098",
+   "expected": {},
+   "got": {},
+   "all_payee_kinds_exact": true,
+   "amounts_expected": [],
+   "amounts_got": [],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 1
+  },
+  {
+   "id": "x099",
+   "expected": {
+    "bank_account": [
+     "0000123456789"
+    ]
+   },
+   "got": {},
+   "all_payee_kinds_exact": false,
+   "amounts_expected": [],
+   "amounts_got": [],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 1
+  },
+  {
+   "id": "x100",
+   "expected": {},
+   "got": {},
+   "all_payee_kinds_exact": true,
+   "amounts_expected": [],
+   "amounts_got": [],
+   "should_not_extract_but_did": [],
+   "messages_parsed": 1
+  }
+ ],
+ "tag": "before"
+}
