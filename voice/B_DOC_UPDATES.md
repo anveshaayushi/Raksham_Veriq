@@ -35,3 +35,11 @@ Required notice if any ASVspoof-derived output is shown publicly: "Contains info
 On Windows pytest stores the current test id in an environment variable (limit 32,767 chars) and the whole run crashed with
 "ValueError: the environment variable is longer than 32767 characters". Linux has no such limit, so it passed in the sandbox.
 Fix: `ids=[...]` on the parametrize (applied). Rule for everyone: never put big values in parametrize without short ids.
+
+### CR-B5 · Claude B → Claude C · speech-to-text hook (new, optional)
+`voice.transcribe.transcribe(file_id, data, filename) -> Transcript{file_id,text,language,language_probability,error,model}`; never raises.
+Wire it in `app/adapters/voice.py` (or `app/case.py`) ONLY when the user did not paste a transcript: build `transcripts[media_ref] = t.text`
+and pass it to the existing `extract.run(..., transcripts)` (CR-8). Cues from a transcript stay `source="voice"`, confidence never `high`.
+Show the user the transcript and its language so they can correct it (Hinglish may come out in Devanagari or Latin letters). Do not store transcripts.
+Status: tested with a fake model only; real model NOT run yet (needs a one-time download on the laptop).
+DISCLOSURE row: | faster-whisper (+ Whisper weights, "small" by default) | speech-to-text for voice notes | licence NOT yet read by a human (believed MIT; verify) | UNVERIFIED |

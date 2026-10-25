@@ -1,0 +1,56 @@
+[
+  {
+    "file_id": "LA_E_1073886__opus.wav",
+    "text": "",
+    "language": null,
+    "language_probability": null,
+    "error": "transcription_failed:TypeError",
+    "model": "faster-whisper:small",
+    "clip": "data/subsets/eval/real/LA_E_1073886__opus.wav"
+  },
+  {
+    "file_id": "LA_E_1419507__opus.wav",
+    "text": "",
+    "language": null,
+    "language_probability": null,
+    "error": "transcription_failed:TypeError",
+    "model": "faster-whisper:small",
+    "clip": "data/subsets/eval/real/LA_E_1419507__opus.wav"
+  },
+  {
+    "file_id": "anvesha_01.wav",
+    "text": "",
+    "language": null,
+    "language_probability": null,
+    "error": "transcription_failed:TypeError",
+    "model": "faster-whisper:small",
+    "clip": "data/hinglish/real/anvesha_01.wav"
+  },
+  {
+    "file_id": "anvesha_02.wav",
+    "text": "",
+    "language": null,
+    "language_probability": null,
+    "error": "transcription_failed:TypeError",
+    "model": "faster-whisper:small",
+    "clip": "data/hinglish/real/anvesha_02.wav"
+  },
+  {
+    "file_id": "anvesha_03.wav",
+    "text": "",
+    "language": null,
+    "language_probability": null,
+    "error": "transcription_failed:TypeError",
+    "model": "faster-whisper:small",
+    "clip": "data/hinglish/real/anvesha_03.wav"
+  },
+  {
+    "file_id": "hf_alpha_01.wav",
+    "text": "",
+    "language": null,
+    "language_probability": null,
+    "error": "transcription_failed:TypeError",
+    "model": "faster-whisper:small",
+    "clip": "data/hinglish/fake/hf_alpha_01.wav"
+  }
+]

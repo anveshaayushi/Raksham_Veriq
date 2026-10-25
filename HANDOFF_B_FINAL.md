@@ -78,3 +78,10 @@ First N seconds of the same 120 clean dev clips, scored with the dev threshold:
 3. *What if the voice note is 0.5 s?* `cant_assess`, with the reason; never a guess.
 4. *Can a voice score clear a payee?* No. Voice only escalates to human review; `no_signal` never means genuine.
 5. *Can I reproduce it?* `python scripts/b_run_all.py --zip LA.zip`, seeds 1234 (dev) and 4321 (eval) fixed; needs the dataset and AASIST weights.
+
+## Addendum (25 Oct, B): the rest of the voice work in one command
+`python scripts\b_finish_all.py` (run after `b_run_all.py`): length sweep 0.1 to 6 s on the held-out eval clips, a faster-whisper sample, the Hinglish own set, and an In-the-Wild probe (lists files and sizes, downloads nothing).
+Each step is independent and the report `results/asvspoof/B_FINISH_REPORT.md` says PASS / FAIL / SKIP per step. Read that file before quoting anything.
+- `voice/transcribe.py` (faster-whisper): tested with a fake model; real-model status is in B_FINISH_REPORT.md. See CR-B5 in `voice/B_DOC_UPDATES.md` for how the app should call it.
+- `scripts/hinglish_build.py`: 12 invented Hindi/Hinglish sentences; teammates record them (consent), Kokoro makes the fakes. Tiny set: behaviour, not accuracy.
+- Not done: MLAAD (no Hindi, CC-BY-NC, gated), SEA-Spoof (licence unstated, release may not be live), In-the-Wild scoring (probe only; licence disagreement between its HF card CC-BY-SA-4.0 and demo page Apache-2.0), speaker consistency, bilingual evidence-card text.

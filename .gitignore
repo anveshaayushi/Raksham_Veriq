@@ -12,3 +12,5 @@ data/subsets/
 dev/
 out/
 *.pth
+data/hinglish/real/
+data/hinglish/fake/

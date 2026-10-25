@@ -3,3 +3,4 @@
 # (pinning from memory would be inventing; see voice/README.md)
 numpy>=1.24
 # torch (CPU wheel): pip install torch --index-url https://download.pytorch.org/whl/cpu
+faster-whisper   # speech-to-text for voice notes (voice/transcribe.py); pin after pip freeze

@@ -1,0 +1,4 @@
+mueller91/In-The-Wild: 3 files, 8.16 GB total
+metadata-like files: README.md
+first files: .gitattributes, README.md, release_in_the_wild.zip
+Nothing downloaded. Licence on the HF card: CC-BY-SA-4.0 (the demo page says Apache-2.0: they disagree, verify). Test only, never fit.
