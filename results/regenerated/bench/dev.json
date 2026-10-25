@@ -1,0 +1,2905 @@
+[
+ {
+  "case_id": "dev-000",
+  "kind": "scam_rotation",
+  "is_scam": true,
+  "claimed_firm": "Indravati Stockline Ltd",
+  "chat_txt": "05/10/2026, 08:42 - Neha: Namaste Fatima ji, this is Neha at Indravati Stockline Ltd.\n05/10/2026, 15:44 - Fatima: Please share details\n05/10/2026, 11:30 - Neha: Deposit ₹5,000 in account no. 12513341574329, IFSC IDIB0907290.\n06/10/2026, 14:13 - Fatima: paying now\n06/10/2026, 21:56 - Neha: PTT-20261006-WA0095.opus (file attached)\n07/10/2026, 11:27 - Fatima: paying now\n07/10/2026, 13:50 - Neha: Our payment department has a new ID: desk16.h@ybl.\n07/10/2026, 08:16 - Neha: Clearance charges must be paid before withdrawal.\n",
+  "transcripts": {
+   "PTT-20261006-WA0095.opus": "Use this new UPI now: svc853.k@ibl"
+  },
+  "payees": [
+   {
+    "value_norm": "12513341574329",
+    "type": "bank_account",
+    "from_voice": false
+   },
+   {
+    "value_norm": "svc853.k@ibl",
+    "type": "upi_vpa",
+    "from_voice": true
+   },
+   {
+    "value_norm": "desk16.h@ybl",
+    "type": "upi_vpa",
+    "from_voice": false
+   }
+  ],
+  "checks": {
+   "12513341574329": "NEW STAR ELECTRICALS",
+   "svc853.k@ibl": "MAA DURGA STORES",
+   "desk16.h@ybl": "BALAJI GARMENTS"
+  },
+  "expected": [
+   "NAME_DISCREPANCY",
+   "NAME_DISCREPANCY",
+   "NAME_DISCREPANCY"
+  ],
+  "format": "android24"
+ },
+ {
+  "case_id": "dev-001",
+  "kind": "scam_single",
+  "is_scam": true,
+  "claimed_firm": "Navyug Broking Pvt Ltd",
+  "chat_txt": "[05/10/26, 6:36:30 PM] Neha: Namaste Suresh ji, this is Neha at Navyug Broking Pvt Ltd.\n[05/10/26, 7:33:43 PM] Neha: Your order no 442134314502 is confirmed.\n[05/10/26, 9:02:36 AM] Suresh: ok\n[06/10/26, 6:11:59 PM] Neha: Pay ₹60,000 to UPI kyc838.h@axl today.\n",
+  "transcripts": {},
+  "payees": [
+   {
+    "value_norm": "kyc838.h@axl",
+    "type": "upi_vpa",
+    "from_voice": false
+   }
+  ],
+  "checks": {
+   "kyc838.h@axl": "SAI KRUPA TRADING CO"
+  },
+  "expected": [
+   "NAME_DISCREPANCY"
+  ],
+  "format": "ios"
+ },
+ {
+  "case_id": "dev-002",
+  "kind": "scam_person",
+  "is_scam": true,
+  "claimed_firm": "Sahyadri Securities Ltd",
+  "chat_txt": "05/10/2026, 14:04 - Rahul: Namaste Ankit ji, this is Rahul at Sahyadri Securities Ltd.\n05/10/2026, 08:12 - Rahul: Your order no 442172144827 is confirmed.\n06/10/2026, 09:17 - Ankit: Please share details\n06/10/2026, 12:41 - Rahul: Pay ₹10,000 to UPI kyc829.f@ybl today.\n06/10/2026, 21:39 - Rahul: Clearance charges must be paid before withdrawal.\n",
+  "transcripts": {},
+  "payees": [
+   {
+    "value_norm": "kyc829.f@ybl",
+    "type": "upi_vpa",
+    "from_voice": false
+   }
+  ],
+  "checks": {
+   "kyc829.f@ybl": "RAMESH KUMAR"
+  },
+  "expected": [
+   "INCONCLUSIVE"
+  ],
+  "format": "android24"
+ },
+ {
+  "case_id": "dev-003",
+  "kind": "legit_match",
+  "is_scam": false,
+  "claimed_firm": "Kaveri Capital Advisors LLP",
+  "chat_txt": "05/10/2026, 16:37 - Neha: Hello Priya, I am Neha from Kaveri Capital Advisors LLP.\n06/10/2026, 13:43 - Neha: Call 9848675029 for help.\n07/10/2026, 14:40 - Priya: Okay sir\n07/10/2026, 08:28 - Neha: Deposit ₹10,000 in account no. 20536166015350, IFSC BARB0227322.\n",
+  "transcripts": {},
+  "payees": [
+   {
+    "value_norm": "20536166015350",
+    "type": "bank_account",
+    "from_voice": false
+   }
+  ],
+  "checks": {
+   "20536166015350": "KAVERI CAPITAL LTD"
+  },
+  "expected": [
+   "NO_MAJOR_ISSUE"
+  ],
+  "format": "android24"
+ },
+ {
+  "case_id": "dev-004",
+  "kind": "legit_gateway",
+  "is_scam": false,
+  "claimed_firm": "Indravati Stockline Ltd",
+  "chat_txt": "05/10/2026, 12:43 - Neha: Namaste Ankit ji, this is Neha at Indravati Stockline Ltd.\n06/10/2026, 14:13 - Ankit: How do I pay?\n07/10/2026, 12:35 - Neha: Transfer ₹10,000 to A/c 48229566989999 IFSC IDIB0559819.\n",
+  "transcripts": {},
+  "payees": [
+   {
+    "value_norm": "48229566989999",
+    "type": "bank_account",
+    "from_voice": false
+   }
+  ],
+  "checks": {
+   "48229566989999": "Cashfree Payments India"
+  },
+  "expected": [
+   "INCONCLUSIVE"
+  ],
+  "format": "android24"
+ },
+ {
+  "case_id": "dev-005",
+  "kind": "no_check",
+  "is_scam": false,
+  "claimed_firm": "Indravati Stockline Ltd",
+  "chat_txt": "05/10/2026, 18:17 - Rahul: Namaste Meera ji, this is Rahul at Indravati Stockline Ltd.\n05/10/2026, 19:55 - Rahul: Mail us at support.indravati@gmail.com\n06/10/2026, 19:05 - Meera: ok\n07/10/2026, 13:13 - Rahul: Pay ₹10,000 to UPI desk121.e@upi today.\n",
+  "transcripts": {},
+  "payees": [
+   {
+    "value_norm": "desk121.e@upi",
+    "type": "upi_vpa",
+    "from_voice": false
+   }
+  ],
+  "checks": {},
+  "expected": [
+   "INCONCLUSIVE"
+  ],
+  "format": "android24"
+ },
+ {
+  "case_id": "dev-006",
+  "kind": "scam_rotation",
+  "is_scam": true,
+  "claimed_firm": "Meghdoot Investments Pvt Ltd",
+  "chat_txt": "05/10/2026, 7:58 pm - Neha: Hello John, I am Neha from Meghdoot Investments Pvt Ltd.\n05/10/2026, 4:45 pm - Neha: Mail us at support.meghdoot@gmail.com\n05/10/2026, 5:33 pm - John: ok\n05/10/2026, 5:36 pm - Neha: Send ₹40,000 to acct122.b@upi for activation.\n05/10/2026, 12:18 pm - Neha: Our payment department has a new ID: pay305.j@upi.\n05/10/2026, 6:35 pm - John: paying now\n06/10/2026, 11:19 am - Neha: Our payment department has a new ID: svc783.f@ibl.\n",
+  "transcripts": {},
+  "payees": [
+   {
+    "value_norm": "acct122.b@upi",
+    "type": "upi_vpa",
+    "from_voice": false
+   },
+   {
+    "value_norm": "pay305.j@upi",
+    "type": "upi_vpa",
+    "from_voice": false
+   },
+   {
+    "value_norm": "svc783.f@ibl",
+    "type": "upi_vpa",
+    "from_voice": false
+   }
+  ],
+  "checks": {
+   "acct122.b@upi": "JAI AMBE AGENCIES",
+   "pay305.j@upi": "NEW STAR ELECTRICALS",
+   "svc783.f@ibl": "MAA DURGA STORES"
+  },
+  "expected": [
+   "NAME_DISCREPANCY",
+   "NAME_DISCREPANCY",
+   "NAME_DISCREPANCY"
+  ],
+  "format": "android12"
+ },
+ {
+  "case_id": "dev-007",
+  "kind": "scam_single",
+  "is_scam": true,
+  "claimed_firm": "Indravati Stockline Ltd",
+  "chat_txt": "05/10/2026, 11:56 - Neha: Namaste Suresh ji, this is Neha at Indravati Stockline Ltd.\n06/10/2026, 13:49 - Suresh: How do I pay?\n06/10/2026, 20:50 - Neha: Deposit ₹40,000 in account no. 18089128532576, IFSC PUNB0721448.\n07/10/2026, 21:03 - Neha: Clearance charges must be paid before withdrawal.\n",
+  "transcripts": {},
+  "payees": [
+   {
+    "value_norm": "18089128532576",
+    "type": "bank_account",
+    "from_voice": false
+   }
+  ],
+  "checks": {
+   "18089128532576": "OM SAI ENTERPRISES"
+  },
+  "expected": [
+   "NAME_DISCREPANCY"
+  ],
+  "format": "android24"
+ },
+ {
+  "case_id": "dev-008",
+  "kind": "scam_person",
+  "is_scam": true,
+  "claimed_firm": "Sahyadri Securities Ltd",
+  "chat_txt": "05/10/2026, 21:24 - Rahul: Hello Priya, I am Rahul from Sahyadri Securities Ltd.\n05/10/2026, 14:08 - Rahul: Call 9810347399 for help.\n06/10/2026, 21:06 - Priya: Okay sir\n06/10/2026, 10:48 - Rahul: Send ₹15,000 to svc229.k@okaxis for activation.\n06/10/2026, 12:58 - Rahul: Clearance charges must be paid before withdrawal.\n",
+  "transcripts": {},
+  "payees": [
+   {
+    "value_norm": "svc229.k@okaxis",
+    "type": "upi_vpa",
+    "from_voice": false
+   }
+  ],
+  "checks": {
+   "svc229.k@okaxis": "RAMESH KUMAR"
+  },
+  "expected": [
+   "INCONCLUSIVE"
+  ],
+  "format": "android24"
+ },
+ {
+  "case_id": "dev-009",
+  "kind": "legit_match",
+  "is_scam": false,
+  "claimed_firm": "Navyug Broking Pvt Ltd",
+  "chat_txt": "[05/10/26, 8:44:31 PM] Rahul: Hello John, I am Rahul from Navyug Broking Pvt Ltd.\n[06/10/26, 12:08:23 PM] Rahul: Your order no 442193653749 is confirmed.\n[07/10/26, 8:08:49 PM] John: How do I pay?\n[08/10/26, 12:52:22 PM] Rahul: Send ₹5,000 to desk109.j@upi for activation.\n[09/10/26, 4:50:14 PM] John: done\n",
+  "transcripts": {},
+  "payees": [
+   {
+    "value_norm": "desk109.j@upi",
+    "type": "upi_vpa",
+    "from_voice": false
+   }
+  ],
+  "checks": {
+   "desk109.j@upi": "M/S NAVYUG BROKING PVT LTD"
+  },
+  "expected": [
+   "NO_MAJOR_ISSUE"
+  ],
+  "format": "ios"
+ },
+ {
+  "case_id": "dev-010",
+  "kind": "legit_gateway",
+  "is_scam": false,
+  "claimed_firm": "Sahyadri Securities Ltd",
+  "chat_txt": "[05/10/26, 8:10:16 AM] Rahul: Hello Priya, I am Rahul from Sahyadri Securities Ltd.\n[05/10/26, 5:37:56 PM] Rahul: Your order no 442181016692 is confirmed.\n[05/10/26, 11:08:03 AM] Priya: ok\n[05/10/26, 3:27:30 PM] Rahul: Transfer ₹40,000 to A/c 25892782901156 IFSC ICIC0294676.\n[05/10/26, 5:16:11 PM] Priya: done\n",
+  "transcripts": {},
+  "payees": [
+   {
+    "value_norm": "25892782901156",
+    "type": "bank_account",
+    "from_voice": false
+   }
+  ],
+  "checks": {
+   "25892782901156": "Razorpay Software Pvt Ltd"
+  },
+  "expected": [
+   "INCONCLUSIVE"
+  ],
+  "format": "ios"
+ },
+ {
+  "case_id": "dev-011",
+  "kind": "no_check",
+  "is_scam": false,
+  "claimed_firm": "Kaveri Capital Advisors LLP",
+  "chat_txt": "05/10/2026, 18:10 - Rahul: Hello Ankit, I am Rahul from Kaveri Capital Advisors LLP.\n06/10/2026, 10:49 - Rahul: Call 9853019285 for help.\n07/10/2026, 21:44 - Ankit: Please share details\n08/10/2026, 18:58 - Rahul: Pay ₹40,000 to UPI fund538.g@axl today.\n",
+  "transcripts": {},
+  "payees": [
+   {
+    "value_norm": "fund538.g@axl",
+    "type": "upi_vpa",
+    "from_voice": false
+   }
+  ],
+  "checks": {},
+  "expected": [
+   "INCONCLUSIVE"
+  ],
+  "format": "android24"
+ },
+ {
+  "case_id": "dev-012",
+  "kind": "scam_rotation",
+  "is_scam": true,
+  "claimed_firm": "Navyug Broking Pvt Ltd",
+  "chat_txt": "[05/10/26, 9:56:49 PM] Pooja: Namaste Meera ji, this is Pooja at Navyug Broking Pvt Ltd.\n[05/10/26, 5:13:08 PM] Pooja: Visit www.navyug-markets.in\n[05/10/26, 2:57:43 PM] Meera: ok\n[06/10/26, 5:05:43 PM] Pooja: Send ₹10,000 to kyc620.g@upi for activation.\n[06/10/26, 8:00:11 PM] Meera: ok wait\n[06/10/26, 8:23:11 PM] Pooja: PTT-20261006-WA0039.opus (file attached)\n[06/10/26, 12:56:28 PM] Pooja: Pay 18% tax to withdraw your profit.\n[07/10/26, 1:44:58 PM] Meera: paying now\n",
+  "transcripts": {
+   "PTT-20261006-WA0039.opus": "Our payment department has a new ID: acct824.j@oksbi."
+  },
+  "payees": [
+   {
+    "value_norm": "kyc620.g@upi",
+    "type": "upi_vpa",
+    "from_voice": false
+   },
+   {
+    "value_norm": "acct824.j@oksbi",
+    "type": "upi_vpa",
+    "from_voice": true
+   }
+  ],
+  "checks": {
+   "kyc620.g@upi": "RK MOBILE POINT",
+   "acct824.j@oksbi": "SAI KRUPA TRADING CO"
+  },
+  "expected": [
+   "NAME_DISCREPANCY",
+   "NAME_DISCREPANCY"
+  ],
+  "format": "ios"
+ },
+ {
+  "case_id": "dev-013",
+  "kind": "scam_single",
+  "is_scam": true,
+  "claimed_firm": "Navyug Broking Pvt Ltd",
+  "chat_txt": "05/10/2026, 09:03 - Rahul: Namaste Priya ji, this is Rahul at Navyug Broking Pvt Ltd.\n05/10/2026, 14:19 - Priya: Okay sir\n05/10/2026, 12:50 - Rahul: Send ₹10,000 to acct936.c@paytm for activation.\n05/10/2026, 10:39 - Priya: done\n",
+  "transcripts": {},
+  "payees": [
+   {
+    "value_norm": "acct936.c@paytm",
+    "type": "upi_vpa",
+    "from_voice": false
+   }
+  ],
+  "checks": {
+   "acct936.c@paytm": "RK MOBILE POINT"
+  },
+  "expected": [
+   "NAME_DISCREPANCY"
+  ],
+  "format": "android24"
+ },
+ {
+  "case_id": "dev-014",
+  "kind": "scam_person",
+  "is_scam": true,
+  "claimed_firm": "Indravati Stockline Ltd",
+  "chat_txt": "[05/10/26, 7:09:26 PM] Vikram: Namaste Priya ji, this is Vikram at Indravati Stockline Ltd.\n[05/10/26, 12:23:52 PM] Vikram: Mail us at support.indravati@gmail.com\n[05/10/26, 8:21:50 PM] Priya: How do I pay?\n[05/10/26, 11:44:02 AM] Vikram: Pay ₹5,000 to UPI fund165.f@upi today.\n[05/10/26, 9:29:21 AM] Vikram: Clearance charges must be paid before withdrawal.\n",
+  "transcripts": {},
+  "payees": [
+   {
+    "value_norm": "fund165.f@upi",
+    "type": "upi_vpa",
+    "from_voice": false
+   }
+  ],
+  "checks": {
+   "fund165.f@upi": "PRAKASH YADAV"
+  },
+  "expected": [
+   "INCONCLUSIVE"
+  ],
+  "format": "ios"
+ },
+ {
+  "case_id": "dev-015",
+  "kind": "legit_match",
+  "is_scam": false,
+  "claimed_firm": "Pratham Wealth Research Pvt Ltd",
+  "chat_txt": "05/10/2026, 17:06 - Vikram: Hello John, I am Vikram from Pratham Wealth Research Pvt Ltd.\n06/10/2026, 14:12 - Vikram: Visit www.pratham-markets.in\n06/10/2026, 11:31 - John: ok\n06/10/2026, 21:58 - Vikram: Send ₹40,000 to kyc616.e@ybl for activation.\n07/10/2026, 21:18 - John: sent\n",
+  "transcripts": {},
+  "payees": [
+   {
+    "value_norm": "kyc616.e@ybl",
+    "type": "upi_vpa",
+    "from_voice": false
+   }
+  ],
+  "checks": {
+   "kyc616.e@ybl": "PRATHAM WEALTH RESEARCH PVT LTD"
+  },
+  "expected": [
+   "NO_MAJOR_ISSUE"
+  ],
+  "format": "android24"
+ },
+ {
+  "case_id": "dev-016",
+  "kind": "legit_gateway",
+  "is_scam": false,
+  "claimed_firm": "Navyug Broking Pvt Ltd",
+  "chat_txt": "[05/10/26, 8:53:59 AM] Neha: Namaste John ji, this is Neha at Navyug Broking Pvt Ltd.\n[05/10/26, 8:42:10 AM] Neha: Mail us at support.navyug@gmail.com\n[06/10/26, 4:13:08 PM] John: ok\n[06/10/26, 8:32:55 PM] Neha: Send ₹60,000 to desk190.g@axl for activation.\n",
+  "transcripts": {},
+  "payees": [
+   {
+    "value_norm": "desk190.g@axl",
+    "type": "upi_vpa",
+    "from_voice": false
+   }
+  ],
+  "checks": {
+   "desk190.g@axl": "Razorpay Software Pvt Ltd"
+  },
+  "expected": [
+   "INCONCLUSIVE"
+  ],
+  "format": "ios"
+ },
+ {
+  "case_id": "dev-017",
+  "kind": "no_check",
+  "is_scam": false,
+  "claimed_firm": "Pratham Wealth Research Pvt Ltd",
+  "chat_txt": "[05/10/26, 6:42:42 PM] Neha: Namaste Fatima ji, this is Neha at Pratham Wealth Research Pvt Ltd.\n[05/10/26, 4:36:35 PM] Fatima: Please share details\n[06/10/26, 8:33:58 AM] Neha: Pay ₹5,000 to UPI acct973.d@ibl today.\n[06/10/26, 1:15:30 PM] Fatima: sent\n",
+  "transcripts": {},
+  "payees": [
+   {
+    "value_norm": "acct973.d@ibl",
+    "type": "upi_vpa",
+    "from_voice": false
+   }
+  ],
+  "checks": {},
+  "expected": [
+   "INCONCLUSIVE"
+  ],
+  "format": "ios"
+ },
+ {
+  "case_id": "dev-018",
+  "kind": "scam_rotation",
+  "is_scam": true,
+  "claimed_firm": "Navyug Broking Pvt Ltd",
+  "chat_txt": "05/10/2026, 3:54 pm - Rahul: Hello John, I am Rahul from Navyug Broking Pvt Ltd.\n06/10/2026, 11:20 am - Rahul: Your order no 442118764628 is confirmed.\n07/10/2026, 8:38 am - John: How do I pay?\n08/10/2026, 6:45 pm - Rahul: Transfer ₹40,000 to A/c 16996759573791 IFSC HDFC0176677.\n09/10/2026, 3:27 pm - Rahul: Our payment department has a new ID: pay926.c@ibl.\n10/10/2026, 1:48 pm - John: paying now\n",
+  "transcripts": {},
+  "payees": [
+   {
+    "value_norm": "16996759573791",
+    "type": "bank_account",
+    "from_voice": false
+   },
+   {
+    "value_norm": "pay926.c@ibl",
+    "type": "upi_vpa",
+    "from_voice": false
+   }
+  ],
+  "checks": {
+   "16996759573791": "RK MOBILE POINT",
+   "pay926.c@ibl": "SAI KRUPA TRADING CO"
+  },
+  "expected": [
+   "NAME_DISCREPANCY",
+   "NAME_DISCREPANCY"
+  ],
+  "format": "android12"
+ },
+ {
+  "case_id": "dev-019",
+  "kind": "scam_single",
+  "is_scam": true,
+  "claimed_firm": "Indravati Stockline Ltd",
+  "chat_txt": "[05/10/26, 10:40:28 AM] Neha: Hello Priya, I am Neha from Indravati Stockline Ltd.\n[06/10/26, 6:02:35 PM] Priya: Please share details\n[06/10/26, 8:29:17 PM] Neha: Pay ₹10,000 to UPI fund579.j@okaxis today.\n[07/10/26, 11:26:21 AM] Neha: Clearance charges must be paid before withdrawal.\n",
+  "transcripts": {},
+  "payees": [
+   {
+    "value_norm": "fund579.j@okaxis",
+    "type": "upi_vpa",
+    "from_voice": false
+   }
+  ],
+  "checks": {
+   "fund579.j@okaxis": "RK MOBILE POINT"
+  },
+  "expected": [
+   "NAME_DISCREPANCY"
+  ],
+  "format": "ios"
+ },
+ {
+  "case_id": "dev-020",
+  "kind": "scam_person",
+  "is_scam": true,
+  "claimed_firm": "Navyug Broking Pvt Ltd",
+  "chat_txt": "05/10/2026, 2:48 pm - Neha: Hello Priya, I am Neha from Navyug Broking Pvt Ltd.\n06/10/2026, 11:49 am - Neha: Your order no 442143811642 is confirmed.\n06/10/2026, 9:44 pm - Priya: ok\n07/10/2026, 7:17 pm - Neha: Pay ₹40,000 to UPI fund957.c@oksbi today.\n07/10/2026, 8:36 pm - Neha: Clearance charges must be paid before withdrawal.\n",
+  "transcripts": {},
+  "payees": [
+   {
+    "value_norm": "fund957.c@oksbi",
+    "type": "upi_vpa",
+    "from_voice": false
+   }
+  ],
+  "checks": {
+   "fund957.c@oksbi": "RAMESH KUMAR"
+  },
+  "expected": [
+   "INCONCLUSIVE"
+  ],
+  "format": "android12"
+ },
+ {
+  "case_id": "dev-021",
+  "kind": "legit_match",
+  "is_scam": false,
+  "claimed_firm": "Indravati Stockline Ltd",
+  "chat_txt": "[05/10/26, 5:35:46 PM] Rahul: Hello Priya, I am Rahul from Indravati Stockline Ltd.\n[05/10/26, 11:01:23 AM] Rahul: Visit www.indravati-markets.in\n[06/10/26, 8:44:31 PM] Priya: Please share details\n[06/10/26, 6:35:40 PM] Rahul: Send ₹25,000 to desk162.d@okaxis for activation.\n",
+  "transcripts": {},
+  "payees": [
+   {
+    "value_norm": "desk162.d@okaxis",
+    "type": "upi_vpa",
+    "from_voice": false
+   }
+  ],
+  "checks": {
+   "desk162.d@okaxis": "INDRAVATI STOCKLINE LTD"
+  },
+  "expected": [
+   "NO_MAJOR_ISSUE"
+  ],
+  "format": "ios"
+ },
+ {
+  "case_id": "dev-022",
+  "kind": "legit_gateway",
+  "is_scam": false,
+  "claimed_firm": "Pratham Wealth Research Pvt Ltd",
+  "chat_txt": "05/10/2026, 1:55 pm - Pooja: Hello John, I am Pooja from Pratham Wealth Research Pvt Ltd.\n06/10/2026, 12:27 pm - Pooja: Mail us at support.pratham@gmail.com\n07/10/2026, 9:23 pm - John: Please share details\n08/10/2026, 5:51 pm - Pooja: Pay ₹10,000 to UPI svc617.b@okaxis today.\n",
+  "transcripts": {},
+  "payees": [
+   {
+    "value_norm": "svc617.b@okaxis",
+    "type": "upi_vpa",
+    "from_voice": false
+   }
+  ],
+  "checks": {
+   "svc617.b@okaxis": "Cashfree Payments India"
+  },
+  "expected": [
+   "INCONCLUSIVE"
+  ],
+  "format": "android12"
+ },
+ {
+  "case_id": "dev-023",
+  "kind": "no_check",
+  "is_scam": false,
+  "claimed_firm": "Kaveri Capital Advisors LLP",
+  "chat_txt": "05/10/2026, 3:03 pm - Vikram: Hello Fatima, I am Vikram from Kaveri Capital Advisors LLP.\n05/10/2026, 12:57 pm - Vikram: Call 9871111621 for help.\n06/10/2026, 3:23 pm - Fatima: Please share details\n07/10/2026, 10:37 am - Vikram: Send ₹40,000 to svc167.g@okaxis for activation.\n08/10/2026, 7:07 pm - Vikram: Our payment department has a new ID: kyc743.j@oksbi.\n08/10/2026, 11:30 am - Fatima: done\n",
+  "transcripts": {},
+  "payees": [
+   {
+    "value_norm": "svc167.g@okaxis",
+    "type": "upi_vpa",
+    "from_voice": false
+   },
+   {
+    "value_norm": "kyc743.j@oksbi",
+    "type": "upi_vpa",
+    "from_voice": false
+   }
+  ],
+  "checks": {},
+  "expected": [
+   "INCONCLUSIVE",
+   "INCONCLUSIVE"
+  ],
+  "format": "android12"
+ },
+ {
+  "case_id": "dev-024",
+  "kind": "scam_rotation",
+  "is_scam": true,
+  "claimed_firm": "Kaveri Capital Advisors LLP",
+  "chat_txt": "05/10/2026, 8:15 am - Neha: Hello Meera, I am Neha from Kaveri Capital Advisors LLP.\n06/10/2026, 5:16 pm - Meera: Please share details\n07/10/2026, 9:26 pm - Neha: Transfer ₹5,000 to A/c 69494180607217 IFSC ICIC0969523.\n08/10/2026, 4:19 pm - Neha: Transfer ₹10,000 to A/c 23957065188619 IFSC HDFC0836730.\n",
+  "transcripts": {},
+  "payees": [
+   {
+    "value_norm": "69494180607217",
+    "type": "bank_account",
+    "from_voice": false
+   },
+   {
+    "value_norm": "23957065188619",
+    "type": "bank_account",
+    "from_voice": false
+   }
+  ],
+  "checks": {
+   "69494180607217": "NEW STAR ELECTRICALS",
+   "23957065188619": "JAI AMBE AGENCIES"
+  },
+  "expected": [
+   "NAME_DISCREPANCY",
+   "NAME_DISCREPANCY"
+  ],
+  "format": "android12"
+ },
+ {
+  "case_id": "dev-025",
+  "kind": "scam_single",
+  "is_scam": true,
+  "claimed_firm": "Sahyadri Securities Ltd",
+  "chat_txt": "05/10/2026, 5:40 pm - Rahul: Namaste Suresh ji, this is Rahul at Sahyadri Securities Ltd.\n05/10/2026, 8:19 pm - Rahul: Your order no 442152763850 is confirmed.\n05/10/2026, 1:17 pm - Suresh: Please share details\n06/10/2026, 3:05 pm - Rahul: Pay ₹40,000 to UPI desk64.g@ibl today.\n",
+  "transcripts": {},
+  "payees": [
+   {
+    "value_norm": "desk64.g@ibl",
+    "type": "upi_vpa",
+    "from_voice": false
+   }
+  ],
+  "checks": {
+   "desk64.g@ibl": "SAI KRUPA TRADING CO"
+  },
+  "expected": [
+   "NAME_DISCREPANCY"
+  ],
+  "format": "android12"
+ },
+ {
+  "case_id": "dev-026",
+  "kind": "scam_person",
+  "is_scam": true,
+  "claimed_firm": "Kaveri Capital Advisors LLP",
+  "chat_txt": "05/10/2026, 12:14 - Pooja: Hello Ankit, I am Pooja from Kaveri Capital Advisors LLP.\n05/10/2026, 11:13 - Ankit: Please share details\n06/10/2026, 10:08 - Pooja: Pay ₹15,000 to UPI desk750.d@ibl today.\n06/10/2026, 16:22 - Pooja: Pay 18% tax to withdraw your profit.\n07/10/2026, 09:09 - Ankit: done\n",
+  "transcripts": {},
+  "payees": [
+   {
+    "value_norm": "desk750.d@ibl",
+    "type": "upi_vpa",
+    "from_voice": false
+   }
+  ],
+  "checks": {
+   "desk750.d@ibl": "SUNITA DEVI"
+  },
+  "expected": [
+   "INCONCLUSIVE"
+  ],
+  "format": "android24"
+ },
+ {
+  "case_id": "dev-027",
+  "kind": "legit_match",
+  "is_scam": false,
+  "claimed_firm": "Sahyadri Securities Ltd",
+  "chat_txt": "05/10/2026, 18:59 - Neha: Hello Suresh, I am Neha from Sahyadri Securities Ltd.\n05/10/2026, 21:18 - Suresh: ok\n06/10/2026, 09:36 - Neha: Transfer ₹25,000 to A/c 64081613286640 IFSC IDIB0881904.\n",
+  "transcripts": {},
+  "payees": [
+   {
+    "value_norm": "64081613286640",
+    "type": "bank_account",
+    "from_voice": false
+   }
+  ],
+  "checks": {
+   "64081613286640": "SAHYADRI SECURITIES LTD"
+  },
+  "expected": [
+   "NO_MAJOR_ISSUE"
+  ],
+  "format": "android24"
+ },
+ {
+  "case_id": "dev-028",
+  "kind": "legit_gateway",
+  "is_scam": false,
+  "claimed_firm": "Navyug Broking Pvt Ltd",
+  "chat_txt": "05/10/2026, 15:24 - Neha: Hello Fatima, I am Neha from Navyug Broking Pvt Ltd.\n06/10/2026, 19:46 - Fatima: ok\n06/10/2026, 19:04 - Neha: Send ₹60,000 to acct889.g@axl for activation.\n06/10/2026, 13:51 - Fatima: done\n",
+  "transcripts": {},
+  "payees": [
+   {
+    "value_norm": "acct889.g@axl",
+    "type": "upi_vpa",
+    "from_voice": false
+   }
+  ],
+  "checks": {
+   "acct889.g@axl": "Cashfree Payments India"
+  },
+  "expected": [
+   "INCONCLUSIVE"
+  ],
+  "format": "android24"
+ },
+ {
+  "case_id": "dev-029",
+  "kind": "no_check",
+  "is_scam": false,
+  "claimed_firm": "Indravati Stockline Ltd",
+  "chat_txt": "05/10/2026, 19:26 - Rahul: Namaste Meera ji, this is Rahul at Indravati Stockline Ltd.\n05/10/2026, 19:01 - Rahul: Mail us at support.indravati@gmail.com\n05/10/2026, 18:00 - Meera: Okay sir\n05/10/2026, 17:25 - Rahul: Pay ₹15,000 to UPI svc120.k@ybl today.\n06/10/2026, 11:08 - Meera: ok wait\n06/10/2026, 18:43 - Rahul: Our payment department has a new ID: desk24.j@oksbi.\n07/10/2026, 18:52 - Meera: paying now\n",
+  "transcripts": {},
+  "payees": [
+   {
+    "value_norm": "svc120.k@ybl",
+    "type": "upi_vpa",
+    "from_voice": false
+   },
+   {
+    "value_norm": "desk24.j@oksbi",
+    "type": "upi_vpa",
+    "from_voice": false
+   }
+  ],
+  "checks": {},
+  "expected": [
+   "INCONCLUSIVE",
+   "INCONCLUSIVE"
+  ],
+  "format": "android24"
+ },
+ {
+  "case_id": "dev-030",
+  "kind": "scam_rotation",
+  "is_scam": true,
+  "claimed_firm": "Pratham Wealth Research Pvt Ltd",
+  "chat_txt": "05/10/2026, 17:25 - Vikram: Namaste Priya ji, this is Vikram at Pratham Wealth Research Pvt Ltd.\n06/10/2026, 15:49 - Vikram: Visit www.pratham-markets.in\n06/10/2026, 20:54 - Priya: Okay sir\n06/10/2026, 14:34 - Vikram: Transfer ₹15,000 to A/c 85537994970642 IFSC UTIB0466055.\n06/10/2026, 13:42 - Priya: done\n07/10/2026, 15:43 - Vikram: Use this new UPI now: pay906.e@ibl\n07/10/2026, 16:25 - Vikram: Clearance charges must be paid before withdrawal.\n",
+  "transcripts": {},
+  "payees": [
+   {
+    "value_norm": "85537994970642",
+    "type": "bank_account",
+    "from_voice": false
+   },
+   {
+    "value_norm": "pay906.e@ibl",
+    "type": "upi_vpa",
+    "from_voice": false
+   }
+  ],
+  "checks": {
+   "85537994970642": "BALAJI GARMENTS",
+   "pay906.e@ibl": "MAA DURGA STORES"
+  },
+  "expected": [
+   "NAME_DISCREPANCY",
+   "NAME_DISCREPANCY"
+  ],
+  "format": "android24"
+ },
+ {
+  "case_id": "dev-031",
+  "kind": "scam_single",
+  "is_scam": true,
+  "claimed_firm": "Pratham Wealth Research Pvt Ltd",
+  "chat_txt": "05/10/2026, 4:04 pm - Rahul: Hello Suresh, I am Rahul from Pratham Wealth Research Pvt Ltd.\n05/10/2026, 1:49 pm - Rahul: Your order no 442143407118 is confirmed.\n05/10/2026, 10:33 am - Suresh: How do I pay?\n05/10/2026, 11:07 am - Rahul: Send ₹25,000 to pay715.a@okaxis for activation.\n",
+  "transcripts": {},
+  "payees": [
+   {
+    "value_norm": "pay715.a@okaxis",
+    "type": "upi_vpa",
+    "from_voice": false
+   }
+  ],
+  "checks": {
+   "pay715.a@okaxis": "BALAJI GARMENTS"
+  },
+  "expected": [
+   "NAME_DISCREPANCY"
+  ],
+  "format": "android12"
+ },
+ {
+  "case_id": "dev-032",
+  "kind": "scam_person",
+  "is_scam": true,
+  "claimed_firm": "Indravati Stockline Ltd",
+  "chat_txt": "[05/10/26, 8:03:08 PM] Vikram: Hello Suresh, I am Vikram from Indravati Stockline Ltd.\n[06/10/26, 2:03:55 PM] Suresh: Please share details\n[07/10/26, 4:32:07 PM] Vikram: Send ₹15,000 to kyc968.j@okaxis for activation.\n[08/10/26, 8:06:14 PM] Vikram: Pay 18% tax to withdraw your profit.\n",
+  "transcripts": {},
+  "payees": [
+   {
+    "value_norm": "kyc968.j@okaxis",
+    "type": "upi_vpa",
+    "from_voice": false
+   }
+  ],
+  "checks": {
+   "kyc968.j@okaxis": "MOHD ASLAM"
+  },
+  "expected": [
+   "INCONCLUSIVE"
+  ],
+  "format": "ios"
+ },
+ {
+  "case_id": "dev-033",
+  "kind": "legit_match",
+  "is_scam": false,
+  "claimed_firm": "Pratham Wealth Research Pvt Ltd",
+  "chat_txt": "05/10/2026, 20:17 - Pooja: Namaste Fatima ji, this is Pooja at Pratham Wealth Research Pvt Ltd.\n06/10/2026, 17:23 - Fatima: How do I pay?\n06/10/2026, 20:07 - Pooja: Send ₹5,000 to acct915.c@okaxis for activation.\n",
+  "transcripts": {},
+  "payees": [
+   {
+    "value_norm": "acct915.c@okaxis",
+    "type": "upi_vpa",
+    "from_voice": false
+   }
+  ],
+  "checks": {
+   "acct915.c@okaxis": "PRATHAM WEALTH RESEARCH PRIVATE LIMITED"
+  },
+  "expected": [
+   "NO_MAJOR_ISSUE"
+  ],
+  "format": "android24"
+ },
+ {
+  "case_id": "dev-034",
+  "kind": "legit_gateway",
+  "is_scam": false,
+  "claimed_firm": "Pratham Wealth Research Pvt Ltd",
+  "chat_txt": "[05/10/26, 7:49:43 PM] Neha: Namaste Meera ji, this is Neha at Pratham Wealth Research Pvt Ltd.\n[06/10/26, 7:17:09 PM] Meera: ok\n[06/10/26, 1:28:32 PM] Neha: Transfer ₹10,000 to A/c 69573892592340 IFSC HDFC0450498.\n",
+  "transcripts": {},
+  "payees": [
+   {
+    "value_norm": "69573892592340",
+    "type": "bank_account",
+    "from_voice": false
+   }
+  ],
+  "checks": {
+   "69573892592340": "Cashfree Payments India"
+  },
+  "expected": [
+   "INCONCLUSIVE"
+  ],
+  "format": "ios"
+ },
+ {
+  "case_id": "dev-035",
+  "kind": "no_check",
+  "is_scam": false,
+  "claimed_firm": "Navyug Broking Pvt Ltd",
+  "chat_txt": "05/10/2026, 12:43 pm - Pooja: Namaste Fatima ji, this is Pooja at Navyug Broking Pvt Ltd.\n06/10/2026, 7:06 pm - Fatima: How do I pay?\n07/10/2026, 11:29 am - Pooja: Pay ₹40,000 to UPI acct209.j@paytm today.\n",
+  "transcripts": {},
+  "payees": [
+   {
+    "value_norm": "acct209.j@paytm",
+    "type": "upi_vpa",
+    "from_voice": false
+   }
+  ],
+  "checks": {},
+  "expected": [
+   "INCONCLUSIVE"
+  ],
+  "format": "android12"
+ },
+ {
+  "case_id": "dev-036",
+  "kind": "scam_rotation",
+  "is_scam": true,
+  "claimed_firm": "Kaveri Capital Advisors LLP",
+  "chat_txt": "[05/10/26, 1:00:28 PM] Rahul: Namaste Ankit ji, this is Rahul at Kaveri Capital Advisors LLP.\n[05/10/26, 1:35:09 PM] Rahul: Visit www.kaveri-markets.in\n[05/10/26, 4:38:58 PM] Ankit: Okay sir\n[06/10/26, 8:27:54 AM] Rahul: Send ₹60,000 to pay899.b@ibl for activation.\n[07/10/26, 3:47:55 PM] Ankit: ok wait\n[07/10/26, 12:07:05 PM] Rahul: PTT-20261007-WA0031.opus (file attached)\n[08/10/26, 9:48:50 AM] Rahul: Use this new UPI now: pay570.c@ibl\n[09/10/26, 3:08:15 PM] Rahul: Clearance charges must be paid before withdrawal.\n",
+  "transcripts": {
+   "PTT-20261007-WA0031.opus": "Use this new UPI now: svc475.g@ibl"
+  },
+  "payees": [
+   {
+    "value_norm": "pay899.b@ibl",
+    "type": "upi_vpa",
+    "from_voice": false
+   },
+   {
+    "value_norm": "svc475.g@ibl",
+    "type": "upi_vpa",
+    "from_voice": true
+   },
+   {
+    "value_norm": "pay570.c@ibl",
+    "type": "upi_vpa",
+    "from_voice": false
+   }
+  ],
+  "checks": {
+   "pay899.b@ibl": "JAI AMBE AGENCIES",
+   "svc475.g@ibl": "SAI KRUPA TRADING CO",
+   "pay570.c@ibl": "BALAJI GARMENTS"
+  },
+  "expected": [
+   "NAME_DISCREPANCY",
+   "NAME_DISCREPANCY",
+   "NAME_DISCREPANCY"
+  ],
+  "format": "ios"
+ },
+ {
+  "case_id": "dev-037",
+  "kind": "scam_single",
+  "is_scam": true,
+  "claimed_firm": "Indravati Stockline Ltd",
+  "chat_txt": "05/10/2026, 11:45 - Rahul: Hello Fatima, I am Rahul from Indravati Stockline Ltd.\n06/10/2026, 20:21 - Rahul: Mail us at support.indravati@gmail.com\n06/10/2026, 09:35 - Fatima: Please share details\n06/10/2026, 19:55 - Rahul: Send ₹40,000 to acct705.a@oksbi for activation.\n07/10/2026, 18:12 - Rahul: Clearance charges must be paid before withdrawal.\n07/10/2026, 15:21 - Fatima: ok wait\n",
+  "transcripts": {},
+  "payees": [
+   {
+    "value_norm": "acct705.a@oksbi",
+    "type": "upi_vpa",
+    "from_voice": false
+   }
+  ],
+  "checks": {
+   "acct705.a@oksbi": "BALAJI GARMENTS"
+  },
+  "expected": [
+   "NAME_DISCREPANCY"
+  ],
+  "format": "android24"
+ },
+ {
+  "case_id": "dev-038",
+  "kind": "scam_person",
+  "is_scam": true,
+  "claimed_firm": "Sahyadri Securities Ltd",
+  "chat_txt": "05/10/2026, 14:46 - Vikram: Namaste Suresh ji, this is Vikram at Sahyadri Securities Ltd.\n06/10/2026, 16:11 - Suresh: Okay sir\n07/10/2026, 14:17 - Vikram: Send ₹15,000 to desk641.f@ybl for activation.\n07/10/2026, 14:20 - Vikram: Pay 18% tax to withdraw your profit.\n08/10/2026, 14:51 - Suresh: ok wait\n",
+  "transcripts": {},
+  "payees": [
+   {
+    "value_norm": "desk641.f@ybl",
+    "type": "upi_vpa",
+    "from_voice": false
+   }
+  ],
+  "checks": {
+   "desk641.f@ybl": "RAMESH KUMAR"
+  },
+  "expected": [
+   "INCONCLUSIVE"
+  ],
+  "format": "android24"
+ },
+ {
+  "case_id": "dev-039",
+  "kind": "legit_match",
+  "is_scam": false,
+  "claimed_firm": "Sahyadri Securities Ltd",
+  "chat_txt": "05/10/2026, 7:45 pm - Vikram: Hello John, I am Vikram from Sahyadri Securities Ltd.\n06/10/2026, 4:20 pm - Vikram: Call 9866578828 for help.\n07/10/2026, 12:50 pm - John: How do I pay?\n07/10/2026, 5:17 pm - Vikram: Send ₹40,000 to pay660.j@ybl for activation.\n",
+  "transcripts": {},
+  "payees": [
+   {
+    "value_norm": "pay660.j@ybl",
+    "type": "upi_vpa",
+    "from_voice": false
+   }
+  ],
+  "checks": {
+   "pay660.j@ybl": "SAHYADRI SECURITIES LTD"
+  },
+  "expected": [
+   "NO_MAJOR_ISSUE"
+  ],
+  "format": "android12"
+ },
+ {
+  "case_id": "dev-040",
+  "kind": "legit_gateway",
+  "is_scam": false,
+  "claimed_firm": "Meghdoot Investments Pvt Ltd",
+  "chat_txt": "05/10/2026, 6:14 pm - Rahul: Hello Suresh, I am Rahul from Meghdoot Investments Pvt Ltd.\n05/10/2026, 9:31 pm - Suresh: ok\n06/10/2026, 11:00 am - Rahul: Send ₹5,000 to acct446.b@ybl for activation.\n",
+  "transcripts": {},
+  "payees": [
+   {
+    "value_norm": "acct446.b@ybl",
+    "type": "upi_vpa",
+    "from_voice": false
+   }
+  ],
+  "checks": {
+   "acct446.b@ybl": "Cashfree Payments India"
+  },
+  "expected": [
+   "INCONCLUSIVE"
+  ],
+  "format": "android12"
+ },
+ {
+  "case_id": "dev-041",
+  "kind": "no_check",
+  "is_scam": false,
+  "claimed_firm": "Navyug Broking Pvt Ltd",
+  "chat_txt": "05/10/2026, 08:26 - Pooja: Namaste Meera ji, this is Pooja at Navyug Broking Pvt Ltd.\n05/10/2026, 21:45 - Pooja: Call 9877690979 for help.\n06/10/2026, 18:48 - Meera: Okay sir\n07/10/2026, 15:54 - Pooja: Pay ₹25,000 to UPI desk509.c@paytm today.\n",
+  "transcripts": {},
+  "payees": [
+   {
+    "value_norm": "desk509.c@paytm",
+    "type": "upi_vpa",
+    "from_voice": false
+   }
+  ],
+  "checks": {},
+  "expected": [
+   "INCONCLUSIVE"
+  ],
+  "format": "android24"
+ },
+ {
+  "case_id": "dev-042",
+  "kind": "scam_rotation",
+  "is_scam": true,
+  "claimed_firm": "Kaveri Capital Advisors LLP",
+  "chat_txt": "[05/10/26, 2:37:44 PM] Rahul: Hello Priya, I am Rahul from Kaveri Capital Advisors LLP.\n[05/10/26, 2:40:03 PM] Rahul: Call 9851021776 for help.\n[05/10/26, 11:24:31 AM] Priya: Okay sir\n[05/10/26, 5:37:28 PM] Rahul: Send ₹15,000 to desk295.b@oksbi for activation.\n[06/10/26, 9:48:47 PM] Priya: ok wait\n[07/10/26, 9:39:46 AM] Rahul: Transfer ₹25,000 to A/c 87824694516555 IFSC ICIC0835890.\n[07/10/26, 2:47:35 PM] Priya: ok wait\n[08/10/26, 10:29:23 AM] Rahul: Use this new UPI now: svc692.j@upi\n[08/10/26, 8:42:21 PM] Rahul: Clearance charges must be paid before withdrawal.\n[08/10/26, 3:09:59 PM] Priya: sent\n",
+  "transcripts": {},
+  "payees": [
+   {
+    "value_norm": "desk295.b@oksbi",
+    "type": "upi_vpa",
+    "from_voice": false
+   },
+   {
+    "value_norm": "87824694516555",
+    "type": "bank_account",
+    "from_voice": false
+   },
+   {
+    "value_norm": "svc692.j@upi",
+    "type": "upi_vpa",
+    "from_voice": false
+   }
+  ],
+  "checks": {
+   "desk295.b@oksbi": "NEW STAR ELECTRICALS",
+   "87824694516555": "BALAJI GARMENTS",
+   "svc692.j@upi": "OM SAI ENTERPRISES"
+  },
+  "expected": [
+   "NAME_DISCREPANCY",
+   "NAME_DISCREPANCY",
+   "NAME_DISCREPANCY"
+  ],
+  "format": "ios"
+ },
+ {
+  "case_id": "dev-043",
+  "kind": "scam_single",
+  "is_scam": true,
+  "claimed_firm": "Navyug Broking Pvt Ltd",
+  "chat_txt": "05/10/2026, 19:21 - Neha: Hello Fatima, I am Neha from Navyug Broking Pvt Ltd.\n05/10/2026, 18:43 - Fatima: Please share details\n05/10/2026, 18:02 - Neha: Transfer ₹5,000 to A/c 11406131712313 IFSC IDIB0132099.\n06/10/2026, 11:18 - Neha: Clearance charges must be paid before withdrawal.\n",
+  "transcripts": {},
+  "payees": [
+   {
+    "value_norm": "11406131712313",
+    "type": "bank_account",
+    "from_voice": false
+   }
+  ],
+  "checks": {
+   "11406131712313": "JAI AMBE AGENCIES"
+  },
+  "expected": [
+   "NAME_DISCREPANCY"
+  ],
+  "format": "android24"
+ },
+ {
+  "case_id": "dev-044",
+  "kind": "scam_person",
+  "is_scam": true,
+  "claimed_firm": "Meghdoot Investments Pvt Ltd",
+  "chat_txt": "05/10/2026, 8:15 am - Neha: Namaste Suresh ji, this is Neha at Meghdoot Investments Pvt Ltd.\n06/10/2026, 8:25 pm - Neha: Visit www.meghdoot-markets.in\n07/10/2026, 10:56 am - Suresh: How do I pay?\n08/10/2026, 2:55 pm - Neha: Transfer ₹15,000 to A/c 34375206088749 IFSC SBIN0255549.\n",
+  "transcripts": {},
+  "payees": [
+   {
+    "value_norm": "34375206088749",
+    "type": "bank_account",
+    "from_voice": false
+   }
+  ],
+  "checks": {
+   "34375206088749": "PRAKASH YADAV"
+  },
+  "expected": [
+   "INCONCLUSIVE"
+  ],
+  "format": "android12"
+ },
+ {
+  "case_id": "dev-045",
+  "kind": "legit_match",
+  "is_scam": false,
+  "claimed_firm": "Kaveri Capital Advisors LLP",
+  "chat_txt": "05/10/2026, 9:22 pm - Rahul: Namaste Suresh ji, this is Rahul at Kaveri Capital Advisors LLP.\n05/10/2026, 2:11 pm - Rahul: Visit www.kaveri-markets.in\n06/10/2026, 8:04 pm - Suresh: How do I pay?\n06/10/2026, 10:19 am - Rahul: Pay ₹10,000 to UPI svc697.h@oksbi today.\n07/10/2026, 9:47 pm - Suresh: sent\n",
+  "transcripts": {},
+  "payees": [
+   {
+    "value_norm": "svc697.h@oksbi",
+    "type": "upi_vpa",
+    "from_voice": false
+   }
+  ],
+  "checks": {
+   "svc697.h@oksbi": "M/S KAVERI CAPITAL PVT LTD"
+  },
+  "expected": [
+   "NO_MAJOR_ISSUE"
+  ],
+  "format": "android12"
+ },
+ {
+  "case_id": "dev-046",
+  "kind": "legit_gateway",
+  "is_scam": false,
+  "claimed_firm": "Pratham Wealth Research Pvt Ltd",
+  "chat_txt": "05/10/2026, 1:34 pm - Pooja: Namaste Priya ji, this is Pooja at Pratham Wealth Research Pvt Ltd.\n05/10/2026, 4:50 pm - Priya: Okay sir\n06/10/2026, 4:31 pm - Pooja: Pay ₹60,000 to UPI pay21.d@ybl today.\n",
+  "transcripts": {},
+  "payees": [
+   {
+    "value_norm": "pay21.d@ybl",
+    "type": "upi_vpa",
+    "from_voice": false
+   }
+  ],
+  "checks": {
+   "pay21.d@ybl": "Razorpay Software Pvt Ltd"
+  },
+  "expected": [
+   "INCONCLUSIVE"
+  ],
+  "format": "android12"
+ },
+ {
+  "case_id": "dev-047",
+  "kind": "no_check",
+  "is_scam": false,
+  "claimed_firm": "Navyug Broking Pvt Ltd",
+  "chat_txt": "05/10/2026, 13:58 - Rahul: Namaste Meera ji, this is Rahul at Navyug Broking Pvt Ltd.\n05/10/2026, 09:49 - Meera: How do I pay?\n06/10/2026, 14:17 - Rahul: Transfer ₹60,000 to A/c 35419690942985 IFSC SBIN0239950.\n07/10/2026, 15:51 - Rahul: Our payment department has a new ID: fund315.g@upi.\n",
+  "transcripts": {},
+  "payees": [
+   {
+    "value_norm": "35419690942985",
+    "type": "bank_account",
+    "from_voice": false
+   },
+   {
+    "value_norm": "fund315.g@upi",
+    "type": "upi_vpa",
+    "from_voice": false
+   }
+  ],
+  "checks": {},
+  "expected": [
+   "INCONCLUSIVE",
+   "INCONCLUSIVE"
+  ],
+  "format": "android24"
+ },
+ {
+  "case_id": "dev-048",
+  "kind": "scam_rotation",
+  "is_scam": true,
+  "claimed_firm": "Pratham Wealth Research Pvt Ltd",
+  "chat_txt": "[05/10/26, 2:43:25 PM] Vikram: Namaste John ji, this is Vikram at Pratham Wealth Research Pvt Ltd.\n[05/10/26, 12:38:05 PM] Vikram: Call 9814069408 for help.\n[06/10/26, 9:12:22 AM] John: How do I pay?\n[07/10/26, 8:07:24 PM] Vikram: Send ₹60,000 to fund26.b@ibl for activation.\n[08/10/26, 1:01:45 PM] John: done\n[08/10/26, 9:38:41 PM] Vikram: Deposit ₹60,000 in account no. 9702011093093, IFSC UTIB0337819.\n[08/10/26, 9:15:42 AM] John: sent\n[08/10/26, 3:13:52 PM] Vikram: Our payment department has a new ID: acct228.g@oksbi.\n[08/10/26, 9:41:29 AM] Vikram: Pay 18% tax to withdraw your profit.\n",
+  "transcripts": {},
+  "payees": [
+   {
+    "value_norm": "fund26.b@ibl",
+    "type": "upi_vpa",
+    "from_voice": false
+   },
+   {
+    "value_norm": "9702011093093",
+    "type": "bank_account",
+    "from_voice": false
+   },
+   {
+    "value_norm": "acct228.g@oksbi",
+    "type": "upi_vpa",
+    "from_voice": false
+   }
+  ],
+  "checks": {
+   "fund26.b@ibl": "JAI AMBE AGENCIES",
+   "9702011093093": "RK MOBILE POINT",
+   "acct228.g@oksbi": "RK MOBILE POINT"
+  },
+  "expected": [
+   "NAME_DISCREPANCY",
+   "NAME_DISCREPANCY",
+   "NAME_DISCREPANCY"
+  ],
+  "format": "ios"
+ },
+ {
+  "case_id": "dev-049",
+  "kind": "scam_single",
+  "is_scam": true,
+  "claimed_firm": "Indravati Stockline Ltd",
+  "chat_txt": "05/10/2026, 1:09 pm - Neha: Namaste Meera ji, this is Neha at Indravati Stockline Ltd.\n06/10/2026, 9:18 pm - Meera: Please share details\n06/10/2026, 8:45 am - Neha: Send ₹40,000 to pay587.d@axl for activation.\n07/10/2026, 10:49 am - Neha: Pay 18% tax to withdraw your profit.\n07/10/2026, 10:41 am - Meera: done\n",
+  "transcripts": {},
+  "payees": [
+   {
+    "value_norm": "pay587.d@axl",
+    "type": "upi_vpa",
+    "from_voice": false
+   }
+  ],
+  "checks": {
+   "pay587.d@axl": "RK MOBILE POINT"
+  },
+  "expected": [
+   "NAME_DISCREPANCY"
+  ],
+  "format": "android12"
+ },
+ {
+  "case_id": "dev-050",
+  "kind": "scam_person",
+  "is_scam": true,
+  "claimed_firm": "Meghdoot Investments Pvt Ltd",
+  "chat_txt": "05/10/2026, 20:03 - Pooja: Namaste Fatima ji, this is Pooja at Meghdoot Investments Pvt Ltd.\n06/10/2026, 14:25 - Fatima: ok\n07/10/2026, 14:41 - Pooja: Send ₹5,000 to pay424.g@okaxis for activation.\n",
+  "transcripts": {},
+  "payees": [
+   {
+    "value_norm": "pay424.g@okaxis",
+    "type": "upi_vpa",
+    "from_voice": false
+   }
+  ],
+  "checks": {
+   "pay424.g@okaxis": "RAMESH KUMAR"
+  },
+  "expected": [
+   "INCONCLUSIVE"
+  ],
+  "format": "android24"
+ },
+ {
+  "case_id": "dev-051",
+  "kind": "legit_match",
+  "is_scam": false,
+  "claimed_firm": "Pratham Wealth Research Pvt Ltd",
+  "chat_txt": "05/10/2026, 12:09 pm - Vikram: Hello Priya, I am Vikram from Pratham Wealth Research Pvt Ltd.\n05/10/2026, 11:38 am - Vikram: Call 9860424626 for help.\n06/10/2026, 6:50 pm - Priya: ok\n07/10/2026, 3:18 pm - Vikram: Send ₹60,000 to fund833.h@okaxis for activation.\n07/10/2026, 10:46 am - Priya: done\n",
+  "transcripts": {},
+  "payees": [
+   {
+    "value_norm": "fund833.h@okaxis",
+    "type": "upi_vpa",
+    "from_voice": false
+   }
+  ],
+  "checks": {
+   "fund833.h@okaxis": "M/S PRATHAM WEALTH PVT LTD"
+  },
+  "expected": [
+   "NO_MAJOR_ISSUE"
+  ],
+  "format": "android12"
+ },
+ {
+  "case_id": "dev-052",
+  "kind": "legit_gateway",
+  "is_scam": false,
+  "claimed_firm": "Kaveri Capital Advisors LLP",
+  "chat_txt": "[05/10/26, 12:14:24 PM] Vikram: Hello Fatima, I am Vikram from Kaveri Capital Advisors LLP.\n[06/10/26, 8:57:14 PM] Vikram: Visit www.kaveri-markets.in\n[06/10/26, 4:50:20 PM] Fatima: How do I pay?\n[06/10/26, 9:49:30 PM] Vikram: Send ₹15,000 to acct409.c@okaxis for activation.\n[07/10/26, 11:30:28 AM] Fatima: ok wait\n",
+  "transcripts": {},
+  "payees": [
+   {
+    "value_norm": "acct409.c@okaxis",
+    "type": "upi_vpa",
+    "from_voice": false
+   }
+  ],
+  "checks": {
+   "acct409.c@okaxis": "Razorpay Software Pvt Ltd"
+  },
+  "expected": [
+   "INCONCLUSIVE"
+  ],
+  "format": "ios"
+ },
+ {
+  "case_id": "dev-053",
+  "kind": "no_check",
+  "is_scam": false,
+  "claimed_firm": "Pratham Wealth Research Pvt Ltd",
+  "chat_txt": "05/10/2026, 11:23 am - Pooja: Hello Fatima, I am Pooja from Pratham Wealth Research Pvt Ltd.\n06/10/2026, 9:38 am - Pooja: Your order no 442118250253 is confirmed.\n06/10/2026, 11:58 am - Fatima: ok\n06/10/2026, 5:24 pm - Pooja: Send ₹15,000 to kyc418.j@okaxis for activation.\n06/10/2026, 7:56 pm - Fatima: sent\n07/10/2026, 8:14 am - Pooja: Our payment department has a new ID: desk288.a@ibl.\n",
+  "transcripts": {},
+  "payees": [
+   {
+    "value_norm": "kyc418.j@okaxis",
+    "type": "upi_vpa",
+    "from_voice": false
+   },
+   {
+    "value_norm": "desk288.a@ibl",
+    "type": "upi_vpa",
+    "from_voice": false
+   }
+  ],
+  "checks": {},
+  "expected": [
+   "INCONCLUSIVE",
+   "INCONCLUSIVE"
+  ],
+  "format": "android12"
+ },
+ {
+  "case_id": "dev-054",
+  "kind": "scam_rotation",
+  "is_scam": true,
+  "claimed_firm": "Pratham Wealth Research Pvt Ltd",
+  "chat_txt": "[05/10/26, 5:11:43 PM] Pooja: Namaste Suresh ji, this is Pooja at Pratham Wealth Research Pvt Ltd.\n[05/10/26, 9:42:22 PM] Pooja: Your order no 442114355176 is confirmed.\n[06/10/26, 5:10:58 PM] Suresh: Please share details\n[07/10/26, 7:05:03 PM] Pooja: Send ₹25,000 to kyc785.e@oksbi for activation.\n[07/10/26, 3:07:43 PM] Suresh: done\n[08/10/26, 2:45:10 PM] Pooja: Use this new UPI now: svc220.f@ibl\n[08/10/26, 4:57:27 PM] Pooja: Deposit ₹5,000 in account no. 15092649212163, IFSC KKBK0627169.\n[08/10/26, 4:00:14 PM] Pooja: Pay 18% tax to withdraw your profit.\n",
+  "transcripts": {},
+  "payees": [
+   {
+    "value_norm": "kyc785.e@oksbi",
+    "type": "upi_vpa",
+    "from_voice": false
+   },
+   {
+    "value_norm": "svc220.f@ibl",
+    "type": "upi_vpa",
+    "from_voice": false
+   },
+   {
+    "value_norm": "15092649212163",
+    "type": "bank_account",
+    "from_voice": false
+   }
+  ],
+  "checks": {
+   "kyc785.e@oksbi": "NEW STAR ELECTRICALS",
+   "svc220.f@ibl": "SHREE GANESH TRADERS",
+   "15092649212163": "SAI KRUPA TRADING CO"
+  },
+  "expected": [
+   "NAME_DISCREPANCY",
+   "NAME_DISCREPANCY",
+   "NAME_DISCREPANCY"
+  ],
+  "format": "ios"
+ },
+ {
+  "case_id": "dev-055",
+  "kind": "scam_single",
+  "is_scam": true,
+  "claimed_firm": "Pratham Wealth Research Pvt Ltd",
+  "chat_txt": "05/10/2026, 19:40 - Vikram: Namaste John ji, this is Vikram at Pratham Wealth Research Pvt Ltd.\n06/10/2026, 15:57 - Vikram: Visit www.pratham-markets.in\n07/10/2026, 20:45 - John: Okay sir\n08/10/2026, 10:02 - Vikram: Pay ₹10,000 to UPI fund975.j@ybl today.\n08/10/2026, 21:44 - John: sent\n",
+  "transcripts": {},
+  "payees": [
+   {
+    "value_norm": "fund975.j@ybl",
+    "type": "upi_vpa",
+    "from_voice": false
+   }
+  ],
+  "checks": {
+   "fund975.j@ybl": "SHREE GANESH TRADERS"
+  },
+  "expected": [
+   "NAME_DISCREPANCY"
+  ],
+  "format": "android24"
+ },
+ {
+  "case_id": "dev-056",
+  "kind": "scam_person",
+  "is_scam": true,
+  "claimed_firm": "Sahyadri Securities Ltd",
+  "chat_txt": "05/10/2026, 9:16 am - Vikram: Hello Suresh, I am Vikram from Sahyadri Securities Ltd.\n05/10/2026, 10:28 am - Suresh: How do I pay?\n05/10/2026, 4:49 pm - Vikram: Pay ₹5,000 to UPI desk844.b@okaxis today.\n06/10/2026, 5:17 pm - Vikram: Clearance charges must be paid before withdrawal.\n",
+  "transcripts": {},
+  "payees": [
+   {
+    "value_norm": "desk844.b@okaxis",
+    "type": "upi_vpa",
+    "from_voice": false
+   }
+  ],
+  "checks": {
+   "desk844.b@okaxis": "PRAKASH YADAV"
+  },
+  "expected": [
+   "INCONCLUSIVE"
+  ],
+  "format": "android12"
+ },
+ {
+  "case_id": "dev-057",
+  "kind": "legit_match",
+  "is_scam": false,
+  "claimed_firm": "Indravati Stockline Ltd",
+  "chat_txt": "[05/10/26, 5:51:37 PM] Vikram: Hello Ankit, I am Vikram from Indravati Stockline Ltd.\n[05/10/26, 6:22:54 PM] Vikram: Visit www.indravati-markets.in\n[06/10/26, 6:37:37 PM] Ankit: Okay sir\n[06/10/26, 5:05:51 PM] Vikram: Send ₹10,000 to pay131.b@paytm for activation.\n[06/10/26, 5:24:09 PM] Ankit: done\n",
+  "transcripts": {},
+  "payees": [
+   {
+    "value_norm": "pay131.b@paytm",
+    "type": "upi_vpa",
+    "from_voice": false
+   }
+  ],
+  "checks": {
+   "pay131.b@paytm": "INDRAVATI STOCKLINE LTD"
+  },
+  "expected": [
+   "NO_MAJOR_ISSUE"
+  ],
+  "format": "ios"
+ },
+ {
+  "case_id": "dev-058",
+  "kind": "legit_gateway",
+  "is_scam": false,
+  "claimed_firm": "Indravati Stockline Ltd",
+  "chat_txt": "05/10/2026, 2:02 pm - Pooja: Namaste John ji, this is Pooja at Indravati Stockline Ltd.\n06/10/2026, 6:59 pm - John: Please share details\n06/10/2026, 8:23 am - Pooja: Transfer ₹25,000 to A/c 58655561151232 IFSC UTIB0478512.\n",
+  "transcripts": {},
+  "payees": [
+   {
+    "value_norm": "58655561151232",
+    "type": "bank_account",
+    "from_voice": false
+   }
+  ],
+  "checks": {
+   "58655561151232": "Razorpay Software Pvt Ltd"
+  },
+  "expected": [
+   "INCONCLUSIVE"
+  ],
+  "format": "android12"
+ },
+ {
+  "case_id": "dev-059",
+  "kind": "no_check",
+  "is_scam": false,
+  "claimed_firm": "Kaveri Capital Advisors LLP",
+  "chat_txt": "05/10/2026, 20:35 - Pooja: Hello Meera, I am Pooja from Kaveri Capital Advisors LLP.\n05/10/2026, 11:31 - Meera: How do I pay?\n05/10/2026, 08:59 - Pooja: Transfer ₹5,000 to A/c 49496567564475 IFSC IDIB0156636.\n",
+  "transcripts": {},
+  "payees": [
+   {
+    "value_norm": "49496567564475",
+    "type": "bank_account",
+    "from_voice": false
+   }
+  ],
+  "checks": {},
+  "expected": [
+   "INCONCLUSIVE"
+  ],
+  "format": "android24"
+ },
+ {
+  "case_id": "dev-060",
+  "kind": "scam_rotation",
+  "is_scam": true,
+  "claimed_firm": "Kaveri Capital Advisors LLP",
+  "chat_txt": "[05/10/26, 6:48:40 PM] Rahul: Namaste Ankit ji, this is Rahul at Kaveri Capital Advisors LLP.\n[05/10/26, 8:44:53 PM] Rahul: Visit www.kaveri-markets.in\n[05/10/26, 11:35:02 AM] Ankit: ok\n[05/10/26, 1:16:17 PM] Rahul: Deposit ₹15,000 in account no. 46707558066839, IFSC UTIB0646255.\n[06/10/26, 1:27:15 PM] Ankit: done\n[07/10/26, 10:42:53 AM] Rahul: PTT-20261007-WA0097.opus (file attached)\n[07/10/26, 9:21:42 AM] Ankit: sent\n[07/10/26, 4:06:44 PM] Rahul: Our payment department has a new ID: fund31.a@axl.\n[07/10/26, 4:02:40 PM] Rahul: Pay 18% tax to withdraw your profit.\n",
+  "transcripts": {
+   "PTT-20261007-WA0097.opus": "Our payment department has a new ID: acct257.g@upi."
+  },
+  "payees": [
+   {
+    "value_norm": "46707558066839",
+    "type": "bank_account",
+    "from_voice": false
+   },
+   {
+    "value_norm": "acct257.g@upi",
+    "type": "upi_vpa",
+    "from_voice": true
+   },
+   {
+    "value_norm": "fund31.a@axl",
+    "type": "upi_vpa",
+    "from_voice": false
+   }
+  ],
+  "checks": {
+   "46707558066839": "SHREE GANESH TRADERS",
+   "acct257.g@upi": "OM SAI ENTERPRISES",
+   "fund31.a@axl": "BALAJI GARMENTS"
+  },
+  "expected": [
+   "NAME_DISCREPANCY",
+   "NAME_DISCREPANCY",
+   "NAME_DISCREPANCY"
+  ],
+  "format": "ios"
+ },
+ {
+  "case_id": "dev-061",
+  "kind": "scam_single",
+  "is_scam": true,
+  "claimed_firm": "Sahyadri Securities Ltd",
+  "chat_txt": "05/10/2026, 12:08 - Vikram: Hello John, I am Vikram from Sahyadri Securities Ltd.\n06/10/2026, 20:28 - Vikram: Your order no 442198040738 is confirmed.\n07/10/2026, 19:22 - John: ok\n07/10/2026, 08:16 - Vikram: Pay ₹10,000 to UPI desk815.e@ybl today.\n08/10/2026, 10:34 - Vikram: Clearance charges must be paid before withdrawal.\n",
+  "transcripts": {},
+  "payees": [
+   {
+    "value_norm": "desk815.e@ybl",
+    "type": "upi_vpa",
+    "from_voice": false
+   }
+  ],
+  "checks": {
+   "desk815.e@ybl": "SAI KRUPA TRADING CO"
+  },
+  "expected": [
+   "NAME_DISCREPANCY"
+  ],
+  "format": "android24"
+ },
+ {
+  "case_id": "dev-062",
+  "kind": "scam_person",
+  "is_scam": true,
+  "claimed_firm": "Navyug Broking Pvt Ltd",
+  "chat_txt": "[05/10/26, 6:21:38 PM] Rahul: Namaste Ankit ji, this is Rahul at Navyug Broking Pvt Ltd.\n[05/10/26, 9:18:08 AM] Ankit: Please share details\n[05/10/26, 12:23:36 PM] Rahul: Pay ₹60,000 to UPI desk790.d@oksbi today.\n[05/10/26, 9:23:56 PM] Rahul: Clearance charges must be paid before withdrawal.\n",
+  "transcripts": {},
+  "payees": [
+   {
+    "value_norm": "desk790.d@oksbi",
+    "type": "upi_vpa",
+    "from_voice": false
+   }
+  ],
+  "checks": {
+   "desk790.d@oksbi": "SUNITA DEVI"
+  },
+  "expected": [
+   "INCONCLUSIVE"
+  ],
+  "format": "ios"
+ },
+ {
+  "case_id": "dev-063",
+  "kind": "legit_match",
+  "is_scam": false,
+  "claimed_firm": "Sahyadri Securities Ltd",
+  "chat_txt": "[05/10/26, 3:11:02 PM] Vikram: Namaste Meera ji, this is Vikram at Sahyadri Securities Ltd.\n[05/10/26, 9:09:18 AM] Vikram: Visit www.sahyadri-markets.in\n[06/10/26, 12:55:33 PM] Meera: ok\n[07/10/26, 5:37:00 PM] Vikram: Transfer ₹5,000 to A/c 7800490682874 IFSC ICIC0937586.\n[08/10/26, 2:33:07 PM] Meera: sent\n",
+  "transcripts": {},
+  "payees": [
+   {
+    "value_norm": "7800490682874",
+    "type": "bank_account",
+    "from_voice": false
+   }
+  ],
+  "checks": {
+   "7800490682874": "SAHYADRI SECURITIES LTD"
+  },
+  "expected": [
+   "NO_MAJOR_ISSUE"
+  ],
+  "format": "ios"
+ },
+ {
+  "case_id": "dev-064",
+  "kind": "legit_gateway",
+  "is_scam": false,
+  "claimed_firm": "Sahyadri Securities Ltd",
+  "chat_txt": "[05/10/26, 3:29:46 PM] Vikram: Namaste Priya ji, this is Vikram at Sahyadri Securities Ltd.\n[05/10/26, 8:13:42 PM] Vikram: Mail us at support.sahyadri@gmail.com\n[05/10/26, 6:35:33 PM] Priya: Okay sir\n[06/10/26, 12:35:05 PM] Vikram: Transfer ₹40,000 to A/c 98086134413690 IFSC SBIN0368610.\n",
+  "transcripts": {},
+  "payees": [
+   {
+    "value_norm": "98086134413690",
+    "type": "bank_account",
+    "from_voice": false
+   }
+  ],
+  "checks": {
+   "98086134413690": "Cashfree Payments India"
+  },
+  "expected": [
+   "INCONCLUSIVE"
+  ],
+  "format": "ios"
+ },
+ {
+  "case_id": "dev-065",
+  "kind": "no_check",
+  "is_scam": false,
+  "claimed_firm": "Pratham Wealth Research Pvt Ltd",
+  "chat_txt": "05/10/2026, 1:38 pm - Rahul: Namaste Fatima ji, this is Rahul at Pratham Wealth Research Pvt Ltd.\n05/10/2026, 8:57 am - Fatima: Okay sir\n06/10/2026, 5:59 pm - Rahul: Pay ₹40,000 to UPI pay380.e@axl today.\n06/10/2026, 6:28 pm - Rahul: Use this new UPI now: acct594.f@upi\n07/10/2026, 11:57 am - Fatima: done\n",
+  "transcripts": {},
+  "payees": [
+   {
+    "value_norm": "pay380.e@axl",
+    "type": "upi_vpa",
+    "from_voice": false
+   },
+   {
+    "value_norm": "acct594.f@upi",
+    "type": "upi_vpa",
+    "from_voice": false
+   }
+  ],
+  "checks": {},
+  "expected": [
+   "INCONCLUSIVE",
+   "INCONCLUSIVE"
+  ],
+  "format": "android12"
+ },
+ {
+  "case_id": "dev-066",
+  "kind": "scam_rotation",
+  "is_scam": true,
+  "claimed_firm": "Kaveri Capital Advisors LLP",
+  "chat_txt": "05/10/2026, 12:31 - Neha: Namaste Meera ji, this is Neha at Kaveri Capital Advisors LLP.\n06/10/2026, 13:12 - Neha: Visit www.kaveri-markets.in\n06/10/2026, 12:56 - Meera: Please share details\n07/10/2026, 21:51 - Neha: Deposit ₹40,000 in account no. 20585004091180, IFSC BARB0382311.\n07/10/2026, 12:41 - Neha: Our payment department has a new ID: fund712.c@paytm.\n08/10/2026, 16:13 - Meera: paying now\n",
+  "transcripts": {},
+  "payees": [
+   {
+    "value_norm": "20585004091180",
+    "type": "bank_account",
+    "from_voice": false
+   },
+   {
+    "value_norm": "fund712.c@paytm",
+    "type": "upi_vpa",
+    "from_voice": false
+   }
+  ],
+  "checks": {
+   "20585004091180": "NEW STAR ELECTRICALS",
+   "fund712.c@paytm": "NEW STAR ELECTRICALS"
+  },
+  "expected": [
+   "NAME_DISCREPANCY",
+   "NAME_DISCREPANCY"
+  ],
+  "format": "android24"
+ },
+ {
+  "case_id": "dev-067",
+  "kind": "scam_single",
+  "is_scam": true,
+  "claimed_firm": "Pratham Wealth Research Pvt Ltd",
+  "chat_txt": "05/10/2026, 6:22 pm - Neha: Namaste John ji, this is Neha at Pratham Wealth Research Pvt Ltd.\n05/10/2026, 12:38 pm - Neha: Mail us at support.pratham@gmail.com\n05/10/2026, 5:13 pm - John: Okay sir\n05/10/2026, 8:50 pm - Neha: Pay ₹15,000 to UPI fund730.g@upi today.\n05/10/2026, 9:24 pm - John: ok wait\n",
+  "transcripts": {},
+  "payees": [
+   {
+    "value_norm": "fund730.g@upi",
+    "type": "upi_vpa",
+    "from_voice": false
+   }
+  ],
+  "checks": {
+   "fund730.g@upi": "MAA DURGA STORES"
+  },
+  "expected": [
+   "NAME_DISCREPANCY"
+  ],
+  "format": "android12"
+ },
+ {
+  "case_id": "dev-068",
+  "kind": "scam_person",
+  "is_scam": true,
+  "claimed_firm": "Meghdoot Investments Pvt Ltd",
+  "chat_txt": "[05/10/26, 7:20:16 PM] Rahul: Hello John, I am Rahul from Meghdoot Investments Pvt Ltd.\n[06/10/26, 8:58:19 AM] Rahul: Call 9817176698 for help.\n[07/10/26, 7:25:22 PM] John: Please share details\n[07/10/26, 4:25:09 PM] Rahul: Transfer ₹40,000 to A/c 62421267688885 IFSC ICIC0876747.\n[07/10/26, 10:16:47 AM] Rahul: Clearance charges must be paid before withdrawal.\n[08/10/26, 10:09:00 AM] John: done\n",
+  "transcripts": {},
+  "payees": [
+   {
+    "value_norm": "62421267688885",
+    "type": "bank_account",
+    "from_voice": false
+   }
+  ],
+  "checks": {
+   "62421267688885": "SUNITA DEVI"
+  },
+  "expected": [
+   "INCONCLUSIVE"
+  ],
+  "format": "ios"
+ },
+ {
+  "case_id": "dev-069",
+  "kind": "legit_match",
+  "is_scam": false,
+  "claimed_firm": "Kaveri Capital Advisors LLP",
+  "chat_txt": "[05/10/26, 3:52:06 PM] Rahul: Hello Ankit, I am Rahul from Kaveri Capital Advisors LLP.\n[05/10/26, 3:07:32 PM] Rahul: Your order no 442173669994 is confirmed.\n[06/10/26, 6:21:11 PM] Ankit: How do I pay?\n[06/10/26, 9:40:25 AM] Rahul: Deposit ₹5,000 in account no. 58689058902795, IFSC UTIB0404172.\n",
+  "transcripts": {},
+  "payees": [
+   {
+    "value_norm": "58689058902795",
+    "type": "bank_account",
+    "from_voice": false
+   }
+  ],
+  "checks": {
+   "58689058902795": "KAVERI CAPITAL ADVISORS LLP"
+  },
+  "expected": [
+   "NO_MAJOR_ISSUE"
+  ],
+  "format": "ios"
+ },
+ {
+  "case_id": "dev-070",
+  "kind": "legit_gateway",
+  "is_scam": false,
+  "claimed_firm": "Sahyadri Securities Ltd",
+  "chat_txt": "[05/10/26, 4:18:56 PM] Pooja: Namaste Fatima ji, this is Pooja at Sahyadri Securities Ltd.\n[05/10/26, 10:05:19 AM] Pooja: Your order no 442195843894 is confirmed.\n[05/10/26, 8:51:43 AM] Fatima: Okay sir\n[05/10/26, 12:39:02 PM] Pooja: Deposit ₹5,000 in account no. 54331594030473, IFSC BARB0515256.\n",
+  "transcripts": {},
+  "payees": [
+   {
+    "value_norm": "54331594030473",
+    "type": "bank_account",
+    "from_voice": false
+   }
+  ],
+  "checks": {
+   "54331594030473": "Cashfree Payments India"
+  },
+  "expected": [
+   "INCONCLUSIVE"
+  ],
+  "format": "ios"
+ },
+ {
+  "case_id": "dev-071",
+  "kind": "no_check",
+  "is_scam": false,
+  "claimed_firm": "Navyug Broking Pvt Ltd",
+  "chat_txt": "05/10/2026, 16:41 - Neha: Namaste Suresh ji, this is Neha at Navyug Broking Pvt Ltd.\n05/10/2026, 16:05 - Neha: Visit www.navyug-markets.in\n06/10/2026, 18:21 - Suresh: Please share details\n07/10/2026, 21:28 - Neha: Deposit ₹10,000 in account no. 86899457963492, IFSC PUNB0961897.\n08/10/2026, 17:20 - Suresh: paying now\n",
+  "transcripts": {},
+  "payees": [
+   {
+    "value_norm": "86899457963492",
+    "type": "bank_account",
+    "from_voice": false
+   }
+  ],
+  "checks": {},
+  "expected": [
+   "INCONCLUSIVE"
+  ],
+  "format": "android24"
+ },
+ {
+  "case_id": "dev-072",
+  "kind": "scam_rotation",
+  "is_scam": true,
+  "claimed_firm": "Pratham Wealth Research Pvt Ltd",
+  "chat_txt": "05/10/2026, 13:28 - Vikram: Hello Suresh, I am Vikram from Pratham Wealth Research Pvt Ltd.\n06/10/2026, 21:49 - Vikram: Call 9858469756 for help.\n07/10/2026, 21:58 - Suresh: Okay sir\n08/10/2026, 10:10 - Vikram: Deposit ₹40,000 in account no. 91807669325848, IFSC BARB0203463.\n09/10/2026, 10:59 - Suresh: paying now\n09/10/2026, 16:37 - Vikram: Our payment department has a new ID: svc566.c@axl.\n",
+  "transcripts": {},
+  "payees": [
+   {
+    "value_norm": "91807669325848",
+    "type": "bank_account",
+    "from_voice": false
+   },
+   {
+    "value_norm": "svc566.c@axl",
+    "type": "upi_vpa",
+    "from_voice": false
+   }
+  ],
+  "checks": {
+   "91807669325848": "JAI AMBE AGENCIES",
+   "svc566.c@axl": "OM SAI ENTERPRISES"
+  },
+  "expected": [
+   "NAME_DISCREPANCY",
+   "NAME_DISCREPANCY"
+  ],
+  "format": "android24"
+ },
+ {
+  "case_id": "dev-073",
+  "kind": "scam_single",
+  "is_scam": true,
+  "claimed_firm": "Pratham Wealth Research Pvt Ltd",
+  "chat_txt": "05/10/2026, 3:27 pm - Neha: Hello Suresh, I am Neha from Pratham Wealth Research Pvt Ltd.\n05/10/2026, 6:12 pm - Suresh: How do I pay?\n06/10/2026, 5:39 pm - Neha: Send ₹15,000 to desk577.e@ybl for activation.\n06/10/2026, 6:33 pm - Neha: Pay 18% tax to withdraw your profit.\n",
+  "transcripts": {},
+  "payees": [
+   {
+    "value_norm": "desk577.e@ybl",
+    "type": "upi_vpa",
+    "from_voice": false
+   }
+  ],
+  "checks": {
+   "desk577.e@ybl": "SHREE GANESH TRADERS"
+  },
+  "expected": [
+   "NAME_DISCREPANCY"
+  ],
+  "format": "android12"
+ },
+ {
+  "case_id": "dev-074",
+  "kind": "scam_person",
+  "is_scam": true,
+  "claimed_firm": "Kaveri Capital Advisors LLP",
+  "chat_txt": "[05/10/26, 3:43:25 PM] Neha: Namaste Ankit ji, this is Neha at Kaveri Capital Advisors LLP.\n[06/10/26, 9:26:56 PM] Neha: Call 9846058961 for help.\n[06/10/26, 9:37:27 AM] Ankit: ok\n[06/10/26, 2:10:52 PM] Neha: Send ₹15,000 to acct898.k@okaxis for activation.\n[07/10/26, 11:09:30 AM] Neha: Pay 18% tax to withdraw your profit.\n[07/10/26, 9:59:32 PM] Ankit: sent\n",
+  "transcripts": {},
+  "payees": [
+   {
+    "value_norm": "acct898.k@okaxis",
+    "type": "upi_vpa",
+    "from_voice": false
+   }
+  ],
+  "checks": {
+   "acct898.k@okaxis": "PRAKASH YADAV"
+  },
+  "expected": [
+   "INCONCLUSIVE"
+  ],
+  "format": "ios"
+ },
+ {
+  "case_id": "dev-075",
+  "kind": "legit_match",
+  "is_scam": false,
+  "claimed_firm": "Navyug Broking Pvt Ltd",
+  "chat_txt": "[05/10/26, 8:58:53 PM] Neha: Namaste John ji, this is Neha at Navyug Broking Pvt Ltd.\n[06/10/26, 8:49:07 PM] John: Okay sir\n[06/10/26, 9:35:09 PM] Neha: Deposit ₹40,000 in account no. 72384106601343, IFSC IDIB0631376.\n[07/10/26, 10:57:41 AM] John: ok wait\n",
+  "transcripts": {},
+  "payees": [
+   {
+    "value_norm": "72384106601343",
+    "type": "bank_account",
+    "from_voice": false
+   }
+  ],
+  "checks": {
+   "72384106601343": "NAVYUG BROKING PVT LTD"
+  },
+  "expected": [
+   "NO_MAJOR_ISSUE"
+  ],
+  "format": "ios"
+ },
+ {
+  "case_id": "dev-076",
+  "kind": "legit_gateway",
+  "is_scam": false,
+  "claimed_firm": "Sahyadri Securities Ltd",
+  "chat_txt": "05/10/2026, 6:34 pm - Vikram: Hello Fatima, I am Vikram from Sahyadri Securities Ltd.\n06/10/2026, 2:16 pm - Vikram: Call 9828110839 for help.\n07/10/2026, 7:23 pm - Fatima: Please share details\n08/10/2026, 5:16 pm - Vikram: Send ₹15,000 to fund321.g@upi for activation.\n08/10/2026, 9:22 am - Fatima: ok wait\n",
+  "transcripts": {},
+  "payees": [
+   {
+    "value_norm": "fund321.g@upi",
+    "type": "upi_vpa",
+    "from_voice": false
+   }
+  ],
+  "checks": {
+   "fund321.g@upi": "Cashfree Payments India"
+  },
+  "expected": [
+   "INCONCLUSIVE"
+  ],
+  "format": "android12"
+ },
+ {
+  "case_id": "dev-077",
+  "kind": "no_check",
+  "is_scam": false,
+  "claimed_firm": "Navyug Broking Pvt Ltd",
+  "chat_txt": "05/10/2026, 8:46 pm - Vikram: Hello Priya, I am Vikram from Navyug Broking Pvt Ltd.\n06/10/2026, 2:30 pm - Vikram: Visit www.navyug-markets.in\n06/10/2026, 11:33 am - Priya: ok\n06/10/2026, 8:38 am - Vikram: Send ₹25,000 to pay382.j@oksbi for activation.\n06/10/2026, 8:16 pm - Priya: sent\n07/10/2026, 3:15 pm - Vikram: Deposit ₹40,000 in account no. 99672944864654, IFSC UTIB0631919.\n",
+  "transcripts": {},
+  "payees": [
+   {
+    "value_norm": "pay382.j@oksbi",
+    "type": "upi_vpa",
+    "from_voice": false
+   },
+   {
+    "value_norm": "99672944864654",
+    "type": "bank_account",
+    "from_voice": false
+   }
+  ],
+  "checks": {},
+  "expected": [
+   "INCONCLUSIVE",
+   "INCONCLUSIVE"
+  ],
+  "format": "android12"
+ },
+ {
+  "case_id": "dev-078",
+  "kind": "scam_rotation",
+  "is_scam": true,
+  "claimed_firm": "Kaveri Capital Advisors LLP",
+  "chat_txt": "05/10/2026, 12:43 pm - Rahul: Namaste John ji, this is Rahul at Kaveri Capital Advisors LLP.\n06/10/2026, 7:13 pm - John: How do I pay?\n06/10/2026, 10:38 am - Rahul: Pay ₹25,000 to UPI desk308.d@ibl today.\n06/10/2026, 3:13 pm - Rahul: PTT-20261006-WA0075.opus (file attached)\n06/10/2026, 4:43 pm - Rahul: Pay 18% tax to withdraw your profit.\n",
+  "transcripts": {
+   "PTT-20261006-WA0075.opus": "Use this new UPI now: acct381.h@ibl"
+  },
+  "payees": [
+   {
+    "value_norm": "desk308.d@ibl",
+    "type": "upi_vpa",
+    "from_voice": false
+   },
+   {
+    "value_norm": "acct381.h@ibl",
+    "type": "upi_vpa",
+    "from_voice": true
+   }
+  ],
+  "checks": {
+   "desk308.d@ibl": "MAA DURGA STORES",
+   "acct381.h@ibl": "JAI AMBE AGENCIES"
+  },
+  "expected": [
+   "NAME_DISCREPANCY",
+   "NAME_DISCREPANCY"
+  ],
+  "format": "android12"
+ },
+ {
+  "case_id": "dev-079",
+  "kind": "scam_single",
+  "is_scam": true,
+  "claimed_firm": "Navyug Broking Pvt Ltd",
+  "chat_txt": "05/10/2026, 14:36 - Pooja: Namaste Meera ji, this is Pooja at Navyug Broking Pvt Ltd.\n05/10/2026, 14:25 - Meera: Okay sir\n05/10/2026, 19:43 - Pooja: Deposit ₹5,000 in account no. 21440329355389, IFSC KKBK0414999.\n05/10/2026, 15:22 - Pooja: Clearance charges must be paid before withdrawal.\n",
+  "transcripts": {},
+  "payees": [
+   {
+    "value_norm": "21440329355389",
+    "type": "bank_account",
+    "from_voice": false
+   }
+  ],
+  "checks": {
+   "21440329355389": "RK MOBILE POINT"
+  },
+  "expected": [
+   "NAME_DISCREPANCY"
+  ],
+  "format": "android24"
+ },
+ {
+  "case_id": "dev-080",
+  "kind": "scam_person",
+  "is_scam": true,
+  "claimed_firm": "Meghdoot Investments Pvt Ltd",
+  "chat_txt": "05/10/2026, 5:33 pm - Pooja: Namaste Priya ji, this is Pooja at Meghdoot Investments Pvt Ltd.\n06/10/2026, 4:53 pm - Priya: ok\n06/10/2026, 1:44 pm - Pooja: Deposit ₹60,000 in account no. 6739017189206, IFSC UTIB0136749.\n07/10/2026, 11:11 am - Priya: done\n",
+  "transcripts": {},
+  "payees": [
+   {
+    "value_norm": "6739017189206",
+    "type": "bank_account",
+    "from_voice": false
+   }
+  ],
+  "checks": {
+   "6739017189206": "SUNITA DEVI"
+  },
+  "expected": [
+   "INCONCLUSIVE"
+  ],
+  "format": "android12"
+ },
+ {
+  "case_id": "dev-081",
+  "kind": "legit_match",
+  "is_scam": false,
+  "claimed_firm": "Pratham Wealth Research Pvt Ltd",
+  "chat_txt": "[05/10/26, 9:19:23 AM] Pooja: Hello John, I am Pooja from Pratham Wealth Research Pvt Ltd.\n[05/10/26, 8:19:36 PM] John: Okay sir\n[05/10/26, 4:29:51 PM] Pooja: Pay ₹5,000 to UPI pay759.e@upi today.\n[05/10/26, 9:59:12 AM] John: done\n",
+  "transcripts": {},
+  "payees": [
+   {
+    "value_norm": "pay759.e@upi",
+    "type": "upi_vpa",
+    "from_voice": false
+   }
+  ],
+  "checks": {
+   "pay759.e@upi": "M/S PRATHAM WEALTH PVT LTD"
+  },
+  "expected": [
+   "NO_MAJOR_ISSUE"
+  ],
+  "format": "ios"
+ },
+ {
+  "case_id": "dev-082",
+  "kind": "legit_gateway",
+  "is_scam": false,
+  "claimed_firm": "Indravati Stockline Ltd",
+  "chat_txt": "05/10/2026, 14:03 - Pooja: Hello Meera, I am Pooja from Indravati Stockline Ltd.\n05/10/2026, 10:08 - Pooja: Visit www.indravati-markets.in\n06/10/2026, 15:54 - Meera: Okay sir\n07/10/2026, 10:42 - Pooja: Transfer ₹5,000 to A/c 8848510051184 IFSC ICIC0606194.\n",
+  "transcripts": {},
+  "payees": [
+   {
+    "value_norm": "8848510051184",
+    "type": "bank_account",
+    "from_voice": false
+   }
+  ],
+  "checks": {
+   "8848510051184": "Cashfree Payments India"
+  },
+  "expected": [
+   "INCONCLUSIVE"
+  ],
+  "format": "android24"
+ },
+ {
+  "case_id": "dev-083",
+  "kind": "no_check",
+  "is_scam": false,
+  "claimed_firm": "Meghdoot Investments Pvt Ltd",
+  "chat_txt": "05/10/2026, 7:32 pm - Rahul: Hello Priya, I am Rahul from Meghdoot Investments Pvt Ltd.\n06/10/2026, 9:32 am - Rahul: Visit www.meghdoot-markets.in\n07/10/2026, 12:14 pm - Priya: ok\n08/10/2026, 11:49 am - Rahul: Pay ₹25,000 to UPI acct952.h@oksbi today.\n09/10/2026, 3:22 pm - Priya: ok wait\n",
+  "transcripts": {},
+  "payees": [
+   {
+    "value_norm": "acct952.h@oksbi",
+    "type": "upi_vpa",
+    "from_voice": false
+   }
+  ],
+  "checks": {},
+  "expected": [
+   "INCONCLUSIVE"
+  ],
+  "format": "android12"
+ },
+ {
+  "case_id": "dev-084",
+  "kind": "scam_rotation",
+  "is_scam": true,
+  "claimed_firm": "Kaveri Capital Advisors LLP",
+  "chat_txt": "[05/10/26, 11:57:16 AM] Vikram: Namaste Fatima ji, this is Vikram at Kaveri Capital Advisors LLP.\n[05/10/26, 10:39:56 AM] Vikram: Call 9850057305 for help.\n[06/10/26, 9:37:44 AM] Fatima: How do I pay?\n[07/10/26, 6:01:21 PM] Vikram: Deposit ₹5,000 in account no. 83752740015683, IFSC BARB0253969.\n[08/10/26, 9:10:44 AM] Vikram: PTT-20261008-WA0059.opus (file attached)\n[09/10/26, 7:35:30 PM] Vikram: Our payment department has a new ID: svc389.b@upi.\n[10/10/26, 11:35:32 AM] Vikram: Pay 18% tax to withdraw your profit.\n",
+  "transcripts": {
+   "PTT-20261008-WA0059.opus": "Use this new UPI now: fund528.e@axl"
+  },
+  "payees": [
+   {
+    "value_norm": "83752740015683",
+    "type": "bank_account",
+    "from_voice": false
+   },
+   {
+    "value_norm": "fund528.e@axl",
+    "type": "upi_vpa",
+    "from_voice": true
+   },
+   {
+    "value_norm": "svc389.b@upi",
+    "type": "upi_vpa",
+    "from_voice": false
+   }
+  ],
+  "checks": {
+   "83752740015683": "OM SAI ENTERPRISES",
+   "fund528.e@axl": "JAI AMBE AGENCIES",
+   "svc389.b@upi": "OM SAI ENTERPRISES"
+  },
+  "expected": [
+   "NAME_DISCREPANCY",
+   "NAME_DISCREPANCY",
+   "NAME_DISCREPANCY"
+  ],
+  "format": "ios"
+ },
+ {
+  "case_id": "dev-085",
+  "kind": "scam_single",
+  "is_scam": true,
+  "claimed_firm": "Navyug Broking Pvt Ltd",
+  "chat_txt": "[05/10/26, 11:51:21 AM] Rahul: Hello Fatima, I am Rahul from Navyug Broking Pvt Ltd.\n[05/10/26, 2:29:10 PM] Rahul: Mail us at support.navyug@gmail.com\n[06/10/26, 4:45:57 PM] Fatima: ok\n[06/10/26, 7:07:19 PM] Rahul: Transfer ₹5,000 to A/c 25034611208572 IFSC SBIN0119066.\n",
+  "transcripts": {},
+  "payees": [
+   {
+    "value_norm": "25034611208572",
+    "type": "bank_account",
+    "from_voice": false
+   }
+  ],
+  "checks": {
+   "25034611208572": "BALAJI GARMENTS"
+  },
+  "expected": [
+   "NAME_DISCREPANCY"
+  ],
+  "format": "ios"
+ },
+ {
+  "case_id": "dev-086",
+  "kind": "scam_person",
+  "is_scam": true,
+  "claimed_firm": "Sahyadri Securities Ltd",
+  "chat_txt": "[05/10/26, 8:47:32 PM] Neha: Namaste Suresh ji, this is Neha at Sahyadri Securities Ltd.\n[06/10/26, 4:47:52 PM] Neha: Your order no 442138154695 is confirmed.\n[06/10/26, 6:42:58 PM] Suresh: Okay sir\n[06/10/26, 9:47:58 AM] Neha: Send ₹25,000 to kyc890.f@oksbi for activation.\n[06/10/26, 6:15:22 PM] Neha: Pay 18% tax to withdraw your profit.\n[07/10/26, 3:45:17 PM] Suresh: ok wait\n",
+  "transcripts": {},
+  "payees": [
+   {
+    "value_norm": "kyc890.f@oksbi",
+    "type": "upi_vpa",
+    "from_voice": false
+   }
+  ],
+  "checks": {
+   "kyc890.f@oksbi": "SUNITA DEVI"
+  },
+  "expected": [
+   "INCONCLUSIVE"
+  ],
+  "format": "ios"
+ },
+ {
+  "case_id": "dev-087",
+  "kind": "legit_match",
+  "is_scam": false,
+  "claimed_firm": "Meghdoot Investments Pvt Ltd",
+  "chat_txt": "05/10/2026, 9:30 am - Vikram: Hello Meera, I am Vikram from Meghdoot Investments Pvt Ltd.\n05/10/2026, 2:38 pm - Vikram: Your order no 442132765050 is confirmed.\n06/10/2026, 4:20 pm - Meera: How do I pay?\n06/10/2026, 11:37 am - Vikram: Send ₹5,000 to acct64.d@okaxis for activation.\n",
+  "transcripts": {},
+  "payees": [
+   {
+    "value_norm": "acct64.d@okaxis",
+    "type": "upi_vpa",
+    "from_voice": false
+   }
+  ],
+  "checks": {
+   "acct64.d@okaxis": "MEGHDOOT INVESTMENTS PRIVATE LIMITED"
+  },
+  "expected": [
+   "NO_MAJOR_ISSUE"
+  ],
+  "format": "android12"
+ },
+ {
+  "case_id": "dev-088",
+  "kind": "legit_gateway",
+  "is_scam": false,
+  "claimed_firm": "Navyug Broking Pvt Ltd",
+  "chat_txt": "05/10/2026, 13:57 - Rahul: Hello Fatima, I am Rahul from Navyug Broking Pvt Ltd.\n05/10/2026, 09:56 - Fatima: ok\n05/10/2026, 20:42 - Rahul: Send ₹10,000 to svc467.e@axl for activation.\n",
+  "transcripts": {},
+  "payees": [
+   {
+    "value_norm": "svc467.e@axl",
+    "type": "upi_vpa",
+    "from_voice": false
+   }
+  ],
+  "checks": {
+   "svc467.e@axl": "Razorpay Software Pvt Ltd"
+  },
+  "expected": [
+   "INCONCLUSIVE"
+  ],
+  "format": "android24"
+ },
+ {
+  "case_id": "dev-089",
+  "kind": "no_check",
+  "is_scam": false,
+  "claimed_firm": "Kaveri Capital Advisors LLP",
+  "chat_txt": "05/10/2026, 14:34 - Pooja: Namaste Meera ji, this is Pooja at Kaveri Capital Advisors LLP.\n06/10/2026, 13:36 - Meera: How do I pay?\n07/10/2026, 14:45 - Pooja: Pay ₹60,000 to UPI svc139.f@axl today.\n",
+  "transcripts": {},
+  "payees": [
+   {
+    "value_norm": "svc139.f@axl",
+    "type": "upi_vpa",
+    "from_voice": false
+   }
+  ],
+  "checks": {},
+  "expected": [
+   "INCONCLUSIVE"
+  ],
+  "format": "android24"
+ },
+ {
+  "case_id": "dev-090",
+  "kind": "scam_rotation",
+  "is_scam": true,
+  "claimed_firm": "Pratham Wealth Research Pvt Ltd",
+  "chat_txt": "[05/10/26, 7:16:21 PM] Vikram: Hello Priya, I am Vikram from Pratham Wealth Research Pvt Ltd.\n[05/10/26, 10:39:26 AM] Priya: Okay sir\n[06/10/26, 12:35:10 PM] Vikram: Send ₹40,000 to fund849.e@ybl for activation.\n[07/10/26, 8:32:19 PM] Vikram: PTT-20261007-WA0072.opus (file attached)\n[08/10/26, 11:34:46 AM] Priya: ok wait\n[08/10/26, 9:57:29 PM] Vikram: Our payment department has a new ID: kyc296.b@oksbi.\n[09/10/26, 9:13:18 AM] Vikram: Pay 18% tax to withdraw your profit.\n",
+  "transcripts": {
+   "PTT-20261007-WA0072.opus": "Use this new UPI now: pay861.c@axl"
+  },
+  "payees": [
+   {
+    "value_norm": "fund849.e@ybl",
+    "type": "upi_vpa",
+    "from_voice": false
+   },
+   {
+    "value_norm": "pay861.c@axl",
+    "type": "upi_vpa",
+    "from_voice": true
+   },
+   {
+    "value_norm": "kyc296.b@oksbi",
+    "type": "upi_vpa",
+    "from_voice": false
+   }
+  ],
+  "checks": {
+   "fund849.e@ybl": "NEW STAR ELECTRICALS",
+   "pay861.c@axl": "RK MOBILE POINT",
+   "kyc296.b@oksbi": "NEW STAR ELECTRICALS"
+  },
+  "expected": [
+   "NAME_DISCREPANCY",
+   "NAME_DISCREPANCY",
+   "NAME_DISCREPANCY"
+  ],
+  "format": "ios"
+ },
+ {
+  "case_id": "dev-091",
+  "kind": "scam_single",
+  "is_scam": true,
+  "claimed_firm": "Indravati Stockline Ltd",
+  "chat_txt": "[05/10/26, 6:48:58 PM] Pooja: Namaste Ankit ji, this is Pooja at Indravati Stockline Ltd.\n[05/10/26, 9:29:48 PM] Pooja: Your order no 442189618220 is confirmed.\n[05/10/26, 11:24:17 AM] Ankit: Okay sir\n[06/10/26, 1:42:53 PM] Pooja: Pay ₹60,000 to UPI pay51.k@oksbi today.\n[06/10/26, 12:17:12 PM] Pooja: Pay 18% tax to withdraw your profit.\n",
+  "transcripts": {},
+  "payees": [
+   {
+    "value_norm": "pay51.k@oksbi",
+    "type": "upi_vpa",
+    "from_voice": false
+   }
+  ],
+  "checks": {
+   "pay51.k@oksbi": "SHREE GANESH TRADERS"
+  },
+  "expected": [
+   "NAME_DISCREPANCY"
+  ],
+  "format": "ios"
+ },
+ {
+  "case_id": "dev-092",
+  "kind": "scam_person",
+  "is_scam": true,
+  "claimed_firm": "Indravati Stockline Ltd",
+  "chat_txt": "05/10/2026, 8:36 pm - Rahul: Namaste Ankit ji, this is Rahul at Indravati Stockline Ltd.\n06/10/2026, 5:47 pm - Rahul: Mail us at support.indravati@gmail.com\n07/10/2026, 4:42 pm - Ankit: ok\n07/10/2026, 3:10 pm - Rahul: Send ₹5,000 to fund611.k@ybl for activation.\n08/10/2026, 8:24 pm - Rahul: Clearance charges must be paid before withdrawal.\n09/10/2026, 4:39 pm - Ankit: done\n",
+  "transcripts": {},
+  "payees": [
+   {
+    "value_norm": "fund611.k@ybl",
+    "type": "upi_vpa",
+    "from_voice": false
+   }
+  ],
+  "checks": {
+   "fund611.k@ybl": "SUNITA DEVI"
+  },
+  "expected": [
+   "INCONCLUSIVE"
+  ],
+  "format": "android12"
+ },
+ {
+  "case_id": "dev-093",
+  "kind": "legit_match",
+  "is_scam": false,
+  "claimed_firm": "Pratham Wealth Research Pvt Ltd",
+  "chat_txt": "05/10/2026, 11:27 am - Neha: Namaste Ankit ji, this is Neha at Pratham Wealth Research Pvt Ltd.\n06/10/2026, 12:29 pm - Ankit: Please share details\n06/10/2026, 6:26 pm - Neha: Pay ₹60,000 to UPI kyc597.f@ibl today.\n06/10/2026, 9:29 am - Ankit: ok wait\n",
+  "transcripts": {},
+  "payees": [
+   {
+    "value_norm": "kyc597.f@ibl",
+    "type": "upi_vpa",
+    "from_voice": false
+   }
+  ],
+  "checks": {
+   "kyc597.f@ibl": "M/S PRATHAM WEALTH PVT LTD"
+  },
+  "expected": [
+   "NO_MAJOR_ISSUE"
+  ],
+  "format": "android12"
+ },
+ {
+  "case_id": "dev-094",
+  "kind": "legit_gateway",
+  "is_scam": false,
+  "claimed_firm": "Meghdoot Investments Pvt Ltd",
+  "chat_txt": "[05/10/26, 10:09:09 AM] Vikram: Hello John, I am Vikram from Meghdoot Investments Pvt Ltd.\n[06/10/26, 4:41:39 PM] Vikram: Call 9875371601 for help.\n[07/10/26, 11:17:02 AM] John: Please share details\n[08/10/26, 7:40:07 PM] Vikram: Send ₹5,000 to kyc473.c@axl for activation.\n",
+  "transcripts": {},
+  "payees": [
+   {
+    "value_norm": "kyc473.c@axl",
+    "type": "upi_vpa",
+    "from_voice": false
+   }
+  ],
+  "checks": {
+   "kyc473.c@axl": "Razorpay Software Pvt Ltd"
+  },
+  "expected": [
+   "INCONCLUSIVE"
+  ],
+  "format": "ios"
+ },
+ {
+  "case_id": "dev-095",
+  "kind": "no_check",
+  "is_scam": false,
+  "claimed_firm": "Kaveri Capital Advisors LLP",
+  "chat_txt": "05/10/2026, 9:57 pm - Vikram: Hello Meera, I am Vikram from Kaveri Capital Advisors LLP.\n06/10/2026, 5:25 pm - Vikram: Your order no 442134855537 is confirmed.\n07/10/2026, 9:24 am - Meera: Please share details\n08/10/2026, 7:20 pm - Vikram: Pay ₹15,000 to UPI fund317.g@paytm today.\n09/10/2026, 9:51 am - Meera: ok wait\n",
+  "transcripts": {},
+  "payees": [
+   {
+    "value_norm": "fund317.g@paytm",
+    "type": "upi_vpa",
+    "from_voice": false
+   }
+  ],
+  "checks": {},
+  "expected": [
+   "INCONCLUSIVE"
+  ],
+  "format": "android12"
+ },
+ {
+  "case_id": "dev-096",
+  "kind": "scam_rotation",
+  "is_scam": true,
+  "claimed_firm": "Pratham Wealth Research Pvt Ltd",
+  "chat_txt": "05/10/2026, 9:30 pm - Neha: Hello Priya, I am Neha from Pratham Wealth Research Pvt Ltd.\n05/10/2026, 6:56 pm - Neha: Your order no 442135667005 is confirmed.\n06/10/2026, 3:01 pm - Priya: How do I pay?\n06/10/2026, 6:34 pm - Neha: Pay ₹60,000 to UPI svc911.c@okaxis today.\n07/10/2026, 12:07 pm - Neha: Deposit ₹40,000 in account no. 84012958339431, IFSC BARB0458477.\n07/10/2026, 12:24 pm - Neha: Transfer ₹60,000 to A/c 87345330550217 IFSC KKBK0758940.\n08/10/2026, 3:52 pm - Neha: Pay 18% tax to withdraw your profit.\n08/10/2026, 2:08 pm - Priya: paying now\n",
+  "transcripts": {},
+  "payees": [
+   {
+    "value_norm": "svc911.c@okaxis",
+    "type": "upi_vpa",
+    "from_voice": false
+   },
+   {
+    "value_norm": "84012958339431",
+    "type": "bank_account",
+    "from_voice": false
+   },
+   {
+    "value_norm": "87345330550217",
+    "type": "bank_account",
+    "from_voice": false
+   }
+  ],
+  "checks": {
+   "svc911.c@okaxis": "SHREE GANESH TRADERS",
+   "84012958339431": "OM SAI ENTERPRISES",
+   "87345330550217": "SAI KRUPA TRADING CO"
+  },
+  "expected": [
+   "NAME_DISCREPANCY",
+   "NAME_DISCREPANCY",
+   "NAME_DISCREPANCY"
+  ],
+  "format": "android12"
+ },
+ {
+  "case_id": "dev-097",
+  "kind": "scam_single",
+  "is_scam": true,
+  "claimed_firm": "Indravati Stockline Ltd",
+  "chat_txt": "05/10/2026, 1:03 pm - Vikram: Namaste Ankit ji, this is Vikram at Indravati Stockline Ltd.\n06/10/2026, 1:04 pm - Ankit: Please share details\n07/10/2026, 5:59 pm - Vikram: Send ₹60,000 to kyc603.g@okaxis for activation.\n07/10/2026, 1:48 pm - Vikram: Clearance charges must be paid before withdrawal.\n",
+  "transcripts": {},
+  "payees": [
+   {
+    "value_norm": "kyc603.g@okaxis",
+    "type": "upi_vpa",
+    "from_voice": false
+   }
+  ],
+  "checks": {
+   "kyc603.g@okaxis": "JAI AMBE AGENCIES"
+  },
+  "expected": [
+   "NAME_DISCREPANCY"
+  ],
+  "format": "android12"
+ },
+ {
+  "case_id": "dev-098",
+  "kind": "scam_person",
+  "is_scam": true,
+  "claimed_firm": "Meghdoot Investments Pvt Ltd",
+  "chat_txt": "05/10/2026, 11:42 - Pooja: Namaste Fatima ji, this is Pooja at Meghdoot Investments Pvt Ltd.\n06/10/2026, 21:58 - Pooja: Your order no 442154582058 is confirmed.\n07/10/2026, 12:23 - Fatima: Please share details\n07/10/2026, 14:01 - Pooja: Send ₹5,000 to desk966.d@axl for activation.\n07/10/2026, 17:41 - Pooja: Pay 18% tax to withdraw your profit.\n",
+  "transcripts": {},
+  "payees": [
+   {
+    "value_norm": "desk966.d@axl",
+    "type": "upi_vpa",
+    "from_voice": false
+   }
+  ],
+  "checks": {
+   "desk966.d@axl": "SUNITA DEVI"
+  },
+  "expected": [
+   "INCONCLUSIVE"
+  ],
+  "format": "android24"
+ },
+ {
+  "case_id": "dev-099",
+  "kind": "legit_match",
+  "is_scam": false,
+  "claimed_firm": "Sahyadri Securities Ltd",
+  "chat_txt": "05/10/2026, 4:54 pm - Vikram: Namaste Priya ji, this is Vikram at Sahyadri Securities Ltd.\n05/10/2026, 2:43 pm - Vikram: Visit www.sahyadri-markets.in\n06/10/2026, 1:18 pm - Priya: How do I pay?\n07/10/2026, 4:41 pm - Vikram: Send ₹40,000 to desk37.f@paytm for activation.\n",
+  "transcripts": {},
+  "payees": [
+   {
+    "value_norm": "desk37.f@paytm",
+    "type": "upi_vpa",
+    "from_voice": false
+   }
+  ],
+  "checks": {
+   "desk37.f@paytm": "SAHYADRI SECURITIES LTD"
+  },
+  "expected": [
+   "NO_MAJOR_ISSUE"
+  ],
+  "format": "android12"
+ },
+ {
+  "case_id": "dev-100",
+  "kind": "legit_gateway",
+  "is_scam": false,
+  "claimed_firm": "Indravati Stockline Ltd",
+  "chat_txt": "05/10/2026, 10:37 am - Pooja: Hello Suresh, I am Pooja from Indravati Stockline Ltd.\n05/10/2026, 10:48 am - Pooja: Your order no 442163828211 is confirmed.\n06/10/2026, 5:16 pm - Suresh: ok\n07/10/2026, 3:31 pm - Pooja: Transfer ₹5,000 to A/c 16470675971212 IFSC SBIN0416412.\n",
+  "transcripts": {},
+  "payees": [
+   {
+    "value_norm": "16470675971212",
+    "type": "bank_account",
+    "from_voice": false
+   }
+  ],
+  "checks": {
+   "16470675971212": "Cashfree Payments India"
+  },
+  "expected": [
+   "INCONCLUSIVE"
+  ],
+  "format": "android12"
+ },
+ {
+  "case_id": "dev-101",
+  "kind": "no_check",
+  "is_scam": false,
+  "claimed_firm": "Pratham Wealth Research Pvt Ltd",
+  "chat_txt": "05/10/2026, 18:02 - Pooja: Hello Meera, I am Pooja from Pratham Wealth Research Pvt Ltd.\n05/10/2026, 17:05 - Meera: ok\n05/10/2026, 20:21 - Pooja: Send ₹60,000 to svc117.d@upi for activation.\n06/10/2026, 10:05 - Meera: paying now\n07/10/2026, 12:45 - Pooja: Use this new UPI now: desk465.k@oksbi\n08/10/2026, 10:45 - Meera: done\n",
+  "transcripts": {},
+  "payees": [
+   {
+    "value_norm": "svc117.d@upi",
+    "type": "upi_vpa",
+    "from_voice": false
+   },
+   {
+    "value_norm": "desk465.k@oksbi",
+    "type": "upi_vpa",
+    "from_voice": false
+   }
+  ],
+  "checks": {},
+  "expected": [
+   "INCONCLUSIVE",
+   "INCONCLUSIVE"
+  ],
+  "format": "android24"
+ },
+ {
+  "case_id": "dev-102",
+  "kind": "scam_rotation",
+  "is_scam": true,
+  "claimed_firm": "Indravati Stockline Ltd",
+  "chat_txt": "05/10/2026, 18:28 - Rahul: Namaste Suresh ji, this is Rahul at Indravati Stockline Ltd.\n06/10/2026, 18:57 - Rahul: Your order no 442148812995 is confirmed.\n07/10/2026, 17:18 - Suresh: Please share details\n08/10/2026, 20:20 - Rahul: Pay ₹10,000 to UPI pay248.f@oksbi today.\n08/10/2026, 17:14 - Suresh: ok wait\n09/10/2026, 20:41 - Rahul: PTT-20261009-WA0018.opus (file attached)\n10/10/2026, 08:13 - Rahul: Deposit ₹10,000 in account no. 45339139312862, IFSC HDFC0334731.\n11/10/2026, 10:36 - Rahul: Pay 18% tax to withdraw your profit.\n11/10/2026, 20:35 - Suresh: done\n",
+  "transcripts": {
+   "PTT-20261009-WA0018.opus": "Use this new UPI now: kyc804.a@upi"
+  },
+  "payees": [
+   {
+    "value_norm": "pay248.f@oksbi",
+    "type": "upi_vpa",
+    "from_voice": false
+   },
+   {
+    "value_norm": "kyc804.a@upi",
+    "type": "upi_vpa",
+    "from_voice": true
+   },
+   {
+    "value_norm": "45339139312862",
+    "type": "bank_account",
+    "from_voice": false
+   }
+  ],
+  "checks": {
+   "pay248.f@oksbi": "JAI AMBE AGENCIES",
+   "kyc804.a@upi": "BALAJI GARMENTS",
+   "45339139312862": "BALAJI GARMENTS"
+  },
+  "expected": [
+   "NAME_DISCREPANCY",
+   "NAME_DISCREPANCY",
+   "NAME_DISCREPANCY"
+  ],
+  "format": "android24"
+ },
+ {
+  "case_id": "dev-103",
+  "kind": "scam_single",
+  "is_scam": true,
+  "claimed_firm": "Sahyadri Securities Ltd",
+  "chat_txt": "05/10/2026, 2:36 pm - Rahul: Hello Fatima, I am Rahul from Sahyadri Securities Ltd.\n05/10/2026, 10:52 am - Rahul: Mail us at support.sahyadri@gmail.com\n06/10/2026, 6:30 pm - Fatima: ok\n06/10/2026, 6:58 pm - Rahul: Deposit ₹5,000 in account no. 17715524584983, IFSC KKBK0614544.\n",
+  "transcripts": {},
+  "payees": [
+   {
+    "value_norm": "17715524584983",
+    "type": "bank_account",
+    "from_voice": false
+   }
+  ],
+  "checks": {
+   "17715524584983": "NEW STAR ELECTRICALS"
+  },
+  "expected": [
+   "NAME_DISCREPANCY"
+  ],
+  "format": "android12"
+ },
+ {
+  "case_id": "dev-104",
+  "kind": "scam_person",
+  "is_scam": true,
+  "claimed_firm": "Indravati Stockline Ltd",
+  "chat_txt": "05/10/2026, 3:12 pm - Vikram: Hello Meera, I am Vikram from Indravati Stockline Ltd.\n06/10/2026, 11:36 am - Meera: How do I pay?\n06/10/2026, 10:54 am - Vikram: Pay ₹10,000 to UPI kyc835.k@oksbi today.\n07/10/2026, 4:39 pm - Vikram: Pay 18% tax to withdraw your profit.\n07/10/2026, 7:13 pm - Meera: ok wait\n",
+  "transcripts": {},
+  "payees": [
+   {
+    "value_norm": "kyc835.k@oksbi",
+    "type": "upi_vpa",
+    "from_voice": false
+   }
+  ],
+  "checks": {
+   "kyc835.k@oksbi": "PRAKASH YADAV"
+  },
+  "expected": [
+   "INCONCLUSIVE"
+  ],
+  "format": "android12"
+ },
+ {
+  "case_id": "dev-105",
+  "kind": "legit_match",
+  "is_scam": false,
+  "claimed_firm": "Navyug Broking Pvt Ltd",
+  "chat_txt": "[05/10/26, 8:35:37 PM] Neha: Namaste Ankit ji, this is Neha at Navyug Broking Pvt Ltd.\n[06/10/26, 2:45:11 PM] Ankit: ok\n[06/10/26, 11:19:23 AM] Neha: Pay ₹5,000 to UPI kyc775.h@ybl today.\n",
+  "transcripts": {},
+  "payees": [
+   {
+    "value_norm": "kyc775.h@ybl",
+    "type": "upi_vpa",
+    "from_voice": false
+   }
+  ],
+  "checks": {
+   "kyc775.h@ybl": "NAVYUG BROKING LTD"
+  },
+  "expected": [
+   "NO_MAJOR_ISSUE"
+  ],
+  "format": "ios"
+ },
+ {
+  "case_id": "dev-106",
+  "kind": "legit_gateway",
+  "is_scam": false,
+  "claimed_firm": "Meghdoot Investments Pvt Ltd",
+  "chat_txt": "05/10/2026, 16:07 - Pooja: Hello Priya, I am Pooja from Meghdoot Investments Pvt Ltd.\n05/10/2026, 19:21 - Priya: ok\n06/10/2026, 09:03 - Pooja: Send ₹25,000 to desk994.a@oksbi for activation.\n07/10/2026, 16:48 - Priya: done\n",
+  "transcripts": {},
+  "payees": [
+   {
+    "value_norm": "desk994.a@oksbi",
+    "type": "upi_vpa",
+    "from_voice": false
+   }
+  ],
+  "checks": {
+   "desk994.a@oksbi": "Cashfree Payments India"
+  },
+  "expected": [
+   "INCONCLUSIVE"
+  ],
+  "format": "android24"
+ },
+ {
+  "case_id": "dev-107",
+  "kind": "no_check",
+  "is_scam": false,
+  "claimed_firm": "Meghdoot Investments Pvt Ltd",
+  "chat_txt": "05/10/2026, 7:56 pm - Rahul: Namaste John ji, this is Rahul at Meghdoot Investments Pvt Ltd.\n05/10/2026, 8:42 pm - John: Okay sir\n06/10/2026, 9:18 am - Rahul: Send ₹60,000 to fund915.a@okaxis for activation.\n07/10/2026, 3:41 pm - John: done\n08/10/2026, 8:26 pm - Rahul: Use this new UPI now: pay282.b@ybl\n08/10/2026, 12:21 pm - John: ok wait\n",
+  "transcripts": {},
+  "payees": [
+   {
+    "value_norm": "fund915.a@okaxis",
+    "type": "upi_vpa",
+    "from_voice": false
+   },
+   {
+    "value_norm": "pay282.b@ybl",
+    "type": "upi_vpa",
+    "from_voice": false
+   }
+  ],
+  "checks": {},
+  "expected": [
+   "INCONCLUSIVE",
+   "INCONCLUSIVE"
+  ],
+  "format": "android12"
+ },
+ {
+  "case_id": "dev-108",
+  "kind": "scam_rotation",
+  "is_scam": true,
+  "claimed_firm": "Kaveri Capital Advisors LLP",
+  "chat_txt": "05/10/2026, 11:31 am - Rahul: Hello John, I am Rahul from Kaveri Capital Advisors LLP.\n05/10/2026, 4:18 pm - John: Please share details\n06/10/2026, 6:12 pm - Rahul: Send ₹10,000 to pay105.e@axl for activation.\n06/10/2026, 9:40 am - Rahul: PTT-20261006-WA0065.opus (file attached)\n07/10/2026, 2:24 pm - John: sent\n07/10/2026, 9:25 am - Rahul: Use this new UPI now: fund64.e@okaxis\n",
+  "transcripts": {
+   "PTT-20261006-WA0065.opus": "Use this new UPI now: pay931.c@axl"
+  },
+  "payees": [
+   {
+    "value_norm": "pay105.e@axl",
+    "type": "upi_vpa",
+    "from_voice": false
+   },
+   {
+    "value_norm": "pay931.c@axl",
+    "type": "upi_vpa",
+    "from_voice": true
+   },
+   {
+    "value_norm": "fund64.e@okaxis",
+    "type": "upi_vpa",
+    "from_voice": false
+   }
+  ],
+  "checks": {
+   "pay105.e@axl": "MAA DURGA STORES",
+   "pay931.c@axl": "SHREE GANESH TRADERS",
+   "fund64.e@okaxis": "NEW STAR ELECTRICALS"
+  },
+  "expected": [
+   "NAME_DISCREPANCY",
+   "NAME_DISCREPANCY",
+   "NAME_DISCREPANCY"
+  ],
+  "format": "android12"
+ },
+ {
+  "case_id": "dev-109",
+  "kind": "scam_single",
+  "is_scam": true,
+  "claimed_firm": "Indravati Stockline Ltd",
+  "chat_txt": "[05/10/26, 2:50:02 PM] Pooja: Hello Meera, I am Pooja from Indravati Stockline Ltd.\n[05/10/26, 9:13:05 AM] Pooja: Visit www.indravati-markets.in\n[05/10/26, 8:43:24 AM] Meera: Okay sir\n[06/10/26, 3:49:06 PM] Pooja: Pay ₹25,000 to UPI desk831.e@axl today.\n[07/10/26, 5:17:56 PM] Pooja: Clearance charges must be paid before withdrawal.\n",
+  "transcripts": {},
+  "payees": [
+   {
+    "value_norm": "desk831.e@axl",
+    "type": "upi_vpa",
+    "from_voice": false
+   }
+  ],
+  "checks": {
+   "desk831.e@axl": "SAI KRUPA TRADING CO"
+  },
+  "expected": [
+   "NAME_DISCREPANCY"
+  ],
+  "format": "ios"
+ },
+ {
+  "case_id": "dev-110",
+  "kind": "scam_person",
+  "is_scam": true,
+  "claimed_firm": "Meghdoot Investments Pvt Ltd",
+  "chat_txt": "05/10/2026, 19:56 - Neha: Hello Ankit, I am Neha from Meghdoot Investments Pvt Ltd.\n05/10/2026, 16:16 - Neha: Call 9871779415 for help.\n06/10/2026, 15:12 - Ankit: ok\n06/10/2026, 17:47 - Neha: Transfer ₹10,000 to A/c 80814717107771 IFSC ICIC0174244.\n06/10/2026, 20:58 - Neha: Clearance charges must be paid before withdrawal.\n06/10/2026, 09:03 - Ankit: done\n",
+  "transcripts": {},
+  "payees": [
+   {
+    "value_norm": "80814717107771",
+    "type": "bank_account",
+    "from_voice": false
+   }
+  ],
+  "checks": {
+   "80814717107771": "SUNITA DEVI"
+  },
+  "expected": [
+   "INCONCLUSIVE"
+  ],
+  "format": "android24"
+ },
+ {
+  "case_id": "dev-111",
+  "kind": "legit_match",
+  "is_scam": false,
+  "claimed_firm": "Sahyadri Securities Ltd",
+  "chat_txt": "05/10/2026, 12:47 pm - Neha: Namaste Priya ji, this is Neha at Sahyadri Securities Ltd.\n05/10/2026, 1:00 pm - Priya: ok\n06/10/2026, 11:25 am - Neha: Pay ₹40,000 to UPI desk788.b@okaxis today.\n06/10/2026, 5:44 pm - Priya: sent\n",
+  "transcripts": {},
+  "payees": [
+   {
+    "value_norm": "desk788.b@okaxis",
+    "type": "upi_vpa",
+    "from_voice": false
+   }
+  ],
+  "checks": {
+   "desk788.b@okaxis": "SAHYADRI SECURITIES LTD"
+  },
+  "expected": [
+   "NO_MAJOR_ISSUE"
+  ],
+  "format": "android12"
+ },
+ {
+  "case_id": "dev-112",
+  "kind": "legit_gateway",
+  "is_scam": false,
+  "claimed_firm": "Indravati Stockline Ltd",
+  "chat_txt": "[05/10/26, 9:13:28 PM] Vikram: Hello John, I am Vikram from Indravati Stockline Ltd.\n[06/10/26, 2:02:27 PM] John: Please share details\n[06/10/26, 2:11:38 PM] Vikram: Send ₹5,000 to desk770.d@ybl for activation.\n[06/10/26, 10:36:14 AM] John: sent\n",
+  "transcripts": {},
+  "payees": [
+   {
+    "value_norm": "desk770.d@ybl",
+    "type": "upi_vpa",
+    "from_voice": false
+   }
+  ],
+  "checks": {
+   "desk770.d@ybl": "Razorpay Software Pvt Ltd"
+  },
+  "expected": [
+   "INCONCLUSIVE"
+  ],
+  "format": "ios"
+ },
+ {
+  "case_id": "dev-113",
+  "kind": "no_check",
+  "is_scam": false,
+  "claimed_firm": "Meghdoot Investments Pvt Ltd",
+  "chat_txt": "05/10/2026, 17:49 - Vikram: Hello Priya, I am Vikram from Meghdoot Investments Pvt Ltd.\n05/10/2026, 13:43 - Vikram: Your order no 442148140481 is confirmed.\n05/10/2026, 10:32 - Priya: ok\n06/10/2026, 09:39 - Vikram: Pay ₹10,000 to UPI svc257.e@upi today.\n06/10/2026, 08:06 - Priya: paying now\n",
+  "transcripts": {},
+  "payees": [
+   {
+    "value_norm": "svc257.e@upi",
+    "type": "upi_vpa",
+    "from_voice": false
+   }
+  ],
+  "checks": {},
+  "expected": [
+   "INCONCLUSIVE"
+  ],
+  "format": "android24"
+ },
+ {
+  "case_id": "dev-114",
+  "kind": "scam_rotation",
+  "is_scam": true,
+  "claimed_firm": "Indravati Stockline Ltd",
+  "chat_txt": "05/10/2026, 12:25 pm - Neha: Hello Suresh, I am Neha from Indravati Stockline Ltd.\n06/10/2026, 2:14 pm - Neha: Call 9872111733 for help.\n06/10/2026, 2:09 pm - Suresh: How do I pay?\n06/10/2026, 7:05 pm - Neha: Deposit ₹10,000 in account no. 88364352071025, IFSC HDFC0931064.\n06/10/2026, 4:06 pm - Suresh: ok wait\n06/10/2026, 10:17 am - Neha: Our payment department has a new ID: acct792.a@upi.\n07/10/2026, 8:43 pm - Neha: Use this new UPI now: fund324.d@ibl\n08/10/2026, 3:05 pm - Neha: Clearance charges must be paid before withdrawal.\n",
+  "transcripts": {},
+  "payees": [
+   {
+    "value_norm": "88364352071025",
+    "type": "bank_account",
+    "from_voice": false
+   },
+   {
+    "value_norm": "acct792.a@upi",
+    "type": "upi_vpa",
+    "from_voice": false
+   },
+   {
+    "value_norm": "fund324.d@ibl",
+    "type": "upi_vpa",
+    "from_voice": false
+   }
+  ],
+  "checks": {
+   "88364352071025": "NEW STAR ELECTRICALS",
+   "acct792.a@upi": "RK MOBILE POINT",
+   "fund324.d@ibl": "BALAJI GARMENTS"
+  },
+  "expected": [
+   "NAME_DISCREPANCY",
+   "NAME_DISCREPANCY",
+   "NAME_DISCREPANCY"
+  ],
+  "format": "android12"
+ },
+ {
+  "case_id": "dev-115",
+  "kind": "scam_single",
+  "is_scam": true,
+  "claimed_firm": "Meghdoot Investments Pvt Ltd",
+  "chat_txt": "05/10/2026, 18:50 - Vikram: Hello Suresh, I am Vikram from Meghdoot Investments Pvt Ltd.\n05/10/2026, 15:42 - Suresh: Okay sir\n06/10/2026, 14:02 - Vikram: Pay ₹10,000 to UPI svc381.j@axl today.\n",
+  "transcripts": {},
+  "payees": [
+   {
+    "value_norm": "svc381.j@axl",
+    "type": "upi_vpa",
+    "from_voice": false
+   }
+  ],
+  "checks": {
+   "svc381.j@axl": "RK MOBILE POINT"
+  },
+  "expected": [
+   "NAME_DISCREPANCY"
+  ],
+  "format": "android24"
+ },
+ {
+  "case_id": "dev-116",
+  "kind": "scam_person",
+  "is_scam": true,
+  "claimed_firm": "Navyug Broking Pvt Ltd",
+  "chat_txt": "05/10/2026, 13:55 - Rahul: Hello Suresh, I am Rahul from Navyug Broking Pvt Ltd.\n06/10/2026, 10:04 - Suresh: Please share details\n07/10/2026, 15:30 - Rahul: Send ₹15,000 to fund65.h@paytm for activation.\n07/10/2026, 16:28 - Rahul: Clearance charges must be paid before withdrawal.\n",
+  "transcripts": {},
+  "payees": [
+   {
+    "value_norm": "fund65.h@paytm",
+    "type": "upi_vpa",
+    "from_voice": false
+   }
+  ],
+  "checks": {
+   "fund65.h@paytm": "RAMESH KUMAR"
+  },
+  "expected": [
+   "INCONCLUSIVE"
+  ],
+  "format": "android24"
+ },
+ {
+  "case_id": "dev-117",
+  "kind": "legit_match",
+  "is_scam": false,
+  "claimed_firm": "Pratham Wealth Research Pvt Ltd",
+  "chat_txt": "05/10/2026, 08:02 - Rahul: Hello Priya, I am Rahul from Pratham Wealth Research Pvt Ltd.\n05/10/2026, 19:21 - Rahul: Visit www.pratham-markets.in\n05/10/2026, 14:25 - Priya: How do I pay?\n05/10/2026, 18:39 - Rahul: Pay ₹40,000 to UPI desk533.h@axl today.\n05/10/2026, 14:19 - Priya: paying now\n",
+  "transcripts": {},
+  "payees": [
+   {
+    "value_norm": "desk533.h@axl",
+    "type": "upi_vpa",
+    "from_voice": false
+   }
+  ],
+  "checks": {
+   "desk533.h@axl": "PRATHAM WEALTH RESEARCH PVT LTD"
+  },
+  "expected": [
+   "NO_MAJOR_ISSUE"
+  ],
+  "format": "android24"
+ },
+ {
+  "case_id": "dev-118",
+  "kind": "legit_gateway",
+  "is_scam": false,
+  "claimed_firm": "Indravati Stockline Ltd",
+  "chat_txt": "[05/10/26, 3:25:03 PM] Rahul: Hello Fatima, I am Rahul from Indravati Stockline Ltd.\n[06/10/26, 8:59:22 AM] Rahul: Your order no 442185361092 is confirmed.\n[07/10/26, 6:59:10 PM] Fatima: Okay sir\n[08/10/26, 10:58:58 AM] Rahul: Send ₹40,000 to svc287.b@okaxis for activation.\n",
+  "transcripts": {},
+  "payees": [
+   {
+    "value_norm": "svc287.b@okaxis",
+    "type": "upi_vpa",
+    "from_voice": false
+   }
+  ],
+  "checks": {
+   "svc287.b@okaxis": "Cashfree Payments India"
+  },
+  "expected": [
+   "INCONCLUSIVE"
+  ],
+  "format": "ios"
+ },
+ {
+  "case_id": "dev-119",
+  "kind": "no_check",
+  "is_scam": false,
+  "claimed_firm": "Navyug Broking Pvt Ltd",
+  "chat_txt": "05/10/2026, 09:15 - Vikram: Hello Fatima, I am Vikram from Navyug Broking Pvt Ltd.\n05/10/2026, 19:41 - Fatima: ok\n06/10/2026, 13:31 - Vikram: Deposit ₹60,000 in account no. 32320428889771, IFSC BARB0699576.\n06/10/2026, 18:03 - Vikram: Use this new UPI now: acct413.b@ybl\n",
+  "transcripts": {},
+  "payees": [
+   {
+    "value_norm": "32320428889771",
+    "type": "bank_account",
+    "from_voice": false
+   },
+   {
+    "value_norm": "acct413.b@ybl",
+    "type": "upi_vpa",
+    "from_voice": false
+   }
+  ],
+  "checks": {},
+  "expected": [
+   "INCONCLUSIVE",
+   "INCONCLUSIVE"
+  ],
+  "format": "android24"
+ }
+]

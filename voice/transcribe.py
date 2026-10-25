@@ -111,8 +111,20 @@ def _transcribe(fid: str, data, filename) -> Transcript:
         try:
             segments, info = st["model"].transcribe(str(p), **kw)
             text = " ".join(s.text.strip() for s in segments).strip()
-        except Exception as e:
-            return _empty(fid, f"transcription_failed:{type(e).__name__}", st["name"])
+        except Exception as e:  # noqa: BLE001
+            # 25 Oct fix: the laptop run failed 0/6 with a TypeError raised while the model decoded the file itself
+            # (its own audio reader). Retry once with audio decoded by VERIQ's ffmpeg path (16 kHz mono float32,
+            # the same decoder the voice check uses), without VAD, and keep the first error's message.
+            first = f"{type(e).__name__}: {e}"[:160]
+            try:
+                from voice.audio import decode_to_mono16k
+
+                audio = decode_to_mono16k(p)
+                kw2 = {k: v for k, v in kw.items() if k != "vad_filter"}
+                segments, info = st["model"].transcribe(audio, **kw2)
+                text = " ".join(s.text.strip() for s in segments).strip()
+            except Exception as e2:  # noqa: BLE001
+                return _empty(fid, f"transcription_failed: {first}; retry: {type(e2).__name__}: {e2}"[:300], st["name"])
     lp = getattr(info, "language_probability", None)
     return Transcript(fid, text, getattr(info, "language", None), None if lp is None else float(lp), None, st["name"])
 

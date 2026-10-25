@@ -1,0 +1,26 @@
+[
+  {
+    "payee_id": "ramesh.k@upi",
+    "status": "linked",
+    "independent_reporters": 8,
+    "reviewer_confirmed": true,
+    "source": "SYNTHETIC campaign seed (fictional; not any real registry)",
+    "note": "Reported across CAMP-01-SEBI-IMPERSONATION"
+  },
+  {
+    "payee_id": "sunita.t@upi",
+    "status": "linked",
+    "independent_reporters": 8,
+    "reviewer_confirmed": true,
+    "source": "SYNTHETIC campaign seed (fictional; not any real registry)",
+    "note": "Reported across CAMP-01-SEBI-IMPERSONATION"
+  },
+  {
+    "payee_id": "pay.task99@okhdfcbank",
+    "status": "linked",
+    "independent_reporters": 10,
+    "reviewer_confirmed": true,
+    "source": "SYNTHETIC campaign seed (fictional; not any real registry)",
+    "note": "Reported across CAMP-02-TASK-FRAUD"
+  }
+]

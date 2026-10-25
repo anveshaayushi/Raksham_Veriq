@@ -71,3 +71,33 @@ def test_language_override_from_env(monkeypatch):
     monkeypatch.setenv("VERIQ_WHISPER_LANGUAGE", "hi")
     T.transcribe("x", b"abc", "x.wav")
     assert m.seen[0][1]["language"] == "hi"
+
+
+def test_retry_with_ffmpeg_decoded_audio_when_the_model_cannot_read_the_file(tmp_path, monkeypatch):
+    """25 Oct fix for the laptop's 0/6 TypeError: first call (file path) fails, the retry gets a numpy array."""
+    import numpy as np
+
+    class PathFails(FakeModel):
+        def transcribe(self, audio, **kw):
+            self.seen.append((audio, kw))
+            if isinstance(audio, str):
+                raise TypeError("decode failed inside the model")
+            return super().transcribe("array", **kw)
+
+    import voice.audio as A
+    monkeypatch.setattr(A, "decode_to_mono16k", lambda p, **k: np.zeros(16000, dtype=np.float32))
+    m = PathFails(text="paisa bhejo")
+    T.set_model(m, "fake:retry")
+    r = T.transcribe("v.opus", b"x" * 100, "v.opus")
+    assert r.text == "paisa bhejo" and r.error is None
+    assert isinstance(m.seen[1][0], np.ndarray) and "vad_filter" not in m.seen[1][1]
+
+
+def test_both_attempts_failing_keeps_the_error_message():
+    class Always(FakeModel):
+        def transcribe(self, audio, **kw):
+            raise TypeError("bad argument xyz")
+
+    T.set_model(Always(), "fake:fail")
+    r = T.transcribe("v.wav", b"x" * 100, "v.wav")
+    assert r.text == "" and "bad argument xyz" in r.error

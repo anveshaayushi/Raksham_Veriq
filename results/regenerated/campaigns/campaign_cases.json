@@ -1,0 +1,110 @@
+[
+  {
+    "case_id": "CAMP-01-SEBI-IMPERSONATION-V01",
+    "claimed_firm": "Navyug Wealth Research",
+    "payee": "sunita.t@upi",
+    "is_fraud": true
+  },
+  {
+    "case_id": "CAMP-01-SEBI-IMPERSONATION-V02",
+    "claimed_firm": "Navyug Wealth Research",
+    "payee": "ramesh.k@upi",
+    "is_fraud": true
+  },
+  {
+    "case_id": "CAMP-01-SEBI-IMPERSONATION-V03",
+    "claimed_firm": "Navyug Wealth Research",
+    "payee": "sunita.t@upi",
+    "is_fraud": true
+  },
+  {
+    "case_id": "CAMP-01-SEBI-IMPERSONATION-V04",
+    "claimed_firm": "Navyug Wealth Research",
+    "payee": "ramesh.k@upi",
+    "is_fraud": true
+  },
+  {
+    "case_id": "CAMP-01-SEBI-IMPERSONATION-V05",
+    "claimed_firm": "Navyug Wealth Research",
+    "payee": "sunita.t@upi",
+    "is_fraud": true
+  },
+  {
+    "case_id": "CAMP-01-SEBI-IMPERSONATION-V06",
+    "claimed_firm": "Navyug Wealth Research",
+    "payee": "ramesh.k@upi",
+    "is_fraud": true
+  },
+  {
+    "case_id": "CAMP-01-SEBI-IMPERSONATION-V07",
+    "claimed_firm": "Navyug Wealth Research",
+    "payee": "sunita.t@upi",
+    "is_fraud": true
+  },
+  {
+    "case_id": "CAMP-01-SEBI-IMPERSONATION-V08",
+    "claimed_firm": "Navyug Wealth Research",
+    "payee": "ramesh.k@upi",
+    "is_fraud": true
+  },
+  {
+    "case_id": "CAMP-02-TASK-FRAUD-V01",
+    "claimed_firm": "Global Media Task Pro",
+    "payee": "pay.task99@okhdfcbank",
+    "is_fraud": true
+  },
+  {
+    "case_id": "CAMP-02-TASK-FRAUD-V02",
+    "claimed_firm": "Global Media Task Pro",
+    "payee": "pay.task99@okhdfcbank",
+    "is_fraud": true
+  },
+  {
+    "case_id": "CAMP-02-TASK-FRAUD-V03",
+    "claimed_firm": "Global Media Task Pro",
+    "payee": "pay.task99@okhdfcbank",
+    "is_fraud": true
+  },
+  {
+    "case_id": "CAMP-02-TASK-FRAUD-V04",
+    "claimed_firm": "Global Media Task Pro",
+    "payee": "pay.task99@okhdfcbank",
+    "is_fraud": true
+  },
+  {
+    "case_id": "CAMP-02-TASK-FRAUD-V05",
+    "claimed_firm": "Global Media Task Pro",
+    "payee": "pay.task99@okhdfcbank",
+    "is_fraud": true
+  },
+  {
+    "case_id": "CAMP-02-TASK-FRAUD-V06",
+    "claimed_firm": "Global Media Task Pro",
+    "payee": "pay.task99@okhdfcbank",
+    "is_fraud": true
+  },
+  {
+    "case_id": "CAMP-02-TASK-FRAUD-V07",
+    "claimed_firm": "Global Media Task Pro",
+    "payee": "pay.task99@okhdfcbank",
+    "is_fraud": true
+  },
+  {
+    "case_id": "CAMP-02-TASK-FRAUD-V08",
+    "claimed_firm": "Global Media Task Pro",
+    "payee": "pay.task99@okhdfcbank",
+    "is_fraud": true
+  },
+  {
+    "case_id": "CAMP-02-TASK-FRAUD-V09",
+    "claimed_firm": "Global Media Task Pro",
+    "payee": "pay.task99@okhdfcbank",
+    "is_fraud": true
+  },
+  {
+    "case_id": "CAMP-02-TASK-FRAUD-V10",
+    "claimed_firm": "Global Media Task Pro",
+    "payee": "pay.task99@okhdfcbank",
+    "is_fraud": true
+  }
+]
